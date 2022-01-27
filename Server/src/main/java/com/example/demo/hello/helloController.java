@@ -5,8 +5,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
-@RequestMapping(path = "api/v1/hello")
+@RequestMapping("/api")
 public class helloController {
 
     private final helloService HelloService;
@@ -16,8 +18,8 @@ public class helloController {
         this.HelloService = HelloService;
     }
 
-    @GetMapping
-    public String getHello(){
+    @GetMapping("/hello")
+    public List<String> getHello(){
         return helloService.getHello();
     }
 }
