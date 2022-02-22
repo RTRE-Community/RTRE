@@ -1,0 +1,50 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "StartCommand/1.0.0": {
+        "dependencies": {
+          "Autodesk.Revit.SDK": "2022.0.2.392",
+          "RevitTask": "3.0.0"
+        },
+        "runtime": {
+          "StartCommand.dll": {}
+        }
+      },
+      "Autodesk.Revit.SDK/2022.0.2.392": {},
+      "RevitTask/3.0.0": {
+        "runtime": {
+          "lib/net452/RevitTask.dll": {
+            "assemblyVersion": "3.0.0.0",
+            "fileVersion": "3.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "StartCommand/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Autodesk.Revit.SDK/2022.0.2.392": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-/0I7QoCC2xHkVA5jUHqnq9shb7bkqzH75VhvbVmGP7YofNvEZK3fILwXzaik1Dk5NRc9VIhEAmmmwnFRFxjigQ==",
+      "path": "autodesk.revit.sdk/2022.0.2.392",
+      "hashPath": "autodesk.revit.sdk.2022.0.2.392.nupkg.sha512"
+    },
+    "RevitTask/3.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-OW3KH5xel4UECv9QjR1N290whfUKCkfdoWD0qUngtpGSGNqevEvvRkZ6g7RiUlUaVo32banq4p6kv7LJEKpvwQ==",
+      "path": "revittask/3.0.0",
+      "hashPath": "revittask.3.0.0.nupkg.sha512"
+    }
+  }
+}

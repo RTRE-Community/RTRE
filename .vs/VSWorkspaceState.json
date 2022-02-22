@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\StartCommand",
+    "\\StartCommand\\StartCommand",
+    "\\StartCommand\\StartCommand\\bin",
+    "\\StartCommand\\StartCommand\\bin\\Debug",
+    "\\StartCommand\\StartCommand\\bin\\Debug\\net48",
+    "\\StartCommand\\StartCommand\\bin\\Debug\\net6.0",
+    "\\StartCommand\\StartCommand\\obj",
+    "\\StartCommand\\StartCommand\\obj\\Debug",
+    "\\StartCommand\\StartCommand\\obj\\Debug\\net48"
+  ],
+  "SelectedNode": "\\StartCommand\\StartCommand\\bin\\Debug\\net6.0\\StartCommand.pdb",
+  "PreviewInSolutionExplorer": false
+}
