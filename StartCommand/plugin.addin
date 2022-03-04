@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RevitAddIns>
- <AddIn Type="Command">
+ <AddIn Type="Application">
        <Name>StartCommand</Name>
-       <FullClassName>StartCommand.StartCommand</FullClassName>
+       <FullClassName>StartCommand.Application</FullClassName>
        <Text>RTRE revit addon</Text>
        <Description>Connect to a server</Description>
        <VisibilityMode>AlwaysVisible</VisibilityMode>
-       <Assembly>C:\Users\Lars\source\repos\StartCommand\StartCommand\obj\Debug\net48\StartCommand.dll</Assembly>
+       <Assembly>C:\Users\xxxx\Documents\GitHub\RTRE\StartCommand\StartCommand\bin\Debug\net48\StartCommand.dll</Assembly>
        <AddInId>502fe383-2648-4e98-adf8-5e6047f9dc34</AddInId>
     <VendorId>ADSK</VendorId>
     <VendorDescription>Autodesk, Inc, www.autodesk.com</VendorDescription>
