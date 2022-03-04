@@ -41,12 +41,9 @@ namespace StartCommand
 
                 var data = new StringContent("Hello from Revit", Encoding.UTF8, "application/json");
                 // change url
-                var url = "https://ptsv2.com/t/a8t2d-1645446841/post";
-                var response = await client.PostAsync(url, data);
+                var url = "http://localhost:8080/api/hello";
+                var response = await client.GetAsync(url);
 
-                string result = response.Content.ReadAsStringAsync().Result;
-
-                TaskDialog.Show("Success", result);
             }
             catch (Exception e)
             {
