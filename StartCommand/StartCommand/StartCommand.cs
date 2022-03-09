@@ -41,7 +41,7 @@ namespace StartCommand
 
                 var data = new StringContent("Hello from Revit", Encoding.UTF8, "application/json");
                 // change url
-                var url = "http://localhost:8080/api/hello";
+                var url = "http://localhost:8080/api/hello?fileName=IFCfilerevite";
                 var response = await client.GetAsync(url);
 
             }

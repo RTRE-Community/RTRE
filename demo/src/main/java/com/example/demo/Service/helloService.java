@@ -19,12 +19,12 @@ import java.util.Random;
 
 @Service
 public class helloService {
-    public static void getHello(){
+    public static void getHello(String fileName){
         try {
 
             String randomName = "Random " + new Random().nextLong();
             JsonBimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8082");
-            BimServerClient client = factory.create(new UsernamePasswordAuthenticationInfo("admin@admin.com", "admin"));
+            BimServerClient client = factory.create(new UsernamePasswordAuthenticationInfo("admin@admin.com", "password"));
 
             SProject newProject = client.getServiceInterface().addProject(randomName, "ifc2x3tc1");
 
@@ -35,7 +35,8 @@ public class helloService {
             SDeserializerPluginConfiguration deserializer = client.getServiceInterface().getSuggestedDeserializerForExtension("ifc", poid);
 
             // Make sure you change this to a path to a local IFC file
-            Path demoIfcFile = Paths.get("C:\\Users\\Levan\\Documents\\RTRECOM\\IFCfilerevite.ifc");
+            System.out.println(fileName);
+            Path demoIfcFile = Paths.get("C:\\Users\\Levan\\Documents\\RTRECOM\\" + fileName +".ifc");
 
             // Here we actually checkin the IFC file. Flow.SYNC indicates that we only want to continue the code-flow after the checkin has been completed
             client.checkin(poid, comment, deserializer.getOid(), false, true, demoIfcFile);
