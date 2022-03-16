@@ -22,7 +22,7 @@ public class helloService {
     public static void getHello(String fileName){
         try {
 
-            String randomName = "Random " + new Random().nextLong();
+            String randomName = fileName + new Random().nextLong();
             JsonBimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8082");
             BimServerClient client = factory.create(new UsernamePasswordAuthenticationInfo("admin@admin.com", "password"));
 
@@ -36,7 +36,7 @@ public class helloService {
 
             // Make sure you change this to a path to a local IFC file
             System.out.println(fileName);
-            Path demoIfcFile = Paths.get("C:\\Users\\Levan\\Documents\\RTRECOM\\" + fileName +".ifc");
+            Path demoIfcFile = Paths.get("Working\\Directory\\" + fileName +".ifc");
 
             // Here we actually checkin the IFC file. Flow.SYNC indicates that we only want to continue the code-flow after the checkin has been completed
             client.checkin(poid, comment, deserializer.getOid(), false, true, demoIfcFile);

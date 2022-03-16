@@ -115,19 +115,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Dennis\\.nuget\\packages\\": {}
+    "C:\\Users\\Levan\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Dennis\\Desktop\\Program\\RTRE\\StartCommand\\StartCommand\\StartCommand.csproj",
+      "projectUniqueName": "C:\\Users\\Levan\\Documents\\GitHub\\RTRE\\StartCommand\\StartCommand\\StartCommand.csproj",
       "projectName": "StartCommand",
-      "projectPath": "C:\\Users\\Dennis\\Desktop\\Program\\RTRE\\StartCommand\\StartCommand\\StartCommand.csproj",
-      "packagesPath": "C:\\Users\\Dennis\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Dennis\\Desktop\\Program\\RTRE\\StartCommand\\StartCommand\\obj\\",
+      "projectPath": "C:\\Users\\Levan\\Documents\\GitHub\\RTRE\\StartCommand\\StartCommand\\StartCommand.csproj",
+      "packagesPath": "C:\\Users\\Levan\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Levan\\Documents\\GitHub\\RTRE\\StartCommand\\StartCommand\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Dennis\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Levan\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -162,7 +162,7 @@
             "version": "[13.0.1, )"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

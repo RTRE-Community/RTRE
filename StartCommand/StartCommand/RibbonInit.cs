@@ -28,9 +28,9 @@ namespace StartCommand
 
             PushButton pb1 = (PushButton)ribbonPanel.AddItem(b1Data);
             Autodesk.Revit.UI.TextBox item1 = ribbonPanel.AddItem(itemData1) as Autodesk.Revit.UI.TextBox;
-            item1.Value = "Input something here...";
             item1.ToolTip = itemData1.Name; // Can be changed to a more descriptive text.
             item1.ShowImageAsButton = true;
+            item1.PromptText = "input something here...";
             item1.EnterPressed += CallbackOfTextBox;
             pb1.ToolTip = "Communicate with the server!";
 
@@ -40,7 +40,12 @@ namespace StartCommand
             Autodesk.Revit.UI.TextBox textBox = sender as Autodesk.Revit.UI.TextBox;
 
             TaskDialog.Show(textBox.Value.ToString(), textBox.Value.ToString());
+            MyGlobals.userFileName = textBox.Value.ToString();
         }
 
+        public static class MyGlobals
+        {
+            public static string userFileName= "default";
+        }
     }
 }

@@ -2,6 +2,7 @@
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using System.Text;
+using static StartCommand.RibbonInit;
 
 namespace StartCommand
 {
@@ -33,7 +34,7 @@ namespace StartCommand
                 Transaction tr = new Transaction(commandData.Application.ActiveUIDocument.Document); tr.Start("Command name here");
 
                 IFCExportOptions exportOptions = new IFCExportOptions();
-                doc.Export("C:/Users/Levan/Documents/RTRECOM", "IFCfilerevite", exportOptions);
+                doc.Export("Working//Directiory//", MyGlobals.userFileName, exportOptions);
                 tr.Commit();
               
 
@@ -41,7 +42,7 @@ namespace StartCommand
 
                 var data = new StringContent("Hello from Revit", Encoding.UTF8, "application/json");
                 // change url
-                var url = "http://localhost:8080/api/hello?fileName=IFCfilerevite";
+                var url = "http://localhost:8080/api/hello?fileName="+ MyGlobals.userFileName;
                 var response = await client.GetAsync(url);
 
             }
