@@ -19,13 +19,11 @@ namespace StartCommand
 
         private async void pingServer(ExternalCommandData commandData)
         {
+            String directory = "Enter BimServer directory";
+
             UIApplication uiapp = commandData.Application;
-
             UIDocument uidoc = uiapp.ActiveUIDocument;
-
-
             Document doc = uidoc.Document;
-
             View view = uidoc.ActiveView;
 
             try
@@ -34,7 +32,7 @@ namespace StartCommand
                 Transaction tr = new Transaction(commandData.Application.ActiveUIDocument.Document); tr.Start("Command name here");
 
                 IFCExportOptions exportOptions = new IFCExportOptions();
-                doc.Export("BIMSERVER DIRECTORY", MyGlobals.userFileName, exportOptions);
+                doc.Export(directory , MyGlobals.userFileName, exportOptions);
                 tr.Commit();
               
 
