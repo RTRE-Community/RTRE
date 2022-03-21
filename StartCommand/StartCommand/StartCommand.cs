@@ -34,7 +34,7 @@ namespace StartCommand
                 Transaction tr = new Transaction(commandData.Application.ActiveUIDocument.Document); tr.Start("Command name here");
 
                 IFCExportOptions exportOptions = new IFCExportOptions();
-                doc.Export("Working//Directiory//", MyGlobals.userFileName, exportOptions);
+                doc.Export("BIMSERVER DIRECTORY", MyGlobals.userFileName, exportOptions);
                 tr.Commit();
               
 
@@ -42,7 +42,7 @@ namespace StartCommand
 
                 var data = new StringContent("Hello from Revit", Encoding.UTF8, "application/json");
                 // change url
-                var url = "http://localhost:8080/api/hello?fileName="+ MyGlobals.userFileName;
+                var url = "http://localhost:8080/api/postIfc?fileName="+ MyGlobals.userFileName;
                 var response = await client.GetAsync(url);
 
             }

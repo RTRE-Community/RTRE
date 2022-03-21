@@ -14,12 +14,13 @@ import org.bimserver.shared.exceptions.ServiceException;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
 import java.util.Random;
 
 
 @Service
-public class helloService {
-    public static void getHello(String fileName){
+public class ifcPostService {
+    public static void postIfc(String fileName){
         try {
 
             String randomName = fileName + new Random().nextLong();
@@ -36,19 +37,10 @@ public class helloService {
 
             // Make sure you change this to a path to a local IFC file
             System.out.println(fileName);
-            Path demoIfcFile = Paths.get("Working\\Directory\\" + fileName +".ifc");
-
+            Path demoIfcFile = Paths.get("BIMSERVER DIRECTORYS" + fileName +".ifc");
             // Here we actually checkin the IFC file. Flow.SYNC indicates that we only want to continue the code-flow after the checkin has been completed
             client.checkin(poid, comment, deserializer.getOid(), false, true, demoIfcFile);
-        } catch (BimServerClientException e) {
-            e.printStackTrace();
-        } catch (ServiceException e) {
-            e.printStackTrace();
-        } catch (ChannelConnectionException e) {
-            e.printStackTrace();
-        } catch (PublicInterfaceNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (BimServerClientException | ServiceException | ChannelConnectionException | PublicInterfaceNotFoundException | IOException e) {
             e.printStackTrace();
         }
     }
