@@ -19,7 +19,7 @@ namespace StartCommand
 
         private async void pingServer(ExternalCommandData commandData)
         {
-            String directory = "Enter BimServer directory";
+            String directory = "Directory";
 
             UIApplication uiapp = commandData.Application;
             UIDocument uidoc = uiapp.ActiveUIDocument;

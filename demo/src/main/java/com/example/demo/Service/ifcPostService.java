@@ -21,7 +21,7 @@ import java.util.Random;
 @Service
 public class ifcPostService {
     public static void postIfc(String fileName){
-        String bimServerDirectory = "";
+        String bimServerDirectory = "C:\\Users\\Dennis\\Desktop\\Program\\BimServer\\";
         String username = "admin@admin.com";
         String password = "password";
         String schema = "ifc2x3tc1";
@@ -42,9 +42,9 @@ public class ifcPostService {
 
             // Make sure you change this to a path to a local IFC file
             System.out.println(fileName);
-            Path demoIfcFile = Paths.get(bimServerDirectory + fileName +".ifc");
+            Path demoIfcFile = Paths.get("directory"+ fileName +".ifc");
             // Here we actually checkin the IFC file. Flow.SYNC indicates that we only want to continue the code-flow after the checkin has been completed
-            client.checkin(poid, comment, deserializer.getOid(), false, true, demoIfcFile);
+            client.checkinSync(poid,comment,deserializer.getOid(),false,demoIfcFile);
         } catch (BimServerClientException | ServiceException | ChannelConnectionException | PublicInterfaceNotFoundException | IOException e) {
             e.printStackTrace();
         }
