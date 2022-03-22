@@ -20,21 +20,25 @@ public class ifcGetService {
 
     public static void installIfcFile(){
         try{
+            // initialize "BimServer" client and authentication
             JsonBimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8082");
             BimServerClient client = factory.create(new UsernamePasswordAuthenticationInfo("admin@admin.com", "password"));
+
+            // Pre-requisite steps - Get all Projects (obs! further implementation needed to give user a list of all projects)
             List<SProject> projectList = client.getServiceInterface().getAllProjects(true,true);
-            SProject projectid = client.getServiceInterface().getProjectByPoid(projectList.get(0).getOid());
-            System.out.println(projectid.getLastRevisionId());
+            // Select one project
+            SProject project = client.getServiceInterface().getProjectByPoid(projectList.get(0).getOid());
+            // get the latest revision id from the project
+            System.out.println(project.getLastRevisionId());
+            // Create a serializer for our configuration/Schema
             SSerializerPluginConfiguration serializer = client.getServiceInterface().getSerializerByName("Ifc2x3tc1");
-            System.out.println(serializer.getOid());
-            long id = 1966083;
-            long topicId;
-           topicId=  client.getServiceInterface().download(Collections.singleton(projectid.getLastRevisionId()),"{}",serializer.getOid(),false);
-            System.out.println(serializer.getOid() + " "+ projectid.getLastRevisionId()+ " "+ projectid.getOid());
-            System.out.println(topicId);
+            // Start the download process and receive a topic id
+
+            //Installation process
+            long topicId =  client.getServiceInterface().download(Collections.singleton(project.getLastRevisionId()),"{}",serializer.getOid(),false);
+            // Use the topic id from "BimServer" which contains the file data to download it
             InputStream is = client.getServiceInterface().getDownloadData(topicId).getFile().getInputStream();
             File targetFile = new File("Save directory + filename and .ifc");
-
             java.nio.file.Files.copy(
                     is,
                     targetFile.toPath(),
@@ -42,6 +46,8 @@ public class ifcGetService {
             );
             IOUtils.closeQuietly(is);
             System.out.println("Success");
+
+
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
