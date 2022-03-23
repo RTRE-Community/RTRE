@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "lHZchJXaptM5j5pCuZiyyHCjoA2GYs2LY2IuBZSkPpTKW3/XQgZgSM8Uw+Zc+YAJe/7KwGv9EOMD3nJwWovhPQ==",
+  "dgSpecHash": "a47ygX3BFnvU2xiFdr8qZbJthz+eF1ej4HE7W7a+fnCXqwKrzZMomnfQMP76BklfppS0LHVBW5fA1OIu5nNZ8g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Dennis\\Desktop\\Program\\RTRE\\StartCommand\\StartCommand\\StartCommand.csproj",
+  "projectFilePath": "C:\\Users\\Dennis\\Desktop\\Program\\RTRE\\StartCommand\\StartCommand\\RevitPlugin.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Dennis\\.nuget\\packages\\autodesk.revit.sdk\\2022.0.2.392\\autodesk.revit.sdk.2022.0.2.392.nupkg.sha512",
     "C:\\Users\\Dennis\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"

@@ -6,23 +6,21 @@ using System.Threading.Tasks;
 using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
-using static StartCommand.RibbonInit;
+using static RevitPlugin.RibbonInit;
 
-namespace StartCommand
+namespace RevitPlugin
 {
     [Transaction(TransactionMode.Manual)]
     public class GetIfc : IExternalCommand
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            recieveIfcFile(commandData);
+            RecieveIfcFile(commandData);
             return Result.Succeeded;
         }
 
-        private async void recieveIfcFile(ExternalCommandData commandData)
+        private async void RecieveIfcFile(ExternalCommandData commandData)
         {
-
-            String directory = "";
             try
             {
                 HttpClient client = new HttpClient();

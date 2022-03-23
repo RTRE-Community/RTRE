@@ -4,7 +4,7 @@ using System.Drawing.Imaging;
 using System.Reflection;
 using System.Windows.Media.Imaging;
 
-namespace StartCommand
+namespace RevitPlugin
 {
     public class Application : IExternalApplication
     {

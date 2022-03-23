@@ -3,12 +3,11 @@ package com.example.demo.Service;
 import org.apache.commons.io.IOUtils;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.json.JsonBimServerClientFactory;
-import org.bimserver.interfaces.objects.*;
+import org.bimserver.interfaces.objects.SProject;
+import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.springframework.stereotype.Service;
 
-
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.InputStream;
 import java.nio.file.StandardCopyOption;

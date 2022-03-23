@@ -120,9 +120,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Dennis\\Desktop\\Program\\RTRE\\StartCommand\\StartCommand\\StartCommand.csproj",
-      "projectName": "StartCommand",
-      "projectPath": "C:\\Users\\Dennis\\Desktop\\Program\\RTRE\\StartCommand\\StartCommand\\StartCommand.csproj",
+      "projectUniqueName": "C:\\Users\\Dennis\\Desktop\\Program\\RTRE\\StartCommand\\StartCommand\\RevitPlugin.csproj",
+      "projectName": "RevitPlugin",
+      "projectPath": "C:\\Users\\Dennis\\Desktop\\Program\\RTRE\\StartCommand\\StartCommand\\RevitPlugin.csproj",
       "packagesPath": "C:\\Users\\Dennis\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Dennis\\Desktop\\Program\\RTRE\\StartCommand\\StartCommand\\obj\\",
       "projectStyle": "PackageReference",
