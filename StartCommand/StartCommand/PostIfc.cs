@@ -7,7 +7,7 @@ using static StartCommand.RibbonInit;
 namespace StartCommand
 {
     [Transaction(TransactionMode.Manual)]
-    public class StartCommand: IExternalCommand
+    public class PostIfc: IExternalCommand
 
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
@@ -19,7 +19,7 @@ namespace StartCommand
 
         private async void pingServer(ExternalCommandData commandData)
         {
-            String directory = "Directory";
+            String directory = "bimserverdir";
 
             UIApplication uiapp = commandData.Application;
             UIDocument uidoc = uiapp.ActiveUIDocument;
@@ -43,6 +43,7 @@ namespace StartCommand
                 var url = "http://localhost:8080/api/postIfc?fileName="+ MyGlobals.userFileName;
                 var response = await client.GetAsync(url);
 
+                TaskDialog.Show("Success", "Current file has been posted to Bim Server");
             }
             catch (Exception e)
             {

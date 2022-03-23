@@ -1,6 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\StartCommand"
   ],
+  "SelectedNode": "\\RevitPlugin.sln",
   "PreviewInSolutionExplorer": false
 }
