@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
+using static StartCommand.RibbonInit;
 
 namespace StartCommand
 {
@@ -25,7 +26,7 @@ namespace StartCommand
             try
             {
                 HttpClient client = new HttpClient();
-                var url = "http://localhost:8080/api/getIfc";
+                var url = "http://localhost:8080/api/getIfc?fileName="+ MyGlobals.userFileName;
                 var response = await client.GetAsync(url);
                 TaskDialog.Show("Success", "File has been saved as imHere.ifc");
             }

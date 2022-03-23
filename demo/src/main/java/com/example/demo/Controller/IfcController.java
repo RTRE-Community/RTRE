@@ -23,6 +23,7 @@ public class IfcController {
     }
 
     @GetMapping("/getIfc")
-    public void getIfc(){
-        ifcGetService.installIfcFile();}
+    @ResponseBody
+    public void getIfc(@RequestParam String fileName){
+        ifcGetService.installIfcFile(fileName);}
 }
