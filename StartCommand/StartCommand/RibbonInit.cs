@@ -25,11 +25,14 @@ namespace RevitPlugin
                 "POST", "POST" + System.Environment.NewLine + "  Request  ", thisAssemblyPath, "RevitPlugin.PostIfc");
             PushButtonData b2Data = new PushButtonData(
                 "Get", "Get" + System.Environment.NewLine + "Ifc File", thisAssemblyPath, "RevitPlugin.GetIfc");
+            PushButtonData b3Data = new PushButtonData(
+                "GetList", "GetList" + System.Environment.NewLine + "Ifc File", thisAssemblyPath, "RevitPlugin.GetListOfIfc");
 
             // Add data to ribbon
             PushButton pb1 = (PushButton)ribbonPanel.AddItem(b1Data);
             TextBox item1 = (TextBox)ribbonPanel.AddItem(itemData1);
             PushButton pb2 = (PushButton)ribbonPanel.AddItem(b2Data);
+            PushButton pb3 = (PushButton) ribbonPanel.AddItem(b3Data);
 
             //Additional information for inputField/buttons
             item1.ToolTip = itemData1.Name; // Can be changed to a more descriptive text.
@@ -38,6 +41,7 @@ namespace RevitPlugin
             item1.EnterPressed += CallbackOfTextBox;
             pb1.ToolTip = "Post current project to IFC";
             pb2.ToolTip = " Recieve IFC file from bimServer";
+            pb3.ToolTip = "Get list of all active projects";
 
         }
         public void CallbackOfTextBox(object sender, Autodesk.Revit.UI.Events.TextBoxEnterPressedEventArgs args)

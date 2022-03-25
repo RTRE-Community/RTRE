@@ -5,7 +5,12 @@ import org.bimserver.client.BimServerClient;
 import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
+import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
+import org.bimserver.shared.exceptions.BimServerClientException;
+import org.bimserver.shared.exceptions.ServerException;
+import org.bimserver.shared.exceptions.ServiceException;
+import org.bimserver.shared.exceptions.UserException;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
@@ -16,17 +21,29 @@ import java.util.List;
 
 @Service
 public class ifcGetService {
+    
+    static JsonBimServerClientFactory factory;
+    static BimServerClient client;
 
-    public static void installIfcFile(String fileName){
+    {
+        try {
+            factory = new JsonBimServerClientFactory("http://localhost:8082");
+            client = factory.create(new UsernamePasswordAuthenticationInfo("admin@admin.com", "password"));
+        } catch (BimServerClientException | ServiceException | ChannelConnectionException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public static void installIfcFile(Long fileName){
         try{
             // initialize "BimServer" client and authentication
-            JsonBimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8082");
-            BimServerClient client = factory.create(new UsernamePasswordAuthenticationInfo("admin@admin.com", "password"));
+
 
             // Pre-requisite steps - Get all Projects (obs! further implementation needed to give user a list of all projects)
             List<SProject> projectList = client.getServiceInterface().getAllProjects(true,true);
             // Select one project
-            SProject project = client.getServiceInterface().getProjectByPoid(projectList.get(0).getOid());
+            SProject project = client.getServiceInterface().getProjectByPoid(fileName);
             // get the latest revision id from the project
             System.out.println(project.getLastRevisionId());
             // Create a serializer for our configuration/Schema
@@ -37,7 +54,7 @@ public class ifcGetService {
             long topicId =  client.getServiceInterface().download(Collections.singleton(project.getLastRevisionId()),"{}",serializer.getOid(),false);
             // Use the topic id from "BimServer" which contains the file data to download it
             InputStream is = client.getServiceInterface().getDownloadData(topicId).getFile().getInputStream();
-            File targetFile = new File("Save directory " + fileName +".ifc");
+            File targetFile = new File("C:\\Users\\Levan\\Documents\\RTRECOM\\ " + fileName +".ifc");
             java.nio.file.Files.copy(
                     is,
                     targetFile.toPath(),
@@ -50,6 +67,27 @@ public class ifcGetService {
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
+    }
+
+    public static String getProjectList(){
+        StringBuilder taskDialogMessage = new StringBuilder();
+        try{
+            List<SProject> projectList = client.getServiceInterface().getAllProjects(true,true);
+
+            for (int i = 0; i < projectList.size(); i++) {
+                System.out.println(i);
+                String content = "Project Name: "+projectList.get(i).getOid() + " Project checkout id: "+ projectList.get(i).getLastRevisionId() + "\n";
+                taskDialogMessage.append(content);
+            }
+
+            System.out.println(taskDialogMessage);
+        } catch (ServerException e) {
+            e.printStackTrace();
+        } catch (UserException e) {
+            e.printStackTrace();
+        }
+
+        return taskDialogMessage.toString();
     }
 }
 

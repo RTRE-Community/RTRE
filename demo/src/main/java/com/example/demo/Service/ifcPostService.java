@@ -41,7 +41,7 @@ public class ifcPostService {
 
             // Make sure you change this to a path to a local IFC file
             System.out.println(fileName);
-            Path demoIfcFile = Paths.get("directory"+ fileName +".ifc");
+            Path demoIfcFile = Paths.get("C:\\Users\\Levan\\Documents\\RTRECOM\\"+ fileName +".ifc");
 
             // Here we actually checkin the IFC file. Flow.SYNC indicates that we only want to continue the code-flow after the checkin has been completed
             client.checkinSync(poid,comment,deserializer.getOid(),false,demoIfcFile);

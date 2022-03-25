@@ -19,7 +19,7 @@ namespace RevitPlugin
 
         private async void pingServer(ExternalCommandData commandData)
         {
-            String directory = "bimserverdir";
+            String directory = "C:/Users/Levan/Documents/RTRECOM/";
 
             //Open for Transactions on current file
             UIApplication uiapp = commandData.Application;
