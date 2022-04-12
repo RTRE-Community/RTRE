@@ -1,5 +1,6 @@
 package com.example.demo.Controller;
 
+import com.example.demo.Service.ifcMergeService;
 import com.example.demo.Service.ifcPostService;
 import com.example.demo.Service.ifcGetService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,15 +11,17 @@ import org.springframework.web.bind.annotation.*;
 public class IfcController {
 
     private final ifcPostService HelloService;
+    private final ifcMergeService IfcMergeService;
 
     @Autowired
-    public IfcController(ifcPostService IfcGetService) {
+    public IfcController(ifcPostService IfcGetService, ifcMergeService ifcMergeService) {
         this.HelloService = IfcGetService;
+        IfcMergeService = ifcMergeService;
     }
 
     @GetMapping("/postIfc")
     @ResponseBody
-    public void getHello(@RequestParam String fileName){
+    public void postIfc(@RequestParam String fileName){
         ifcPostService.postIfc(fileName);
     }
 
@@ -27,10 +30,16 @@ public class IfcController {
     public void getIfc(@RequestParam Long fileName){
         ifcGetService.installIfcFile(fileName);}
 
+<<<<<<< Updated upstream
     @GetMapping("/GetProjectList")
     @ResponseBody
     public String getProjectList(){
         System.out.println(ifcGetService.getProjectList());
         return ifcGetService.getProjectList();
     }
+=======
+    @GetMapping("/merge")
+    @ResponseBody
+    public  void merge(@RequestParam String mergeFile1, String mergeFile2, String outputFile){ ifcMergeService.mergeIfc(mergeFile1,mergeFile2,outputFile);}
+>>>>>>> Stashed changes
 }
