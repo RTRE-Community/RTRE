@@ -30,16 +30,13 @@ public class IfcController {
     public void getIfc(@RequestParam Long fileName){
         ifcGetService.installIfcFile(fileName);}
 
-<<<<<<< Updated upstream
     @GetMapping("/GetProjectList")
     @ResponseBody
     public String getProjectList(){
         System.out.println(ifcGetService.getProjectList());
         return ifcGetService.getProjectList();
     }
-=======
     @GetMapping("/merge")
     @ResponseBody
     public  void merge(@RequestParam String mergeFile1, String mergeFile2, String outputFile){ ifcMergeService.mergeIfc(mergeFile1,mergeFile2,outputFile);}
->>>>>>> Stashed changes
 }
