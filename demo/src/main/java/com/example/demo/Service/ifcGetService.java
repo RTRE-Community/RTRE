@@ -1,5 +1,6 @@
 package com.example.demo.Service;
 
+import com.google.gson.Gson;
 import org.apache.commons.io.IOUtils;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.json.JsonBimServerClientFactory;
@@ -69,25 +70,18 @@ public class ifcGetService {
         }
     }
 
-    public static String getProjectList(){
-        StringBuilder taskDialogMessage = new StringBuilder();
-        try{
-            List<SProject> projectList = client.getServiceInterface().getAllProjects(true,true);
+    public static String authGetAllProjects (){
+        try {
 
-            for (int i = 0; i < projectList.size(); i++) {
-                System.out.println(i);
-                String content = "Project Name: "+projectList.get(i).getOid() + " Project checkout id: "+ projectList.get(i).getLastRevisionId() + "\n";
-                taskDialogMessage.append(content);
-            }
-
-            System.out.println(taskDialogMessage);
+           List<SProject> data = client.getServiceInterface().getAllProjects(true,true);
+           String result = new Gson().toJson(data);
+           return result;
         } catch (ServerException e) {
             e.printStackTrace();
         } catch (UserException e) {
             e.printStackTrace();
         }
-
-        return taskDialogMessage.toString();
+        return null;
     }
 }
 

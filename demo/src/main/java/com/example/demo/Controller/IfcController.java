@@ -30,11 +30,11 @@ public class IfcController {
     public void getIfc(@RequestParam Long fileName){
         ifcGetService.installIfcFile(fileName);}
 
-    @GetMapping("/GetProjectList")
+    @GetMapping("/getProjectList")
     @ResponseBody
     public String getProjectList(){
-        System.out.println(ifcGetService.getProjectList());
-        return ifcGetService.getProjectList();
+        System.out.println(ifcGetService.authGetAllProjects());
+        return ifcGetService.authGetAllProjects();
     }
     @GetMapping("/merge")
     @ResponseBody
