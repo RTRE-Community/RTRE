@@ -22,8 +22,8 @@ public class IfcController {
 
     @GetMapping("/postIfc")
     @ResponseBody
-    public void postIfc(@RequestParam String fileName){
-        ifcPostService.postIfc(fileName);
+    public void postIfc(@RequestParam String fileName, String path){
+        ifcPostService.postIfc(fileName,path);
     }
 
     @GetMapping("/getIfc")

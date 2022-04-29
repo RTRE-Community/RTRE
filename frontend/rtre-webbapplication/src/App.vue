@@ -1,24 +1,20 @@
 <template>
-<div class="ma-4">
-  <v-container class="ma-5"><FunctionHub /></v-container>
-  <v-container class="ma-5 "><ProjectList /></v-container>
-  
-   
-
-</div>
-
+  <v-app class="ma-10">
+    <v-container class="mb-12"><FunctionHub /></v-container>
+    <v-container><ProjectList /></v-container>
+  </v-app>
 </template>
 
 <script>
-import ProjectList from './components/ProjectList.vue';
-import FunctionHub from './components/FunctionHub.vue';
+import ProjectList from "./components/ProjectList.vue";
+import FunctionHub from "./components/FunctionHub.vue";
 
 export default {
-  name: 'App',
+  name: "App",
 
   components: {
     ProjectList,
-    FunctionHub
+    FunctionHub,
   },
 
   data: () => ({

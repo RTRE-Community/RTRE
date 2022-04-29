@@ -18,7 +18,7 @@ public class ifcMergeService {
          * outputFile=C:/Users/Dennis/Desktop/Program/BimServer/default.ifc
          * */
         Runtime rt = Runtime.getRuntime();
-        File dir = new File("C:\\Users\\Dennis\\Desktop\\Program\\RTRE\\demo\\src\\main\\resources\\script");
+        File dir = new File("PATH HERE");
         try {
             Process pr = rt.exec("python -m f.py", null, dir);
             PrintWriter outputWriter = new PrintWriter(pr.getOutputStream(),true);

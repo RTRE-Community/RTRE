@@ -55,7 +55,7 @@ public class ifcGetService {
             long topicId =  client.getServiceInterface().download(Collections.singleton(project.getLastRevisionId()),"{}",serializer.getOid(),false);
             // Use the topic id from "BimServer" which contains the file data to download it
             InputStream is = client.getServiceInterface().getDownloadData(topicId).getFile().getInputStream();
-            File targetFile = new File("C:\\Users\\Levan\\Documents\\RTRECOM\\ " + fileName +".ifc");
+            File targetFile = new File("PATH HERE " + fileName +".ifc");
             java.nio.file.Files.copy(
                     is,
                     targetFile.toPath(),

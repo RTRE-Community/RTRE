@@ -1,16 +1,28 @@
 <template>
-<div class="dropzone pa-6">
-  <label for="dropzoneFile">Select File</label>
-  <input type="file" id="dropzoneFile"/>
-   </div>
+  <v-card>
+    <v-file-input
+      truncate-length="15"
+      label="Choose Ifc file"
+      v-model="file"
+      @change="fileInformation"
+    ></v-file-input>
+  </v-card>
 </template>
 
 <script>
 export default {
-name:"FileDrop",
-}
+  name: "FileDrop",
+  data() {
+    return {
+      file: null,
+    };
+  },
+  methods: {
+    fileInformation() {
+      this.$emit("update:file", this.file.name);
+    },
+  },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>
