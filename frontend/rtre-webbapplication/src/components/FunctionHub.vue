@@ -41,7 +41,7 @@
                 <v-divider></v-divider>
                 <v-form class="px-3">
                   <v-text-field label="id" v-model="id"></v-text-field>
-                  <v-btn text class="blue mx-0 mt-3" @click="submit"
+                  <v-btn text class="blue mx-0 mt-3" @click="checkOut"
                     >Get Project</v-btn
                   >
                 </v-form>
@@ -60,6 +60,9 @@
                 <h1 class="my-5">Output file:</h1>
                 <v-divider></v-divider>
                 <FileDrop @update:file="updateFileNameVariable4" />
+                 <v-btn text class="blue mx-0 mt-3" @click="merge"
+                    >Merge ProjectsS</v-btn
+                  >
               </v-card-text>
             </v-card>
           </v-tab-item>
@@ -97,7 +100,7 @@ export default {
     };
   },
   methods: {
-    submit() {
+    checkOut() {
       console.log(this.id);
       fetch("http://localhost:3030/api/getIfc?fileName=" + this.id);
       this.alert = !this.alert;
@@ -119,12 +122,17 @@ export default {
     updateFileNameVariable4(value) {
       this.outputFile = value;
     },
+    merge(){
+      fetch(
+        "http://localhost:3030/api/merge?mergeFile1="+this.file1+"&mergeFile2="+this.file2+"&outputFile="+this.outputFile
+      )
+    },
 
     checkIn() {
       fetch(
         "http://localhost:3030/api/postIfc?fileName=" +
           this.fileForCheckin +
-          "&path=C:Path"
+          "&path=C:/Users/Dennis/Desktop/Program/BimServer/"
       );
       window.location.reload();
     },

@@ -1,13 +1,10 @@
 
 import ifcpatch
+import sys, getopt
 
-print("Directory of first merge file; ")
-mergeFile1 = input()
-print("Directory of Second merge file; ")
-mergeFile2 = input()
-print("Directory of empty file for output; ")
-outputFile = input()
-
+mergeFile1 = (sys.argv[1])
+mergeFile2 = (sys.argv[2])
+outputFile = (sys.argv[3])
 
 ifcpatch.execute({
     "input": mergeFile1,
@@ -15,7 +12,7 @@ ifcpatch.execute({
     "recipe": "MergeProject",
     "log": "ifcpatch.log",
     "arguments": [mergeFile2],
-})
+    })
 
 ### "input": "C:/Users/Dennis/Desktop/Program/BimServer/bolt.ifc",
 

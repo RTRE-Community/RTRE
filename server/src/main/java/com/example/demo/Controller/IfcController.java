@@ -3,7 +3,14 @@ package com.example.demo.Controller;
 import com.example.demo.Service.ifcMergeService;
 import com.example.demo.Service.ifcPostService;
 import com.example.demo.Service.ifcGetService;
+import org.bimserver.client.BimServerClient;
+import org.bimserver.client.json.JsonBimServerClientFactory;
+import org.bimserver.shared.ChannelConnectionException;
+import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
+import org.bimserver.shared.exceptions.BimServerClientException;
+import org.bimserver.shared.exceptions.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -19,25 +26,44 @@ public class IfcController {
         this.HelloService = IfcGetService;
         IfcMergeService = ifcMergeService;
     }
+    @Value("${my.IFCPATH}")
+    private String ifcPATH;
+
+    @Value("${my.SCRIPTPATH}")
+    private String scriptPATH;
+
+    static public JsonBimServerClientFactory factory;
+    static public BimServerClient client;
+
+    {
+        try {
+            factory = new JsonBimServerClientFactory("http://localhost:8082");
+            client = factory.create(new UsernamePasswordAuthenticationInfo("admin@admin.com", "password"));
+        } catch (BimServerClientException | ServiceException | ChannelConnectionException e) {
+            e.printStackTrace();
+        }
+    }
 
     @GetMapping("/postIfc")
     @ResponseBody
-    public void postIfc(@RequestParam String fileName, String path){
-        ifcPostService.postIfc(fileName,path);
+    public void postIfc(@RequestParam String fileName){
+        ifcPostService.postIfc(fileName,ifcPATH);
     }
 
     @GetMapping("/getIfc")
     @ResponseBody
     public void getIfc(@RequestParam Long fileName){
-        ifcGetService.installIfcFile(fileName);}
+        ifcGetService.installIfcFile(fileName,ifcPATH);}
 
     @GetMapping("/getProjectList")
     @ResponseBody
     public String getProjectList(){
-        System.out.println(ifcGetService.authGetAllProjects());
-        return ifcGetService.authGetAllProjects();
+        System.out.println(ifcGetService.authGetAllProjects(client));
+        return ifcGetService.authGetAllProjects(client);
     }
     @GetMapping("/merge")
     @ResponseBody
-    public  void merge(@RequestParam String mergeFile1, String mergeFile2, String outputFile){ ifcMergeService.mergeIfc(mergeFile1,mergeFile2,outputFile);}
+    public  void merge(@RequestParam String mergeFile1, String mergeFile2, String outputFile){
+        ifcMergeService.mergeIfc(mergeFile1,mergeFile2,outputFile, scriptPATH,ifcPATH);}
 }
+

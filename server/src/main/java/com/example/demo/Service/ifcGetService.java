@@ -1,16 +1,12 @@
 package com.example.demo.Service;
 
+import com.example.demo.Controller.IfcController;
 import com.google.gson.Gson;
 import org.apache.commons.io.IOUtils;
 import org.bimserver.client.BimServerClient;
-import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
-import org.bimserver.shared.ChannelConnectionException;
-import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
-import org.bimserver.shared.exceptions.BimServerClientException;
 import org.bimserver.shared.exceptions.ServerException;
-import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.springframework.stereotype.Service;
 
@@ -22,40 +18,28 @@ import java.util.List;
 
 @Service
 public class ifcGetService {
-    
-    static JsonBimServerClientFactory factory;
-    static BimServerClient client;
-
-    {
-        try {
-            factory = new JsonBimServerClientFactory("http://localhost:8082");
-            client = factory.create(new UsernamePasswordAuthenticationInfo("admin@admin.com", "password"));
-        } catch (BimServerClientException | ServiceException | ChannelConnectionException e) {
-            e.printStackTrace();
-        }
-    }
 
 
-    public static void installIfcFile(Long fileName){
+
+    public static void installIfcFile(Long fileName, String ifcPATH){
         try{
             // initialize "BimServer" client and authentication
 
 
             // Pre-requisite steps - Get all Projects (obs! further implementation needed to give user a list of all projects)
-            List<SProject> projectList = client.getServiceInterface().getAllProjects(true,true);
+            List<SProject> projectList = IfcController.client.getServiceInterface().getAllProjects(true,true);
             // Select one project
-            SProject project = client.getServiceInterface().getProjectByPoid(fileName);
+            SProject project = IfcController.client.getServiceInterface().getProjectByPoid(fileName);
             // get the latest revision id from the project
-            System.out.println(project.getLastRevisionId());
             // Create a serializer for our configuration/Schema
-            SSerializerPluginConfiguration serializer = client.getServiceInterface().getSerializerByName("Ifc2x3tc1");
+            SSerializerPluginConfiguration serializer = IfcController.client.getServiceInterface().getSerializerByName("Ifc4"); //Ifc2x3tc1
             // Start the download process and receive a topic id
 
             //Installation process
-            long topicId =  client.getServiceInterface().download(Collections.singleton(project.getLastRevisionId()),"{}",serializer.getOid(),false);
+            long topicId =  IfcController.client.getServiceInterface().download(Collections.singleton(project.getLastRevisionId()),"{}",serializer.getOid(),false);
             // Use the topic id from "BimServer" which contains the file data to download it
-            InputStream is = client.getServiceInterface().getDownloadData(topicId).getFile().getInputStream();
-            File targetFile = new File("PATH HERE " + fileName +".ifc");
+            InputStream is = IfcController.client.getServiceInterface().getDownloadData(topicId).getFile().getInputStream();
+            File targetFile = new File(ifcPATH+ fileName +".ifc");
             java.nio.file.Files.copy(
                     is,
                     targetFile.toPath(),
@@ -70,7 +54,7 @@ public class ifcGetService {
         }
     }
 
-    public static String authGetAllProjects (){
+    public static String authGetAllProjects(BimServerClient client){
         try {
 
            List<SProject> data = client.getServiceInterface().getAllProjects(true,true);
