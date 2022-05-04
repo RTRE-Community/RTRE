@@ -131,8 +131,7 @@ export default {
     checkIn() {
       fetch(
         "http://localhost:3030/api/postIfc?fileName=" +
-          this.fileForCheckin +
-          "&path=C:/Users/Dennis/Desktop/Program/BimServer/"
+          this.fileForCheckin
       );
       window.location.reload();
     },

@@ -13,9 +13,3 @@ ifcpatch.execute({
     "log": "ifcpatch.log",
     "arguments": [mergeFile2],
     })
-
-### "input": "C:/Users/Dennis/Desktop/Program/BimServer/bolt.ifc",
-
-### "output": "C:/Users/Dennis/Desktop/Program/BimServer/imHere.ifc",
-
-###  "arguments": ["C:/Users/Dennis/Desktop/Program/BimServer/stud.ifc"],
