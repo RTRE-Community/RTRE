@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import org.apache.commons.io.IOUtils;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.interfaces.objects.SProject;
+import org.bimserver.interfaces.objects.SProjectSmall;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
@@ -32,7 +33,7 @@ public class ifcGetService {
             SProject project = IfcController.client.getServiceInterface().getProjectByPoid(fileName);
             // get the latest revision id from the project
             // Create a serializer for our configuration/Schema
-            SSerializerPluginConfiguration serializer = IfcController.client.getServiceInterface().getSerializerByName("Ifc4"); //Ifc2x3tc1
+            SSerializerPluginConfiguration serializer = IfcController.client.getServiceInterface().getSerializerByName("Ifc2x3tc1"); //Ifc2x3tc1 or Ifc4
             // Start the download process and receive a topic id
 
             //Installation process
@@ -57,7 +58,7 @@ public class ifcGetService {
     public static String authGetAllProjects(BimServerClient client){
         try {
 
-           List<SProject> data = client.getServiceInterface().getAllProjects(true,true);
+           List<SProject> data = client.getServiceInterface().getAllProjects(false,true);
            String result = new Gson().toJson(data);
            return result;
         } catch (ServerException e) {
@@ -67,5 +68,6 @@ public class ifcGetService {
         }
         return null;
     }
+
 }
 

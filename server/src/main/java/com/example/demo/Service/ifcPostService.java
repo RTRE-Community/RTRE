@@ -22,7 +22,7 @@ import java.util.Random;
 @Service
 public class ifcPostService {
     public static void postIfc(String fileName, String ifcPath){
-        String schema = "Ifc4";
+        String schema = "Ifc2x3tc1";
         try {
 
             String randomName = fileName + new Random().nextLong();
