@@ -26,7 +26,10 @@
                       {{ subProjects.name }}</v-expansion-panel-header
                     >
                     <v-expansion-panel-content class="pt-5">
-                      <li>id: {{ subProjects.oid }}</li>
+                      <div class="pb-12">
+                        <CheckOutIconButton/>
+                      </div>
+                      <li>id: {{ subProjects.oid }} </li>
                       <li>Schema: {{subProjects.schema}}</li>
                       <li>parentId : {{ subProjects.parentId }}</li>
                     </v-expansion-panel-content>
@@ -43,8 +46,12 @@
 
 <script>
 import axios from "axios";
+import CheckOutIconButton from "./functionality/checkOutIconButton.vue"
 export default {
   name: "ProjectList",
+    components: {
+    CheckOutIconButton
+  },
   data() {
     return {
       projectList: [],

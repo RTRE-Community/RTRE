@@ -8,7 +8,7 @@
           v-model="selectedFormat"
           @click="testPrint"
           dense 
-          label="Ifc format"
+          label="Ifc format - WIP"
           outlined
           class="mx-10"
         ></v-select>

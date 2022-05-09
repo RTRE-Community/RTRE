@@ -6,7 +6,7 @@
                   <v-text-field label="id" v-model="id"></v-text-field>
                   <v-select
                     :items="items"
-                    label="Ifc format"
+                    label="Ifc format - WIP"
                     dense
                     outlined
                    ></v-select>
