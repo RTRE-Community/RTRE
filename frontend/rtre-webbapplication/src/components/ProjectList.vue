@@ -27,7 +27,7 @@
                     >
                     <v-expansion-panel-content class="pt-5">
                       <div class="pb-12">
-                        <CheckOutIconButton/>
+                        <CheckOutIconButton :oid="subProjects.oid"/>
                       </div>
                       <li>id: {{ subProjects.oid }} </li>
                       <li>Schema: {{subProjects.schema}}</li>

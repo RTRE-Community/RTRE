@@ -8,7 +8,9 @@
       small
       v-bind="attrs"
       v-on="on"
-      color="green">
+      color="green"
+      @click="installWithOid()"
+      >
       
         <v-icon dark> 
             mdi-cloud-download
@@ -21,6 +23,13 @@
 
 <script>
 export default {
-    name: "CheckOutIconButton"
+    name: "CheckOutIconButton",
+    props: ['oid'],
+    methods: {
+        installWithOid(){
+            console.log(this.oid)
+             fetch("http://localhost:3030/api/getIfc?fileName=" + this.oid);
+        }
+    },
 }
 </script>
