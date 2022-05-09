@@ -1,7 +1,7 @@
 <template>
     <v-card flat>
               <v-card-text>
-                <h1 class="my-5">first merge file:</h1>
+                <h1 class="my-5">First merge file:</h1>
                 <v-divider></v-divider>
                 <FileDrop @update:file="updateFileNameVariable2" />
                 <h1 class="my-5">Second merge file:</h1>
@@ -11,7 +11,7 @@
                 <v-divider></v-divider>
                 <FileDrop @update:file="updateFileNameVariable4" />
                  <v-btn text class="blue mx-0 mt-3" @click="merge"
-                    >Merge ProjectsS</v-btn
+                    >Merge Projects</v-btn
                   >
               </v-card-text>
             </v-card>

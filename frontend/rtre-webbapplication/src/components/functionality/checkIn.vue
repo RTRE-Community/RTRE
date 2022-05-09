@@ -1,13 +1,20 @@
 <template>
      <v-card flat>
-              <v-card-text>
+              <v-card-text >
                 <FileDrop @update:file="updateFileNameVariable1" />
               </v-card-text>
+              <v-select
+          :items="items"
+          v-model="selectedFormat"
+          @click="testPrint"
+          dense 
+          label="Ifc format"
+          outlined
+        ></v-select>
               <v-btn
                 depressed
-                color="submit"
-                class="ma-5"
-                @click="checkIn(fileForCheckin)"
+                color="blue"
+                @select="checkIn(fileForCheckin)"
               >
                 Submit
               </v-btn>
@@ -22,12 +29,17 @@ export default {
       data() {
     return {
       fileForCheckin: null,
+      selectedFormat: "",
+      items:["Ifc4", "Ifc2x3tc1"]
     };
   },
   methods: {
     updateFileNameVariable1(value) {
       this.fileForCheckin = value;
       console.log(this.fileForCheckin);
+    },
+    testPrint(){
+        console.log(this.selectedFormat)
     },
     checkIn() {
       fetch(

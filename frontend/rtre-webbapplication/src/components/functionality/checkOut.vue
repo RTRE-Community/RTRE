@@ -2,10 +2,14 @@
 
             <v-card flat>
               <v-card-text>
-                <label for="id">Project id:</label><br />
-                <v-divider></v-divider>
-                <v-form class="px-3">
+                <v-form>
                   <v-text-field label="id" v-model="id"></v-text-field>
+                  <v-select
+          :items="items"
+          label="Ifc format"
+          dense
+          outlined
+        ></v-select>
                   <v-btn text class="blue mx-0 mt-3" @click="checkOut"
                     >Get Project</v-btn
                   >
@@ -21,6 +25,7 @@ export default {
     data(){
         return{
             id: "",
+      items:["Ifc4", "Ifc2x3tc1"]
         }
     },
     methods: {
