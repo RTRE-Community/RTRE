@@ -1,6 +1,15 @@
 <template>
   <v-app class="ma-10">
-    <v-container class="mb-12"><FunctionHub /></v-container>
+    <v-container class="mt-16">
+      <v-layout row>
+        <v-flex xs12 md6>
+          <v-container class="mb-12"><FunctionHub /></v-container>  
+        </v-flex>
+        <v-flex xs12 md6>
+          <v-container><ProjectList /></v-container>
+        </v-flex>
+      </v-layout>
+    </v-container>
     <v-container><ProjectList /></v-container>
   </v-app>
 </template>

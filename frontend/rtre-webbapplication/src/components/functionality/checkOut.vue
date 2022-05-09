@@ -5,11 +5,11 @@
                 <v-form>
                   <v-text-field label="id" v-model="id"></v-text-field>
                   <v-select
-          :items="items"
-          label="Ifc format"
-          dense
-          outlined
-        ></v-select>
+                    :items="items"
+                    label="Ifc format"
+                    dense
+                    outlined
+                   ></v-select>
                   <v-btn text class="blue mx-0 mt-3" @click="checkOut"
                     >Get Project</v-btn
                   >

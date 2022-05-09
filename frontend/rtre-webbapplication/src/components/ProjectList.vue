@@ -4,12 +4,13 @@
       <v-expansion-panels>
         <template v-for="project in projectList">
           <v-expansion-panel v-if="project.parentId == -1" :key="project.id">
-            <v-expansion-panel-header>
+            <v-expansion-panel-header color="blue white--text" dark flat>
               {{ project.name }}
             </v-expansion-panel-header>
-            <v-expansion-panel-content>
+            <v-expansion-panel-content class="pt-5">
               <li>id:{{ project.oid }}</li>
               <li>Date: {{ project.createdDate }}</li>
+              <li>Schema: {{project.schema}}</li>
               <li>Description: {{ project.description }}</li>
               <li v-if="project.subProjects.length != 0">
                 {{ project.subProjects }}
@@ -21,12 +22,12 @@
                     v-if="subProjects.parentId == project.oid"
                     :key="subProjects.id"
                   >
-                    <v-expansion-panel-header>
+                    <v-expansion-panel-header color="blue white--text" dark flat>
                       {{ subProjects.name }}</v-expansion-panel-header
                     >
-                    <v-expansion-panel-content
-                      >¨
+                    <v-expansion-panel-content class="pt-5">
                       <li>id: {{ subProjects.oid }}</li>
+                      <li>Schema: {{subProjects.schema}}</li>
                       <li>parentId : {{ subProjects.parentId }}</li>
                     </v-expansion-panel-content>
                   </v-expansion-panel>

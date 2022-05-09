@@ -1,5 +1,5 @@
 <template>
-     <v-card flat>
+     <v-card class="pb-4">
               <v-card-text >
                 <FileDrop @update:file="updateFileNameVariable1" />
               </v-card-text>
@@ -10,9 +10,9 @@
           dense 
           label="Ifc format"
           outlined
+          class="mx-10"
         ></v-select>
               <v-btn
-                depressed
                 color="blue"
                 @select="checkIn(fileForCheckin)"
               >
