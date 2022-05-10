@@ -2,15 +2,13 @@ package com.example.demo.Service;
 
 import com.example.demo.Controller.IfcController;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
+import org.bimserver.shared.exceptions.*;
 import org.springframework.stereotype.Service;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
-import org.bimserver.shared.exceptions.BimServerClientException;
-import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
-import org.bimserver.shared.exceptions.ServiceException;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -42,6 +40,17 @@ public class ifcPostService {
             // Here we actually checkin the IFC file. Flow.SYNC indicates that we only want to continue the code-flow after the checkin has been completed
             IfcController.client.checkinSync(poid,comment,deserializer.getOid(),false,demoIfcFile);
         } catch (ServiceException | PublicInterfaceNotFoundException | IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void deleteProject(Long oid){
+
+        try {
+            IfcController.client.getServiceInterface().deleteProject(oid);
+        } catch (ServerException e) {
+            e.printStackTrace();
+        } catch (UserException e) {
             e.printStackTrace();
         }
     }

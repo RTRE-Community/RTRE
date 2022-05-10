@@ -58,7 +58,7 @@ public class ifcGetService {
     public static String authGetAllProjects(BimServerClient client){
         try {
 
-           List<SProject> data = client.getServiceInterface().getAllProjects(false,false);
+           List<SProject> data = client.getServiceInterface().getAllProjects(false,true);
            String result = new Gson().toJson(data);
            return result;
         } catch (ServerException e) {

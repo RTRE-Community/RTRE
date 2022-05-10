@@ -61,6 +61,13 @@ public class IfcController {
         System.out.println(ifcGetService.authGetAllProjects(client));
         return ifcGetService.authGetAllProjects(client);
     }
+
+    @GetMapping("/deleteProject")
+    @ResponseBody
+    public void deleteProject(@RequestParam Long oid){
+        ifcPostService.deleteProject(oid);
+    }
+
     @GetMapping("/merge")
     @ResponseBody
     public  void merge(@RequestParam String mergeFile1, String mergeFile2, String outputFile){
