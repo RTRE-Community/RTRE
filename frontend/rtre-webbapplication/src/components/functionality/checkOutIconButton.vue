@@ -24,11 +24,12 @@
 <script>
 export default {
     name: "CheckOutIconButton",
-    props: ['oid'],
+    props: ['oid', 'schema'],
     methods: {
         installWithOid(){
-            console.log(this.oid)
-             fetch("http://localhost:3030/api/getIfc?fileName=" + this.oid);
+            var correctFormatSchema = this.schema.charAt(0).toUpperCase() + this.schema.slice(1)
+            console.log(correctFormatSchema)
+            fetch("http://localhost:3030/api/getIfc?fileName=" + this.oid + "&schema="+ correctFormatSchema);
         }
     },
 }
