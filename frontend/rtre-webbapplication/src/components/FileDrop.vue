@@ -1,7 +1,7 @@
 <template>
-<v-div>
-    <v-file-input truncate-length="15" label="Choose Ifc file" outlined dense v-model="file" @change="fileInformation"></v-file-input>
-</v-div>
+<div>
+    <v-file-input truncate-length="30" label="Choose Ifc file" outlined dense v-model="file" @change="fileInformation" class="shrink mr-7"></v-file-input>
+</div>
 </template>
 
 <script>

@@ -22,7 +22,7 @@ public class ifcGetService {
 
 
 
-    public static void installIfcFile(Long fileName, String ifcPATH, String schema){
+    public static void installIfcFile(Long fileName, String ifcPATH, String schema, String localName){
         try{
             // initialize "BimServer" client and authentication
 
@@ -40,7 +40,7 @@ public class ifcGetService {
             long topicId =  IfcController.client.getServiceInterface().download(Collections.singleton(project.getLastRevisionId()),"{}",serializer.getOid(),false);
             // Use the topic id from "BimServer" which contains the file data to download it
             InputStream is = IfcController.client.getServiceInterface().getDownloadData(topicId).getFile().getInputStream();
-            File targetFile = new File(ifcPATH+ fileName +".ifc");
+            File targetFile = new File(ifcPATH+ localName +".ifc");
             java.nio.file.Files.copy(
                     is,
                     targetFile.toPath(),
