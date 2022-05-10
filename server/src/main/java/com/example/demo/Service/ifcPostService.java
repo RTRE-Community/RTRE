@@ -19,10 +19,10 @@ import java.util.Random;
 
 @Service
 public class ifcPostService {
-    public static void postIfc(String fileName, String ifcPath, String schema, Long parentPoid){
+    public static void postIfc(String fileName, String ifcPath, String schema, Long parentPoid, String projectName){
         try {
 
-            String randomName = fileName + new Random().nextLong();
+            String randomName = projectName + new Random().nextLong();
 
             SProject newProject = IfcController.client.getServiceInterface().addProjectAsSubProject(randomName, parentPoid,schema);
 

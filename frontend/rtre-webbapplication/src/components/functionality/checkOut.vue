@@ -4,7 +4,7 @@
         <v-form>
             <v-text-field label="id" v-model="id"></v-text-field>
             <v-select :items="items" v-model="selectedFormat" label="Ifc schema" dense outlined></v-select>
-            <v-btn text class="blue mx-0 mt-3" @click="checkOut">Get Project</v-btn>
+            <v-btn text class="blue white--text mx-0 mt-3" @click="checkOut">Get Project</v-btn>
         </v-form>
     </v-card-text>
 </v-card>

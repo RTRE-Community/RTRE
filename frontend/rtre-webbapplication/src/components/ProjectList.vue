@@ -11,11 +11,8 @@
                         <li>id:{{ project.oid }}</li>
                         <li>Date: {{ project.createdDate }}</li>
                         <li>Schema: {{project.schema}}</li>
-                        <li>Description: {{ project.description }}</li>
-                        <li v-if="project.subProjects.length != 0">
-                            {{ project.subProjects }}
-                        </li>
                         <v-expansion-panels class="mt-6">
+                            Contains:
                             <template v-for="subProjects in projectList">
                                 <v-expansion-panel v-if="subProjects.parentId == project.oid" :key="subProjects.id">
                                     <v-expansion-panel-header color="blue white--text" dark flat>

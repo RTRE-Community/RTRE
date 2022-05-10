@@ -7,7 +7,7 @@
         <FileDrop @update:file="updateFileNameVariable3" />
         <h1 class="my-2">Output file:</h1>
         <FileDrop @update:file="updateFileNameVariable4" />
-        <v-btn text class="blue mx-0 mt-3" @click="merge">Merge Projects</v-btn>
+        <v-btn text class="blue white--text mx-0 mt-3" @click="merge">Merge Projects</v-btn>
     </v-card-text>
 </v-card>
 </template>
