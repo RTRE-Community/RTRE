@@ -6,7 +6,6 @@
               <v-select
           :items="items"
           v-model="selectedFormat"
-          @click="testPrint"
           dense 
           label="Ifc format - WIP"
           outlined
@@ -14,7 +13,7 @@
         ></v-select>
               <v-btn
                 color="blue"
-                @select="checkIn(fileForCheckin)"
+                @click="checkIn()"
               >
                 Submit
               </v-btn>
@@ -37,16 +36,15 @@ export default {
     updateFileNameVariable1(value) {
       this.fileForCheckin = value;
       console.log(this.fileForCheckin);
-    },
-    testPrint(){
-        console.log(this.selectedFormat)
+            console.log(this.selectedFormat)
     },
     checkIn() {
       fetch(
         "http://localhost:3030/api/postIfc?fileName=" +
-          this.fileForCheckin
+          this.fileForCheckin+"&schema="+this.selectedFormat
       );
-      window.location.reload();
+      console.log( "http://localhost:3030/api/postIfc?fileName=" +
+          this.fileForCheckin+"&schema="+this.selectedFormat)
     },
   },
 }

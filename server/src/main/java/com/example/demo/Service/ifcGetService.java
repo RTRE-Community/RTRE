@@ -22,7 +22,7 @@ public class ifcGetService {
 
 
 
-    public static void installIfcFile(Long fileName, String ifcPATH){
+    public static void installIfcFile(Long fileName, String ifcPATH, String schema){
         try{
             // initialize "BimServer" client and authentication
 
@@ -33,7 +33,7 @@ public class ifcGetService {
             SProject project = IfcController.client.getServiceInterface().getProjectByPoid(fileName);
             // get the latest revision id from the project
             // Create a serializer for our configuration/Schema
-            SSerializerPluginConfiguration serializer = IfcController.client.getServiceInterface().getSerializerByName("Ifc2x3tc1"); //Ifc2x3tc1 or Ifc4
+            SSerializerPluginConfiguration serializer = IfcController.client.getServiceInterface().getSerializerByName(schema); //Ifc2x3tc1 or Ifc4
             // Start the download process and receive a topic id
 
             //Installation process
@@ -58,7 +58,7 @@ public class ifcGetService {
     public static String authGetAllProjects(BimServerClient client){
         try {
 
-           List<SProject> data = client.getServiceInterface().getAllProjects(false,true);
+           List<SProject> data = client.getServiceInterface().getAllProjects(false,false);
            String result = new Gson().toJson(data);
            return result;
         } catch (ServerException e) {

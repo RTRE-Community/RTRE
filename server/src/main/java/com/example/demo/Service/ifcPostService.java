@@ -21,8 +21,7 @@ import java.util.Random;
 
 @Service
 public class ifcPostService {
-    public static void postIfc(String fileName, String ifcPath){
-        String schema = "Ifc2x3tc1";
+    public static void postIfc(String fileName, String ifcPath, String schema){
         try {
 
             String randomName = fileName + new Random().nextLong();
