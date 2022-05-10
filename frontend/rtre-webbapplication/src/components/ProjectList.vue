@@ -15,10 +15,9 @@
               <li v-if="project.subProjects.length != 0">
                 {{ project.subProjects }}
               </li>
-              <v-expansion-panels>
+              <v-expansion-panels class="mt-6">
                 <template v-for="subProjects in projectList">
                   <v-expansion-panel
-                    class="mt-6"
                     v-if="subProjects.parentId == project.oid"
                     :key="subProjects.id"
                   >

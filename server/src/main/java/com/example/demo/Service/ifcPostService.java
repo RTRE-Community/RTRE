@@ -21,12 +21,12 @@ import java.util.Random;
 
 @Service
 public class ifcPostService {
-    public static void postIfc(String fileName, String ifcPath, String schema){
+    public static void postIfc(String fileName, String ifcPath, String schema, Long parentPoid){
         try {
 
             String randomName = fileName + new Random().nextLong();
 
-            SProject newProject = IfcController.client.getServiceInterface().addProject(randomName, schema);
+            SProject newProject = IfcController.client.getServiceInterface().addProjectAsSubProject(randomName, parentPoid,schema);
 
             long poid = newProject.getOid();
             String comment = "This is a comment";

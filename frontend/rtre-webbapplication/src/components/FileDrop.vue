@@ -1,5 +1,5 @@
 <template>
-  <v-card class="pt-5 pr-5">
+  <v-div>
     <v-file-input
       truncate-length="15"
       label="Choose Ifc file"
@@ -8,7 +8,7 @@
       v-model="file"
       @change="fileInformation"
     ></v-file-input>
-  </v-card>
+  </v-div>
 </template>
 
 <script>

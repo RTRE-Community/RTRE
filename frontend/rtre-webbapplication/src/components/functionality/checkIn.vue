@@ -9,8 +9,14 @@
           dense 
           label="Ifc format - WIP"
           outlined
-          class="mx-10"
+          class="mx-12"
         ></v-select>
+        <v-text-field
+            v-model="parentOid"
+            label="Head Project Id"
+            outlined
+            class="shrink mx-11"
+          ></v-text-field>
               <v-btn
                 color="blue"
                 @click="checkIn()"
@@ -28,6 +34,7 @@ export default {
       data() {
     return {
       fileForCheckin: null,
+      parentOid: null,
       selectedFormat: "",
       items:["Ifc4", "Ifc2x3tc1"]
     };
@@ -40,11 +47,9 @@ export default {
     },
     checkIn() {
       fetch(
-        "http://localhost:3030/api/postIfc?fileName=" +
-          this.fileForCheckin+"&schema="+this.selectedFormat
-      );
-      console.log( "http://localhost:3030/api/postIfc?fileName=" +
-          this.fileForCheckin+"&schema="+this.selectedFormat)
+       "http://localhost:3030/api/postIfcAsSubProject?fileName=" +
+          this.fileForCheckin+"&schema="+this.selectedFormat+"&parentPoid="+this.parentOid
+      ).then(window.location.reload());
     },
   },
 }

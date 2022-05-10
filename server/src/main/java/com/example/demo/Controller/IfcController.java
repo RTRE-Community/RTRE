@@ -44,10 +44,10 @@ public class IfcController {
         }
     }
 
-    @GetMapping("/postIfc")
+    @GetMapping("/postIfcAsSubProject")
     @ResponseBody
-    public void postIfc(@RequestParam String fileName,String schema){
-        ifcPostService.postIfc(fileName,ifcPATH,schema);
+    public void postIfc(@RequestParam String fileName,String schema, Long parentPoid){
+        ifcPostService.postIfc(fileName,ifcPATH,schema, parentPoid);
     }
 
     @GetMapping("/getIfc")
