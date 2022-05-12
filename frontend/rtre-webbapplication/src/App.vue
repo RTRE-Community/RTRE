@@ -10,19 +10,22 @@
         </v-flex>
       </v-layout>
     </v-container>
+    <ModelViewer/>
   </v-app>
 </template>
 
 <script>
 import ProjectList from "./components/ProjectList.vue";
 import FunctionHub from "./components/FunctionHub.vue";
+import ModelViewer from "./components/ModelViewer.vue";
 export default {
   name: "App",
 
   components: {
     ProjectList,
-    FunctionHub
-  },
+    FunctionHub,
+    ModelViewer
+},
 
   data: () => ({
     //
