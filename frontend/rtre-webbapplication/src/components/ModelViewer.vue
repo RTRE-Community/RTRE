@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="pb10">
     <input type="file" name="load" id="file-input" />
     <canvas id="three-canvas"></canvas>
 </div>
@@ -31,11 +31,10 @@ export default {
     mounted() {
         //Creates the Three.js scene
         const scene = new Scene();
-
         //Object to store the size of the viewport
         const size = {
-            width: window.innerWidth,
-            height: window.innerHeight,
+            width: window.innerWidth/1.5,
+            height: window.innerHeight/1.5,
         };
 
         //Creates the camera (point of view of the user)
