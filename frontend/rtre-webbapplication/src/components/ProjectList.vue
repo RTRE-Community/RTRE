@@ -1,7 +1,6 @@
 <template>
 <div id="app">
-    <v-app id="inspire">
-        <v-expansion-panels v-for="project in projects" :key="project.oid" inset class="rounded-0">
+        <v-expansion-panels v-for="project in projects" :key="project.oid" popout class="rounded-0">
                 <v-expansion-panel v-if="project.parentId == -1" :key="project.id" popout>
                     <v-expansion-panel-header color="blue white--text" dark flat>
                         {{ project.name }}
@@ -15,7 +14,7 @@
                                     <v-expansion-panel-header color="blue white--text" dark flat>
                                         {{ subProjects.name }}</v-expansion-panel-header>
                                     <v-expansion-panel-content >
-                                        <div class="pb-12">
+                                        <div>
                                             <CheckOutIconButton :oid="subProjects.oid" :schema="subProjects.schema" />
                                             <DeleteButton :oid="subProjects.oid" />
                                         </div>
@@ -28,7 +27,6 @@
                     </v-expansion-panel-content>
                 </v-expansion-panel>
         </v-expansion-panels>
-    </v-app>
 </div>
 </template>
 
