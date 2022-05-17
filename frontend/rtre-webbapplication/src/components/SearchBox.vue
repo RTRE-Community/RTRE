@@ -3,20 +3,20 @@
     <v-text-field solo label="Search" prepend-inner-icon="mdi-magnify" v-model="search"></v-text-field>
 
     <div v-if="search">
-        <v-expansion-panels v-for="project in filteredProjects" :key="project.id">
+        <v-expansion-panels v-for="project in filteredProjects" :key="project.id" inset>
             <v-expansion-panel>
                 <v-expansion-panel-header color="blue white--text" dark flat>
                     {{project.name}}
                 </v-expansion-panel-header>
-                <v-expansion-panel-conent class="pt-5">
-                    <li>id: {{ project.oid }}</li>
-                    <li>Date: {{project.createdDate}}</li>
-                    <li>Schema: {{project.schema}}</li>
-                    <div v-if=" project.parentId != -1">
+                <v-expansion-panel-content>
+                    <div v-if=" project.parentId != -1" class="py-2">
                         <CheckOutIconButtonVue :oid="projects.oid" :schema="projects.schema" />
                         <DeleteButtonVue :oid="projects.oid" />
                     </div>
-                </v-expansion-panel-conent>
+                    <li>id: {{ project.oid }}</li>
+                    <li>Date: {{project.createdDate}}</li>
+                    <li>Schema: {{project.schema}}</li>
+                </v-expansion-panel-content>
             </v-expansion-panel>
         </v-expansion-panels>
     </div>

@@ -1,22 +1,20 @@
 <template>
 <div id="app">
     <v-app id="inspire">
-        <v-expansion-panels>
-            <template v-for="project in projects">
-                <v-expansion-panel v-if="project.parentId == -1" :key="project.id">
+        <v-expansion-panels v-for="project in projects" :key="project.oid" inset>
+                <v-expansion-panel v-if="project.parentId == -1" :key="project.id" popout>
                     <v-expansion-panel-header color="blue white--text" dark flat>
                         {{ project.name }}
                     </v-expansion-panel-header>
-                    <v-expansion-panel-content class="pt-5">
+                    <v-expansion-panel-content >
                         <li>id:{{ project.oid }}</li>
                         <li>Date: {{ project.createdDate }}</li>
                         <li>Schema: {{project.schema}}</li>
-                        <v-expansion-panels class="mt-6">
-                            <template v-for="subProjects in projects">
+                        <v-expansion-panels  v-for="subProjects in projects" :key="subProjects.oid" popout>
                                 <v-expansion-panel v-if="subProjects.parentId == project.oid" :key="subProjects.id">
                                     <v-expansion-panel-header color="blue white--text" dark flat>
                                         {{ subProjects.name }}</v-expansion-panel-header>
-                                    <v-expansion-panel-content class="pt-5">
+                                    <v-expansion-panel-content >
                                         <div class="pb-12">
                                             <CheckOutIconButton :oid="subProjects.oid" :schema="subProjects.schema" />
                                             <DeleteButton :oid="subProjects.oid" />
@@ -26,11 +24,9 @@
                                         <li>parentId : {{ subProjects.parentId }}</li>
                                     </v-expansion-panel-content>
                                 </v-expansion-panel>
-                            </template>
                         </v-expansion-panels>
                     </v-expansion-panel-content>
                 </v-expansion-panel>
-            </template>
         </v-expansion-panels>
     </v-app>
 </div>
