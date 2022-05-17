@@ -1,5 +1,6 @@
 <template>
 <v-app class="ma-10">
+    <TopBar></TopBar>
     <v-container class="mt-16">
         <v-layout row>
             <v-flex xs12 md6>
@@ -26,13 +27,15 @@
 import FunctionHub from "./components/FunctionHub.vue";
 import ModelViewer from "./components/ModelViewer.vue";
 import SearchBox from "./components/SearchBox.vue";
+import TopBar from "./components/TopBar.vue";
 export default {
     name: "App",
 
     components: {
     FunctionHub,
     ModelViewer,
-    SearchBox
+    SearchBox,
+    TopBar
 },
 
     data: () => ({
