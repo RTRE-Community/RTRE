@@ -1,7 +1,7 @@
 <template>
 <div id="app">
     <v-app id="inspire">
-        <v-expansion-panels v-for="project in projects" :key="project.oid" inset>
+        <v-expansion-panels v-for="project in projects" :key="project.oid" inset class="rounded-0">
                 <v-expansion-panel v-if="project.parentId == -1" :key="project.id" popout>
                     <v-expansion-panel-header color="blue white--text" dark flat>
                         {{ project.name }}
@@ -10,7 +10,7 @@
                         <li>id:{{ project.oid }}</li>
                         <li>Date: {{ project.createdDate }}</li>
                         <li>Schema: {{project.schema}}</li>
-                        <v-expansion-panels  v-for="subProjects in projects" :key="subProjects.oid" popout>
+                        <v-expansion-panels  v-for="subProjects in projects" :key="subProjects.oid" popout class="rounded-0">
                                 <v-expansion-panel v-if="subProjects.parentId == project.oid" :key="subProjects.id">
                                     <v-expansion-panel-header color="blue white--text" dark flat>
                                         {{ subProjects.name }}</v-expansion-panel-header>

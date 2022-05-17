@@ -3,7 +3,7 @@
     <v-text-field solo label="Search" prepend-inner-icon="mdi-magnify" v-model="search"></v-text-field>
 
     <div v-if="search">
-        <v-expansion-panels v-for="project in filteredProjects" :key="project.id" inset>
+        <v-expansion-panels v-for="project in filteredProjects" :key="project.id" inset class="rounded-0">
             <v-expansion-panel>
                 <v-expansion-panel-header color="blue white--text" dark flat>
                     {{project.name}}
