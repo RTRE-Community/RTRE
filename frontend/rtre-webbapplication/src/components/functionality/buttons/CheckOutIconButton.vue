@@ -8,7 +8,7 @@
             </v-icon>
         </v-btn>
     </template>
-    <span>Install</span>
+    <span>Check out</span>
 </v-tooltip>
 </template>
 
