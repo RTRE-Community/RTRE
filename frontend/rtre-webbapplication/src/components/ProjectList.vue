@@ -2,7 +2,7 @@
 <div id="app">
     <v-app id="inspire">
         <v-expansion-panels>
-            <template v-for="project in projectList">
+            <template v-for="project in projects">
                 <v-expansion-panel v-if="project.parentId == -1" :key="project.id">
                     <v-expansion-panel-header color="blue white--text" dark flat>
                         {{ project.name }}
@@ -12,8 +12,7 @@
                         <li>Date: {{ project.createdDate }}</li>
                         <li>Schema: {{project.schema}}</li>
                         <v-expansion-panels class="mt-6">
-                            Contains:
-                            <template v-for="subProjects in projectList">
+                            <template v-for="subProjects in projects">
                                 <v-expansion-panel v-if="subProjects.parentId == project.oid" :key="subProjects.id">
                                     <v-expansion-panel-header color="blue white--text" dark flat>
                                         {{ subProjects.name }}</v-expansion-panel-header>
@@ -38,11 +37,11 @@
 </template>
 
 <script>
-import axios from "axios";
 import CheckOutIconButton from "./functionality/buttons/CheckOutIconButton.vue"
 import DeleteButton from "./functionality/buttons/DeleteButton.vue"
 export default {
     name: "ProjectList",
+    props:["projects"],
     components: {
         CheckOutIconButton,
         DeleteButton,
@@ -51,12 +50,6 @@ export default {
         return {
             projectList: [],
         };
-    },
-    mounted() {
-        axios.get("http://localhost:3030/api/getProjectList").then((resp) => {
-            this.projectList = resp.data;
-            console.log(this.projectList);
-        });
     },
 };
 </script>
