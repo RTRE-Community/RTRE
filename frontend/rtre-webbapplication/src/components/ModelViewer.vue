@@ -1,10 +1,10 @@
 <template>
-<div class="pb10">
+<v-app class="pb10">
     <input type="file" name="load" id="file-input" />
-    <v-card id="wrapper">
+    <v-card id="wrapper" style="width: 55vw;height: 55vh;" elevation="3" class="mt-5">
         <canvas id="three-canvas"></canvas>
     </v-card>
-</div>
+</v-app>
 </template>
 
 <script>

@@ -14,9 +14,9 @@
                 </v-container>
             </v-flex>
             <v-flex xs12 md 12>
-                <v-conatiner class="py-10">
+                <v-container class="py-10">
                     <ModelViewer />
-                </v-conatiner>
+                </v-container>
             </v-flex>
         </v-layout>
     </v-container>
