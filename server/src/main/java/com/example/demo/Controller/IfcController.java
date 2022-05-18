@@ -53,7 +53,7 @@ public class IfcController {
     @GetMapping("/getIfc")
     @ResponseBody
     public void getIfc(@RequestParam Long fileName, String schema, String localName){
-        ifcGetService.installIfcFile(fileName,ifcPATH,schema,localName);}
+        ifcGetService.downloadIfc(fileName,ifcPATH,schema,localName);}
 
     @GetMapping("/getProjectList")
     @ResponseBody

@@ -22,7 +22,7 @@ public class ifcGetService {
 
 
 
-    public static void installIfcFile(Long fileName, String ifcPATH, String schema, String localName){
+    public static void downloadIfc(Long fileName, String ifcPATH, String schema, String localName){
         try{
             // initialize "BimServer" client and authentication
 
