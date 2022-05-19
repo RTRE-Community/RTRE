@@ -26,9 +26,6 @@ public class ifcGetService {
         try{
             // initialize "BimServer" client and authentication
 
-
-            // Pre-requisite steps - Get all Projects (obs! further implementation needed to give user a list of all projects)
-            List<SProject> projectList = IfcController.client.getServiceInterface().getAllProjects(true,true);
             // Select one project
             SProject project = IfcController.client.getServiceInterface().getProjectByPoid(fileName);
             // get the latest revision id from the project

@@ -24,3 +24,6 @@ hs_err_pid*
 
 bin/
 obj/
+Server/src/main/resources/script/__pycache__/f.cpython-310.pyc
+*.ifc
+Server/src/main/resources/script/__pycache__/f.cpython-310.pyc

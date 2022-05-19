@@ -32,6 +32,9 @@ public class IfcController {
     @Value("${my.SCRIPTPATH}")
     private String scriptPATH;
 
+    @Value("${my.TempFolderPath}")
+    private String tempFolderPath;
+
     static public JsonBimServerClientFactory factory;
     static public BimServerClient client;
 
@@ -70,7 +73,7 @@ public class IfcController {
 
     @GetMapping("/merge")
     @ResponseBody
-    public  void merge(@RequestParam String mergeFile1, String mergeFile2, String outputFile){
-        ifcMergeService.mergeIfc(mergeFile1,mergeFile2,outputFile, scriptPATH,ifcPATH);}
+    public  void merge(@RequestParam long mergeFile1, long mergeFile2, String ifcSchema){
+        ifcMergeService.mergeIfc(mergeFile1,mergeFile2, ifcSchema ,scriptPATH,tempFolderPath);}
 }
 
