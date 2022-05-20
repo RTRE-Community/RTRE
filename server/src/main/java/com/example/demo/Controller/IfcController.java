@@ -11,7 +11,13 @@ import org.bimserver.shared.exceptions.BimServerClientException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.IOException;
 
 @RestController
 @RequestMapping("/api")
@@ -75,5 +81,19 @@ public class IfcController {
     @ResponseBody
     public  void merge(@RequestParam long mergeFile1, long mergeFile2, String ifcSchema){
         ifcMergeService.mergeIfc(mergeFile1,mergeFile2, ifcSchema ,scriptPATH,tempFolderPath);}
+
+
+    @PostMapping("/upload")
+    public ResponseEntity<?> handleFileUpload(@RequestParam("file") MultipartFile file){
+        String fileName = file.getOriginalFilename();
+
+        try {
+            file.transferTo( new File( "C:\\Users\\Dennis\\Desktop\\Program\\RTRE\\Server\\src\\main\\resources\\MergeTemporaryFolder\\" + fileName));
+        } catch (IOException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+        return ResponseEntity.ok("File uploaded Successfully");
+    }
+
 }
 
