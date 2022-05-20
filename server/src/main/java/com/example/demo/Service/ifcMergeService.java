@@ -19,6 +19,17 @@ public class ifcMergeService {
         Runtime rt = Runtime.getRuntime();
         File dir = new File(scriptPath);
 
+        /**
+         * TODO
+         * Put in SpringFileUploadController function here
+         * Make the Id for the file UUID as temporary
+         * Replace firstMergeFile with the path of the uploaded file
+         * wait for it to finish
+         * Take uploaded with bimserver and merge
+         * TODO send the outputfile back as response
+         * Remove all the temp files
+         * */
+
         try {
             SProject firstMergeFile = IfcController.client.getServiceInterface().getProjectByPoid(mergeFile1);
             SProject secondMergeFile = IfcController.client.getServiceInterface().getProjectByPoid(mergeFile2);
