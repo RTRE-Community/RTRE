@@ -34,12 +34,12 @@ export default {
     name: "App",
 
     components: {
-    FunctionHub,
-    ModelViewer,
-    SearchBox,
-    TopBar,
-    Upload
-},
+        FunctionHub,
+        ModelViewer,
+        SearchBox,
+        TopBar,
+        Upload
+    },
 
     data: () => ({
         //
