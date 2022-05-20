@@ -2,11 +2,12 @@
 <v-card flat>
     <v-card-text>
         <h1 class="my-2">First merge file:</h1>
-        <v-text-field label="Solo" solo dense v-model="file1"></v-text-field>
+        <v-file-input label="upload local file: " truncate-length="15" v-model="fileupload"></v-file-input>
+
         <h1 class="my-2">Second merge file:</h1>
-        <v-text-field label="Solo" solo dense v-model="file2"></v-text-field>
+        <v-text-field label="Id for second file" solo dense v-model="file2"></v-text-field>
         <v-select :items="items" v-model="selectedFormat" label="Ifc schema" dense outlined></v-select>
-        <v-btn text class="blue white--text mx-0 mt-3" @click="merge">Merge Projects</v-btn>
+        <v-btn text class="blue white--text mx-0 mt-3" @click="uploadFile">Merge Projects</v-btn>
     </v-card-text>
 </v-card>
 </template>
@@ -17,28 +18,39 @@ export default {
     name: "FunctionHub",
     data() {
         return {
-            file1: null,
-            file2: null,
             items: ["Ifc4", "Ifc2x3tc1"],
-            selectedFormat: ""
-
+            selectedFormat: "",
+            fileupload: ""
         }
     },
     methods: {
-        updateFileNameVariable2(value) {
-            this.file1 = value;
-        },
-        updateFileNameVariable3(value) {
-            this.file2 = value;
-        },
-        updateFileNameVariable4(value) {
-            this.outputFile = value;
-        },
-        merge() {
-            fetch(
-                "http://localhost:3030/api/merge?mergeFile1=" + this.file1 + "&mergeFile2=" + this.file2 + "&ifcSchema=" + this.selectedFormat
-            )
-        },
+        async uploadFile() {
+            let formData = new FormData();
+            console.log(this.fileupload)
+            formData.append("file", this.fileupload)
+            let response = await fetch( "http://localhost:3030/api/merge?mergeFile2=" + this.file2 + "&ifcSchema=" + this.selectedFormat, {
+                xhr: function () {
+                    var xhr = new Window.XMLHttpRequest();
+
+                    xhr.upload.addEventListener('progress', function (e) {
+
+                        if (e.lengthComputable) {
+
+                            console.log('Bytes Loaded: ' + e.loaded);
+                            console.log('Total Size: ' + e.total);
+                            console.log('Percentage Uploaded: ' + (e.total / e.loaded))
+                        }
+                    });
+
+                },
+                method: "POST",
+                body: formData
+            })
+            if (response.status == 200) {
+                alert("File Successfully uploaded.")
+            }
+        }
+
     }
 }
 </script>

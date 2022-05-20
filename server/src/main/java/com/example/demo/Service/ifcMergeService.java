@@ -5,7 +5,10 @@ import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
 import java.nio.file.StandardCopyOption;
@@ -14,58 +17,51 @@ import java.util.UUID;
 
 @Service
 public class ifcMergeService {
-    public static void mergeIfc(long mergeFile1, long mergeFile2,String ifcSchema,String scriptPath, String tempFolderPath){
+    public static void mergeIfc(MultipartFile file, long mergeFile2, String ifcSchema, String scriptPath, String tempFolderPath){
 
         Runtime rt = Runtime.getRuntime();
         File dir = new File(scriptPath);
 
+        UUID uuidFirst = UUID.randomUUID();
+        UUID uuidSecond = UUID.randomUUID();
+        UUID uuidProduct = UUID.randomUUID();
+
+        String PathForFirstFile = "C:\\Users\\Dennis\\Desktop\\Program\\RTRE\\Server\\src\\main\\resources\\MergeTemporaryFolder\\" + uuidFirst +".ifc";
+        String PathForSecondFile = tempFolderPath+uuidSecond+".ifc";
+        String PathForProductFile = tempFolderPath+uuidProduct.toString() + ".ifc";
+
         /**
          * TODO
-         * Put in SpringFileUploadController function here
-         * Make the Id for the file UUID as temporary
-         * Replace firstMergeFile with the path of the uploaded file
-         * wait for it to finish
-         * Take uploaded with bimserver and merge
-         * TODO send the outputfile back as response
-         * Remove all the temp files
+         * Take the upload service into merge service
+         * Make the upload service change the name of the filename to a UUID
+         * remove all inputs for mergeFile1 aka
+         *          - firstmergefile, mergefile1, createdFirstFile, firstinputstream, pathforfirstfile
+         *
+         * TODO next step
+         * is to have the respose be the outputfile
          * */
 
         try {
-            SProject firstMergeFile = IfcController.client.getServiceInterface().getProjectByPoid(mergeFile1);
             SProject secondMergeFile = IfcController.client.getServiceInterface().getProjectByPoid(mergeFile2);
-
             SSerializerPluginConfiguration serializer = IfcController.client.getServiceInterface().getSerializerByName(ifcSchema);
-
-            long firstTopicId = IfcController.client.getServiceInterface().download(Collections.singleton(firstMergeFile.getLastRevisionId()),"{}", serializer.getOid(),false);
             long secondTopicId = IfcController.client.getServiceInterface().download(Collections.singleton(secondMergeFile.getLastRevisionId()), "{}", serializer.getOid(), false);
-
-            InputStream firstInputStream = IfcController.client.getServiceInterface().getDownloadData(firstTopicId).getFile().getInputStream();
             InputStream secondInputStream = IfcController.client.getServiceInterface().getDownloadData(secondTopicId).getFile().getInputStream();
-
-            UUID uuidFirst = UUID.randomUUID();
-            UUID uuidSecond = UUID.randomUUID();
-            UUID uuidProduct = UUID.randomUUID();
-
-            String PathForFirstFile = tempFolderPath+uuidFirst+".ifc";
-            String PathForSecondFile = tempFolderPath+uuidSecond+".ifc";
-            String PathForProductFile = tempFolderPath+uuidProduct.toString() + ".ifc";
 
             System.out.println(uuidProduct + " this is the output file.");
 
-            File createFirstFile = new File(PathForFirstFile);
             File createSecondFile = new File(PathForSecondFile);
 
-            java.nio.file.Files.copy(
-                    firstInputStream,
-                    createFirstFile.toPath(),
-                    StandardCopyOption.REPLACE_EXISTING
-            );
+            try {
+                file.transferTo( new File(PathForFirstFile));
+            } catch (IOException e) {
+                ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            }
+
             java.nio.file.Files.copy(
                     secondInputStream,
                     createSecondFile.toPath(),
                     StandardCopyOption.REPLACE_EXISTING
             );
-            IOUtils.closeQuietly(firstInputStream);
             IOUtils.closeQuietly(secondInputStream);
 
             BufferedWriter bw = new BufferedWriter(

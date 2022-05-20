@@ -33,8 +33,8 @@ export default {
         const scene = new Scene();
         //Object to store the size of the viewport
         const size = {
-            width: window.innerWidth/1.5,
-            height: window.innerHeight/1.5,
+            width: window.innerWidth / 1.5,
+            height: window.innerHeight / 1.5,
         };
 
         //Creates the camera (point of view of the user)

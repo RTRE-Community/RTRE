@@ -1,7 +1,6 @@
 <template>
 <v-app class="ma-10">
     <TopBar></TopBar>
-    <Upload></Upload>
     <v-container class="mt-16">
         <v-layout row>
             <v-flex xs12 md6>
@@ -29,7 +28,6 @@ import FunctionHub from "./components/FunctionHub.vue";
 import ModelViewer from "./components/ModelViewer.vue";
 import SearchBox from "./components/SearchBox.vue";
 import TopBar from "./components/TopBar.vue";
-import Upload from "./components/functionality/UploadButton.vue";
 export default {
     name: "App",
 
@@ -37,8 +35,7 @@ export default {
         FunctionHub,
         ModelViewer,
         SearchBox,
-        TopBar,
-        Upload
+        TopBar
     },
 
     data: () => ({

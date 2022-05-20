@@ -77,23 +77,13 @@ public class IfcController {
         ifcPostService.deleteProject(oid);
     }
 
-    @GetMapping("/merge")
+    @PostMapping("/merge")
     @ResponseBody
-    public  void merge(@RequestParam long mergeFile1, long mergeFile2, String ifcSchema){
-        ifcMergeService.mergeIfc(mergeFile1,mergeFile2, ifcSchema ,scriptPATH,tempFolderPath);}
+    public  void merge(@RequestParam("file") MultipartFile file, long mergeFile2, String ifcSchema) {
+        ifcMergeService.mergeIfc(file, mergeFile2, ifcSchema ,scriptPATH,tempFolderPath);}
 
 
-    @PostMapping("/upload")
-    public ResponseEntity<?> handleFileUpload(@RequestParam("file") MultipartFile file){
-        String fileName = file.getOriginalFilename();
 
-        try {
-            file.transferTo( new File( "C:\\Users\\Dennis\\Desktop\\Program\\RTRE\\Server\\src\\main\\resources\\MergeTemporaryFolder\\" + fileName));
-        } catch (IOException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
-        return ResponseEntity.ok("File uploaded Successfully");
-    }
 
 }
 
