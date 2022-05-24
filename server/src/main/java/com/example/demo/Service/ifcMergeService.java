@@ -1,6 +1,7 @@
 package com.example.demo.Service;
 import com.example.demo.Controller.IfcController;
 import org.apache.commons.io.IOUtils;
+import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.shared.exceptions.ServerException;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
+import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.Collections;
 import java.util.UUID;
@@ -64,27 +66,26 @@ public class ifcMergeService {
             );
             IOUtils.closeQuietly(secondInputStream);
 
-            BufferedWriter bw = new BufferedWriter(
-                    new FileWriter(PathForProductFile)
-            );
-            bw.write("ISO-10303-21;\n" +
-                    "HEADER;\n" +
-                    "FILE_DESCRIPTION ((''), '2;1');\n" +
-                    "FILE_NAME ('', '2022-05-16T14:35:59', (''), (''), '', 'BIMserver', '');\n" +
-                    "FILE_SCHEMA (('IFC4'));\n" +
-                    "ENDSEC;");
-            bw.close();
 
             Process pr = rt.exec(" python -m f.py "
                     +PathForFirstFile+
                     " "+PathForSecondFile+
                     " "+ PathForProductFile, null, dir);
 
+            System.out.println("waiting...");
+            pr.waitFor();
+            System.out.println("done!");
+            /* CREATE A CHECK-IN FOR THE NEW MERGED PRODUCT FILE*/
+            long parentOID = 4390913;
+            UUID newProjectName = UUID.randomUUID();
+          ifcPostService.postIfc(uuidProduct+".ifc",tempFolderPath,ifcSchema, parentOID, String.valueOf(newProjectName));
         } catch (ServerException e) {
             e.printStackTrace();
         } catch (UserException e) {
             e.printStackTrace();
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
