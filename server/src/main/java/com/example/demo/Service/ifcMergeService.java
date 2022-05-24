@@ -19,7 +19,8 @@ import java.util.UUID;
 
 @Service
 public class ifcMergeService {
-    public static void mergeIfc(MultipartFile file, long mergeFile2, String ifcSchema, String scriptPath, String tempFolderPath){
+
+    public static void mergeIfc(MultipartFile file, long mergeFile2, String scriptPath, String tempFolderPath){
 
         Runtime rt = Runtime.getRuntime();
         File dir = new File(scriptPath);
@@ -45,7 +46,8 @@ public class ifcMergeService {
 
         try {
             SProject secondMergeFile = IfcController.client.getServiceInterface().getProjectByPoid(mergeFile2);
-            SSerializerPluginConfiguration serializer = IfcController.client.getServiceInterface().getSerializerByName(ifcSchema);
+            String schema = secondMergeFile.getSchema().substring(0, 1).toUpperCase() + secondMergeFile.getSchema().substring(1);
+            SSerializerPluginConfiguration serializer = IfcController.client.getServiceInterface().getSerializerByName(schema);
             long secondTopicId = IfcController.client.getServiceInterface().download(Collections.singleton(secondMergeFile.getLastRevisionId()), "{}", serializer.getOid(), false);
             InputStream secondInputStream = IfcController.client.getServiceInterface().getDownloadData(secondTopicId).getFile().getInputStream();
 
@@ -76,10 +78,9 @@ public class ifcMergeService {
             pr.waitFor();
             System.out.println("done!");
             /* CREATE A CHECK-IN FOR THE NEW MERGED PRODUCT FILE*/
-            long parentOID = 4390913;
-            System.out.println(mergefileparenOid);
+            long mergeParentOid = secondMergeFile.getParentId();
             UUID newProjectName = UUID.randomUUID();
-          ifcPostService.postIfc(uuidProduct+".ifc",tempFolderPath,ifcSchema, parentOID, String.valueOf(newProjectName));
+          ifcPostService.postIfc(uuidProduct+".ifc",tempFolderPath,schema , mergeParentOid, String.valueOf(newProjectName));
 
 
 

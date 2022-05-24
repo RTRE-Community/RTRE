@@ -6,7 +6,6 @@
 
         <h1 class="my-2">Second merge file:</h1>
         <v-text-field label="Id for second file" solo dense v-model="file2"></v-text-field>
-        <v-select :items="items" v-model="selectedFormat" label="Ifc schema" dense outlined></v-select>
         <v-btn text class="blue white--text mx-0 mt-3" @click="uploadFile">Merge Projects</v-btn>
     </v-card-text>
 </v-card>
@@ -18,8 +17,6 @@ export default {
     name: "FunctionHub",
     data() {
         return {
-            items: ["Ifc4", "Ifc2x3tc1"],
-            selectedFormat: "",
             fileupload: ""
         }
     },
@@ -28,7 +25,7 @@ export default {
             let formData = new FormData();
             console.log(this.fileupload)
             formData.append("file", this.fileupload)
-            let response = await fetch( "http://localhost:3030/api/merge?mergeFile2=" + this.file2 + "&ifcSchema=" + this.selectedFormat, {
+            let response = await fetch( "http://localhost:3030/api/merge?mergeFile2=" + this.file2 , {
                 xhr: function () {
                     var xhr = new Window.XMLHttpRequest();
 

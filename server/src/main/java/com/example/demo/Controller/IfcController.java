@@ -79,8 +79,8 @@ public class IfcController {
 
     @PostMapping("/merge")
     @ResponseBody
-    public  void merge(@RequestParam("file") MultipartFile file, long mergeFile2, String ifcSchema) {
-        ifcMergeService.mergeIfc(file, mergeFile2, ifcSchema ,scriptPATH,tempFolderPath);}
+    public  void merge(@RequestParam("file") MultipartFile file, long mergeFile2) {
+        ifcMergeService.mergeIfc(file, mergeFile2 ,scriptPATH,tempFolderPath);}
 
 
 
