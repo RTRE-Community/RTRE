@@ -28,9 +28,9 @@ public class ifcMergeService {
         UUID uuidSecond = UUID.randomUUID();
         UUID uuidProduct = UUID.randomUUID();
 
-        String PathForFirstFile = "C:\\Users\\Dennis\\Desktop\\Program\\RTRE\\Server\\src\\main\\resources\\MergeTemporaryFolder\\" + uuidFirst +".ifc";
+        String PathForFirstFile = tempFolderPath+uuidFirst +".ifc";
         String PathForSecondFile = tempFolderPath+uuidSecond+".ifc";
-        String PathForProductFile = tempFolderPath+uuidProduct.toString() + ".ifc";
+        String PathForProductFile = tempFolderPath+uuidProduct + ".ifc";
 
         /**
          * TODO
@@ -77,8 +77,12 @@ public class ifcMergeService {
             System.out.println("done!");
             /* CREATE A CHECK-IN FOR THE NEW MERGED PRODUCT FILE*/
             long parentOID = 4390913;
+            System.out.println(mergefileparenOid);
             UUID newProjectName = UUID.randomUUID();
           ifcPostService.postIfc(uuidProduct+".ifc",tempFolderPath,ifcSchema, parentOID, String.valueOf(newProjectName));
+
+
+
         } catch (ServerException e) {
             e.printStackTrace();
         } catch (UserException e) {
