@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.Collections;
@@ -29,9 +31,9 @@ public class ifcMergeService {
         UUID uuidSecond = UUID.randomUUID();
         UUID uuidProduct = UUID.randomUUID();
 
-        String PathForFirstFile = tempFolderPath+uuidFirst +".ifc";
-        String PathForSecondFile = tempFolderPath+uuidSecond+".ifc";
-        String PathForProductFile = tempFolderPath+uuidProduct + ".ifc";
+        String pathForFirstFile = tempFolderPath+uuidFirst +".ifc";
+        String pathForSecondFile = tempFolderPath+uuidSecond+".ifc";
+        String pathForProductFile = tempFolderPath+uuidProduct + ".ifc";
 
         /**
          * TODO
@@ -53,10 +55,10 @@ public class ifcMergeService {
 
             System.out.println(uuidProduct + " this is the output file.");
 
-            File createSecondFile = new File(PathForSecondFile);
+            File createSecondFile = new File(pathForSecondFile);
 
             try {
-                file.transferTo( new File(PathForFirstFile));
+                file.transferTo( new File(pathForFirstFile));
             } catch (IOException e) {
                 ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
             }
@@ -70,9 +72,9 @@ public class ifcMergeService {
 
 
             Process pr = rt.exec(" python -m f.py "
-                    +PathForFirstFile+
-                    " "+PathForSecondFile+
-                    " "+ PathForProductFile, null, dir);
+                    +pathForFirstFile+
+                    " "+pathForSecondFile+
+                    " "+ pathForProductFile, null, dir);
 
             System.out.println("waiting...");
             pr.waitFor();
@@ -80,9 +82,15 @@ public class ifcMergeService {
             /* CREATE A CHECK-IN FOR THE NEW MERGED PRODUCT FILE*/
             long mergeParentOid = secondMergeFile.getParentId();
             UUID newProjectName = UUID.randomUUID();
-          ifcPostService.postIfc(uuidProduct+".ifc",tempFolderPath,schema , mergeParentOid, String.valueOf(newProjectName));
+            ifcPostService.postIfc(uuidProduct+".ifc",tempFolderPath,schema , mergeParentOid, String.valueOf(newProjectName));
 
+            File uploaded = new File(pathForFirstFile);
+            File local = new File(pathForSecondFile);
+            File output = new File(pathForProductFile);
 
+            Files.delete(uploaded.toPath());
+            Files.delete(local.toPath());
+            Files.delete(output.toPath());
 
         } catch (ServerException e) {
             e.printStackTrace();
