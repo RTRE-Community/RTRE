@@ -1,29 +1,29 @@
 package com.example.demo.Service;
 import com.example.demo.Controller.IfcController;
 import org.apache.commons.io.IOUtils;
+import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartException;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.Collections;
-import java.util.Objects;
 import java.util.UUID;
 
 @Service
 public class ifcMergeService {
 
-    public static ResponseEntity.BodyBuilder mergeIfc(MultipartFile file, Long mergeFile2, String scriptPath, String tempFolderPath){
-        if(file == null || Objects.isNull(mergeFile2)){
-            return ResponseEntity.badRequest();
-        }
+    public static void mergeIfc(MultipartFile file, long mergeFile2, String scriptPath, String tempFolderPath){
+
         Runtime rt = Runtime.getRuntime();
         File dir = new File(scriptPath);
 
@@ -56,8 +56,12 @@ public class ifcMergeService {
             System.out.println(uuidProduct + " this is the output file.");
 
             File createSecondFile = new File(pathForSecondFile);
-            file.transferTo( new File(pathForFirstFile));
 
+            try {
+                file.transferTo( new File(pathForFirstFile));
+            } catch (IOException e) {
+                ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            }
 
             java.nio.file.Files.copy(
                     secondInputStream,
@@ -89,17 +93,14 @@ public class ifcMergeService {
             Files.delete(output.toPath());
 
         } catch (ServerException e) {
-            ResponseEntity.internalServerError();
+            e.printStackTrace();
         } catch (UserException e) {
-            ResponseEntity.badRequest();
+            e.printStackTrace();
         } catch (IOException e) {
-            ResponseEntity.internalServerError();
+            e.printStackTrace();
         } catch (InterruptedException e) {
-            ResponseEntity.status(408);
-        } catch (MultipartException e) {
-            ResponseEntity.badRequest();
+            e.printStackTrace();
         }
 
-        return ResponseEntity.ok();
     }
 }
