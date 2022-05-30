@@ -3,12 +3,9 @@ package com.example.demo.Service;
 import com.example.demo.Controller.IfcController;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.shared.exceptions.*;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.bimserver.client.BimServerClient;
-import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.interfaces.objects.SProject;
-import org.bimserver.shared.ChannelConnectionException;
-import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -19,7 +16,7 @@ import java.util.Random;
 
 @Service
 public class ifcPostService {
-    public static void postIfc(String fileName, String ifcPath, String schema, Long parentPoid, String projectName){
+    public static ResponseEntity.BodyBuilder postIfc(String fileName, String ifcPath, String schema, Long parentPoid, String projectName){
         try {
 
             String randomName = projectName + new Random().nextLong();
@@ -39,19 +36,25 @@ public class ifcPostService {
 
             // Here we actually checkin the IFC file. Flow.SYNC indicates that we only want to continue the code-flow after the checkin has been completed
             IfcController.client.checkinSync(poid,comment,deserializer.getOid(),false,demoIfcFile);
-        } catch (ServiceException | PublicInterfaceNotFoundException | IOException e) {
-            e.printStackTrace();
+        } catch (ServerException e) {
+           return ResponseEntity.internalServerError();
+        } catch (UserException e) {
+            return ResponseEntity.badRequest();
+        } catch (IOException e) {
+            return ResponseEntity.internalServerError();
         }
+        return ResponseEntity.ok();
     }
 
-    public static void deleteProject(Long oid){
+    public static ResponseEntity.BodyBuilder deleteProject(Long oid){
 
         try {
-            IfcController.client.getServiceInterface().deleteProject(oid);
+             IfcController.client.getServiceInterface().deleteProject(oid);
         } catch (ServerException e) {
-            e.printStackTrace();
+            return ResponseEntity.internalServerError();
         } catch (UserException e) {
-            e.printStackTrace();
+            return ResponseEntity.badRequest();
         }
+        return ResponseEntity.ok();
     }
 }

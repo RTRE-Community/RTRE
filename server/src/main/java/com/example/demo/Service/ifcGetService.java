@@ -5,13 +5,15 @@ import com.google.gson.Gson;
 import org.apache.commons.io.IOUtils;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.interfaces.objects.SProject;
-import org.bimserver.interfaces.objects.SProjectSmall;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.HttpMediaTypeNotAcceptableException;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.StandardCopyOption;
 import java.util.Collections;
@@ -22,7 +24,7 @@ public class ifcGetService {
 
 
 
-    public static void downloadIfc(Long fileName, String ifcPATH, String schema, String localName){
+    public static ResponseEntity.BodyBuilder downloadIfc(Long fileName, String ifcPATH, String schema, String localName){
         try{
             // initialize "BimServer" client and authentication
 
@@ -47,9 +49,16 @@ public class ifcGetService {
             System.out.println("Success");
 
 
-        }catch(Exception e){
-            System.out.println(e.getMessage());
+        } catch (ServerException e) {
+            return ResponseEntity.internalServerError();
+        } catch (UserException e) {
+            return ResponseEntity.badRequest();
+        } catch (IOException e) {
+            return ResponseEntity.internalServerError();
+        } catch (NullPointerException e){
+            return ResponseEntity.internalServerError();
         }
+        return ResponseEntity.ok();
     }
 
     public static String authGetAllProjects(BimServerClient client){
@@ -59,11 +68,10 @@ public class ifcGetService {
            String result = new Gson().toJson(data);
            return result;
         } catch (ServerException e) {
-            e.printStackTrace();
+            return String.valueOf(ResponseEntity.internalServerError());
         } catch (UserException e) {
-            e.printStackTrace();
+            return String.valueOf(ResponseEntity.badRequest());
         }
-        return null;
     }
 
 }
