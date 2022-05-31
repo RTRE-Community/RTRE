@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 
@@ -61,8 +62,8 @@ public class IfcController {
 
     @GetMapping("/getIfc")
     @ResponseBody
-    public void getIfc(@RequestParam Long fileName, String schema, String localName){
-        ifcGetService.downloadIfc(fileName,ifcPATH,schema,localName);}
+    public void getIfc(@RequestParam Long fileName, String schema, HttpServletResponse response){
+        ifcGetService.downloadIfc(fileName,schema,response);}
 
     @GetMapping("/getProjectList")
     @ResponseBody

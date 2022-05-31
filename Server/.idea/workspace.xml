@@ -5,7 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db424c9d-7281-4cf3-a371-c9e4329d2167" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/Service/ifcMergeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/Service/ifcMergeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/rtre-webbapplication/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/rtre-webbapplication/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/rtre-webbapplication/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/rtre-webbapplication/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/rtre-webbapplication/src/components/functionality/buttons/CheckOutIconButton.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/rtre-webbapplication/src/components/functionality/buttons/CheckOutIconButton.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/Controller/IfcController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/Controller/IfcController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/Service/ifcGetService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/Service/ifcGetService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

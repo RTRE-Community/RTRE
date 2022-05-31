@@ -13,6 +13,8 @@
 </template>
 
 <script>
+import FileDownload from "js-file-download"
+import Axios from "axios"
 export default {
     name: "CheckOutIconButton",
     props: ['oid', 'schema'],
@@ -20,7 +22,12 @@ export default {
         installWithOid() {
             var correctFormatSchema = this.schema.charAt(0).toUpperCase() + this.schema.slice(1)
             console.log(correctFormatSchema)
-            fetch("http://localhost:3030/api/getIfc?fileName=" + this.oid + "&schema=" + correctFormatSchema);
+            Axios({
+            url:  "http://localhost:3030/api/getIfc?fileName=" + this.oid + "&schema=" + correctFormatSchema,
+            methods:"GET",
+            responseType:"blob"
+                })
+            .then((res) => {FileDownload(res.data,"myIfcFile.ifc")});
         }
     },
 }
