@@ -10,15 +10,10 @@ import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.BimServerClientException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.io.IOException;
 
 @RestController
 @RequestMapping("/api")
@@ -33,14 +28,6 @@ public class IfcController {
         this.HelloService = IfcGetService;
         IfcMergeService = ifcMergeService;
     }
-    @Value("${my.IFCPATH}")
-    private String ifcPATH;
-
-    @Value("${my.SCRIPTPATH}")
-    private String scriptPATH;
-
-    @Value("${my.TempFolderPath}")
-    private String tempFolderPath;
 
     static public JsonBimServerClientFactory factory;
     static public BimServerClient client;
@@ -54,16 +41,16 @@ public class IfcController {
         }
     }
 
-    @GetMapping("/postIfcAsSubProject")
+    @PostMapping("/postIfcAsSubProject")
     @ResponseBody
-    public void postIfc(@RequestParam String fileName,String schema, Long parentPoid, String projectName){
-        ifcPostService.postIfc(fileName,ifcPATH,schema, parentPoid,projectName);
+    public void postIfc(@RequestParam("file") MultipartFile file,String schema, Long parentPoid){
+        ifcPostService.postIfc(file,schema, parentPoid);
     }
 
     @GetMapping("/getIfc")
     @ResponseBody
-    public void getIfc(@RequestParam Long fileName, String schema, HttpServletResponse response){
-        ifcGetService.downloadIfc(fileName,schema,response);}
+    public void getIfc(@RequestParam Long fileName, HttpServletResponse response){
+        ifcGetService.downloadIfc(fileName,response);}
 
     @GetMapping("/getProjectList")
     @ResponseBody
@@ -81,7 +68,7 @@ public class IfcController {
     @PostMapping("/merge")
     @ResponseBody
     public  void merge(@RequestParam("file") MultipartFile file, long mergeFile2) {
-        ifcMergeService.mergeIfc(file, mergeFile2 ,scriptPATH,tempFolderPath);}
+        ifcMergeService.mergeIfc(file, mergeFile2);}
 
 
 

@@ -17,13 +17,11 @@ import FileDownload from "js-file-download"
 import Axios from "axios"
 export default {
     name: "CheckOutIconButton",
-    props: ['oid', 'schema'],
+    props: ['oid'],
     methods: {
         installWithOid() {
-            var correctFormatSchema = this.schema.charAt(0).toUpperCase() + this.schema.slice(1)
-            console.log(correctFormatSchema)
             Axios({
-            url:  "http://localhost:3030/api/getIfc?fileName=" + this.oid + "&schema=" + correctFormatSchema,
+            url:  "http://localhost:3030/api/getIfc?fileName=" + this.oid,
             methods:"GET",
             responseType:"blob"
                 })

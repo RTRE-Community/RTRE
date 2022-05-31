@@ -3,44 +3,46 @@ package com.example.demo.Service;
 import com.example.demo.Controller.IfcController;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.shared.exceptions.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.bimserver.client.BimServerClient;
-import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.interfaces.objects.SProject;
-import org.bimserver.shared.ChannelConnectionException;
-import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
-
+import org.springframework.web.multipart.MultipartFile;
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-
-import java.util.Random;
+import java.util.UUID;
 
 
 @Service
 public class ifcPostService {
-    public static void postIfc(String fileName, String ifcPath, String schema, Long parentPoid, String projectName){
+    public static void postIfc(MultipartFile file, String schema, Long parentPoid){
         try {
+            String relativeFolder = "src\\main\\resources\\BimServerInstallTempFolder\\";
+            UUID uniqueId = UUID.randomUUID();
+            String uniqueName = file.getName()+ "-"+ uniqueId;
 
-            String randomName = projectName + new Random().nextLong();
-
-            SProject newProject = IfcController.client.getServiceInterface().addProjectAsSubProject(randomName, parentPoid,schema);
-
+            SProject newProject = IfcController.client.getServiceInterface().addProjectAsSubProject(uniqueName, parentPoid,schema);
             long poid = newProject.getOid();
-            String comment = "This is a comment";
-
+            File fileOfSubject = new File(relativeFolder + uniqueName + ".ifc");
+            try {
+                file.transferTo(fileOfSubject.getAbsoluteFile());
+            } catch (IOException e) {
+                ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            }
             // This method is an easy way to find a compatible deserializer for the combination of the "ifc" file extension and this project. You can also get a specific deserializer if you want to.
             SDeserializerPluginConfiguration deserializer = IfcController.client.getServiceInterface().getSuggestedDeserializerForExtension("ifc", poid);
 
             // Make sure you change this to a path to a local IFC file
-            System.out.println(fileName);
-            Path demoIfcFile = Paths.get(ifcPath+fileName);
-            System.out.println(demoIfcFile);
+            Path demoIfcFile = Paths.get(relativeFolder+uniqueName +".ifc");
 
             // Here we actually checkin the IFC file. Flow.SYNC indicates that we only want to continue the code-flow after the checkin has been completed
-            IfcController.client.checkinSync(poid,comment,deserializer.getOid(),false,demoIfcFile);
+            IfcController.client.checkinSync(poid,"",deserializer.getOid(),false,demoIfcFile);
+            Files.delete(fileOfSubject.toPath());
         } catch (ServiceException | PublicInterfaceNotFoundException | IOException e) {
-            e.printStackTrace();
+            ResponseEntity.internalServerError();
         }
     }
 
@@ -49,9 +51,9 @@ public class ifcPostService {
         try {
             IfcController.client.getServiceInterface().deleteProject(oid);
         } catch (ServerException e) {
-            e.printStackTrace();
+            ResponseEntity.internalServerError();
         } catch (UserException e) {
-            e.printStackTrace();
+            ResponseEntity.badRequest();
         }
     }
 }

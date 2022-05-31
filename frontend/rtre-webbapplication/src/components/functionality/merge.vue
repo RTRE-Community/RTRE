@@ -42,7 +42,7 @@ export default {
                 },
                 method: "POST",
                 body: formData
-            })
+            }).then(window.location.reload())
             if (response.status == 200) {
                 alert("File Successfully uploaded.")
             }

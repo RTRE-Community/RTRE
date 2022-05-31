@@ -15,7 +15,7 @@
                             {{ subProjects.name }}</v-expansion-panel-header>
                         <v-expansion-panel-content>
                             <div>
-                                <CheckOutIconButton :oid="subProjects.oid" :schema="subProjects.schema" />
+                                <CheckOutIconButton :oid="subProjects.oid" />
                                 <DeleteButton :oid="subProjects.oid" />
                             </div>
                             <li>id: {{ subProjects.oid }} </li>

@@ -8,12 +8,15 @@ import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.ws.Response;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.Collections;
 import java.util.List;
@@ -24,15 +27,16 @@ public class ifcGetService {
 
 
 
-    public static void downloadIfc(Long fileName, String schema, HttpServletResponse response){
+    public static void downloadIfc(Long fileName, HttpServletResponse response){
         try{
             // initialize "BimServer" client and authentication
-            String tempPath = "C:\\Users\\Dennis\\Desktop\\Program\\RTRE\\Server\\src\\main\\resources\\BimServerInstallTempFolder\\";
-            UUID name = UUID.randomUUID();
+            String relativePath = "src\\main\\resources\\BimServerInstallTempFolder\\";
+            UUID uniqueName = UUID.randomUUID();
             // Select one project
             SProject project = IfcController.client.getServiceInterface().getProjectByPoid(fileName);
             // get the latest revision id from the project
             // Create a serializer for our configuration/Schema
+            String schema = project.getSchema().substring(0, 1).toUpperCase() + project.getSchema().substring(1);
             SSerializerPluginConfiguration serializer = IfcController.client.getServiceInterface().getSerializerByName(schema); //Ifc2x3tc1 or Ifc4
             // Start the download process and receive a topic id
 
@@ -40,7 +44,7 @@ public class ifcGetService {
             long topicId =  IfcController.client.getServiceInterface().download(Collections.singleton(project.getLastRevisionId()),"{}",serializer.getOid(),false);
             // Use the topic id from "BimServer" which contains the file data to download it
             InputStream is = IfcController.client.getServiceInterface().getDownloadData(topicId).getFile().getInputStream();
-            File targetFile = new File(tempPath+ name +".ifc");
+            File targetFile = new File(relativePath + uniqueName +".ifc");
             java.nio.file.Files.copy(
                     is,
                     targetFile.toPath(),
@@ -62,22 +66,24 @@ public class ifcGetService {
             }
             bos.close();
             response.flushBuffer();
+            fis.close();
+            Files.delete(targetFile.toPath());
+
 
         }catch(Exception e){
-            System.out.println(e.getMessage());
+            ResponseEntity.internalServerError();
         }
     }
 
     public static String authGetAllProjects(BimServerClient client){
         try {
-
            List<SProject> data = client.getServiceInterface().getAllProjects(false,true);
            String result = new Gson().toJson(data);
            return result;
         } catch (ServerException e) {
-            e.printStackTrace();
+            ResponseEntity.internalServerError();
         } catch (UserException e) {
-            e.printStackTrace();
+            ResponseEntity.badRequest();
         }
         return null;
     }
