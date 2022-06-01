@@ -30,20 +30,6 @@ export default {
             let response = await fetch(
                 "http://localhost:3030/api/postIfcAsSubProject?fileName=" +
                 this.fileForCheckin + "&schema=" + this.selectedFormat + "&parentPoid=" + this.parentOid, {
-                    xhr: function () {
-                        var xhr = new Window.XMLHttpRequest();
-
-                        xhr.upload.addEventListener('progress', function (e) {
-
-                            if (e.lengthComputable) {
-
-                                console.log('Bytes Loaded: ' + e.loaded);
-                                console.log('Total Size: ' + e.total);
-                                console.log('Percentage Uploaded: ' + (e.total / e.loaded))
-                            }
-                        });
-
-                    },
                     method: "POST",
                     body: formData
                 }
