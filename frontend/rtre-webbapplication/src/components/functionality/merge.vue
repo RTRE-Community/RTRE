@@ -17,13 +17,13 @@ export default {
     name: "FunctionHub",
     data() {
         return {
-            fileupload: ""
+            fileupload: [],
+            file2: null,
         }
     },
     methods: {
         async uploadFile() {
             let formData = new FormData();
-            console.log(this.fileupload)
             formData.append("file", this.fileupload)
             let response = await fetch( "http://localhost:3030/api/merge?mergeFile2=" + this.file2 , {
                 method: "POST",

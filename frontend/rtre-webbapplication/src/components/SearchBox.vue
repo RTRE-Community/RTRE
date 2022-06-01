@@ -53,7 +53,6 @@ export default {
     },
     computed: {
         filteredProjects() {
-            console.log(this.projects.filter(project => project.oid.toString().includes(this.search.toString()) | project.name.toLowerCase().includes(this.search.toLowerCase())))
             return this.projects.filter(project => project.oid.toString().includes(this.search.toString()) | project.name.toLowerCase().includes(this.search.toLowerCase()))
         }
     },

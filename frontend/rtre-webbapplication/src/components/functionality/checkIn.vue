@@ -20,7 +20,7 @@ export default {
             parentOid: null,
             selectedFormat: "",
             items: ["Ifc4", "Ifc2x3tc1"],
-            fileupload: ""
+            fileupload: []
         };
     },
     methods: {

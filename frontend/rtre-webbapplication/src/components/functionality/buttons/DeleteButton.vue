@@ -18,7 +18,6 @@ export default {
     props: ['oid'],
     methods: {
         deleteWithOid() {
-            console.log(this.oid)
             fetch(
                 "http://localhost:3030/api/deleteProject?oid=" + this.oid
                 ).then(window.location.reload());
