@@ -32,9 +32,8 @@ export default {
                 this.fileForCheckin + "&schema=" + this.selectedFormat + "&parentPoid=" + this.parentOid, {
                     method: "POST",
                     body: formData
-                }
-            ).then(window.location.reload());
-            if (response.status == 200) {
+                })
+                if (response.status == 200) {
                 alert("File Successfully uploaded.")
             } else {
                 alert("Error")

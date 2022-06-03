@@ -28,7 +28,7 @@ export default {
             let response = await fetch( "http://localhost:3030/api/merge?mergeFile2=" + this.file2 , {
                 method: "POST",
                 body: formData
-            }).then(window.location.reload())
+            })
             if (response.status == 200) {
                 alert("File Successfully uploaded.")
             }

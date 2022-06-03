@@ -8,14 +8,11 @@ import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.ws.Response;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.Collections;
@@ -27,7 +24,7 @@ public class ifcGetService {
 
 
 
-    public static void downloadIfc(Long fileName, HttpServletResponse response){
+    public static ResponseEntity<String> downloadIfc(Long fileName, HttpServletResponse response){
         try{
             // initialize "BimServer" client and authentication
             String relativePath = "src\\main\\resources\\BimServerInstallTempFolder\\";
@@ -68,24 +65,30 @@ public class ifcGetService {
             response.flushBuffer();
             fis.close();
             Files.delete(targetFile.toPath());
+            return new ResponseEntity<String>("Success", HttpStatus.valueOf(200));
 
 
-        }catch(Exception e){
-            ResponseEntity.internalServerError();
+        } catch (ServerException e) {
+            return new ResponseEntity<String>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
+        } catch (FileNotFoundException e) {
+            return new ResponseEntity<String>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
+        } catch (UserException e) {
+            return new ResponseEntity<String>("Bad Request", HttpStatus.BAD_REQUEST);
+        } catch (IOException e) {
+            return new ResponseEntity<String>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    public static String authGetAllProjects(BimServerClient client){
+    public static ResponseEntity<String> authGetAllProjects(BimServerClient client){
         try {
            List<SProject> data = client.getServiceInterface().getAllProjects(false,true);
            String result = new Gson().toJson(data);
-           return result;
+            return new ResponseEntity<String>(result, HttpStatus.valueOf(200));
         } catch (ServerException e) {
-            ResponseEntity.internalServerError();
+            return new ResponseEntity<String>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (UserException e) {
-            ResponseEntity.badRequest();
+            return new ResponseEntity<String>("Bad Request", HttpStatus.BAD_REQUEST);
         }
-        return null;
     }
 
 }

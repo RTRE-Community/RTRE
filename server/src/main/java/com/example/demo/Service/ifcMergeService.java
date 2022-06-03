@@ -2,7 +2,6 @@ package com.example.demo.Service;
 import com.example.demo.Controller.IfcController;
 import org.apache.commons.io.IOUtils;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
-import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.shared.exceptions.ServerException;
@@ -14,7 +13,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.*;
 import java.io.File;
 import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.Collections;
 import java.util.UUID;
@@ -22,7 +20,7 @@ import java.util.UUID;
 @Service
 public class ifcMergeService {
 
-    public static void mergeIfc(MultipartFile file, long mergeFile2){
+    public static ResponseEntity<String> mergeIfc(MultipartFile file, long mergeFile2){
         String scriptPath = "src\\main\\resources\\script\\";
         String tempFolderPath = "src\\main\\resources\\MergeTemporaryFolder\\";
         Runtime rt = Runtime.getRuntime();
@@ -85,14 +83,14 @@ public class ifcMergeService {
             Files.delete(output.toPath());
 
         } catch (ServerException e) {
-            ResponseEntity.internalServerError();
+            return new ResponseEntity<String>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (UserException e) {
-            ResponseEntity.badRequest();
+            return new ResponseEntity<String>("Bad Request", HttpStatus.BAD_REQUEST);
         } catch (IOException e) {
-            ResponseEntity.internalServerError();
+            return new ResponseEntity<String>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (InterruptedException e) {
-            ResponseEntity.internalServerError();
+            return new ResponseEntity<String>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
+        return new ResponseEntity<String>("Success", HttpStatus.valueOf(200));
     }
 }

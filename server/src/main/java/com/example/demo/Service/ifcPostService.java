@@ -2,6 +2,7 @@ package com.example.demo.Service;
 
 import com.example.demo.Controller.IfcController;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
+import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.shared.exceptions.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ import java.util.UUID;
 
 @Service
 public class ifcPostService {
-    public static void postIfc(MultipartFile file, String schema, Long parentPoid){
+    public static ResponseEntity<String> postIfc(MultipartFile file, String schema, Long parentPoid){
         try {
             String relativeFolder = "src\\main\\resources\\BimServerInstallTempFolder\\";
             UUID uniqueId = UUID.randomUUID();
@@ -39,21 +40,27 @@ public class ifcPostService {
             Path demoIfcFile = Paths.get(relativeFolder+uniqueName +".ifc");
 
             // Here we actually checkin the IFC file. Flow.SYNC indicates that we only want to continue the code-flow after the checkin has been completed
-            IfcController.client.checkinSync(poid,"",deserializer.getOid(),false,demoIfcFile);
+            SLongActionState state = IfcController.client.checkinSync(poid,"",deserializer.getOid(),false,demoIfcFile);
             Files.delete(fileOfSubject.toPath());
+            if(!state.getErrors().isEmpty()){
+                return new ResponseEntity<String>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
+            }
         } catch (ServiceException | PublicInterfaceNotFoundException | IOException e) {
-            ResponseEntity.internalServerError();
+            return new ResponseEntity<String>("Bad Request", HttpStatus.BAD_REQUEST);
+
         }
+        return new ResponseEntity<String>("Success", HttpStatus.valueOf(200));
     }
 
-    public static void deleteProject(Long oid){
+    public static ResponseEntity<String> deleteProject(Long oid){
 
         try {
             IfcController.client.getServiceInterface().deleteProject(oid);
         } catch (ServerException e) {
-            ResponseEntity.internalServerError();
+            return new ResponseEntity<String>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (UserException e) {
-            ResponseEntity.badRequest();
+            return new ResponseEntity<String>("Bad Request", HttpStatus.BAD_REQUEST);
         }
+        return new ResponseEntity<String>("Success", HttpStatus.valueOf(200));
     }
 }

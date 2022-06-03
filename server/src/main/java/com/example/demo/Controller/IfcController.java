@@ -10,6 +10,7 @@ import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.BimServerClientException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -43,32 +44,32 @@ public class IfcController {
 
     @PostMapping("/postIfcAsSubProject")
     @ResponseBody
-    public void postIfc(@RequestParam("file") MultipartFile file,String schema, Long parentPoid){
-        ifcPostService.postIfc(file,schema, parentPoid);
+    public ResponseEntity<String> postIfc(@RequestParam("file") MultipartFile file, String schema, Long parentPoid){
+        return ifcPostService.postIfc(file, schema, parentPoid);
     }
 
     @GetMapping("/getIfc")
     @ResponseBody
-    public void getIfc(@RequestParam Long fileName, HttpServletResponse response){
-        ifcGetService.downloadIfc(fileName,response);}
+    public ResponseEntity<String> getIfc(@RequestParam Long fileName, HttpServletResponse response){
+        return ifcGetService.downloadIfc(fileName,response);}
 
     @GetMapping("/getProjectList")
     @ResponseBody
-    public String getProjectList(){
+    public ResponseEntity<String> getProjectList(){
         System.out.println(ifcGetService.authGetAllProjects(client));
         return ifcGetService.authGetAllProjects(client);
     }
 
     @GetMapping("/deleteProject")
     @ResponseBody
-    public void deleteProject(@RequestParam Long oid){
-        ifcPostService.deleteProject(oid);
+    public ResponseEntity<String> deleteProject(@RequestParam Long oid){
+        return ifcPostService.deleteProject(oid);
     }
 
     @PostMapping("/merge")
     @ResponseBody
-    public  void merge(@RequestParam("file") MultipartFile file, long mergeFile2) {
-        ifcMergeService.mergeIfc(file, mergeFile2);}
+    public ResponseEntity<String> merge(@RequestParam("file") MultipartFile file, long mergeFile2) {
+        return ifcMergeService.mergeIfc(file, mergeFile2);}
 
 
 
