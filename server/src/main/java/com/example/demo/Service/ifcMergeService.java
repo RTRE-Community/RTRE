@@ -81,6 +81,7 @@ public class ifcMergeService {
             Files.delete(uploaded.toPath());
             Files.delete(local.toPath());
             Files.delete(output.toPath());
+            return new ResponseEntity<String>("Success", HttpStatus.valueOf(200));
 
         } catch (ServerException e) {
             return new ResponseEntity<String>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
@@ -91,6 +92,6 @@ public class ifcMergeService {
         } catch (InterruptedException e) {
             return new ResponseEntity<String>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<String>("Success", HttpStatus.valueOf(200));
+
     }
 }
