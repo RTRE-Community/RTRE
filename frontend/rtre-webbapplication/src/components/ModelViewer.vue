@@ -1,8 +1,10 @@
 <template>
-<div class="pb10">
+<v-app class="pb10">
     <input type="file" name="load" id="file-input" />
-    <canvas id="three-canvas"></canvas>
-</div>
+    <v-card id="wrapper" style="width: 55vw;height: 55vh;" elevation="3" class="mt-5">
+        <canvas id="three-canvas"></canvas>
+    </v-card>
+</v-app>
 </template>
 
 <script>
@@ -29,17 +31,20 @@ export default {
         }
     },
     mounted() {
+
+        let vCardWrapper = document.getElementById('wrapper');
+        let vCardWrapperDimensions = vCardWrapper.getBoundingClientRect();
         //Creates the Three.js scene
         const scene = new Scene();
         //Object to store the size of the viewport
         const size = {
-            width: window.innerWidth / 1.5,
-            height: window.innerHeight / 1.5,
+            width: vCardWrapperDimensions.width,
+            height: vCardWrapperDimensions.height
         };
 
         //Creates the camera (point of view of the user)
         const aspect = size.width / size.height;
-        const camera = new PerspectiveCamera(75, aspect);
+        const camera = new PerspectiveCamera(75, aspect, 0.1, 1000);
         camera.position.z = 15;
         camera.position.y = 13;
         camera.position.x = 8;
@@ -91,11 +96,13 @@ export default {
 
         //Adjust the viewport to the size of the browser
         window.addEventListener("resize", () => {
+            let vCardWrapper = document.getElementById('wrapper');
+            let vCardWrapperDimensions = vCardWrapper.getBoundingClientRect();
             size.width = window.innerWidth;
             size.height = window.innerHeight;
-            camera.aspect = size.width / size.height;
+            camera.aspect = vCardWrapperDimensions.width / vCardWrapperDimensions.height;
             camera.updateProjectionMatrix();
-            renderer.setSize(size.width, size.height);
+            renderer.setSize( vCardWrapperDimensions.width, vCardWrapperDimensions.height);
         });
         const ifcLoader = new IFCLoader();
         ifcLoader.ifcManager.setWasmPath("../");
