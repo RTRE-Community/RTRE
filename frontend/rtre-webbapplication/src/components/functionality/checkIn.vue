@@ -6,7 +6,7 @@
         </v-card-text>
         <v-text-field :rules="ruleInput" v-model="parentOid" label="Head Project Id" outlined class="shrink mx-11"></v-text-field>
         <v-select :rules="ruleSelector" :items="items" v-model="selectedFormat" dense label="Ifc schema" outlined class="mx-11"></v-select>
-        <v-btn class="ml-11" color="blue white--text" @click="checkIn()" :loading="loading">
+        <v-btn class="ml-11" color="blue white--text" @click="checkIn()" :loading="loading[0]">
             Submit
         </v-btn>
     </v-form>
@@ -16,6 +16,7 @@
 
 <script>
 import SnackBar from './buttons/SnackBar.vue';
+import Vue from 'vue'
 export default {
     name: "CheckIn",
     data() {
@@ -35,22 +36,23 @@ export default {
             items: ["Ifc4", "Ifc2x3tc1"],
             fileupload: [],
             response: "",
-            loading: false
+            loading: [false]
         };
     },
     methods: {
 
         async checkIn() {
             if (this.$refs.form.validate()) {
-                this.loading = true
+                Vue.set(this.loading, 0, true)
                 let formData = new FormData();
                 formData.append("file", this.fileupload);
                 this.response = await fetch("http://localhost:3030/api/postIfcAsSubProject?fileName=" +
                     this.fileForCheckin + "&schema=" + this.selectedFormat + "&parentPoid=" + this.parentOid, {
                         method: "POST",
                         body: formData
-                    }).then(this.loading = false);
+                    })
             }
+            Vue.set(this.loading, 0, false)
         },
     },
     components: {

@@ -7,7 +7,7 @@
 
             <h1 class="my-6">Second merge file:</h1>
             <v-text-field :rules="ruleInput" label="Id" solo dense v-model="file2"></v-text-field>
-            <v-btn text class="blue white--text mx-0 mt-3" @click="uploadFile" :loading="loading">Merge Projects</v-btn>
+            <v-btn text class="blue white--text mx-0 mt-3" @click="uploadFile" :loading="loading[0]">Merge Projects</v-btn>
         </v-form>
     </v-card-text>
     <SnackBar :response="response"></SnackBar>
@@ -16,6 +16,7 @@
 
 <script>
 import SnackBar from './buttons/SnackBar.vue';
+import Vue from 'vue'
 export default {
     components: {
         SnackBar
@@ -32,20 +33,21 @@ export default {
             fileupload: [],
             response: "",
             file2: null,
-            loading: false,
+            loading: [false]
         }
     },
     methods: {
         async uploadFile() {
             if (this.$refs.form.validate()) {
-                this.loading = true
+                Vue.set(this.loading, 0, true)
                 let formData = new FormData();
                 formData.append("file", this.fileupload)
                 this.response = await fetch("http://localhost:3030/api/merge?mergeFile2=" + this.file2, {
                     method: "POST",
                     body: formData
-                }).then(this.loading = false)
+                })
             }
+            Vue.set(this.loading, 0, false)
         }
 
     }
