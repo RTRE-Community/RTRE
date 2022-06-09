@@ -34,13 +34,12 @@ public class AuthenticationService {
         // Take Email And password
         JsonBimServerClientFactory factory;
         BimServerClient client;
-        String clientToken;
-        try{
+            try{
             factory = new JsonBimServerClientFactory("http://localhost:8082");
             client = factory.create(new UsernamePasswordAuthenticationInfo(username, password));
-            clientToken = client.getToken();
+            String result = client.getToken();
 
-            return new ResponseEntity<>(clientToken, HttpStatus.valueOf(200));
+            return new ResponseEntity<String>(result,HttpStatus.valueOf(200));
         } catch (BimServerClientException e) {
             return new ResponseEntity<>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (ServiceException e) {

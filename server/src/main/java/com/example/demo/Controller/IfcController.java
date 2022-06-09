@@ -58,7 +58,6 @@ public class IfcController {
     @GetMapping("/getProjectList")
     @ResponseBody
     public ResponseEntity<String> getProjectList(){
-        System.out.println(ifcGetService.authGetAllProjects(client));
         return ifcGetService.authGetAllProjects(client);
     }
 

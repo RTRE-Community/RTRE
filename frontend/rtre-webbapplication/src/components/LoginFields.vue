@@ -71,6 +71,7 @@
 <script>
 import Vue from 'vue';
 import SnackBar from './functionality/buttons/SnackBar.vue';
+import Axios from 'axios';
 export default {
     computed: {
         passwordMatch() {
@@ -81,8 +82,10 @@ export default {
         async validateLogin() {
             if (this.$refs.loginForm.validate()) {
                 Vue.set(this.loading, 0, true)
-                this.response = await fetch("http://localhost:3030/api/login?username=" + this.loginEmail + "&password=" + this.loginPassword)
-                //save token to sessionStorage for further requests from backend
+                this.response = await Axios("http://localhost:3030/api/login?username=" + this.loginEmail + "&password=" + this.loginPassword).then((resp) => {
+                     sessionStorage.setItem("TokenId", resp.data)
+                    return resp
+                })
                 Vue.set(this.loading, 0, false)
             }
         },
@@ -91,8 +94,8 @@ export default {
                 Vue.set(this.loading, 0, true)
                 this.response = await fetch("http://localhost:3030/api/register?emailUsername=" + this.email +
                     "&password=" + this.password +
-                    "&name=" + this.firstName + " " + this.lastName,{
-                        method:'POST'
+                    "&name=" + this.firstName + " " + this.lastName, {
+                        method: 'POST'
                     })
                 Vue.set(this.loading, 0, false)
             }
