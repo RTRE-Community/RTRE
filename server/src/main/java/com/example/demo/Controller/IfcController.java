@@ -1,5 +1,6 @@
 package com.example.demo.Controller;
 
+import com.example.demo.Service.AuthenticationService;
 import com.example.demo.Service.ifcMergeService;
 import com.example.demo.Service.ifcPostService;
 import com.example.demo.Service.ifcGetService;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.ws.Response;
 
 @RestController
 @RequestMapping("/api")
@@ -71,8 +73,18 @@ public class IfcController {
     public ResponseEntity<String> merge(@RequestParam("file") MultipartFile file, long mergeFile2) {
         return ifcMergeService.mergeIfc(file, mergeFile2);}
 
+    @GetMapping("/login")
+    @ResponseBody
+    public ResponseEntity<String> login(@RequestParam String username,String password){
+        return AuthenticationService.login(username,password);
+    }
 
 
+    @PostMapping("/register")
+    @ResponseBody
+    public ResponseEntity<String> register (@RequestParam String emailUsername, String password, String name){
+        return AuthenticationService.register(emailUsername, password,name);
+    }
 
 }
 

@@ -21,6 +21,7 @@ export default {
     },
     methods:{
         redirect(page){
+            console.log(page)
                 this.$router.push(page)
         }
     }

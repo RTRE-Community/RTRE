@@ -5,10 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db424c9d-7281-4cf3-a371-c9e4329d2167" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../frontend/rtre-webbapplication/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/rtre-webbapplication/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/rtre-webbapplication/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/rtre-webbapplication/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/Service/AuthenticationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/rtre-webbapplication/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/rtre-webbapplication/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/rtre-webbapplication/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/rtre-webbapplication/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/rtre-webbapplication/src/components/TopBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/rtre-webbapplication/src/components/TopBar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/rtre-webbapplication/src/router/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/rtre-webbapplication/src/router/routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/Controller/IfcController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/Controller/IfcController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +45,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -338,6 +341,9 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

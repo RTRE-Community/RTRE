@@ -14,3 +14,9 @@ export default {
     }
 };
 </script>
+
+<style>
+.v-application--wrap{
+    max-height:100vh
+}
+</style>
