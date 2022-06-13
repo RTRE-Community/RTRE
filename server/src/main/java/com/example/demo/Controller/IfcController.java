@@ -57,8 +57,8 @@ public class IfcController {
 
     @GetMapping("/getProjectList")
     @ResponseBody
-    public ResponseEntity<String> getProjectList(){
-        return ifcGetService.authGetAllProjects(client);
+    public ResponseEntity<String> getProjectList(@RequestParam String token){
+        return ifcGetService.authGetAllProjects(token);
     }
 
     @GetMapping("/deleteProject")

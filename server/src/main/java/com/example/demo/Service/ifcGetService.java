@@ -4,9 +4,14 @@ import com.example.demo.Controller.IfcController;
 import com.google.gson.Gson;
 import org.apache.commons.io.IOUtils;
 import org.bimserver.client.BimServerClient;
+import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
+import org.bimserver.shared.ChannelConnectionException;
+import org.bimserver.shared.TokenAuthentication;
+import org.bimserver.shared.exceptions.BimServerClientException;
 import org.bimserver.shared.exceptions.ServerException;
+import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -79,8 +84,12 @@ public class ifcGetService {
         }
     }
 
-    public static ResponseEntity<String> authGetAllProjects(BimServerClient client){
+    public static ResponseEntity<String> authGetAllProjects(String token){
         try {
+            JsonBimServerClientFactory factory;
+                    BimServerClient client;
+                    factory = new JsonBimServerClientFactory("http://localhost:8082");
+                    client = factory.create(new TokenAuthentication(token));
            List<SProject> data = client.getServiceInterface().getAllProjects(false,true);
            String result = new Gson().toJson(data);
             return new ResponseEntity<String>(result, HttpStatus.valueOf(200));
@@ -88,7 +97,14 @@ public class ifcGetService {
             return new ResponseEntity<String>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (UserException e) {
             return new ResponseEntity<String>("Bad Request", HttpStatus.BAD_REQUEST);
+        } catch (BimServerClientException e) {
+            e.printStackTrace();
+        } catch (ServiceException e) {
+            e.printStackTrace();
+        } catch (ChannelConnectionException e) {
+            e.printStackTrace();
         }
+        return new ResponseEntity<>("error" ,HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 }

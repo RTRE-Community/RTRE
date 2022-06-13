@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="db424c9d-7281-4cf3-a371-c9e4329d2167" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/Service/AuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/Service/AuthenticationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/Service/ifcGetService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/Service/ifcGetService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/rtre-webbapplication/src/components/LoginFields.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/rtre-webbapplication/src/components/LoginFields.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
