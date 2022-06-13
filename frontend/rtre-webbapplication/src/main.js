@@ -9,7 +9,18 @@ Vue.use(VueRouter)
 
 const router = new VueRouter({
   routes:Routes,
-  mode:'history'
+  mode: 'history'
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (sessionStorage.getItem('TokenId') === null ) {
+      next({name:'Login'})
+    } else {
+      next()
+    }
+  }
+  next()
 })
 
 new Vue({
