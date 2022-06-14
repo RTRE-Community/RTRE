@@ -13,17 +13,16 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-    console.log(to)
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (sessionStorage.getItem('TokenId') === null ) {
       next({name:'Login'})
     } else {
       next()
     }
-  } else {
-  if(to.name == 'Login'){
+  } else if(to.name == 'Login' && sessionStorage.getItem('TokenId') !== null) {
       next({name:'Home'})
-  }
+  } else{
+    next()
   }
 
   next()
