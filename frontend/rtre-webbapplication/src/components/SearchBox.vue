@@ -42,7 +42,7 @@ export default {
         };
     },
     mounted() {
-        axios.get("http://localhost:3030/api/getProjectList").then((resp) => {
+        axios.get("http://localhost:3030/api/getProjectList?token=" + sessionStorage.getItem('TokenId')).then((resp) => {
             this.projects = resp.data;
         });
     },

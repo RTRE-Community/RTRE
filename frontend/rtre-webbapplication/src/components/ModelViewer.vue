@@ -1,7 +1,7 @@
 <template>
 <v-app class="pb10">
     <input type="file" name="load" id="file-input" />
-    <v-card id="wrapper" style="width: 55vw;height: 55vh;" elevation="3" class="mt-5">
+    <v-card id="wrapper" style="width: 100%;height: 55vh;" elevation="3" class="mt-5">
         <canvas id="three-canvas"></canvas>
     </v-card>
 </v-app>

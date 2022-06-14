@@ -13,6 +13,7 @@
     "js-file-download": "^0.4.12",
     "three": "^0.140.2",
     "vue": "^2.6.14",
+    "vue-router": "^2.8.1",
     "vuetify": "^2.6.4",
     "web-ifc-three": "^0.0.115"
   },
