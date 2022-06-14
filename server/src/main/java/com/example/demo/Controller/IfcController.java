@@ -1,9 +1,8 @@
 package com.example.demo.Controller;
 
-import com.example.demo.Service.AuthenticationService;
-import com.example.demo.Service.ifcMergeService;
-import com.example.demo.Service.ifcPostService;
-import com.example.demo.Service.ifcGetService;
+import com.example.demo.Object.Notification;
+import com.example.demo.Service.*;
+import com.example.demo.Service.Firebase.FirebaseService;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.shared.ChannelConnectionException;
@@ -16,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.ws.Response;
+import java.util.concurrent.ExecutionException;
 
 @RestController
 @RequestMapping("/api")
@@ -83,6 +82,27 @@ public class IfcController {
     @ResponseBody
     public ResponseEntity<String> register (@RequestParam String emailUsername, String password, String name){
         return AuthenticationService.register(emailUsername, password,name);
+    }
+
+    @PostMapping("/postNotification")
+    @ResponseBody
+    public String postNotification(@RequestBody Notification notification) throws ExecutionException, InterruptedException {
+        return FirebaseService.postNotification(notification);
+    }
+
+    @GetMapping("/getNotification")
+    public Notification getNotification(@RequestHeader String id) throws ExecutionException, InterruptedException {
+        return FirebaseService.getNotification(id);
+    }
+
+    @PutMapping("/updateNotification")
+    public String updateNotification(@RequestBody Notification notification) throws ExecutionException, InterruptedException {
+        return FirebaseService.updateNotification(notification);
+    }
+
+    @DeleteMapping("/deleteNotification")
+    public String deleteNotification(@RequestHeader String id) throws ExecutionException, InterruptedException {
+        return FirebaseService.deleteNotification(id);
     }
 
 }
