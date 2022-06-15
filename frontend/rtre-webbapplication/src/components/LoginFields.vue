@@ -162,7 +162,9 @@ export default {
             "&password=" +
             this.loginPassword
         ).then((resp) => {
-          sessionStorage.setItem("TokenId", resp.data);
+          console.log(resp.data);
+          sessionStorage.setItem("TokenId", resp.data.Token);
+          sessionStorage.setItem('UserType', resp.data.UserType)
           return resp;
         });
         Vue.set(this.loading, 0, false);

@@ -1,10 +1,15 @@
 package com.example.demo.Service;
 
 import com.example.demo.Controller.IfcController;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.json.JsonBimServerClientFactory;
+import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.shared.ChannelConnectionException;
+import org.bimserver.shared.TokenAuthentication;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.BimServerClientException;
 import org.bimserver.shared.exceptions.ServerException;
@@ -37,9 +42,12 @@ public class AuthenticationService {
             try{
             factory = new JsonBimServerClientFactory("http://localhost:8082");
             client = factory.create(new UsernamePasswordAuthenticationInfo(username, password));
-            String result = client.getToken();
-
-            return new ResponseEntity<String>(result,HttpStatus.valueOf(200));
+            SUser user = client.getServiceInterface().getUserByUserName(username);
+            JsonObject result = new JsonObject();
+            result.addProperty("Token", client.getToken());
+            result.addProperty("UserType", user.getUserType().toString());
+          
+            return new ResponseEntity<String>(result.toString(),HttpStatus.valueOf(200));
         } catch (BimServerClientException e) {
             return new ResponseEntity<>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (ServiceException e) {
@@ -56,6 +64,7 @@ public class AuthenticationService {
         * */
     }
 
+
     public static ResponseEntity<String> register(String emailUsername, String password, String name){
         // Take all the necessary data for register
         try {
@@ -68,6 +77,67 @@ public class AuthenticationService {
         }
         // send to bimserver for storing
         // send back httpstatus depending on status
+    }
+
+    public static ResponseEntity<String> addUser(Long parent0Id, String username, String token){
+        try {
+            JsonBimServerClientFactory factory;
+                    BimServerClient client;
+                    factory = new JsonBimServerClientFactory("http://localhost:8082");
+                    client = factory.create(new TokenAuthentication(token));
+                    SUser user = client.getServiceInterface().getUserByUserName(username);
+                    Long oid = user.getOid();
+                    boolean added = client.getServiceInterface().addUserToProject(oid, parent0Id);
+                    if(added){
+                        return new ResponseEntity<String>(HttpStatus.valueOf(200));
+                    } else {
+                        System.out.println("could not add user");
+                        return new ResponseEntity<>("error" ,HttpStatus.INTERNAL_SERVER_ERROR);
+                    }
+                    
+        } catch (ServerException e) {
+            return new ResponseEntity<String>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
+        } catch (UserException e) {
+            return new ResponseEntity<String>("Bad Request", HttpStatus.BAD_REQUEST);
+        } catch (BimServerClientException e) {
+            e.printStackTrace();
+        } catch (ServiceException e) {
+            e.printStackTrace();
+        } catch (ChannelConnectionException e) {
+            e.printStackTrace();
+        }
+        return new ResponseEntity<>("error" ,HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    public static ResponseEntity<String> removeUserProject(Long parent0Id, String username, String token){
+        try {
+            JsonBimServerClientFactory factory;
+                    BimServerClient client;
+                    factory = new JsonBimServerClientFactory("http://localhost:8082");
+                    client = factory.create(new TokenAuthentication(token));
+                    SUser user = client.getServiceInterface().getUserByUserName(username);
+                    Long oid = user.getOid();
+                    boolean added = client.getServiceInterface().removeUserFromProject(oid, parent0Id);
+                    if(added){
+                        return new ResponseEntity<String>(HttpStatus.valueOf(200));
+                    } else {
+                        System.out.println("could not add user");
+                        return new ResponseEntity<>("error" ,HttpStatus.INTERNAL_SERVER_ERROR);
+                    }
+                    
+        } catch (ServerException e) {
+            return new ResponseEntity<String>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
+        } catch (UserException e) {
+            return new ResponseEntity<String>("Bad Request", HttpStatus.BAD_REQUEST);
+        } catch (BimServerClientException e) {
+            e.printStackTrace();
+        } catch (ServiceException e) {
+            e.printStackTrace();
+        } catch (ChannelConnectionException e) {
+            e.printStackTrace();
+        }
+        return new ResponseEntity<>("error" ,HttpStatus.INTERNAL_SERVER_ERROR);
+        
     }
 
     }

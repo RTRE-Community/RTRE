@@ -30,7 +30,7 @@ export default {
             ruleSelector: [
                 value => !!value || 'Select a schema'
             ],
-            fileForCheckin: null,
+            fileForCheckin: '',
             parentOid: null,
             selectedFormat: "",
             items: ["Ifc4", "Ifc2x3tc1"],
