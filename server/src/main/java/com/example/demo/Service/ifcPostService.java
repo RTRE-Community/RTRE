@@ -1,8 +1,11 @@
 package com.example.demo.Service;
 
 import com.example.demo.Controller.IfcController;
+import com.example.demo.Object.Notification;
+import com.example.demo.Service.Firebase.FirebaseService;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SLongActionState;
+import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.shared.exceptions.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,12 +17,15 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.ExecutionException;
 
 
 @Service
 public class ifcPostService {
     public static ResponseEntity<String> postIfc(MultipartFile file, String schema, Long parentPoid){
+
         try {
             String relativeFolder = "src\\main\\resources\\BimServerInstallTempFolder\\";
             UUID uniqueId = UUID.randomUUID();
@@ -42,12 +48,23 @@ public class ifcPostService {
             // Here we actually checkin the IFC file. Flow.SYNC indicates that we only want to continue the code-flow after the checkin has been completed
             SLongActionState state = IfcController.client.checkinSync(poid,"",deserializer.getOid(),false,demoIfcFile);
             Files.delete(fileOfSubject.toPath());
+
+            List<SUser> allUsers = IfcController.client.getServiceInterface().getAllUsers();
+
+            for (SUser sUser : allUsers) {
+                Notification newPostNotification = new Notification(newProject.getOid(), false, sUser.getOid());
+                FirebaseService.postNotification(newPostNotification);
+            }
             if(!state.getErrors().isEmpty()){
                 return new ResponseEntity<String>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
             }
         } catch (ServiceException | PublicInterfaceNotFoundException | IOException e) {
             return new ResponseEntity<String>("Bad Request", HttpStatus.BAD_REQUEST);
 
+        } catch (ExecutionException e) {
+            return new ResponseEntity<String>("Internal server error, Firebase", HttpStatus.INTERNAL_SERVER_ERROR);
+        } catch (InterruptedException e) {
+            return new ResponseEntity<String>("Internal server error, Firebase", HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return new ResponseEntity<String>("Success", HttpStatus.valueOf(200));
     }

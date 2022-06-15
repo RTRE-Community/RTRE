@@ -2,11 +2,11 @@ package com.example.demo.Object;
 
 public class Notification {
 
-    private String postId;
+    private Long postId;
     private boolean read;
-    private String userId;
+    private Long userId;
 
-    public Notification(String postId, boolean read, String userId) {
+    public Notification(Long postId, boolean read, Long userId) {
         this.postId = postId;
         this.read = read;
         this.userId = userId;
@@ -15,11 +15,11 @@ public class Notification {
     public Notification() {
     }
 
-    public String getPostId() {
+    public Long getPostId() {
         return postId;
     }
 
-    public void setPostId(String postId) {
+    public void setPostId(Long postId) {
         this.postId = postId;
     }
 
@@ -31,11 +31,11 @@ public class Notification {
         this.read = read;
     }
 
-    public String getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 }

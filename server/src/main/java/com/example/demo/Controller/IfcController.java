@@ -1,6 +1,5 @@
 package com.example.demo.Controller;
 
-import com.example.demo.Object.Notification;
 import com.example.demo.Service.*;
 import com.example.demo.Service.Firebase.FirebaseService;
 import org.bimserver.client.BimServerClient;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
-import java.util.concurrent.ExecutionException;
 
 @RestController
 @RequestMapping("/api")
@@ -84,25 +82,9 @@ public class IfcController {
         return AuthenticationService.register(emailUsername, password,name);
     }
 
-    @PostMapping("/postNotification")
-    @ResponseBody
-    public String postNotification(@RequestBody Notification notification) throws ExecutionException, InterruptedException {
-        return FirebaseService.postNotification(notification);
-    }
-
-    @GetMapping("/getNotification")
-    public Notification getNotification(@RequestHeader String id) throws ExecutionException, InterruptedException {
-        return FirebaseService.getNotification(id);
-    }
-
-    @PutMapping("/updateNotification")
-    public String updateNotification(@RequestBody Notification notification) throws ExecutionException, InterruptedException {
-        return FirebaseService.updateNotification(notification);
-    }
-
-    @DeleteMapping("/deleteNotification")
-    public String deleteNotification(@RequestHeader String id) throws ExecutionException, InterruptedException {
-        return FirebaseService.deleteNotification(id);
+    @GetMapping("/getAllNotification")
+    public ResponseEntity<String> getAllNotification(@RequestHeader Long id){
+        return FirebaseService.getAllNotification(id);
     }
 
 }
