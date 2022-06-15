@@ -42,27 +42,11 @@ export default {
             removedUser: null
         };
     },
-    watch: {
-        mode:function(){
-            if(this.mode == true){
-                Vue.set(this.removeUser,0, false)
-                console.log(this.removeUser[0]);
-            }else {
-                 Vue.set(this.removeUser,0, true)
-                 console.log(this.removeUser[0]);
-            }
-        },
-        deep:true,
-        immediate:true,
-        flush:'post'
-    },
     mounted(){
         if(this.mode == true){
             Vue.set(this.removeUser,0, false)
-            console.log(this.removeUser[0]);
         }else {
             Vue.set(this.removeUser,0, true)
-            console.log(this.removeUser[0]);
         }
     },
     methods: {
