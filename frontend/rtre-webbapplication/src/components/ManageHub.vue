@@ -6,6 +6,10 @@
     <v-tabs vertical>
         <v-tab>
             <v-icon left> mdi-archive-arrow-up </v-icon>
+            Create New Project 
+        </v-tab>
+        <v-tab>
+            <v-icon left> mdi-archive-arrow-up </v-icon>
             Add User to Project
         </v-tab>
         <v-tab>
@@ -16,6 +20,9 @@
             <v-icon left> mdi-archive-arrow-up </v-icon>
             View Users of Project
         </v-tab>
+        <v-tab-item>
+            <CreateProject />
+        </v-tab-item>
         <v-tab-item>
             <AddUser :mode="true"/>
         </v-tab-item>
@@ -32,11 +39,13 @@
 <script>
 import AddUser from "./functionality/AddUser.vue"
 import ViewUsers from './ViewUsers.vue'
+import CreateProject from './CreateProject.vue'
 
 export default {
     components: {
         AddUser,
-        ViewUsers
+        ViewUsers,
+        CreateProject
     },
     name: "FunctionHub",
     data() {
