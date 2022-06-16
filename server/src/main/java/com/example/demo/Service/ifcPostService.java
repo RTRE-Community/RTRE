@@ -52,7 +52,7 @@ public class ifcPostService {
             List<SUser> allUsers = IfcController.client.getServiceInterface().getAllUsers();
 
             for (SUser sUser : allUsers) {
-                Notification newPostNotification = new Notification(newProject.getOid(), false, sUser.getOid());
+                Notification newPostNotification = new Notification(newProject.getOid(), false, sUser.getOid() + sUser.getUuid().toString());
                 FirebaseService.postNotification(newPostNotification);
             }
             if(!state.getErrors().isEmpty()){

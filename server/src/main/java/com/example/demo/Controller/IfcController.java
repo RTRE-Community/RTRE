@@ -112,8 +112,8 @@ public class IfcController {
     }
 
     @GetMapping("/getAllNotification")
-    public ResponseEntity<String> getAllNotification(@RequestHeader Long id){
-        return FirebaseService.getAllNotification(id);
+    public ResponseEntity<String> getAllNotification(@RequestParam String username, String uuid){
+        return FirebaseService.getAllNotification(username,uuid);
     }
 
 }

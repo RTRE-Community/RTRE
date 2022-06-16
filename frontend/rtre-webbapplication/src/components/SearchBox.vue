@@ -52,6 +52,13 @@ export default {
             axios.get("http://localhost:3030/api/getProjectList?token=" + sessionStorage.getItem('TokenId')).then((resp) => {
                 this.projects = resp.data;
             });
+        },
+        fetchNotifications(){
+            axios.get("http://localhost:3030/api/getAllNotification",{
+                headers:{
+                    id: sessionStorage.getItem('TokenId')
+                }
+            })
         }
     },
     computed: {
