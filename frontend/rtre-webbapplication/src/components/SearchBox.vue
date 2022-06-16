@@ -37,18 +37,21 @@ export default {
     data() {
         return {
             projects: [],
-
+            interval:null,
             search: ""
         };
     },
     mounted() {
-        axios.get("http://localhost:3030/api/getProjectList?token=" + sessionStorage.getItem('TokenId')).then((resp) => {
-            this.projects = resp.data;
-        });
+      this.fetchProjectList()
     },
     methods:{
         resetFilteredProjects(){
             this.search =""
+        },
+        fetchProjectList(){
+              axios.get("http://localhost:3030/api/getProjectList?token=" + sessionStorage.getItem('TokenId')).then((resp) => {
+            this.projects = resp.data;
+        });
         }
     },
     computed: {
@@ -61,6 +64,14 @@ export default {
         CheckOutIconButtonVue,
         DeleteButtonVue
 
-    }
+    },
+    created(){
+        this.interval = setInterval(()=> {
+            this.fetchProjectList()
+        },3000)
+    },
+    destroyed() {
+      clearInterval(this.interval)  
+    },
 }
 </script>

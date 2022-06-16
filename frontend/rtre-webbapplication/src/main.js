@@ -19,7 +19,12 @@ router.beforeEach((to, from, next) => {
     } else {
       next()
     }
+  } else if(to.name == 'Login' && sessionStorage.getItem('TokenId') !== null) {
+      next({name:'Home'})
+  } else{
+    next()
   }
+
   next()
 })
 
