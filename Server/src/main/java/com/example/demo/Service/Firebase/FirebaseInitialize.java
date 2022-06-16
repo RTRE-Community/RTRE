@@ -11,7 +11,7 @@ import java.io.IOException;
 
 @Service
 public class FirebaseInitialize {
-
+//Hello
     @PostConstruct
     public void initialize() throws IOException {
         FileInputStream serviceAccount =
