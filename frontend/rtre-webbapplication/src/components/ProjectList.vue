@@ -13,16 +13,6 @@
                     <v-expansion-panel v-if="subProjects.parentId == project.oid" :key="subProjects.id">
                         <v-expansion-panel-header color="blue white--text" dark flat>
                             {{ subProjects.name }}
-                            <v-badge
-                                :content="messages"
-                                :value="messages"
-                                color="red"
-                                overlap>
-                                <v-icon large>
-                                 mdi-message-text
-                                </v-icon>  
-                                  
-                                </v-badge>  
                             </v-expansion-panel-header>
                         <v-expansion-panel-content>
                             <div>

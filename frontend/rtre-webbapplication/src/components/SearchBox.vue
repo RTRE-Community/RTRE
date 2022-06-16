@@ -2,7 +2,7 @@
 <div>
     <v-text-field solo label="Search" prepend-inner-icon="mdi-magnify" v-model="search" elevation="24" clearable outlined @click:clear="resetFilteredProjects()"></v-text-field>
 
-    <div v-if="search !== null">
+    <div v-if="search !== ''">
         <v-expansion-panels v-for="project in filteredProjects" :key="project.id" popout class="rounded-0">
             <v-expansion-panel>
                 <v-expansion-panel-header color="blue white--text" dark flat>
@@ -21,7 +21,7 @@
         </v-expansion-panels>
     </div>
     <div v-else>
-        <ProjectList :projects="filteredProjects"></ProjectList>
+        <ProjectList :key="filteredProjects.length" :projects="filteredProjects"></ProjectList>
     </div>
 
 </div>
