@@ -1,6 +1,6 @@
 <template>
 <div id="app">
-    <v-expansion-panels v-for="project in projects" :key="project.oid" popout class="rounded-0">
+    <v-expansion-panels v-for="project in projectList" :key="project.oid" popout class="rounded-0">
         <v-expansion-panel v-if="project.parentId == -1" :key="project.id" popout>
             <v-expansion-panel-header color="blue white--text" dark flat>
                 {{ project.name }}
@@ -9,18 +9,31 @@
                 <li>id:{{ project.oid }}</li>
                 <li>Date: {{ project.createdDate }}</li>
                 <li>Schema: {{project.schema}}</li>
-                <v-expansion-panels v-for="subProjects in projects" :key="subProjects.oid" popout class="rounded-0">
+                <v-expansion-panels v-for="subProjects in projectList" :key="subProjects.oid" popout class="rounded-0">
                     <v-expansion-panel v-if="subProjects.parentId == project.oid" :key="subProjects.id">
                         <v-expansion-panel-header color="blue white--text" dark flat>
-                            {{ subProjects.name }}</v-expansion-panel-header>
+                            {{ subProjects.name }}
+                            <v-badge
+                                :content="messages"
+                                :value="messages"
+                                color="red"
+                                overlap>
+                                <v-icon large>
+                                 mdi-message-text
+                                </v-icon>  
+                                  
+                                </v-badge>  
+                            </v-expansion-panel-header>
                         <v-expansion-panel-content>
                             <div>
                                 <CheckOutIconButton :oid="subProjects.oid" />
                                 <DeleteButton :oid="subProjects.oid" />
+                                
                             </div>
                             <li>id: {{ subProjects.oid }} </li>
                             <li>Schema: {{subProjects.schema}}</li>
                             <li>parentId : {{ subProjects.parentId }}</li>
+                            <li>Date of Creation : {{ subProjects.createdDate }}</li>
                         </v-expansion-panel-content>
                     </v-expansion-panel>
                 </v-expansion-panels>
@@ -45,6 +58,16 @@ export default {
             projectList: [],
         };
     },
+    mounted() {
+        this.projectList = this.projects;
+        //const START_DATE = new Date('2019-01-01');
+
+    },
+    methods :{
+        orderedSubprojects(projects){
+            return projects.subProjects.filter()
+        }
+    }
 };
 </script>
 
