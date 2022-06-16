@@ -98,6 +98,12 @@ public class IfcController {
         return AdminManagement.ViewUsers(parent0Id, token);
     }
 
+    @GetMapping("/CreateProject")
+    @ResponseBody
+    public ResponseEntity<String> createProject(@RequestParam String parent0Id, String schema, String token){
+        return AdminManagement.createProject(parent0Id, schema, token);
+    }
+
 
     @PostMapping("/register")
     @ResponseBody
