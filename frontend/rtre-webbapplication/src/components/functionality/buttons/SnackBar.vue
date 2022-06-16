@@ -30,7 +30,7 @@ export default ({
                 this.snackbar = true
                 this.color = "success"
                 this.text = "success"
-            }else{
+            }else {
                 this.snackbar = true
                 this.color = "error"
                 this.text = "Error"

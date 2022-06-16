@@ -1,5 +1,6 @@
 package com.example.demo.Controller;
 
+import com.example.demo.Service.AdminManagement;
 import com.example.demo.Service.AuthenticationService;
 import com.example.demo.Service.ifcMergeService;
 import com.example.demo.Service.ifcPostService;
@@ -76,6 +77,24 @@ public class IfcController {
     @ResponseBody
     public ResponseEntity<String> login(@RequestParam String username,String password){
         return AuthenticationService.login(username,password);
+    }
+
+    @GetMapping("/AddUserToProject")
+    @ResponseBody
+    public ResponseEntity<String> AddUserToProject(@RequestParam Long parent0Id,String username, String token){
+        return AdminManagement.addUser(parent0Id,username, token);
+    }
+
+    @GetMapping("/RemoveUserFromProject")
+    @ResponseBody
+    public ResponseEntity<String> RemoveUserFromProject(@RequestParam Long parent0Id,String username, String token){
+        return AdminManagement.removeUserProject(parent0Id,username, token);
+    }
+
+    @GetMapping("/ViewUsers")
+    @ResponseBody
+    public ResponseEntity<String> ViewUsers(@RequestParam Long parent0Id, String token){
+        return AdminManagement.ViewUsers(parent0Id, token);
     }
 
 
