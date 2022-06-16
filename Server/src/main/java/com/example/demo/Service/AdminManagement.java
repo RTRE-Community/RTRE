@@ -8,6 +8,7 @@ import com.google.gson.JsonObject;
 
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.json.JsonBimServerClientFactory;
+import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.shared.ChannelConnectionException;
@@ -114,6 +115,38 @@ public class AdminManagement {
                         users.add(new User(resultList.get(i).getName(), resultList.get(i).getUsername(), resultList.get(i).getOid())); 
                     }
                     String result = new Gson().toJson(users);
+
+                    if(result.length() > 0){
+                        return new ResponseEntity<String>(result, HttpStatus.valueOf(200));
+                    } else {
+                        return new ResponseEntity<>("error" ,HttpStatus.INTERNAL_SERVER_ERROR);
+                    }                   
+                    
+        } catch (ServerException e) {
+            return new ResponseEntity<String>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
+        } catch (UserException e) {
+            return new ResponseEntity<String>("Bad Request", HttpStatus.BAD_REQUEST);
+        } catch (BimServerClientException e) {
+            e.printStackTrace();
+        } catch (ServiceException e) {
+            e.printStackTrace();
+        } catch (ChannelConnectionException e) {
+            e.printStackTrace();
+        }
+        return new ResponseEntity<>("error" ,HttpStatus.INTERNAL_SERVER_ERROR);
+        
+    }
+
+    public static ResponseEntity<String> createProject(String parent0Id, String schema, String token){
+        try {
+            JsonBimServerClientFactory factory;
+                    BimServerClient client;
+                    factory = new JsonBimServerClientFactory("http://localhost:8082");
+                    client = factory.create(new TokenAuthentication(token));
+
+                    SProject newProject = client.getServiceInterface().addProject(parent0Id, schema);
+
+                    String result = new Gson().toJson(newProject);
 
                     if(result.length() > 0){
                         return new ResponseEntity<String>(result, HttpStatus.valueOf(200));
