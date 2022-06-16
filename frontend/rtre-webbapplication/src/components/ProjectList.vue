@@ -46,6 +46,7 @@ export default {
     data() {
         return {
             projectList: [],
+            messages: 0
         };
     },
     mounted() {
