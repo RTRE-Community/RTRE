@@ -47,7 +47,7 @@ public class FirebaseService {
   public static String postNotification(Notification notification) throws ExecutionException, InterruptedException {
 
             Firestore dbFirestore = FirestoreClient.getFirestore();
-            ApiFuture<WriteResult> collectionApiFuture = dbFirestore.collection(collectionName).document(String.valueOf(notification.getUserId())).set(notification);
+            ApiFuture<WriteResult> collectionApiFuture = dbFirestore.collection(collectionName).document().set(notification);
             return collectionApiFuture.get().getUpdateTime().toString();
 
     }
