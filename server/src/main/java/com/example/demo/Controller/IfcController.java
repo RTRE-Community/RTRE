@@ -99,8 +99,8 @@ public class IfcController {
 
     @GetMapping("/CreateProject")
     @ResponseBody
-    public ResponseEntity<String> createProject(@RequestParam String parent0Id, String schema, String token){
-        return AdminManagement.createProject(parent0Id, schema, token);
+    public ResponseEntity<String> createProject(@RequestParam String projectName, String schema, String token){
+        return AdminManagement.createProject(projectName, schema, token);
     }
 
 

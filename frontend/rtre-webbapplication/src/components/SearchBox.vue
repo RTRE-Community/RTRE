@@ -38,7 +38,7 @@ export default {
         return {
             projects: [],
             interval:null,
-            search: ""
+            search: ''
         };
     },
     mounted() {

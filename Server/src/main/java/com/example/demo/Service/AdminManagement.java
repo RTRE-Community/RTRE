@@ -137,22 +137,21 @@ public class AdminManagement {
         
     }
 
-    public static ResponseEntity<String> createProject(String parent0Id, String schema, String token){
+    public static ResponseEntity<String> createProject(String projectName, String schema, String token){
         try {
             JsonBimServerClientFactory factory;
                     BimServerClient client;
                     factory = new JsonBimServerClientFactory("http://localhost:8082");
                     client = factory.create(new TokenAuthentication(token));
 
-                    SProject newProject = client.getServiceInterface().addProject(parent0Id, schema);
+                    SProject newProject = client.getServiceInterface().addProject(projectName, schema);
 
-                    String result = new Gson().toJson(newProject);
+                    String result = new Gson().toJson(newProject.toString());
+                    System.out.println(result);
 
-                    if(result.length() > 0){
-                        return new ResponseEntity<String>(result, HttpStatus.valueOf(200));
-                    } else {
-                        return new ResponseEntity<>("error" ,HttpStatus.INTERNAL_SERVER_ERROR);
-                    }                   
+                    
+                    return new ResponseEntity<String>(result, HttpStatus.valueOf(200));
+                                   
                     
         } catch (ServerException e) {
             return new ResponseEntity<String>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
