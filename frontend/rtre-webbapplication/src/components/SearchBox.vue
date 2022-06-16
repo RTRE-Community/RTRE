@@ -57,10 +57,8 @@ export default {
     computed: {
         filteredProjects() {
             if (this.search === "") {
-                console.log(this.projects + 'this is the null search')
                 return this.projects
             } else {
-                console.log(this.projects.filter(project => project.oid.toString().includes(this.search.toString()) | project.name.toLowerCase().includes(this.search.toLowerCase())) + 'this is the not null')
              return this.projects.filter(project => project.oid.toString().includes(this.search.toString()) | project.name.toLowerCase().includes(this.search.toLowerCase()))
             }
         }
