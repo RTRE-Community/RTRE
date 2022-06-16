@@ -3,9 +3,11 @@ import App from './App.vue'
 import vuetify from './plugins/vuetify'
 import VueRouter from 'vue-router'
 import Routes from './router/routes'
+import Chat from 'vue-beautiful-chat'
 
 Vue.config.productionTip = false
 Vue.use(VueRouter)
+Vue.use(Chat)
 
 const router = new VueRouter({
   routes:Routes,
