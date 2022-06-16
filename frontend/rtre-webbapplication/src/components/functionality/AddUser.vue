@@ -2,17 +2,19 @@
 <v-card class="pb-4">
     <v-form ref="form">
         <v-card-text>
-        <v-text-field :rules="ruleInput" v-model="parent0Id" label="Head Project ID" outlined class="shrink mx-11"></v-text-field>
+            <v-text-field :rules="ruleInput" v-model="parent0Id" label="Head Project ID" outlined class="shrink mx-11"></v-text-field>
         </v-card-text>
         <v-text-field :rules="ruleInput" v-model="username" label="User Email" outlined class="shrink mx-11"></v-text-field>
         <div>
-        <v-btn v-if="removeUser[0]==false" class="ml-11" color="blue white--text" @click="addUserApi()" :loading="loading[0]">
-            Submit
-            </v-btn></div>
-            <div>
-        <v-btn v-if="removeUser[0]==true" class="ml-11" color="blue white--text" @click="removeUserApi()" :loading="loading[0]">
-            Submit
-        </v-btn></div>
+            <v-btn v-if="removeUser[0]==false" class="ml-11" color="blue white--text" @click="addUserApi()" :loading="loading[0]">
+                Submit
+            </v-btn>
+        </div>
+        <div>
+            <v-btn v-if="removeUser[0]==true" class="ml-11" color="blue white--text" @click="removeUserApi()" :loading="loading[0]">
+                Submit
+            </v-btn>
+        </div>
     </v-form>
     <SnackBar :response="response"></SnackBar>
 </v-card>
@@ -42,11 +44,11 @@ export default {
             removedUser: null
         };
     },
-    mounted(){
-        if(this.mode == true){
-            Vue.set(this.removeUser,0, false)
-        }else {
-            Vue.set(this.removeUser,0, true)
+    mounted() {
+        if (this.mode == true) {
+            Vue.set(this.removeUser, 0, false)
+        } else {
+            Vue.set(this.removeUser, 0, true)
         }
     },
     methods: {
@@ -60,8 +62,8 @@ export default {
                 })).then((resp) => {
                     return resp;
                 });
-                
-                if(this.response.status === 200){
+
+                if (this.response.status === 200) {
                     this.addedUser = true;
                 }
             }
@@ -77,8 +79,8 @@ export default {
                 })).then((resp) => {
                     return resp;
                 });
-                
-                if(this.response.status === 200){
+
+                if (this.response.status === 200) {
                     this.removedUser = true;
                 }
             }

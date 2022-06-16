@@ -8,9 +8,10 @@
         </v-flex>
         <v-flex xs12 md6>
             <v-container>
-                <SearchBox></SearchBox>
+                <SearchBox :key="componentKey"></SearchBox>
             </v-container>
         </v-flex>
+        <v-btn @click="forceRerender()">Refresh</v-btn>
     </v-layout>
 </v-container>
 </template>
@@ -21,6 +22,16 @@ import FunctionHub from "@/components/FunctionHub.vue";
 
 export default ({
     name: 'MainHub',
+    data(){
+        return{
+            componentKey: 0,
+        }
+    },
+    methods:{
+      forceRerender(){
+        this.componentKey += 1;
+      }  
+    },
     components: {
         SearchBox,
         FunctionHub

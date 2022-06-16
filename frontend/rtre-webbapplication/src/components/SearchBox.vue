@@ -1,9 +1,9 @@
 <template>
 <div>
-    <v-text-field solo label="Search" prepend-inner-icon="mdi-magnify" v-model="search" elevation="24" clearable outlined @click:clear="resetFilteredProjects()" ></v-text-field>
+    <v-text-field solo label="Search" prepend-inner-icon="mdi-magnify" v-model="search" elevation="24" clearable outlined @click:clear="resetFilteredProjects()"></v-text-field>
 
-    <div v-if="search">
-        <v-expansion-panels v-for="project in filteredProjects" :key="project.id" popout class="rounded-0" >
+    <div v-if="search !== null">
+        <v-expansion-panels v-for="project in filteredProjects" :key="project.id" popout class="rounded-0">
             <v-expansion-panel>
                 <v-expansion-panel-header color="blue white--text" dark flat>
                     {{project.name}}
@@ -37,26 +37,32 @@ export default {
     data() {
         return {
             projects: [],
-            interval:null,
-            search: ""
+            search: ''
         };
     },
     mounted() {
-      this.fetchProjectList()
+        this.fetchProjectList()
+        this.search = ""
     },
-    methods:{
-        resetFilteredProjects(){
-            this.search =""
+    methods: {
+        resetFilteredProjects() {
+            this.search = ""
         },
-        fetchProjectList(){
-              axios.get("http://localhost:3030/api/getProjectList?token=" + sessionStorage.getItem('TokenId')).then((resp) => {
-            this.projects = resp.data;
-        });
+        fetchProjectList() {
+            axios.get("http://localhost:3030/api/getProjectList?token=" + sessionStorage.getItem('TokenId')).then((resp) => {
+                this.projects = resp.data;
+            });
         }
     },
     computed: {
         filteredProjects() {
-            return this.projects.filter(project => project.oid.toString().includes(this.search.toString()) | project.name.toLowerCase().includes(this.search.toLowerCase()))
+            if (this.search === "") {
+                console.log(this.projects + 'this is the null search')
+                return this.projects
+            } else {
+                console.log(this.projects.filter(project => project.oid.toString().includes(this.search.toString()) | project.name.toLowerCase().includes(this.search.toLowerCase())) + 'this is the not null')
+             return this.projects.filter(project => project.oid.toString().includes(this.search.toString()) | project.name.toLowerCase().includes(this.search.toLowerCase()))
+            }
         }
     },
     components: {
@@ -65,13 +71,6 @@ export default {
         DeleteButtonVue
 
     },
-    created(){
-        this.interval = setInterval(()=> {
-            this.fetchProjectList()
-        },3000)
-    },
-    destroyed() {
-      clearInterval(this.interval)  
-    },
+
 }
 </script>
