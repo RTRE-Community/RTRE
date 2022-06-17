@@ -122,7 +122,7 @@ public class IfcController {
     }
 
     @DeleteMapping("/deleteNotification")
-    public ResponseEntity<String> deleteNotification(@RequestParam String uuid,String username, Long postId) throws ServerException, UserException, PublicInterfaceNotFoundException, ExecutionException, InterruptedException{
+    public ResponseEntity<String> deleteNotification(@RequestParam String uuid,String username, Long postId){
         return FirebaseService.deleteNotification(uuid, username,postId);
     }
 

@@ -3,6 +3,7 @@ import App from './App.vue'
 import vuetify from './plugins/vuetify'
 import VueRouter from 'vue-router'
 import Routes from './router/routes'
+import {store} from './Store/store'
 
 Vue.config.productionTip = false
 Vue.use(VueRouter)
@@ -29,6 +30,7 @@ router.beforeEach((to, from, next) => {
 })
 
 new Vue({
+  store:store,
   vuetify,
   render: h => h(App),
   router:router

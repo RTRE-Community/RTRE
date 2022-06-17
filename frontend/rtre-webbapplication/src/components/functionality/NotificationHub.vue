@@ -50,6 +50,7 @@ export default ({
                 }
             }).then((resp) => {
                 this.notifications = resp.data.postId
+                this.$store.dispatch('updateNotification', resp.data.postId)
             })
         },
         deleteNotification(notificationId) {
