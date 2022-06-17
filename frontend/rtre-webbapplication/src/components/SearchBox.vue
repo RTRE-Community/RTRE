@@ -52,13 +52,6 @@ export default {
             axios.get("http://localhost:3030/api/getProjectList?token=" + sessionStorage.getItem('TokenId')).then((resp) => {
                 this.projects = resp.data;
             });
-        },
-        fetchNotifications(){
-            axios.get("http://localhost:3030/api/getAllNotification",{
-                headers:{
-                    id: sessionStorage.getItem('TokenId')
-                }
-            })
         }
     },
     computed: {
@@ -66,7 +59,7 @@ export default {
             if (this.search === "") {
                 return this.projects
             } else {
-             return this.projects.filter(project => project.oid.toString().includes(this.search.toString()) | project.name.toLowerCase().includes(this.search.toLowerCase()))
+                return this.projects.filter(project => project.oid.toString().includes(this.search.toString()) | project.name.toLowerCase().includes(this.search.toLowerCase()))
             }
         }
     },

@@ -12,11 +12,16 @@ import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.BimServerClientException;
+import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
+import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
+import org.bimserver.shared.exceptions.UserException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.concurrent.ExecutionException;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -114,6 +119,11 @@ public class IfcController {
     @GetMapping("/getAllNotification")
     public ResponseEntity<String> getAllNotification(@RequestParam String username, String uuid){
         return FirebaseService.getAllNotification(username,uuid);
+    }
+
+    @DeleteMapping("/deleteNotification")
+    public ResponseEntity<String> deleteNotification(@RequestParam String uuid,String username, Long postId) throws ServerException, UserException, PublicInterfaceNotFoundException, ExecutionException, InterruptedException{
+        return FirebaseService.deleteNotification(uuid, username,postId);
     }
 
 }

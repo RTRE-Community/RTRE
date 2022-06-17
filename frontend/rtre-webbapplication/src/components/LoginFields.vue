@@ -162,7 +162,6 @@ export default {
             "&password=" +
             this.loginPassword
         ).then((resp) => {
-          console.log(resp.data);
           sessionStorage.setItem("TokenId", resp.data.Token);
           sessionStorage.setItem('UserType', resp.data.UserType)
           sessionStorage.setItem('Username',  this.loginEmail)

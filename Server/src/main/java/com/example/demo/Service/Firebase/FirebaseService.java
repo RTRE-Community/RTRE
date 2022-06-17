@@ -92,11 +92,33 @@ public class FirebaseService {
         return collectionApiFuture.get().getUpdateTime().toString();
     }
 
-    public static String deleteNotification(String id) throws ExecutionException, InterruptedException {
-        Firestore dbFirestore = FirestoreClient.getFirestore();
-        ApiFuture<WriteResult> collectionApiFuture = dbFirestore.collection(collectionName).document(id).delete();
-        return collectionApiFuture.get().getUpdateTime().toString();
-    }
-
  */
+    public static ResponseEntity<String> deleteNotification(String uuid,String username, Long postId) {
+
+            String userOid;
+            try {
+                userOid = String.valueOf(IfcController.client.getServiceInterface().getUserByUserName(username).getOid());
+                String completeId = userOid + uuid;
+                Firestore dbFirestore = FirestoreClient.getFirestore();
+                CollectionReference notifications = dbFirestore.collection(collectionName);
+                ApiFuture<QuerySnapshot> querySnapshot = notifications.whereEqualTo("userId",completeId)
+                .whereEqualTo("postId", postId)
+                .get();
+                DocumentSnapshot document = querySnapshot.get().getDocuments().get(0);
+                
+                ApiFuture<WriteResult> collectionApiFuture = dbFirestore.collection(collectionName).document(document.getId()).delete();
+                String results = collectionApiFuture.get().getUpdateTime().toString();
+                return new ResponseEntity<String>(results, HttpStatus.OK);
+            } catch (ServerException e) {
+                return new ResponseEntity<String>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
+            } catch (UserException e) {
+                return new ResponseEntity<String>("Bad Request", HttpStatus.BAD_REQUEST);
+            } catch (PublicInterfaceNotFoundException e) {
+                return new ResponseEntity<String>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
+            } catch (InterruptedException e) {
+                return new ResponseEntity<String>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
+            } catch (ExecutionException e) {
+                return new ResponseEntity<String>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+    }
 }
