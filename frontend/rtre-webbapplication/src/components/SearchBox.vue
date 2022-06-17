@@ -8,7 +8,7 @@
                 <v-expansion-panel-header color="blue white--text" dark flat>
                     {{project.name}}
                     <template v-if="checkIfNewProject(project.oid)">
-                        <v-badge inline color="red"></v-badge>
+                        <v-badge inline color="red lighten-4"></v-badge>
                     </template>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
