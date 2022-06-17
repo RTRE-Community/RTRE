@@ -34,9 +34,13 @@ public class AuthenticationService {
             factory = new JsonBimServerClientFactory("http://localhost:8082");
             client = factory.create(new UsernamePasswordAuthenticationInfo(username, password));
             SUser user = client.getServiceInterface().getUserByUserName(username);
+            Long oid = user.getOid();
+            String id = Long.toString(oid);
             JsonObject result = new JsonObject();
             result.addProperty("Token", client.getToken());
             result.addProperty("UserType", user.getUserType().toString());
+            result.addProperty("oid", id);
+          
             result.addProperty("uuid", user.getUuid().toString());
             return new ResponseEntity<String>(result.toString(),HttpStatus.valueOf(200));
         } catch (BimServerClientException e) {

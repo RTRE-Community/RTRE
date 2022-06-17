@@ -142,6 +142,42 @@ public class AdminManagement {
         
     }
 
+    public static ResponseEntity<String> getAllUsers(String token){
+        try {
+            JsonBimServerClientFactory factory;
+                    BimServerClient client;
+                    factory = new JsonBimServerClientFactory("http://localhost:8082");
+                    client = factory.create(new TokenAuthentication(token));
+
+                    List<SUser> resultList = client.getServiceInterface().getAllUsers();
+                    ArrayList<User> users = new ArrayList<User>();
+                    for(int i = 0; i < resultList.size(); i++){
+                        users.add(new User(resultList.get(i).getName(), resultList.get(i).getUsername(), resultList.get(i).getOid())); 
+                    }
+                    String result = new Gson().toJson(users);
+                    System.out.println(result);
+
+                    if(result.length() > 0){
+                        return new ResponseEntity<String>(result, HttpStatus.valueOf(200));
+                    } else {
+                        return new ResponseEntity<>("error" ,HttpStatus.INTERNAL_SERVER_ERROR);
+                    }                   
+                    
+        } catch (ServerException e) {
+            return new ResponseEntity<String>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
+        } catch (UserException e) {
+            return new ResponseEntity<String>("Bad Request", HttpStatus.BAD_REQUEST);
+        } catch (BimServerClientException e) {
+            e.printStackTrace();
+        } catch (ServiceException e) {
+            e.printStackTrace();
+        } catch (ChannelConnectionException e) {
+            e.printStackTrace();
+        }
+        return new ResponseEntity<>("error" ,HttpStatus.INTERNAL_SERVER_ERROR);
+        
+    }
+
     public static ResponseEntity<String> createProject(String projectName, String schema, String token){
         try {
             JsonBimServerClientFactory factory;

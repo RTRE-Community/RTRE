@@ -1,5 +1,8 @@
 package com.example.demo.Service.Firebase;
 
+import com.example.demo.Object.Message;
+import com.example.demo.Object.Notification;
+import com.example.demo.Object.User;
 import com.example.demo.Controller.IfcController;
 import com.example.demo.Object.Notification;
 import com.google.api.client.json.Json;
@@ -8,6 +11,14 @@ import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.google.protobuf.ServiceException;
+
+import org.bimserver.client.BimServerClient;
+import org.bimserver.client.json.JsonBimServerClientFactory;
+import org.bimserver.interfaces.objects.SProject;
+import org.bimserver.shared.ChannelConnectionException;
+import org.bimserver.shared.TokenAuthentication;
+import org.bimserver.shared.exceptions.BimServerClientException;
 
 import org.bimserver.shared.Token;
 import org.bimserver.shared.TokenAuthentication;
@@ -67,6 +78,46 @@ public class FirebaseService {
             return collectionApiFuture.get().getUpdateTime().toString();
 
     }
+
+    public static ResponseEntity<String> sendMessage(String token, String message, Long from, Long to, String date) {
+        try {
+            JsonBimServerClientFactory factory;
+                    BimServerClient client;
+                    factory = new JsonBimServerClientFactory("http://localhost:8082");
+                    client = factory.create(new TokenAuthentication(token));
+
+                    Message m = new Message(message, to, from, date);
+                    Firestore dbFirestore = FirestoreClient.getFirestore();
+
+
+                    ApiFuture<WriteResult> collectionApiFuture = dbFirestore.collection("Message").document().set(m);
+                    String result = collectionApiFuture.get().getUpdateTime().toString();
+
+
+                    System.out.println(m + " " + result);
+
+                    return new ResponseEntity<String>(result,HttpStatus.valueOf(200));
+                                   
+                    
+        }  catch (UserException e) {
+            return new ResponseEntity<String>("Bad Request", HttpStatus.BAD_REQUEST);
+        } catch (BimServerClientException e) {
+            e.printStackTrace();
+        }  catch (ChannelConnectionException e) {
+            e.printStackTrace();
+        } catch (org.bimserver.shared.exceptions.ServiceException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return new ResponseEntity<>("error" ,HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
 
 /*
     public static Notification getNotification(String id) throws ExecutionException, InterruptedException {

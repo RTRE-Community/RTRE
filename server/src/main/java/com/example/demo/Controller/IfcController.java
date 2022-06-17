@@ -6,6 +6,7 @@ import com.example.demo.Service.AdminManagement;
 import com.example.demo.Service.AuthenticationService;
 import com.example.demo.Service.ifcMergeService;
 import com.example.demo.Service.ifcPostService;
+import com.example.demo.Service.Firebase.FirebaseService;
 import com.example.demo.Service.ifcGetService;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.json.JsonBimServerClientFactory;
@@ -103,6 +104,12 @@ public class IfcController {
         return AdminManagement.ViewUsers(parent0Id, token);
     }
 
+    @GetMapping("/getAllUsers")
+    @ResponseBody
+    public ResponseEntity<String> getAllUsers(@RequestParam String token){
+        return AdminManagement.getAllUsers(token);
+    }
+
     @GetMapping("/CreateProject")
     @ResponseBody
     public ResponseEntity<String> createProject(@RequestParam String projectName, String schema, String token){
@@ -114,6 +121,12 @@ public class IfcController {
     @ResponseBody
     public ResponseEntity<String> register (@RequestParam String emailUsername, String password, String name){
         return AuthenticationService.register(emailUsername, password,name);
+    }
+
+    @PostMapping("/sendMessage")
+    @ResponseBody
+    public ResponseEntity<String> sendMessage (@RequestParam String token, String message, Long from, Long to, String date){
+        return FirebaseService.sendMessage(token, message, from, to, date);
     }
 
     @GetMapping("/getAllNotification")
