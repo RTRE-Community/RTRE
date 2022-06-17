@@ -25,7 +25,6 @@ import java.util.concurrent.ExecutionException;
 @Service
 public class ifcPostService {
     public static ResponseEntity<String> postIfc(MultipartFile file, String schema, Long parentPoid){
-
         try {
             String relativeFolder = "src\\main\\resources\\BimServerInstallTempFolder\\";
             UUID uniqueId = UUID.randomUUID();
@@ -48,11 +47,18 @@ public class ifcPostService {
             // Here we actually checkin the IFC file. Flow.SYNC indicates that we only want to continue the code-flow after the checkin has been completed
             SLongActionState state = IfcController.client.checkinSync(poid,"",deserializer.getOid(),false,demoIfcFile);
             Files.delete(fileOfSubject.toPath());
+            
+            List<SUser> allUsers = IfcController.client.getServiceInterface().getAllAuthorizedUsersOfProject(parentPoid);
 
-            List<SUser> allUsers = IfcController.client.getServiceInterface().getAllUsers();
-
+            for(SUser sUser: allUsers){
+                IfcController.client.getServiceInterface().addUserToProject(sUser.getOid(),  newProject.getOid());
+            }
+            
+            allUsers = IfcController.client.getServiceInterface().getAllAuthorizedUsersOfProject(newProject.getOid());
+        
             for (SUser sUser : allUsers) {
-                Notification newPostNotification = new Notification(newProject.getOid(), false, sUser.getOid() + sUser.getUuid().toString());
+                String uuid = IfcController.client.getServiceInterface().getUserByUoid(sUser.getOid()).getUuid().toString();
+                Notification newPostNotification = new Notification(newProject.getOid(), false, String.valueOf(sUser.getOid()) + uuid);
                 FirebaseService.postNotification(newPostNotification);
             }
             if(!state.getErrors().isEmpty()){

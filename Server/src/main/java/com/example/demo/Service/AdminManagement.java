@@ -50,6 +50,11 @@ public class AdminManagement {
             SUser user = client.getServiceInterface().getUserByUserName(username);
             Long oid = user.getOid();
             boolean added = client.getServiceInterface().addUserToProject(oid, parent0Id);
+            List<Long> subprojectsOid = client.getServiceInterface().getProjectByPoid(parent0Id).getSubProjects();
+            Long userOid = client.getServiceInterface().getUserByUserName(username).getOid();
+            for(Long subproject : subprojectsOid){
+                client.getServiceInterface().addUserToProject(userOid, subproject);
+            }
             if(added){
                 return new ResponseEntity<String>(HttpStatus.valueOf(200));
             } else {
