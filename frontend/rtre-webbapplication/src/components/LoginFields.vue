@@ -165,6 +165,10 @@ export default {
           console.log(resp.data);
           sessionStorage.setItem("TokenId", resp.data.Token);
           sessionStorage.setItem('UserType', resp.data.UserType)
+          sessionStorage.setItem('Username',  this.loginEmail)
+          sessionStorage.setItem('uuid', resp.data.uuid)
+          sessionStorage.setItem('oid', resp.data.oid)
+          console.log(resp.data)
           return resp;
         });
         Vue.set(this.loading, 0, false);

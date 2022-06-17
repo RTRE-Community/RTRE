@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "vue-beautiful-chat": "^2.5.0",
     "web-ifc": "^0.0.35"
   }
 }

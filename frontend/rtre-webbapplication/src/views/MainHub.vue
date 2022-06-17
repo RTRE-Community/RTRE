@@ -7,15 +7,16 @@
             </v-container>
         </v-flex>
         <v-flex xs12 md6>
-            <div v-if="!overlay">
+            <div v-if="!showOverlay">
             <v-container>
                 <SearchBox></SearchBox>
             </v-container>
             </div>
         </v-flex>
+        <div v-if="this.users !== null">
             <v-container>
-               <ChatWIndow />
-            </v-container>
+               <ChatWIndow @click="this.showOverlay=true" :overlay="this.showOverlay" :allUsers="this.users" />
+            </v-container></div>
     </v-layout>
 </v-container>
 </template>
@@ -25,6 +26,7 @@ import SearchBox from "@/components/SearchBox.vue";
 import FunctionHub from "@/components/FunctionHub.vue";
 import ChatWIndow from '../components/ChatWIndow.vue'
 const EventEmitter = require('../EventEmitter')
+import axios from 'axios'
 
 export default ({
     name: 'MainHub',
@@ -36,21 +38,33 @@ export default ({
     created(){
         EventEmitter.eventEmitter.on('disableProjectBox', this.disableProjectBox);
         EventEmitter.eventEmitter.on('enableProjectBox', this.enableProjectBox);
+        axios.get('http://localhost:3030/api/getAllUsers?' + new URLSearchParams({
+                token: sessionStorage.getItem("TokenId")
+            })).then((resp) => {
+                this.users = resp.data
+                console.log(this.users);
+                EventEmitter.eventEmitter.on('loadedUsers', this.users);
+
+            });
 
     },
     data() {
     return {
-        overlay: false,
+        showOverlay: null,
+        users: []
       
       } // specifies the color scheme for the component
      
     },
   methods: {
     disableProjectBox(){
-        this.overlay = true;
+        this.showOverlay = true;
+        //console.log('overlay is true')
     },
     enableProjectBox(){
-        this.overlay = false;
+        this.showOverlay = false;
+       // console.log('overlay is false')
+
     }
     }
 })
