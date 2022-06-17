@@ -60,7 +60,7 @@ const EventEmitter = require('../EventEmitter')
 import axios from 'axios'
 export default ({
     name: 'ChatWindow',
-    props: ['overlay', 'allUsers'],
+    props: ['overlay', 'allUsers', 'userMessages'],
     components: {
     },
     created(){
@@ -71,9 +71,12 @@ export default ({
           //  })).then((resp) => {
             //    this.users = resp.data
             //});
+      this.UserMessages = this.userMessages;
+
     },
     data() {
     return {
+      UserMessages: [],
       user: {},
       showChatBox: false,
       showOverlay: false,
@@ -100,10 +103,7 @@ export default ({
       participants: [
       ], // the list of all the participant of the conversation. `name` is the user name, `id` is used to establish the author of a message, `imageUrl` is supposed to be the user avatar.
       titleImageUrl: 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png',
-      messageList: [
-          { type: 'text', author: `me`, data: { text: `` } },
-          { type: 'text', author: `user1`, data: { text: `` } }
-      ], // the list of the messages to show, can be paginated and adjusted dynamically
+      messageList: [], // the list of the messages to show, can be paginated and adjusted dynamically
       newMessagesCount: 0,
       isChatOpen: false, // to determine whether the chat window should be open or closed
       showTypingIndicator: '', // when set to a value matching the participant.id it shows the typing indicator for the specific user
@@ -138,11 +138,11 @@ export default ({
   methods: {
     loadUser(User){
       //console.log(user);
-      let user = {};
-      user.name = User.name;
-      user.username = User.username;
-      user.oid = User.oid;
-      this.user = user;
+      //let user = {};
+      //user.name = User.name;
+      //user.username = User.username;
+      //user.oid = User.oid;
+      //this.user = user;
       this.user = User;
       const p = [{
         name: User.name,
@@ -189,6 +189,11 @@ export default ({
         Message.date = dateTime;
         Message.to =  this.user.oid;
         console.log(Message);
+        let textMessage = Message.data
+        let text = { author: sessionStorage.getItem('Username'), type: 'text', data: { textMessage } }
+        this.messageList = this.messageList.push(text);
+       // [ ...this.messageList, text ]
+
 
 
         axios.post('http://localhost:3030/api/sendMessage?' + new URLSearchParams({
@@ -211,6 +216,7 @@ export default ({
       // called when the user clicks on the fab button to open the chat
       this.Users = this.allUsers;
       this.showOverlay = true;
+      this.userMessages
 
       this.isChatOpen = !this.isChatOpen;
       this.newMessagesCount = 0

@@ -3,34 +3,38 @@ package com.example.demo.Object;
 public class Message {
 
     private String message;
-    private boolean read;
-    private Long to;
-    private Long from;
+    private String to;
+    private String from;
     private String date;
+    private boolean readMessage;
 
 
-    public Message(String message, Long to, Long from, String date){
+
+    public Message(String message, String to, String from, String date, Boolean notRead){
         this.message = message;
         this.to = to;
         this.from = from;
-        this.read = false;
+        this.readMessage = notRead;
         this.date = date;
 
 
     }
 
-    public Long getFrom() {
+    public String getFrom() {
         return from;
     }
     public String getMessage() {
         return message;
     }
-    public Long getTo() {
+    public String getTo() {
         return to;
+    }
+    public boolean getReadMessage(){
+        return readMessage;
     }
 
     public void readMessage(){
-        this.read = true;
+        this.readMessage = true;
     }
     public String getDate() {
         return date;

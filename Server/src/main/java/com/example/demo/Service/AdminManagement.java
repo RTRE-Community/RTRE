@@ -150,7 +150,6 @@ public class AdminManagement {
                         users.add(new User(resultList.get(i).getName(), resultList.get(i).getUsername(), resultList.get(i).getOid())); 
                     }
                     String result = new Gson().toJson(users);
-                    System.out.println(result);
 
                     if(result.length() > 0){
                         return new ResponseEntity<String>(result, HttpStatus.valueOf(200));

@@ -134,6 +134,11 @@ public class IfcController {
         return FirebaseService.getAllNotification(username,uuid);
     }
 
+    @GetMapping("/getUserMessages")
+    public ResponseEntity<String> getUserMessages(@RequestParam String token, String username){
+        return FirebaseService.getUserMessages(token, username);
+    }
+
     @DeleteMapping("/deleteNotification")
     public ResponseEntity<String> deleteNotification(@RequestParam String uuid,String username, Long postId){
         return FirebaseService.deleteNotification(uuid, username,postId);
