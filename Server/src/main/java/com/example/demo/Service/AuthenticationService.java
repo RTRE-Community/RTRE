@@ -37,7 +37,7 @@ public class AuthenticationService {
             JsonObject result = new JsonObject();
             result.addProperty("Token", client.getToken());
             result.addProperty("UserType", user.getUserType().toString());
-          
+            result.addProperty("uuid", user.getUuid().toString());
             return new ResponseEntity<String>(result.toString(),HttpStatus.valueOf(200));
         } catch (BimServerClientException e) {
             return new ResponseEntity<>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);

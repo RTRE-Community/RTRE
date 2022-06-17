@@ -7,6 +7,9 @@
             <v-expansion-panel>
                 <v-expansion-panel-header color="blue white--text" dark flat>
                     {{project.name}}
+                    <template v-if="checkIfNewProject(project.oid)">
+                        <v-badge inline color="red lighten-4"></v-badge>
+                    </template>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
                     <div v-if=" project.parentId != -1" class="py-2">
@@ -45,6 +48,9 @@ export default {
         this.search = ""
     },
     methods: {
+        checkIfNewProject(id) {
+            return this.notifications.includes(id.toString())
+        },
         resetFilteredProjects() {
             this.search = ""
         },
@@ -59,15 +65,17 @@ export default {
             if (this.search === "") {
                 return this.projects
             } else {
-             return this.projects.filter(project => project.oid.toString().includes(this.search.toString()) | project.name.toLowerCase().includes(this.search.toLowerCase()))
+                return this.projects.filter(project => project.oid.toString().includes(this.search.toString()) | project.name.toLowerCase().includes(this.search.toLowerCase()))
             }
+        },
+        notifications() {
+            return this.$store.state.Notification
         }
     },
     components: {
         ProjectList,
         CheckOutIconButtonVue,
         DeleteButtonVue
-
     },
 
 }
