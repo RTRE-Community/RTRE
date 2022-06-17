@@ -4,9 +4,9 @@ public class Notification {
 
     private Long postId;
     private boolean read;
-    private Long userId;
+    private String userId;
 
-    public Notification(Long postId, boolean read, Long userId) {
+    public Notification(Long postId, boolean read, String userId) {
         this.postId = postId;
         this.read = read;
         this.userId = userId;
@@ -31,11 +31,11 @@ public class Notification {
         this.read = read;
     }
 
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 }

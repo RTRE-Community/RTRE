@@ -9,7 +9,7 @@
         <v-flex xs12 md6>
             <div v-if="!showOverlay">
             <v-container>
-                <SearchBox></SearchBox>
+                <SearchBox :key="componentKey"></SearchBox>
             </v-container>
             </div>
         </v-flex>
@@ -17,6 +17,7 @@
             <v-container>
                <ChatWIndow @click="this.showOverlay=true" :overlay="this.showOverlay" :allUsers="this.users" />
             </v-container></div>
+        <v-btn @click="forceRerender()">Refresh</v-btn>
     </v-layout>
 </v-container>
 </template>
@@ -51,7 +52,8 @@ export default ({
     data() {
     return {
         showOverlay: null,
-        users: []
+        users: [],
+        componentKey: 0
       
       } // specifies the color scheme for the component
      
@@ -65,7 +67,11 @@ export default ({
         this.showOverlay = false;
        // console.log('overlay is false')
 
-    }
+    },
+    forceRerender(){
+        this.componentKey += 1;
+      }  
+    
     }
 })
 </script>

@@ -30,6 +30,14 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jar://$MAVEN_REPOSITORY$/org/opensourcebim/pluginbase/1.5.182/pluginbase-1.5.182.jar!/META-INF/maven/org.opensourcebim/pluginbase/pom.xml" root0="SKIP_INSPECTION" />
+    <setting file="jar://$MAVEN_REPOSITORY$/org/eclipse/jetty/jetty-client/9.4.45.v20220203/jetty-client-9.4.45.v20220203.jar!/META-INF/maven/org.eclipse.jetty/jetty-client/pom.xml" root0="SKIP_INSPECTION" />
+    <setting file="jar://$MAVEN_REPOSITORY$/org/opensourcebim/bimserverclientlib/1.5.182/bimserverclientlib-1.5.182.jar!/META-INF/maven/org.opensourcebim/bimserverclientlib/pom.xml" root0="SKIP_INSPECTION" />
+    <setting file="jar://$MAVEN_REPOSITORY$/org/opensourcebim/buildingsmartlibrary/1.0.13/buildingsmartlibrary-1.0.13.jar!/META-INF/maven/org.opensourcebim/buildingsmartlibrary/pom.xml" root0="SKIP_INSPECTION" />
+    <setting file="jar://$MAVEN_REPOSITORY$/org/opensourcebim/buildingsmartlibrary/1.0.13/buildingsmartlibrary-1.0.13.jar!/META-INF/MANIFEST.MF" root0="SKIP_INSPECTION" />
+    <setting file="jar://$MAVEN_REPOSITORY$/org/eclipse/jetty/jetty-http/9.4.45.v20220203/jetty-http-9.4.45.v20220203.jar!/META-INF/maven/org.eclipse.jetty/jetty-http/pom.xml" root0="SKIP_INSPECTION" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -46,6 +54,9 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Dennis\Desktop\Program\RTRE\Server" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.example.demo.Controller" />
       <recent name="com.example.demo.Service" />
@@ -354,6 +365,10 @@
         <breakpoint enabled="true" type="java-exception">
           <properties class="org.bimserver.shared.exceptions.UserException" package="org.bimserver.shared.exceptions" />
           <option name="timeStamp" value="9" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.ClassNotFoundException" package="java.lang" />
+          <option name="timeStamp" value="13" />
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>

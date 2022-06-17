@@ -4,6 +4,9 @@
         <v-expansion-panel v-if="project.parentId == -1" :key="project.id" popout>
             <v-expansion-panel-header color="blue white--text" dark flat>
                 {{ project.name }}
+                <template v-if="checkIfNewProject(project.oid)">
+                    <v-badge inline color="red lighten-4"></v-badge>
+                </template>
             </v-expansion-panel-header>
             <v-expansion-panel-content>
                 <li>id:{{ project.oid }}</li>
@@ -13,22 +16,15 @@
                     <v-expansion-panel v-if="subProjects.parentId == project.oid" :key="subProjects.id">
                         <v-expansion-panel-header color="blue white--text" dark flat>
                             {{ subProjects.name }}
-                            <v-badge
-                                :content="messages"
-                                :value="messages"
-                                color="red"
-                                overlap>
-                                <v-icon large>
-                                 mdi-message-text
-                                </v-icon>  
-                                  
-                                </v-badge>  
-                            </v-expansion-panel-header>
+                            <template v-if="checkIfNewProject(subProjects.oid)">
+                                <v-badge inline color="red lighten-4"></v-badge>
+                            </template>
+                        </v-expansion-panel-header>
                         <v-expansion-panel-content>
                             <div>
                                 <CheckOutIconButton :oid="subProjects.oid" />
                                 <DeleteButton :oid="subProjects.oid" />
-                                
+
                             </div>
                             <li>id: {{ subProjects.oid }} </li>
                             <li>Schema: {{subProjects.schema}}</li>
@@ -56,7 +52,7 @@ export default {
     data() {
         return {
             projectList: [],
-            messages: 0
+            messages: 0,
         };
     },
     mounted() {
@@ -64,9 +60,17 @@ export default {
         //const START_DATE = new Date('2019-01-01');
 
     },
-    methods :{
-        orderedSubprojects(projects){
+    methods: {
+        checkIfNewProject(id) {
+            return this.notifications.includes(id.toString())
+        },
+        orderedSubprojects(projects) {
             return projects.subProjects.filter()
+        }
+    },
+    computed: {
+        notifications() {
+            return this.$store.state.Notification
         }
     }
 };

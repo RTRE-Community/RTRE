@@ -1,12 +1,15 @@
 <template>
 <div>
-    <v-text-field solo label="Search" prepend-inner-icon="mdi-magnify" v-model="search" elevation="24" clearable outlined @click:clear="resetFilteredProjects()" ></v-text-field>
+    <v-text-field solo label="Search" prepend-inner-icon="mdi-magnify" v-model="search" elevation="24" clearable outlined @click:clear="resetFilteredProjects()"></v-text-field>
 
-    <div v-if="search !== null">
-        <v-expansion-panels v-for="project in filteredProjects" :key="project.id" popout class="rounded-0" >
+    <div v-if="search !== ''">
+        <v-expansion-panels v-for="project in filteredProjects" :key="project.id" popout class="rounded-0">
             <v-expansion-panel>
                 <v-expansion-panel-header color="blue white--text" dark flat>
                     {{project.name}}
+                    <template v-if="checkIfNewProject(project.oid)">
+                        <v-badge inline color="red lighten-4"></v-badge>
+                    </template>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
                     <div v-if=" project.parentId != -1" class="py-2">
@@ -21,7 +24,7 @@
         </v-expansion-panels>
     </div>
     <div v-else>
-        <ProjectList :projects="filteredProjects"></ProjectList>
+        <ProjectList :key="filteredProjects.length" :projects="filteredProjects"></ProjectList>
     </div>
 
 </div>
@@ -37,41 +40,43 @@ export default {
     data() {
         return {
             projects: [],
-            interval:null,
             search: ''
         };
     },
     mounted() {
-      this.fetchProjectList()
+        this.fetchProjectList()
+        this.search = ""
     },
-    methods:{
-        resetFilteredProjects(){
-            this.search =""
+    methods: {
+        checkIfNewProject(id) {
+            return this.notifications.includes(id.toString())
         },
-        fetchProjectList(){
-              axios.get("http://localhost:3030/api/getProjectList?token=" + sessionStorage.getItem('TokenId')).then((resp) => {
-            this.projects = resp.data;
-        });
+        resetFilteredProjects() {
+            this.search = ""
+        },
+        fetchProjectList() {
+            axios.get("http://localhost:3030/api/getProjectList?token=" + sessionStorage.getItem('TokenId')).then((resp) => {
+                this.projects = resp.data;
+            });
         }
     },
     computed: {
         filteredProjects() {
-            return this.projects.filter(project => project.oid.toString().includes(this.search.toString()) | project.name.toLowerCase().includes(this.search.toLowerCase()))
+            if (this.search === "") {
+                return this.projects
+            } else {
+                return this.projects.filter(project => project.oid.toString().includes(this.search.toString()) | project.name.toLowerCase().includes(this.search.toLowerCase()))
+            }
+        },
+        notifications() {
+            return this.$store.state.Notification
         }
     },
     components: {
         ProjectList,
         CheckOutIconButtonVue,
         DeleteButtonVue
+    },
 
-    },
-    created(){
-        this.interval = setInterval(()=> {
-            this.fetchProjectList()
-        },3000)
-    },
-    destroyed() {
-      clearInterval(this.interval)  
-    },
 }
 </script>

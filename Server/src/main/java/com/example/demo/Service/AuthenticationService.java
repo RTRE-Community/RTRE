@@ -41,6 +41,7 @@ public class AuthenticationService {
             result.addProperty("UserType", user.getUserType().toString());
             result.addProperty("oid", id);
           
+            result.addProperty("uuid", user.getUuid().toString());
             return new ResponseEntity<String>(result.toString(),HttpStatus.valueOf(200));
         } catch (BimServerClientException e) {
             return new ResponseEntity<>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);

@@ -3,6 +3,8 @@ package com.example.demo.Service.Firebase;
 import com.example.demo.Object.Message;
 import com.example.demo.Object.Notification;
 import com.example.demo.Object.User;
+import com.example.demo.Controller.IfcController;
+import com.example.demo.Object.Notification;
 import com.google.api.client.json.Json;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
@@ -17,12 +19,17 @@ import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.TokenAuthentication;
 import org.bimserver.shared.exceptions.BimServerClientException;
+
+import org.bimserver.shared.Token;
+import org.bimserver.shared.TokenAuthentication;
+import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
+import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.rmi.ServerException;
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -34,22 +41,20 @@ public class FirebaseService {
     //hello
 
     private static String collectionName = "projectNotifications";
-    private static String UserMessaging = "UserMessaging";
-    public static ResponseEntity<String> getAllNotification(Long id) {
+    public static ResponseEntity<String> getAllNotification(String username, String uuid) {
         try{
             Firestore dbFirestore = FirestoreClient.getFirestore();
-            Query query = dbFirestore.collection(collectionName).whereEqualTo("userId", id);
+            String userOid = String.valueOf(IfcController.client.getServiceInterface().getUserByUserName(username).getOid());
+            String completeId = userOid+ uuid;
+            Query query = dbFirestore.collection(collectionName).whereEqualTo("userId", completeId);
             ApiFuture<QuerySnapshot> querySnapshotApiFuture = query.get();
             QuerySnapshot querySnapshot = querySnapshotApiFuture.get();
             List<QueryDocumentSnapshot> documents = querySnapshot.getDocuments();
-
             JsonArray jsonArray = new JsonArray();
             JsonObject jsonObject = new JsonObject();
-            ArrayList<String> notificationList = new ArrayList<>();
             for (int document = 0; document < documents.size(); document++) {
                 jsonArray.add( documents.get(document).get("postId").toString());
             }
-
 
             jsonObject.add("postId", jsonArray);
             return new ResponseEntity<String>(jsonObject.toString(),HttpStatus.valueOf(200));
@@ -57,6 +62,12 @@ public class FirebaseService {
             return new ResponseEntity<String>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (InterruptedException e) {
             return new ResponseEntity<String>("Internal server error, timed Out", HttpStatus.INTERNAL_SERVER_ERROR);
+        } catch (ServerException e) {
+            return new ResponseEntity<String>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
+        } catch (UserException e) {
+            return new ResponseEntity<String>("Bad Request", HttpStatus.BAD_REQUEST);
+        } catch (PublicInterfaceNotFoundException e) {
+            return new ResponseEntity<String>("Not Found", HttpStatus.valueOf(404));
         }
 
     }
@@ -107,25 +118,6 @@ public class FirebaseService {
         return new ResponseEntity<>("error" ,HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
- 
-    public static String sensdMessage(String message, Long from, Long to, String date) throws ExecutionException, InterruptedException {
-
-
-
-        Firestore dbFirestore = FirestoreClient.getFirestore();
-
-        Query query = dbFirestore.collection("Message").whereEqualTo("Id", from);
-        ApiFuture<QuerySnapshot> querySnapshotApiFuture = query.get();
-        QuerySnapshot querySnapshot = querySnapshotApiFuture.get();
-        List<QueryDocumentSnapshot> documents = querySnapshot.getDocuments();
-
-
-
-
-        ApiFuture<WriteResult> collectionApiFuture = dbFirestore.collection(UserMessaging).document().set(message);
-        return collectionApiFuture.get().getUpdateTime().toString();
-
-}
 
 /*
     public static Notification getNotification(String id) throws ExecutionException, InterruptedException {
@@ -151,11 +143,33 @@ public class FirebaseService {
         return collectionApiFuture.get().getUpdateTime().toString();
     }
 
-    public static String deleteNotification(String id) throws ExecutionException, InterruptedException {
-        Firestore dbFirestore = FirestoreClient.getFirestore();
-        ApiFuture<WriteResult> collectionApiFuture = dbFirestore.collection(collectionName).document(id).delete();
-        return collectionApiFuture.get().getUpdateTime().toString();
-    }
-
  */
+    public static ResponseEntity<String> deleteNotification(String uuid,String username, Long postId) {
+
+            String userOid;
+            try {
+                userOid = String.valueOf(IfcController.client.getServiceInterface().getUserByUserName(username).getOid());
+                String completeId = userOid + uuid;
+                Firestore dbFirestore = FirestoreClient.getFirestore();
+                CollectionReference notifications = dbFirestore.collection(collectionName);
+                ApiFuture<QuerySnapshot> querySnapshot = notifications.whereEqualTo("userId",completeId)
+                .whereEqualTo("postId", postId)
+                .get();
+                DocumentSnapshot document = querySnapshot.get().getDocuments().get(0);
+                
+                ApiFuture<WriteResult> collectionApiFuture = dbFirestore.collection(collectionName).document(document.getId()).delete();
+                String results = collectionApiFuture.get().getUpdateTime().toString();
+                return new ResponseEntity<String>(results, HttpStatus.OK);
+            } catch (ServerException e) {
+                return new ResponseEntity<String>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
+            } catch (UserException e) {
+                return new ResponseEntity<String>("Bad Request", HttpStatus.BAD_REQUEST);
+            } catch (PublicInterfaceNotFoundException e) {
+                return new ResponseEntity<String>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
+            } catch (InterruptedException e) {
+                return new ResponseEntity<String>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
+            } catch (ExecutionException e) {
+                return new ResponseEntity<String>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+    }
 }
