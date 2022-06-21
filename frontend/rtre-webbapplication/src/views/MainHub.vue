@@ -15,7 +15,7 @@
         </v-flex>
         <div v-if="this.users !== null">
             <v-container>
-               <ChatWIndow @click="this.showOverlay=true" :overlay="this.showOverlay" :allUsers="this.users" />
+               <ChatWIndow @click="this.showOverlay=true" :overlay="this.showOverlay" :allUsers="this.users" :userMessages="this.userMessages" />
             </v-container></div>
         <v-btn @click="forceRerender()">Refresh</v-btn>
     </v-layout>
@@ -39,21 +39,52 @@ export default ({
     created(){
         EventEmitter.eventEmitter.on('disableProjectBox', this.disableProjectBox);
         EventEmitter.eventEmitter.on('enableProjectBox', this.enableProjectBox);
-        axios.get('http://localhost:3030/api/getAllUsers?' + new URLSearchParams({
+
+        axios.get('http://localhost:3030/api/getUserMessages?' + new URLSearchParams({
+                token: sessionStorage.getItem("TokenId"),
+                username: sessionStorage.getItem('Username')
+            })).then((resp) => {
+                this.userMessages = resp.data
+                console.log(resp.data);
+
+            });
+
+        if(sessionStorage.getItem('UserType') === 'ADMIN'){
+            console.log(sessionStorage.getItem("TokenId"));
+            axios.get('http://localhost:3030/api/getAllUsers?' + new URLSearchParams({
                 token: sessionStorage.getItem("TokenId")
             })).then((resp) => {
                 this.users = resp.data
-                console.log(this.users);
-                EventEmitter.eventEmitter.on('loadedUsers', this.users);
+
+                if(this.users.length < 1){
+                    console.log('empty user list');
+                }
+                //console.log(this.users);
 
             });
+
+        } else {
+            axios.get('http://localhost:3030/api/getAllUsers!Admin?' + new URLSearchParams({
+                token: sessionStorage.getItem("TokenId")
+            })).then((resp) => {
+                this.users = resp.data
+
+             
+                console.log(this.users);
+                console.log('after request')
+
+            });
+
+        }
+        
 
     },
     data() {
     return {
         showOverlay: null,
         users: [],
-        componentKey: 0
+        componentKey: 0,
+        userMessages: []
       
       } // specifies the color scheme for the component
      

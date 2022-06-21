@@ -113,6 +113,12 @@ public class IfcController {
         return AdminManagement.getAllUsers(token);
     }
 
+    @GetMapping("/getAllUsers!Admin")
+    @ResponseBody
+    public ResponseEntity<String> getAllUsers_noAdmin(@RequestParam String token){
+        return AdminManagement.getAllUsers_noAdmin(token);
+    }
+
     @GetMapping("/CreateProject")
     @ResponseBody
     public ResponseEntity<String> createProject(@RequestParam String projectName, String schema, String token){
@@ -135,6 +141,16 @@ public class IfcController {
     @GetMapping("/getAllNotification")
     public ResponseEntity<String> getAllNotification(@RequestParam String username, String uuid){
         return FirebaseService.getAllNotification(username,uuid);
+    }
+
+    @GetMapping("/getUserMessages")
+    public ResponseEntity<String> getUserMessages(@RequestParam String token, String username){
+        return FirebaseService.getUserMessages(token, username);
+    }
+
+    @GetMapping("/readMessages")
+    public ResponseEntity<String> readMessages(@RequestParam String token, String username, Long sender){
+        return FirebaseService.readMessages(token, username, sender);
     }
 
     @DeleteMapping("/deleteNotification")
