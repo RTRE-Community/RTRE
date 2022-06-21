@@ -42,7 +42,7 @@ export default {
                 Vue.set(this.loading, 0, true)
                 let formData = new FormData();
                 formData.append("file", this.fileupload)
-                this.response = await fetch("http://localhost:3030/api/merge?mergeFile2=" + this.file2, {
+                this.response = await fetch("http://host.docker.internal:3030/api/merge?mergeFile2=" + this.file2, {
                     method: "POST",
                     body: formData
                 })

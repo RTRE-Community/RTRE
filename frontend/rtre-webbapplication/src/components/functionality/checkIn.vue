@@ -64,7 +64,7 @@ export default {
         let formData = new FormData();
         formData.append("file", this.fileupload);
         this.response = await fetch(
-          "http://localhost:3030/api/postIfcAsSubProject?schema=" +
+          "http://host.docker.internal:3030/api/postIfcAsSubProject?schema=" +
             this.selectedFormat +
             "&parentPoid=" +
             this.parentOid,

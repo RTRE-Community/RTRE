@@ -21,7 +21,7 @@ export default {
     methods: {
         installWithOid() {
             Axios({
-            url:  "http://localhost:3030/api/getIfc?fileName=" + this.oid,
+            url:  "http://host.docker.internal:3030/api/getIfc?fileName=" + this.oid,
             methods:"GET",
             responseType:"blob"
                 })

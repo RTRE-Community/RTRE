@@ -29,7 +29,7 @@ export default {
         let UserType = sessionStorage.getItem('UserType');
         if(UserType == 'ADMIN'){ this.adminTrue = true; }
         
-        axios.get("http://localhost:3030/api/getProjectList?token=" + sessionStorage.getItem('TokenId')).then((resp) => {
+        axios.get("http://host.docker.internal:3030/api/getProjectList?token=" + sessionStorage.getItem('TokenId')).then((resp) => {
             this.projects = resp.data;
         });
 

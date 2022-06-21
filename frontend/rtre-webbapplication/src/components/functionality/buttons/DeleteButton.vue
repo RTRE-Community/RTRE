@@ -19,7 +19,7 @@ export default {
     methods: {
         deleteWithOid() {
             fetch(
-                "http://localhost:3030/api/deleteProject?oid=" + this.oid
+                "http://host.docker.internal:3030/api/deleteProject?oid=" + this.oid
                 ).then(window.location.reload());
             
         }

@@ -157,7 +157,7 @@ export default {
       if (this.$refs.loginForm.validate()) {
         Vue.set(this.loading, 0, true);
         this.response = await Axios(
-          "http://localhost:3030/api/login?username=" +
+          "http://host.docker.internal:3030/api/login?username=" +
             this.loginEmail +
             "&password=" +
             this.loginPassword
@@ -180,7 +180,7 @@ export default {
       if (this.$refs.registerForm.validate()) {
         Vue.set(this.loading, 0, true);
         this.response = await fetch(
-          "http://localhost:3030/api/register?emailUsername=" +
+          "http://host.docker.internal:3030/api/register?emailUsername=" +
             this.email +
             "&password=" +
             this.password +

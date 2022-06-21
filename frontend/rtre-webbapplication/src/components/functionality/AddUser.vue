@@ -55,7 +55,7 @@ export default {
         async addUserApi() {
             if (this.$refs.form.validate()) {
                 Vue.set(this.loading, 0, true)
-                this.response = await fetch('http://localhost:3030/api/AddUserToProject?' + new URLSearchParams({
+                this.response = await fetch('http://host.docker.internal:3030/api/AddUserToProject?' + new URLSearchParams({
                     parent0Id: this.parent0Id,
                     username: this.username,
                     token: sessionStorage.getItem("TokenId")
@@ -72,7 +72,7 @@ export default {
         async removeUserApi() {
             if (this.$refs.form.validate()) {
                 Vue.set(this.loading, 0, true)
-                this.response = await fetch('http://localhost:3030/api/RemoveUserFromProject?' + new URLSearchParams({
+                this.response = await fetch('http://host.docker.internal:3030/api/RemoveUserFromProject?' + new URLSearchParams({
                     parent0Id: this.parent0Id,
                     username: this.username,
                     token: sessionStorage.getItem("TokenId")

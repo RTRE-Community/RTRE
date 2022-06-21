@@ -42,7 +42,7 @@ export default {
     },
     methods: {
         async getUsers() {
-            axios.get('http://localhost:3030/api/ViewUsers?' + new URLSearchParams({
+            axios.get('http://host.docker.internal:3030/api/ViewUsers?' + new URLSearchParams({
                 parent0Id: this.parent0Id,
                 token: sessionStorage.getItem("TokenId")
             })).then((resp) => {

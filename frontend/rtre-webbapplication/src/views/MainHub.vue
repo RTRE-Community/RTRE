@@ -40,7 +40,7 @@ export default ({
         EventEmitter.eventEmitter.on('disableProjectBox', this.disableProjectBox);
         EventEmitter.eventEmitter.on('enableProjectBox', this.enableProjectBox);
 
-        axios.get('http://localhost:3030/api/getUserMessages?' + new URLSearchParams({
+        axios.get('http://host.docker.internal:3030/api/getUserMessages?' + new URLSearchParams({
                 token: sessionStorage.getItem("TokenId"),
                 username: sessionStorage.getItem('Username')
             })).then((resp) => {
@@ -51,7 +51,7 @@ export default ({
 
         if(sessionStorage.getItem('UserType') === 'ADMIN'){
             console.log(sessionStorage.getItem("TokenId"));
-            axios.get('http://localhost:3030/api/getAllUsers?' + new URLSearchParams({
+            axios.get('http://host.docker.internal:3030/api/getAllUsers?' + new URLSearchParams({
                 token: sessionStorage.getItem("TokenId")
             })).then((resp) => {
                 this.users = resp.data
@@ -64,7 +64,7 @@ export default ({
             });
 
         } else {
-            axios.get('http://localhost:3030/api/getAllUsers!Admin?' + new URLSearchParams({
+            axios.get('http://host.docker.internal:3030/api/getAllUsers!Admin?' + new URLSearchParams({
                 token: sessionStorage.getItem("TokenId")
             })).then((resp) => {
                 this.users = resp.data

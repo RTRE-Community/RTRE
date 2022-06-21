@@ -39,11 +39,13 @@ export default ({
     methods: {
         polldata() {
             this.polling = setInterval(() => {
+                if(sessionStorage.getItem('TokenId') !== null){
                 this.fetchNotifications()
+                 }
             }, 3000)
         },
         fetchNotifications() {
-            axios.get("http://localhost:3030/api/getAllNotification?", {
+            axios.get("http://host.docker.internal:3030/api/getAllNotification?", {
                 params: {
                     username: sessionStorage.getItem('Username'),
                     uuid: sessionStorage.getItem('uuid')
@@ -54,7 +56,7 @@ export default ({
             })
         },
         deleteNotification(notificationId) {
-            axios.delete("http://localhost:3030/api/deleteNotification?", {
+            axios.delete("http://host.docker.internal:3030/api/deleteNotification?", {
                 params: {
                     uuid: sessionStorage.getItem('uuid'),
                     username: sessionStorage.getItem('Username'),
