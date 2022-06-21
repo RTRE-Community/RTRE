@@ -6,7 +6,7 @@ on:
       - 'RTRE20-75-skapa-en-fungerande-chatt-system2'
 
 jobs:
-  build-app:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Set up JDK 1.8
@@ -15,10 +15,9 @@ jobs:
           java-version: 1.8
       - name: Clone Repo
         uses: actions/checkout@v2
-      - name: Build 
-        run: cd Server
+      - name: Build Maven
         run: |
-          cd Server
+          cd server
           mvn install 
           mvn -B clean package 
           mvn spring-boot:run
