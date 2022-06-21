@@ -35,6 +35,4 @@ jobs:
         run: |
           pwd
           cd server
-          mvn install 
-          mvn -B clean package 
-          mvn spring-boot:run
+          mvn -B clean verify
