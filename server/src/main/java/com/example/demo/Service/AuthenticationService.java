@@ -1,6 +1,7 @@
 package com.example.demo.Service;
 
 import com.example.demo.Controller.IfcController;
+import com.example.demo.DemoApplication;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
@@ -31,7 +32,7 @@ public class AuthenticationService {
         JsonBimServerClientFactory factory;
         BimServerClient client;
             try{
-            factory = new JsonBimServerClientFactory("http://localhost:8082");
+            factory = new JsonBimServerClientFactory(DemoApplication.BimPort);
             client = factory.create(new UsernamePasswordAuthenticationInfo(username, password));
             SUser user = client.getServiceInterface().getUserByUserName(username);
             Long oid = user.getOid();
@@ -79,7 +80,7 @@ public class AuthenticationService {
         try {
             JsonBimServerClientFactory factory;
                     BimServerClient client;
-                    factory = new JsonBimServerClientFactory("http://localhost:8082");
+                    factory = new JsonBimServerClientFactory(DemoApplication.BimPort);
                     client = factory.create(new TokenAuthentication(token));
                     SUser user = client.getServiceInterface().getUserByUserName(username);
                     Long oid = user.getOid();
@@ -109,7 +110,7 @@ public class AuthenticationService {
         try {
             JsonBimServerClientFactory factory;
                     BimServerClient client;
-                    factory = new JsonBimServerClientFactory("http://localhost:8082");
+                    factory = new JsonBimServerClientFactory(DemoApplication.BimPort);
                     client = factory.create(new TokenAuthentication(token));
                     SUser user = client.getServiceInterface().getUserByUserName(username);
                     Long oid = user.getOid();

@@ -1,5 +1,6 @@
 package com.example.demo.Service.Firebase;
 
+import com.example.demo.DemoApplication;
 import com.example.demo.Object.Message;
 import com.example.demo.Object.Notification;
 import com.example.demo.Object.User;
@@ -85,7 +86,7 @@ public class FirebaseService {
         try {
             JsonBimServerClientFactory factory;
                     BimServerClient client;
-                    factory = new JsonBimServerClientFactory("http://localhost:8082");
+                    factory = new JsonBimServerClientFactory(DemoApplication.BimPort);
                     client = factory.create(new TokenAuthentication(token));
 
                     Message m = new Message(message, String.valueOf(to), String.valueOf(from), date, false);
@@ -126,7 +127,7 @@ public class FirebaseService {
         try {
             JsonBimServerClientFactory factory;
                     BimServerClient client;
-                    factory = new JsonBimServerClientFactory("http://localhost:8082");
+                    factory = new JsonBimServerClientFactory(DemoApplication.BimPort);
                     client = factory.create(new TokenAuthentication(token));
                     SUser user = client.getServiceInterface().getUserByUserName(username);
                     Long oid = user.getOid();
@@ -185,7 +186,7 @@ public class FirebaseService {
         try {
             JsonBimServerClientFactory factory;
                     BimServerClient client;
-                    factory = new JsonBimServerClientFactory("http://localhost:8082");
+                    factory = new JsonBimServerClientFactory(DemoApplication.BimPort);
                     client = factory.create(new TokenAuthentication(token));
                     SUser user = client.getServiceInterface().getUserByUserName(username);
                     Long oid = user.getOid();

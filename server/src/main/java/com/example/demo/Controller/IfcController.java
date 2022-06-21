@@ -1,5 +1,6 @@
 package com.example.demo.Controller;
 
+import com.example.demo.DemoApplication;
 import com.example.demo.Service.*;
 import com.example.demo.Service.Firebase.FirebaseService;
 import com.example.demo.Service.AdminManagement;
@@ -18,6 +19,7 @@ import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -34,6 +36,7 @@ public class IfcController {
     private final ifcPostService HelloService;
     private final ifcMergeService IfcMergeService;
 
+
     @Autowired
     public IfcController(ifcPostService IfcGetService, ifcMergeService ifcMergeService) {
         this.HelloService = IfcGetService;
@@ -45,7 +48,7 @@ public class IfcController {
 
     {
         try {
-            factory = new JsonBimServerClientFactory("http://localhost:8082");
+            factory = new JsonBimServerClientFactory(DemoApplication.BimPort);
             client = factory.create(new UsernamePasswordAuthenticationInfo("admin@admin.com", "password"));
         } catch (BimServerClientException | ServiceException | ChannelConnectionException e) {
             e.printStackTrace();

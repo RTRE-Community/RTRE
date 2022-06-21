@@ -1,6 +1,7 @@
 package com.example.demo.Service;
 
 import com.example.demo.Controller.IfcController;
+import com.example.demo.DemoApplication;
 import com.example.demo.Helper_Classes.User;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -48,7 +49,7 @@ public class AdminManagement {
         try {
             JsonBimServerClientFactory factory;
             BimServerClient client;
-            factory = new JsonBimServerClientFactory("http://localhost:8082");
+            factory = new JsonBimServerClientFactory(DemoApplication.BimPort);
             client = factory.create(new TokenAuthentication(token));
             SUser user = client.getServiceInterface().getUserByUserName(username);
             Long oid = user.getOid();
@@ -78,7 +79,7 @@ public class AdminManagement {
         try {
             JsonBimServerClientFactory factory;
             BimServerClient client;
-            factory = new JsonBimServerClientFactory("http://localhost:8082");
+            factory = new JsonBimServerClientFactory(DemoApplication.BimPort);
             client = factory.create(new TokenAuthentication(token));
             SUser user = client.getServiceInterface().getUserByUserName(username);
             Long oid = user.getOid();
@@ -109,7 +110,7 @@ public class AdminManagement {
         try {
             JsonBimServerClientFactory factory;
                     BimServerClient client;
-                    factory = new JsonBimServerClientFactory("http://localhost:8082");
+                    factory = new JsonBimServerClientFactory(DemoApplication.BimPort);
                     client = factory.create(new TokenAuthentication(token));
 
                     List<SUser> resultList = client.getServiceInterface().getAllAuthorizedUsersOfProject(parent0Id);
@@ -144,7 +145,7 @@ public class AdminManagement {
         try {
             JsonBimServerClientFactory factory;
                     BimServerClient client;
-                    factory = new JsonBimServerClientFactory("http://localhost:8082");
+                    factory = new JsonBimServerClientFactory(DemoApplication.BimPort);
                     client = factory.create(new TokenAuthentication(token));
 
                     List<SUser> resultList = client.getServiceInterface().getAllUsers();
@@ -183,7 +184,7 @@ public class AdminManagement {
         try {
             JsonBimServerClientFactory factory;
                     BimServerClient client;
-                    factory = new JsonBimServerClientFactory("http://localhost:8082");
+                    factory = new JsonBimServerClientFactory(DemoApplication.BimPort);
                     client = factory.create(new TokenAuthentication(token));
 
                     List<SProject> projects = client.getServiceInterface().getAllProjects(false, false);
@@ -238,7 +239,7 @@ public class AdminManagement {
         try {
             JsonBimServerClientFactory factory;
                     BimServerClient client;
-                    factory = new JsonBimServerClientFactory("http://localhost:8082");
+                    factory = new JsonBimServerClientFactory(DemoApplication.BimPort);
                     client = factory.create(new TokenAuthentication(token));
 
                     SProject newProject = client.getServiceInterface().addProject(projectName, schema);
