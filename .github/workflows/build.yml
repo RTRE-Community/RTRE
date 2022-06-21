@@ -5,6 +5,9 @@ on:
     branches:
       - 'RTRE20-75-skapa-en-fungerande-chatt-system2'
 
+env:
+  SERVICE_ACCOUNT_KEY: ${{ secrets.SERVICE_ACCOUNT_KEY }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -15,6 +18,11 @@ jobs:
           java-version: 1.8
       - name: Clone Repo
         uses: actions/checkout@v2
+      - name: Write Secrets
+        run: |
+          touch ./serviceAccountKey.json
+          echo $SERVICE_ACCOUNT_KEY >> ./serviceAccountKey.json
+          cat ./serviceAccountKey.json
       - name: Build Maven
         run: |
           cd server
