@@ -286,24 +286,8 @@ export default ({
                 let message = { type: 'text', author: this.UserMessages[j].from, data: { text: this.UserMessages[j].message } }
                 this.messageList = [ ...this.messageList, message ];
               }
-            }  /*else if(this.UserMessages[j].to == this.Users[i].oid){
-
-              this.Users[i].messages = {};
-              this.Users[i].messages.messageCount = 0;
-              this.Users[i].messages.messageCount++;
-              this.Users[i].messages['message'] = [];
-              let m = {'message': this.UserMessages[j].message};
-              this.Users[i].messages.message.push(m);
-
-              let message = { type: 'text', author: this.UserMessages[j].from, data: { text: this.UserMessages[j].message } }
-              this.messageList = [ ...this.messageList, message ];
-          }*/
-         
-
-        }
-
-          //let len = 0
-          
+            }  
+        }          
       }
      
       this.openedChatOnce = true;
