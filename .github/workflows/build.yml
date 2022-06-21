@@ -34,7 +34,7 @@ jobs:
           path: ./serviceAccountKey.json
       - name: Build Maven
         run: |
-          ls
+          pwd
           cd server
           mvn install 
           mvn -B clean package 
