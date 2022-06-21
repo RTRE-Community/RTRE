@@ -5,8 +5,10 @@
           :value="overlay"
         >
         <h1>Select User to Chat with</h1><br>
-    <v-list>
-      <v-list-item-group v-model="Users">
+    <v-list >
+      <v-subheader>USERS</v-subheader>
+      <v-list-item-group v-model="Users"
+       color="primary">
         <v-list-item 
           v-for="User in Users"
           :key="User.oid"
@@ -17,11 +19,13 @@
           </v-list-item-icon>
           <v-list-item-content>
             <v-list-item-title v-text="User.name"></v-list-item-title>
+            <div v-if="getCount(User.oid) > 0">
+              <v-list-item-subtitle>New Messages: {{ getCount(User.oid) }}</v-list-item-subtitle>
+            </div> 
           </v-list-item-content>
         </v-list-item>
       </v-list-item-group>
     </v-list>
-
          </v-overlay>
       </div>
             <v-container>
@@ -60,10 +64,10 @@ const EventEmitter = require('../EventEmitter')
 import axios from 'axios'
 export default ({
     name: 'ChatWindow',
-    props: ['overlay', 'allUsers'],
+    props: ['overlay', 'allUsers', 'userMessages'],
     components: {
     },
-    created(){
+    mounted(){
       //console.log(this.showOverlay);
       //console.log(this.Users);
       //axios.get('http://localhost:3030/api/getAllUsers?' + new URLSearchParams({
@@ -71,14 +75,20 @@ export default ({
           //  })).then((resp) => {
             //    this.users = resp.data
             //});
+      this.UserMessages = this.userMessages;
+     
+      //console.log(this.userMessages);
     },
     data() {
     return {
+      openedChatOnce: false,
+      UserMessages: [],
       user: {},
       showChatBox: false,
       showOverlay: false,
       Users: [],
       selectedUser: {},
+      allMessages: [],
       icons:{
         open:{
           img: OpenIcon,
@@ -101,8 +111,7 @@ export default ({
       ], // the list of all the participant of the conversation. `name` is the user name, `id` is used to establish the author of a message, `imageUrl` is supposed to be the user avatar.
       titleImageUrl: 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png',
       messageList: [
-          { type: 'text', author: `me`, data: { text: `` } },
-          { type: 'text', author: `user1`, data: { text: `` } }
+        { type: 'text', author: `user1`, data: { text: `No.` } }
       ], // the list of the messages to show, can be paginated and adjusted dynamically
       newMessagesCount: 0,
       isChatOpen: false, // to determine whether the chat window should be open or closed
@@ -136,28 +145,48 @@ export default ({
     }
   },
   methods: {
+    getCount(id){
+      
+      const index = this.Users.map(e => e.oid).indexOf(id);
+  
+      return this.Users[index].messages.messageCount;
+      
+    },
     loadUser(User){
-      //console.log(user);
-      let user = {};
-      user.name = User.name;
-      user.username = User.username;
-      user.oid = User.oid;
-      this.user = user;
+
       this.user = User;
       const p = [{
         name: User.name,
         id: User.oid,
         imageUrl: null
       }];
-      
+      const index = this.Users.map(e => e.oid).indexOf(User.oid);
+      this.Users[index].messages.messageCount = 0;
       this.participants = p;
 
       this.showOverlay = false;
       this.showChatBox = true;
 
+      axios.get('http://localhost:3030/api/readMessages?' + new URLSearchParams({
+                token: sessionStorage.getItem('TokenId'),
+                username: sessionStorage.getItem('Username'),
+                sender: this.user.oid
+            })).then((resp) => {
+              if(resp.status == 200){
+                console.log('Succesfully sent message');
+              }
+            
+
+            });
+
+
+
+
     },
     sendMessage (text) {
       if (text.length > 0) {
+        this.newMessagesCount = this.isChatOpen ? this.newMessagesCount : this.newMessagesCount + 1
+
         this.newMessagesCount = this.isChatOpen ? this.newMessagesCount : this.newMessagesCount + 1
         let today = new Date();
         let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
@@ -169,8 +198,6 @@ export default ({
         Message.data = text;
         Message.date = dateTime;
         Message.to =  this.user.oid;
-        console.log(Message);
-        console.log(text);
 
         this.onMessageWasSent(Message)
       }
@@ -188,7 +215,12 @@ export default ({
         Message.data = message.data.text;
         Message.date = dateTime;
         Message.to =  this.user.oid;
+        let textMessage = Message.data
+        let text =  { type: 'text', author: 'me', data: { text: textMessage } }
+        this.messageList = [ ...this.messageList, text ];
         console.log(Message);
+       // [ ...this.messageList, text ]
+
 
 
         axios.post('http://localhost:3030/api/sendMessage?' + new URLSearchParams({
@@ -200,7 +232,6 @@ export default ({
             })).then((resp) => {
               if(resp.status == 200){
                 console.log('Succesfully sent message');
-                console.log(resp.data)
               }
             
 
@@ -208,10 +239,64 @@ export default ({
 
     },
     openChat () {
-      // called when the user clicks on the fab button to open the chat
-      this.Users = this.allUsers;
-      this.showOverlay = true;
+      
+      if(!this.openedChatOnce){
+        this.Users = this.allUsers;
+        for(let i = 0; i < this.Users.length; i++){
+          if(this.Users[i].oid == sessionStorage.getItem('oid')){
+            this.Users.splice(i, 1);
+            console.log(this.Users);
+          }
 
+        }
+        
+        this.UserMessages = this.userMessages;
+        console.log(this.UserMessages);
+
+        if(!(this.UserMessages.length > 0)){
+          for(let i = 0; i < this.Users.length; i++){
+              this.Users[i].messages = {};
+              this.Users[i].messages.messageCount = 0;
+              this.Users[i].messages['message'] = [];
+          }
+        }
+        for(let i = 0; i < this.Users.length; i++){
+
+          for(let j = 0; j < this.UserMessages.length; j++){
+          
+            if(this.UserMessages[j].from == this.Users[i].oid){
+
+              if(this.Users[i].messages == undefined){
+
+                this.Users[i].messages = {};
+                this.Users[i].messages.messageCount = 0;
+                this.Users[i].messages.messageCount++;
+                this.Users[i].messages['message'] = [];
+                let m = {'message': this.UserMessages[j].message};
+                this.Users[i].messages.message.push(m);
+
+                let message = { type: 'text', author: this.UserMessages[j].from, data: { text: this.UserMessages[j].message } }
+                this.messageList = [ ...this.messageList, message ];
+
+              } else {
+                let m = {'message': this.UserMessages[j].message};
+                this.Users[i].messages.message.push(m);
+                this.Users[i].messages.messageCount++;
+
+                let message = { type: 'text', author: this.UserMessages[j].from, data: { text: this.UserMessages[j].message } }
+                this.messageList = [ ...this.messageList, message ];
+              }
+            }  
+        }          
+      }
+     
+      this.openedChatOnce = true;
+    }
+      // called when the user clicks on the fab button to open the chat
+      //this.UserMessages = this.userMessages;
+
+    
+      this.Users = this.allUsers;
       this.isChatOpen = !this.isChatOpen;
       this.newMessagesCount = 0
       EventEmitter.eventEmitter.emit('disableProjectBox', this.u);
@@ -225,7 +310,6 @@ export default ({
       // called when the user clicks on the botton to close the chat
       this.isChatOpen = !this.isChatOpen;
       EventEmitter.eventEmitter.emit('enableProjectBox', '');
-      this.showOverlay = false;
       this.showOverlay = false;
 
       //EventEmitter.eventEmitter.emit('closedChat', this.users);
