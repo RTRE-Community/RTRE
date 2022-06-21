@@ -21,5 +21,6 @@ jobs:
             chmod +x ./
             mvn -B clean package 
         - name: Maven run 
+          uses: actions/checkout@v2
           run: |
             mvn spring-boot:run
