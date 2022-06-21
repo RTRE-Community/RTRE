@@ -21,9 +21,8 @@ jobs:
       - name: Write Secrets
         run: |
           touch ./serviceAccountKey.json
-          echo $SERVICE_ACCOUNT_KEY >> ../serviceAccountKey.json
+          echo "$SERVICE_ACCOUNT_KEY" >> ../serviceAccountKey.json
           cat ../serviceAccountKey.json
-          echo ./serviceAccountKey.json
         shell: bash
         env:
           SERVICE_ACCOUNT_KEY: ${{ secrets.SERVICE_ACCOUNT_KEY }}
@@ -31,7 +30,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: SERVICE_ACCOUNT_KEY
-          path: ../serviceAccountKey.json
+          path: ./serviceAccountKey.json
       - name: Build Maven
         run: |
           pwd
