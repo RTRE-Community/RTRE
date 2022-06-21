@@ -1,6 +1,7 @@
 package com.example.demo.Service;
 
 import com.example.demo.Controller.IfcController;
+import com.example.demo.DemoApplication;
 import com.google.gson.Gson;
 import org.apache.commons.io.IOUtils;
 import org.bimserver.client.BimServerClient;
@@ -88,7 +89,7 @@ public class ifcGetService {
         try {
             JsonBimServerClientFactory factory;
                     BimServerClient client;
-                    factory = new JsonBimServerClientFactory("http://localhost:8082");
+                    factory = new JsonBimServerClientFactory(DemoApplication.BimPort);
                     client = factory.create(new TokenAuthentication(token));
            List<SProject> data = client.getServiceInterface().getAllProjects(false,true);
            String result = new Gson().toJson(data);
