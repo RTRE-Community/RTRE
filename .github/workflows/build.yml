@@ -20,7 +20,7 @@ jobs:
           java-version: 1.8
       - name: Write Secrets
         run: |
-          touch ./serviceAccountKey.json
+          touch ../serviceAccountKey.json
           echo "$SERVICE_ACCOUNT_KEY" >> ../serviceAccountKey.json
           cat ../serviceAccountKey.json
         shell: bash
