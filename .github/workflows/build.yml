@@ -1,9 +1,6 @@
 name: Server CI/CD
 
-on:
-  push:
-    branches:
-      - 'RTRE20-75-skapa-en-fungerande-chatt-system2'
+on: [push]
 
 env:
   SERVICE_ACCOUNT_KEY: ${{ secrets.SERVICE_ACCOUNT_KEY }}
