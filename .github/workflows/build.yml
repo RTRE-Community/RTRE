@@ -15,9 +15,10 @@ jobs:
           java-version: 1.8
       - name: Clone Repo
         uses: actions/checkout@v2
-      - name: Build androidGeoBot
+      - name: Build 
         run: |
           cd Server/
           chmod +x ./
+          mvn install 
           mvn -B clean package 
           mvn spring-boot:run
