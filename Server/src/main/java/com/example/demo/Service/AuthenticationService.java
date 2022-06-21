@@ -37,6 +37,7 @@ public class AuthenticationService {
             Long oid = user.getOid();
             String id = Long.toString(oid);
             JsonObject result = new JsonObject();
+      
             result.addProperty("Token", client.getToken());
             result.addProperty("UserType", user.getUserType().toString());
             result.addProperty("oid", id);

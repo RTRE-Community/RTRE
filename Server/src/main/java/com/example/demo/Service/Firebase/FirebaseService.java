@@ -122,6 +122,7 @@ public class FirebaseService {
 
 
     public static ResponseEntity<String> getUserMessages(String token, String username) {
+
         try {
             JsonBimServerClientFactory factory;
                     BimServerClient client;
@@ -132,32 +133,77 @@ public class FirebaseService {
 
                     Firestore dbFirestore = FirestoreClient.getFirestore();
 
-                    Query query = dbFirestore.collection("Message").whereEqualTo("to", oid);
+                    Query query = dbFirestore.collection("Message").whereEqualTo("to", String.valueOf(oid));
                     ApiFuture<QuerySnapshot> querySnapshotApiFuture = query.get();
                     QuerySnapshot querySnapshot = querySnapshotApiFuture.get();
                     List<QueryDocumentSnapshot> documents = querySnapshot.getDocuments();
                     
-
                     ArrayList<Message> messages = new ArrayList<Message>();
-                    for(int i = 0; i < documents.size(); i++){
-                        boolean read;
-                        if (documents.get(i).get("readMessage").toString().equals("true")) {
-                            read = true;
-                        }else {
-                            read = false;
-                        }
 
+                    for(int i = 0; i < documents.size(); i++){
+                        if (documents.get(i).get("readMessage").toString().equals("false")) {
                             messages.add(new Message(documents.get(i).get("message").toString(), 
                                     documents.get(i).get("to").toString(), 
                                     documents.get(i).get("from").toString(),
                                     documents.get(i).get("date").toString(),
-                                    read
+                                    true
                                     ));
+                        }
+
+                            
                         
                     }
                     String result = new Gson().toJson(messages);
 
                     return new ResponseEntity<String>(result,HttpStatus.valueOf(200));
+                                   
+                    
+        }  catch (UserException e) {
+            return new ResponseEntity<String>("Bad Request", HttpStatus.BAD_REQUEST);
+        } catch (BimServerClientException e) {
+            e.printStackTrace();
+        }  catch (ChannelConnectionException e) {
+            e.printStackTrace();
+        } catch (org.bimserver.shared.exceptions.ServiceException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return new ResponseEntity<>("error" ,HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    public static ResponseEntity<String> readMessages(String token, String username, Long sender) {
+        
+        try {
+            JsonBimServerClientFactory factory;
+                    BimServerClient client;
+                    factory = new JsonBimServerClientFactory("http://localhost:8082");
+                    client = factory.create(new TokenAuthentication(token));
+                    SUser user = client.getServiceInterface().getUserByUserName(username);
+                    Long oid = user.getOid();
+
+                    Firestore dbFirestore = FirestoreClient.getFirestore();
+                    Query query = dbFirestore.collection("Message").whereEqualTo("to", String.valueOf(oid))
+                                                                        .whereEqualTo("from", String.valueOf(sender));
+                    ApiFuture<QuerySnapshot> querySnapshotApiFuture = query.get();
+                    QuerySnapshot querySnapshot = querySnapshotApiFuture.get();
+                    List<QueryDocumentSnapshot> documents = querySnapshot.getDocuments();
+                    
+                    for(int i = 0; i < documents.size(); i++){
+                        
+                        if (documents.get(i).get("readMessage").toString().equals("false")) {
+                            dbFirestore.collection("Message").document(documents.get(i).getId()).update("readMessage", true);
+                         }
+                    }
+                    return new ResponseEntity<String>(HttpStatus.valueOf(200));
                                    
                     
         }  catch (UserException e) {

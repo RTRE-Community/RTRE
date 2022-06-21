@@ -33,7 +33,10 @@ import java.nio.charset.StandardCharsets;
 import java.security.spec.KeySpec;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -146,6 +149,10 @@ public class AdminManagement {
 
                     List<SUser> resultList = client.getServiceInterface().getAllUsers();
                     ArrayList<User> users = new ArrayList<User>();
+                    if(!(resultList.size() > 0)){
+                        System.out.println("Empty User list");
+                        return new ResponseEntity<>("no users" ,HttpStatus.INTERNAL_SERVER_ERROR);
+                    }
                     for(int i = 0; i < resultList.size(); i++){
                         users.add(new User(resultList.get(i).getName(), resultList.get(i).getUsername(), resultList.get(i).getOid())); 
                     }
@@ -156,6 +163,61 @@ public class AdminManagement {
                     } else {
                         return new ResponseEntity<>("error" ,HttpStatus.INTERNAL_SERVER_ERROR);
                     }                   
+                    
+        } catch (ServerException e) {
+            return new ResponseEntity<String>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
+        } catch (UserException e) {
+            return new ResponseEntity<String>("Bad Request", HttpStatus.BAD_REQUEST);
+        } catch (BimServerClientException e) {
+            e.printStackTrace();
+        } catch (ServiceException e) {
+            e.printStackTrace();
+        } catch (ChannelConnectionException e) {
+            e.printStackTrace();
+        }
+        return new ResponseEntity<>("error" ,HttpStatus.INTERNAL_SERVER_ERROR);
+        
+    }
+
+    public static ResponseEntity<String> getAllUsers_noAdmin(String token){
+        try {
+            JsonBimServerClientFactory factory;
+                    BimServerClient client;
+                    factory = new JsonBimServerClientFactory("http://localhost:8082");
+                    client = factory.create(new TokenAuthentication(token));
+
+                    List<SProject> projects = client.getServiceInterface().getAllProjects(false, false);
+                    Long[] projectId = new Long[projects.size()];
+                    for(int j = 0; j < projects.size(); j++){
+                        projectId[j] =  projects.get(j).getOid();
+
+                    }
+                    ArrayList<List<SUser>> userList = new ArrayList<List<SUser>>();
+                    for(int k = 0; k < projectId.length; k++){
+                       userList.add(client.getServiceInterface().getAllAuthorizedUsersOfProject(projectId[k]));
+
+                    }
+                    if( !(userList.size() > 0) ){
+                        System.out.println("Empty User list");
+                        return new ResponseEntity<>("no users" ,HttpStatus.valueOf(204));
+                    }else {
+                        Set<User> users = new HashSet<>();
+                        for(int i = 0; i < userList.size(); i++){
+                            for(int s = 0; s < userList.get(i).size(); s++){
+                                User newUser = new User(userList.get(i).get(s).getName(), 
+                                userList.get(i).get(s).getUsername(), 
+                                userList.get(i).get(s).getOid());
+                                users.add(newUser);
+                            }
+
+                        }
+                     
+                        String result = new Gson().toJson(users);
+                        System.out.println(result);
+                        return new ResponseEntity<String>(result, HttpStatus.valueOf(200));
+            
+                    }
+             
                     
         } catch (ServerException e) {
             return new ResponseEntity<String>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
