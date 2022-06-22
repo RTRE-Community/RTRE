@@ -15,7 +15,7 @@
 	<description>Real Time Real Estate</description>
 	<properties>
 		<java.version>1.8</java.version>
-		<start-class>fore.rtre.server.main</start-class>
+		<start-class>fore.rtre.server.DemoApplication</start-class>
 	</properties>
 	<dependencies>
 

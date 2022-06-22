@@ -1,6 +1,6 @@
 package fore.rtre.server.Service;
 
-import fore.rtre.server.main;
+import fore.rtre.server.DemoApplication;
 import fore.rtre.server.config.BimserverConfig;
 import com.google.gson.Gson;
 import org.apache.commons.io.IOUtils;
@@ -89,7 +89,7 @@ public class IfcGetService {
         try {
             JsonBimServerClientFactory factory;
                     BimServerClient client;
-                    factory = new JsonBimServerClientFactory(main.BimPort);
+                    factory = new JsonBimServerClientFactory(DemoApplication.BimPort);
                     client = factory.create(new TokenAuthentication(token));
            List<SProject> data = client.getServiceInterface().getAllProjects(false,true);
            String result = new Gson().toJson(data);

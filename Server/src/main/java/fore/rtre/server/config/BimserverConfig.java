@@ -1,6 +1,6 @@
 package fore.rtre.server.config;
 
-import fore.rtre.server.main;
+import fore.rtre.server.DemoApplication;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.shared.ChannelConnectionException;
@@ -23,7 +23,7 @@ public class BimserverConfig {
     public void BimserverInit(){
         {
             try {
-                factory = new JsonBimServerClientFactory(main.BimPort);
+                factory = new JsonBimServerClientFactory(DemoApplication.BimPort);
                 client = factory.create(new UsernamePasswordAuthenticationInfo("admin@admin.com", "password"));
             } catch (BimServerClientException | ServiceException | ChannelConnectionException e) {
                 e.printStackTrace();
