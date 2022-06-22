@@ -19,7 +19,7 @@ export default {
     methods: {
         deleteWithOid() {
             fetch(
-                "http://host.docker.internal:3030/api/deleteProject?oid=" + this.oid
+                process.env.VUE_APP_RTRE_BACKEND_PORT + "/api/deleteProject?oid=" + this.oid
                 ).then(window.location.reload());
             
         }

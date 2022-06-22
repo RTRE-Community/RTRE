@@ -62,7 +62,7 @@ export default {
             if (this.$refs.form.validate()) {
                 Vue.set(this.loading, 0, true)
 
-                this.response = await axios.get("http://host.docker.internal:3030/api/CreateProject?" + new URLSearchParams({
+                this.response = await axios.get(process.env.VUE_APP_RTRE_BACKEND_PORT + "/api/CreateProject?" + new URLSearchParams({
                     projectName: this.projectName,
                     schema: this.selectedFormat,
                     token: sessionStorage.getItem("TokenId")

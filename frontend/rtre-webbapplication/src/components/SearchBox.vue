@@ -55,7 +55,7 @@ export default {
             this.search = ""
         },
         fetchProjectList() {
-            axios.get("http://host.docker.internal:3030/api/getProjectList?token=" + sessionStorage.getItem('TokenId')).then((resp) => {
+            axios.get(process.env.VUE_APP_RTRE_BACKEND_PORT + "/api/getProjectList?token=" + sessionStorage.getItem('TokenId')).then((resp) => {
                 this.projects = resp.data;
             });
         }
