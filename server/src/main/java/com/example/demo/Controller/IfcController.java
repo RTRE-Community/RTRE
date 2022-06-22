@@ -43,18 +43,6 @@ public class IfcController {
         IfcMergeService = ifcMergeService;
     }
 
-    static public JsonBimServerClientFactory factory;
-    static public BimServerClient client;
-
-    {
-        try {
-            factory = new JsonBimServerClientFactory(DemoApplication.BimPort);
-            client = factory.create(new UsernamePasswordAuthenticationInfo("admin@admin.com", "password"));
-        } catch (BimServerClientException | ServiceException | ChannelConnectionException e) {
-            e.printStackTrace();
-        }
-    }
-
     @PostMapping("/postIfcAsSubProject")
     @ResponseBody
     public ResponseEntity<String> postIfc(@RequestParam("file") MultipartFile file, String schema, Long parentPoid){

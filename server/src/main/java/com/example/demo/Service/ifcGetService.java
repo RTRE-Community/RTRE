@@ -2,6 +2,7 @@ package com.example.demo.Service;
 
 import com.example.demo.Controller.IfcController;
 import com.example.demo.DemoApplication;
+import com.example.demo.config.BimserverConfig;
 import com.google.gson.Gson;
 import org.apache.commons.io.IOUtils;
 import org.bimserver.client.BimServerClient;
@@ -36,17 +37,17 @@ public class ifcGetService {
             String relativePath = "src\\main\\resources\\BimServerInstallTempFolder\\";
             UUID uniqueName = UUID.randomUUID();
             // Select one project
-            SProject project = IfcController.client.getServiceInterface().getProjectByPoid(fileName);
+            SProject project = BimserverConfig.client.getServiceInterface().getProjectByPoid(fileName);
             // get the latest revision id from the project
             // Create a serializer for our configuration/Schema
             String schema = project.getSchema().substring(0, 1).toUpperCase() + project.getSchema().substring(1);
-            SSerializerPluginConfiguration serializer = IfcController.client.getServiceInterface().getSerializerByName(schema); //Ifc2x3tc1 or Ifc4
+            SSerializerPluginConfiguration serializer = BimserverConfig.client.getServiceInterface().getSerializerByName(schema); //Ifc2x3tc1 or Ifc4
             // Start the download process and receive a topic id
 
             //Installation process
-            long topicId =  IfcController.client.getServiceInterface().download(Collections.singleton(project.getLastRevisionId()),"{}",serializer.getOid(),false);
+            long topicId =  BimserverConfig.client.getServiceInterface().download(Collections.singleton(project.getLastRevisionId()),"{}",serializer.getOid(),false);
             // Use the topic id from "BimServer" which contains the file data to download it
-            InputStream is = IfcController.client.getServiceInterface().getDownloadData(topicId).getFile().getInputStream();
+            InputStream is = BimserverConfig.client.getServiceInterface().getDownloadData(topicId).getFile().getInputStream();
             File targetFile = new File(relativePath + uniqueName +".ifc");
             java.nio.file.Files.copy(
                     is,

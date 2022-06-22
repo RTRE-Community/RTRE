@@ -3,6 +3,7 @@ package com.example.demo.Service;
 import com.example.demo.Controller.IfcController;
 import com.example.demo.Object.Notification;
 import com.example.demo.Service.Firebase.FirebaseService;
+import com.example.demo.config.BimserverConfig;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SUser;
@@ -30,7 +31,7 @@ public class ifcPostService {
             UUID uniqueId = UUID.randomUUID();
             String uniqueName = file.getName()+ "-"+ uniqueId;
 
-            SProject newProject = IfcController.client.getServiceInterface().addProjectAsSubProject(uniqueName, parentPoid,schema);
+            SProject newProject = BimserverConfig.client.getServiceInterface().addProjectAsSubProject(uniqueName, parentPoid,schema);
             long poid = newProject.getOid();
             File fileOfSubject = new File(relativeFolder + uniqueName + ".ifc");
             try {
@@ -39,25 +40,25 @@ public class ifcPostService {
                 ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
             }
             // This method is an easy way to find a compatible deserializer for the combination of the "ifc" file extension and this project. You can also get a specific deserializer if you want to.
-            SDeserializerPluginConfiguration deserializer = IfcController.client.getServiceInterface().getSuggestedDeserializerForExtension("ifc", poid);
+            SDeserializerPluginConfiguration deserializer = BimserverConfig.client.getServiceInterface().getSuggestedDeserializerForExtension("ifc", poid);
 
             // Make sure you change this to a path to a local IFC file
             Path demoIfcFile = Paths.get(relativeFolder+uniqueName +".ifc");
 
             // Here we actually checkin the IFC file. Flow.SYNC indicates that we only want to continue the code-flow after the checkin has been completed
-            SLongActionState state = IfcController.client.checkinSync(poid,"",deserializer.getOid(),false,demoIfcFile);
+            SLongActionState state = BimserverConfig.client.checkinSync(poid,"",deserializer.getOid(),false,demoIfcFile);
             Files.delete(fileOfSubject.toPath());
             
-            List<SUser> allUsers = IfcController.client.getServiceInterface().getAllAuthorizedUsersOfProject(parentPoid);
+            List<SUser> allUsers = BimserverConfig.client.getServiceInterface().getAllAuthorizedUsersOfProject(parentPoid);
 
             for(SUser sUser: allUsers){
-                IfcController.client.getServiceInterface().addUserToProject(sUser.getOid(),  newProject.getOid());
+                BimserverConfig.client.getServiceInterface().addUserToProject(sUser.getOid(),  newProject.getOid());
             }
             
-            allUsers = IfcController.client.getServiceInterface().getAllAuthorizedUsersOfProject(newProject.getOid());
+            allUsers = BimserverConfig.client.getServiceInterface().getAllAuthorizedUsersOfProject(newProject.getOid());
         
             for (SUser sUser : allUsers) {
-                String uuid = IfcController.client.getServiceInterface().getUserByUoid(sUser.getOid()).getUuid().toString();
+                String uuid = BimserverConfig.client.getServiceInterface().getUserByUoid(sUser.getOid()).getUuid().toString();
                 Notification newPostNotification = new Notification(newProject.getOid(), false, String.valueOf(sUser.getOid()) + uuid);
                 FirebaseService.postNotification(newPostNotification);
             }
@@ -78,7 +79,7 @@ public class ifcPostService {
     public static ResponseEntity<String> deleteProject(Long oid){
 
         try {
-            IfcController.client.getServiceInterface().deleteProject(oid);
+            BimserverConfig.client.getServiceInterface().deleteProject(oid);
         } catch (ServerException e) {
             return new ResponseEntity<String>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (UserException e) {

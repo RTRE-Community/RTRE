@@ -2,6 +2,7 @@ package com.example.demo.Service;
 
 import com.example.demo.Controller.IfcController;
 import com.example.demo.DemoApplication;
+import com.example.demo.config.BimserverConfig;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
@@ -65,7 +66,7 @@ public class AuthenticationService {
     public static ResponseEntity<String> register(String emailUsername, String password, String name){
         // Take all the necessary data for register
         try {
-            IfcController.client.getServiceInterface().addUserWithPassword(emailUsername, password, name, SUserType.USER, false, String.valueOf(UUID.randomUUID()));
+            BimserverConfig.client.getServiceInterface().addUserWithPassword(emailUsername, password, name, SUserType.USER, false, String.valueOf(UUID.randomUUID()));
             return new ResponseEntity<String>("ok", HttpStatus.valueOf(200));
         } catch (ServerException e) {
             return new ResponseEntity<>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);

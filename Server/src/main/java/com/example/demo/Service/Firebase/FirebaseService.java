@@ -6,6 +6,7 @@ import com.example.demo.Object.Notification;
 import com.example.demo.Object.User;
 import com.example.demo.Controller.IfcController;
 import com.example.demo.Object.Notification;
+import com.example.demo.config.BimserverConfig;
 import com.google.api.client.json.Json;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
@@ -47,7 +48,7 @@ public class FirebaseService {
     public static ResponseEntity<String> getAllNotification(String username, String uuid) {
         try{
             Firestore dbFirestore = FirestoreClient.getFirestore();
-            String userOid = String.valueOf(IfcController.client.getServiceInterface().getUserByUserName(username).getOid());
+            String userOid = String.valueOf(BimserverConfig.client.getServiceInterface().getUserByUserName(username).getOid());
             String completeId = userOid+ uuid;
             Query query = dbFirestore.collection(collectionName).whereEqualTo("userId", completeId);
             ApiFuture<QuerySnapshot> querySnapshotApiFuture = query.get();
@@ -260,7 +261,7 @@ public class FirebaseService {
 
             String userOid;
             try {
-                userOid = String.valueOf(IfcController.client.getServiceInterface().getUserByUserName(username).getOid());
+                userOid = String.valueOf(BimserverConfig.client.getServiceInterface().getUserByUserName(username).getOid());
                 String completeId = userOid + uuid;
                 Firestore dbFirestore = FirestoreClient.getFirestore();
                 CollectionReference notifications = dbFirestore.collection(collectionName);

@@ -1,5 +1,6 @@
 package com.example.demo.Service;
 import com.example.demo.Controller.IfcController;
+import com.example.demo.config.BimserverConfig;
 import org.apache.commons.io.IOUtils;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SProject;
@@ -39,11 +40,11 @@ public class ifcMergeService {
                 File postedFile = new File(pathForFirstFile);
                 file.transferTo(postedFile.getAbsoluteFile());
             /* GET THE SECOND FILE FROM BIMSERVER*/
-            SProject secondMergeFile = IfcController.client.getServiceInterface().getProjectByPoid(mergeFile2);
+            SProject secondMergeFile = BimserverConfig.client.getServiceInterface().getProjectByPoid(mergeFile2);
             String schema = secondMergeFile.getSchema().substring(0, 1).toUpperCase() + secondMergeFile.getSchema().substring(1);
-            SSerializerPluginConfiguration serializer = IfcController.client.getServiceInterface().getSerializerByName(schema);
-            long secondTopicId = IfcController.client.getServiceInterface().download(Collections.singleton(secondMergeFile.getLastRevisionId()), "{}", serializer.getOid(), false);
-            InputStream secondInputStream = IfcController.client.getServiceInterface().getDownloadData(secondTopicId).getFile().getInputStream();
+            SSerializerPluginConfiguration serializer = BimserverConfig.client.getServiceInterface().getSerializerByName(schema);
+            long secondTopicId = BimserverConfig.client.getServiceInterface().download(Collections.singleton(secondMergeFile.getLastRevisionId()), "{}", serializer.getOid(), false);
+            InputStream secondInputStream = BimserverConfig.client.getServiceInterface().getDownloadData(secondTopicId).getFile().getInputStream();
 
             File createSecondFile = new File(pathForSecondFile);
             java.nio.file.Files.copy(
@@ -66,11 +67,11 @@ public class ifcMergeService {
             System.out.println("done!");
             /* CREATE A CHECK-IN FOR THE NEW MERGED PRODUCT FILE*/
             long mergeParentOid = secondMergeFile.getParentId();
-            SDeserializerPluginConfiguration deserializer = IfcController.client.getServiceInterface().getSuggestedDeserializerForExtension("ifc", mergeParentOid);
+            SDeserializerPluginConfiguration deserializer = BimserverConfig.client.getServiceInterface().getSuggestedDeserializerForExtension("ifc", mergeParentOid);
             String nameOfDeserializer = deserializer.getName().replace(" (Streaming)","");
-            SProject newProject = IfcController.client.getServiceInterface().addProjectAsSubProject(uuidProduct.toString(), mergeParentOid,nameOfDeserializer );
+            SProject newProject = BimserverConfig.client.getServiceInterface().addProjectAsSubProject(uuidProduct.toString(), mergeParentOid,nameOfDeserializer );
             System.out.println(newProject.getOid() + newProject.getName()+ newProject.getSchema());
-            IfcController.client.checkinSync(newProject.getOid(), "", deserializer.getOid(), false, outputFile.toPath());
+            BimserverConfig.client.checkinSync(newProject.getOid(), "", deserializer.getOid(), false, outputFile.toPath());
             System.out.println("done Checking in");
 
 
