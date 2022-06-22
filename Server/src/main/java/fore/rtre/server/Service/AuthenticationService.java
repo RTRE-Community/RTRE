@@ -1,6 +1,6 @@
 package fore.rtre.server.Service;
 
-import fore.rtre.server.DemoApplication;
+import fore.rtre.server.main;
 import fore.rtre.server.config.BimserverConfig;
 import com.google.gson.JsonObject;
 
@@ -31,7 +31,7 @@ public class AuthenticationService {
         JsonBimServerClientFactory factory;
         BimServerClient client;
             try{
-            factory = new JsonBimServerClientFactory(DemoApplication.BimPort);
+            factory = new JsonBimServerClientFactory(main.BimPort);
             client = factory.create(new UsernamePasswordAuthenticationInfo(username, password));
             SUser user = client.getServiceInterface().getUserByUserName(username);
             Long oid = user.getOid();
@@ -79,7 +79,7 @@ public class AuthenticationService {
         try {
             JsonBimServerClientFactory factory;
                     BimServerClient client;
-                    factory = new JsonBimServerClientFactory(DemoApplication.BimPort);
+                    factory = new JsonBimServerClientFactory(main.BimPort);
                     client = factory.create(new TokenAuthentication(token));
                     SUser user = client.getServiceInterface().getUserByUserName(username);
                     Long oid = user.getOid();
@@ -109,7 +109,7 @@ public class AuthenticationService {
         try {
             JsonBimServerClientFactory factory;
                     BimServerClient client;
-                    factory = new JsonBimServerClientFactory(DemoApplication.BimPort);
+                    factory = new JsonBimServerClientFactory(main.BimPort);
                     client = factory.create(new TokenAuthentication(token));
                     SUser user = client.getServiceInterface().getUserByUserName(username);
                     Long oid = user.getOid();

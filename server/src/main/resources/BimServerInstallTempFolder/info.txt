@@ -1,1 +1,0 @@
-This is a temp working directory for sending and receiving files as a middleman between client and bimserver

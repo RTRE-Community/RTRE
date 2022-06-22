@@ -1,8 +1,0 @@
-This is an empty working directory for merging
-
-By receiving one file from client
-one from bim-server
-creating an empty file
-
-then sending the output file to bim-server
-whilst deleting all the resources
