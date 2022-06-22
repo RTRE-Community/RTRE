@@ -33,7 +33,7 @@ export default {
                 let that = this;
                 Vue.set(this.loading, 0, true)
                 await Axios({
-                        url: "http://host.docker.internal:3030/api/getIfc?fileName=" + this.id,
+                        url: process.env.VUE_APP_RTRE_BACKEND_PORT + "/api/getIfc?fileName=" + this.id,
                         methods: "GET",
                         responseType: "blob"
                     })

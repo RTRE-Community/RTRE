@@ -17,7 +17,7 @@ export default {
         async uploadFile() {
             let formData = new FormData();
             formData.append("file", this.fileupload)
-            let response = await fetch('http://host.docker.internal:3030/api/upload', {
+            let response = await fetch(process.env.VUE_APP_RTRE_BACKEND_PORT + '/api/upload', {
                 method: "POST",
                 body: formData
             })

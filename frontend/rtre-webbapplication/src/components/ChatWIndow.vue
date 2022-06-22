@@ -70,7 +70,7 @@ export default ({
     mounted(){
       //console.log(this.showOverlay);
       //console.log(this.Users);
-      //axios.get('http://host.docker.internal:3030/api/getAllUsers?' + new URLSearchParams({
+      //axios.get(process.env.VUE_APP_RTRE_BACKEND_PORT + '/api/getAllUsers?' + new URLSearchParams({
         //        token: sessionStorage.getItem("TokenId")
           //  })).then((resp) => {
             //    this.users = resp.data
@@ -167,7 +167,7 @@ export default ({
       this.showOverlay = false;
       this.showChatBox = true;
 
-      axios.get('http://host.docker.internal:3030/api/readMessages?' + new URLSearchParams({
+      axios.get(process.env.VUE_APP_RTRE_BACKEND_PORT + '/api/readMessages?' + new URLSearchParams({
                 token: sessionStorage.getItem('TokenId'),
                 username: sessionStorage.getItem('Username'),
                 sender: this.user.oid
@@ -223,7 +223,7 @@ export default ({
 
 
 
-        axios.post('http://host.docker.internal:3030/api/sendMessage?' + new URLSearchParams({
+        axios.post(process.env.VUE_APP_RTRE_BACKEND_PORT + '/api/sendMessage?' + new URLSearchParams({
                 token: Message.author,
                 message: Message.data,
                 from: Message.from,

@@ -45,7 +45,7 @@ export default ({
             }, 3000)
         },
         fetchNotifications() {
-            axios.get("http://host.docker.internal:3030/api/getAllNotification?", {
+            axios.get(process.env.VUE_APP_RTRE_BACKEND_PORT + "/api/getAllNotification?", {
                 params: {
                     username: sessionStorage.getItem('Username'),
                     uuid: sessionStorage.getItem('uuid')
@@ -56,7 +56,7 @@ export default ({
             })
         },
         deleteNotification(notificationId) {
-            axios.delete("http://host.docker.internal:3030/api/deleteNotification?", {
+            axios.delete(process.env.VUE_APP_RTRE_BACKEND_PORT + "/api/deleteNotification?", {
                 params: {
                     uuid: sessionStorage.getItem('uuid'),
                     username: sessionStorage.getItem('Username'),
