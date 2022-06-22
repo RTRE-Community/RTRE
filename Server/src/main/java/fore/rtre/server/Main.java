@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 @SpringBootApplication
 @CrossOrigin(origins="*")
-public class DemoApplication {
+public class Main {
 	public static String BimPort = "http://host.docker.internal:8082";
 	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
+		SpringApplication.run(Main.class, args);
 	}
 }

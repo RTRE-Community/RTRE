@@ -1,6 +1,6 @@
 package fore.rtre.server.Service.Firebase;
 
-import fore.rtre.server.DemoApplication;
+import fore.rtre.server.Main;
 import fore.rtre.server.Object.Message;
 import fore.rtre.server.Object.Notification;
 import fore.rtre.server.config.BimserverConfig;
@@ -77,7 +77,7 @@ public class FirebaseService {
         try {
             JsonBimServerClientFactory factory;
                     BimServerClient client;
-                    factory = new JsonBimServerClientFactory(DemoApplication.BimPort);
+                    factory = new JsonBimServerClientFactory(Main.BimPort);
                     client = factory.create(new TokenAuthentication(token));
 
                     Message m = new Message(message, String.valueOf(to), String.valueOf(from), date, false);
@@ -118,7 +118,7 @@ public class FirebaseService {
         try {
             JsonBimServerClientFactory factory;
                     BimServerClient client;
-                    factory = new JsonBimServerClientFactory(DemoApplication.BimPort);
+                    factory = new JsonBimServerClientFactory(Main.BimPort);
                     client = factory.create(new TokenAuthentication(token));
                     SUser user = client.getServiceInterface().getUserByUserName(username);
                     Long oid = user.getOid();
@@ -177,7 +177,7 @@ public class FirebaseService {
         try {
             JsonBimServerClientFactory factory;
                     BimServerClient client;
-                    factory = new JsonBimServerClientFactory(DemoApplication.BimPort);
+                    factory = new JsonBimServerClientFactory(Main.BimPort);
                     client = factory.create(new TokenAuthentication(token));
                     SUser user = client.getServiceInterface().getUserByUserName(username);
                     Long oid = user.getOid();

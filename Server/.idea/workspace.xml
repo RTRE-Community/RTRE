@@ -6,6 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="db424c9d-7281-4cf3-a371-c9e4329d2167" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fore/rtre/server/DemoApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fore/rtre/server/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fore/rtre/server/Service/AdminManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fore/rtre/server/Service/AdminManagement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fore/rtre/server/Service/AuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fore/rtre/server/Service/AuthenticationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fore/rtre/server/Service/Firebase/FirebaseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fore/rtre/server/Service/Firebase/FirebaseService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fore/rtre/server/Service/IfcGetService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fore/rtre/server/Service/IfcGetService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fore/rtre/server/config/BimserverConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fore/rtre/server/config/BimserverConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fore/rtre/server/config/SwaggerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fore/rtre/server/config/SwaggerConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/fore/rtre/server/DemoApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/fore/rtre/server/DemoApplicationTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,21 +40,21 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Dockerfile" root0="FORCE_HIGHLIGHTING" />
-    <setting file="jar://$MAVEN_REPOSITORY$/org/opensourcebim/pluginbase/1.5.182/pluginbase-1.5.182.jar!/META-INF/maven/org.opensourcebim/pluginbase/pom.xml" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/java/fore/rtre/server/config/SwaggerConfig.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="jar://$MAVEN_REPOSITORY$/org/opensourcebim/bimserverclientlib/1.5.182/bimserverclientlib-1.5.182.jar!/META-INF/maven/org.opensourcebim/bimserverclientlib/pom.xml" root0="SKIP_INSPECTION" />
-    <setting file="jar://$MAVEN_REPOSITORY$/org/opensourcebim/buildingsmartlibrary/1.0.13/buildingsmartlibrary-1.0.13.jar!/META-INF/maven/org.opensourcebim/buildingsmartlibrary/pom.xml" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/pom.xml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/fore/rtre/server/config/BimserverConfig.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="jar://$MAVEN_REPOSITORY$/org/opensourcebim/pluginbase/1.5.182/pluginbase-1.5.182.jar!/META-INF/maven/org.opensourcebim/pluginbase/pom.xml" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/fore/rtre/server/Service/Firebase/FirebaseService.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/fore/rtre/server/Service/AuthenticationService.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="jar://$MAVEN_REPOSITORY$/org/opensourcebim/bimserverclientlib/1.5.182/bimserverclientlib-1.5.182.jar!/META-INF/maven/org.opensourcebim/bimserverclientlib/pom.xml" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/fore/rtre/server/Service/Firebase/FirebaseInitialize.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/pom.xml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="jar://$MAVEN_REPOSITORY$/org/opensourcebim/buildingsmartlibrary/1.0.13/buildingsmartlibrary-1.0.13.jar!/META-INF/maven/org.opensourcebim/buildingsmartlibrary/pom.xml" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/fore/rtre/server/Controller/IfcController.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="jar://$MAVEN_REPOSITORY$/org/opensourcebim/buildingsmartlibrary/1.0.13/buildingsmartlibrary-1.0.13.jar!/META-INF/MANIFEST.MF" root0="SKIP_INSPECTION" />
     <setting file="jar://$MAVEN_REPOSITORY$/org/eclipse/jetty/jetty-client/9.4.45.v20220203/jetty-client-9.4.45.v20220203.jar!/META-INF/maven/org.eclipse.jetty/jetty-client/pom.xml" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/java/fore/rtre/server/Service/IfcPostService.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/fore/rtre/server/config/BimserverConfig.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/fore/rtre/server/Service/Firebase/FirebaseService.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Dockerfile" root0="FORCE_HIGHLIGHTING" />
     <setting file="jar://$MAVEN_REPOSITORY$/org/eclipse/jetty/jetty-http/9.4.45.v20220203/jetty-http-9.4.45.v20220203.jar!/META-INF/maven/org.eclipse.jetty/jetty-http/pom.xml" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/fore/rtre/server/Controller/IfcController.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/fore/rtre/server/Service/Firebase/FirebaseInitialize.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -60,7 +69,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../RealTimeRealEstate/RTRE/Server" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -71,15 +80,15 @@
       <recent name="com.example.demo.Service" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.DemoApplication">
-    <configuration name="DemoApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="fore.rtre.server.DemoApplication" />
-      <module name="RTRE" />
+      <option name="MAIN_CLASS_NAME" value="fore.rtre.server.Main" />
+      <module name="server" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.example.demo.*" />
+          <option name="PATTERN" value="fore.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -122,12 +131,12 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Application.DemoApplication" />
+      <item itemvalue="Application.Main" />
       <item itemvalue="Maven.demo" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.DemoApplication" />
+        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
