@@ -24,7 +24,7 @@ import java.util.concurrent.ExecutionException;
 
 
 @Service
-public class ifcPostService {
+public class IfcPostService {
     public static ResponseEntity<String> postIfc(MultipartFile file, String schema, Long parentPoid){
         try {
             String relativeFolder = "src\\main\\resources\\BimServerInstallTempFolder\\";

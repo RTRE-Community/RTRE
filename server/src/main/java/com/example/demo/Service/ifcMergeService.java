@@ -19,7 +19,7 @@ import java.util.Collections;
 import java.util.UUID;
 
 @Service
-public class ifcMergeService {
+public class IfcMergeService {
 
     public static ResponseEntity<String> mergeIfc(MultipartFile file, long mergeFile2){
         String scriptPath = "src\\main\\resources\\script\\";

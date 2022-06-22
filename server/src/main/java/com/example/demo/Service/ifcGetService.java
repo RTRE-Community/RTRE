@@ -27,7 +27,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-public class ifcGetService {
+public class IfcGetService {
 
 
 

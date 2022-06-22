@@ -1,30 +1,14 @@
 package com.example.demo.Controller;
 
-import com.example.demo.DemoApplication;
-import com.example.demo.Service.*;
 import com.example.demo.Service.Firebase.FirebaseService;
 import com.example.demo.Service.AdminManagement;
 import com.example.demo.Service.AuthenticationService;
-import com.example.demo.Service.ifcMergeService;
-import com.example.demo.Service.ifcPostService;
-import com.example.demo.Service.Firebase.FirebaseService;
-import com.example.demo.Service.ifcGetService;
-import org.bimserver.client.BimServerClient;
-import org.bimserver.client.json.JsonBimServerClientFactory;
-import org.bimserver.shared.ChannelConnectionException;
-import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
-import org.bimserver.shared.exceptions.BimServerClientException;
-import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
-import org.bimserver.shared.exceptions.ServerException;
-import org.bimserver.shared.exceptions.ServiceException;
-import org.bimserver.shared.exceptions.UserException;
+import com.example.demo.Service.IfcPostService;
+import com.example.demo.Service.IfcGetService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.util.concurrent.ExecutionException;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -33,12 +17,12 @@ import javax.servlet.http.HttpServletResponse;
 @CrossOrigin(origins="*")
 public class IfcController {
 
-    private final ifcPostService HelloService;
-    private final ifcMergeService IfcMergeService;
+    private final IfcPostService HelloService;
+    private final com.example.demo.Service.IfcMergeService IfcMergeService;
 
 
     @Autowired
-    public IfcController(ifcPostService IfcGetService, ifcMergeService ifcMergeService) {
+    public IfcController(IfcPostService IfcGetService, com.example.demo.Service.IfcMergeService ifcMergeService) {
         this.HelloService = IfcGetService;
         IfcMergeService = ifcMergeService;
     }
@@ -46,30 +30,30 @@ public class IfcController {
     @PostMapping("/postIfcAsSubProject")
     @ResponseBody
     public ResponseEntity<String> postIfc(@RequestParam("file") MultipartFile file, String schema, Long parentPoid){
-        return ifcPostService.postIfc(file, schema, parentPoid);
+        return IfcPostService.postIfc(file, schema, parentPoid);
     }
 
     @GetMapping("/getIfc")
     @ResponseBody
     public ResponseEntity<String> getIfc(@RequestParam Long fileName, HttpServletResponse response){
-        return ifcGetService.downloadIfc(fileName,response);}
+        return IfcGetService.downloadIfc(fileName,response);}
 
     @GetMapping("/getProjectList")
     @ResponseBody
     public ResponseEntity<String> getProjectList(@RequestParam String token){
-        return ifcGetService.authGetAllProjects(token);
+        return IfcGetService.authGetAllProjects(token);
     }
 
     @GetMapping("/deleteProject")
     @ResponseBody
     public ResponseEntity<String> deleteProject(@RequestParam Long oid){
-        return ifcPostService.deleteProject(oid);
+        return IfcPostService.deleteProject(oid);
     }
 
     @PostMapping("/merge")
     @ResponseBody
     public ResponseEntity<String> merge(@RequestParam("file") MultipartFile file, long mergeFile2) {
-        return ifcMergeService.mergeIfc(file, mergeFile2);}
+        return com.example.demo.Service.IfcMergeService.mergeIfc(file, mergeFile2);}
 
     @GetMapping("/login")
     @ResponseBody
