@@ -5,22 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db424c9d-7281-4cf3-a371-c9e4329d2167" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/fore/rtre/server/Controller/IfcController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fore/rtre/server/DemoApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fore/rtre/server/Service/IfcGetService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fore/rtre/server/Service/IfcMergeService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fore/rtre/server/Service/IfcPostService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/fore/rtre/server/DemoApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/Helper_Classes/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fore/rtre/server/Helper_Classes/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/Object/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fore/rtre/server/Object/Message.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/Object/Notification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fore/rtre/server/Object/Notification.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/Object/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fore/rtre/server/Object/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/Service/AdminManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fore/rtre/server/Service/AdminManagement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/Service/AuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fore/rtre/server/Service/AuthenticationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/Service/Firebase/FirebaseInitialize.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fore/rtre/server/Service/Firebase/FirebaseInitialize.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/Service/Firebase/FirebaseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fore/rtre/server/Service/Firebase/FirebaseService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/config/BimserverConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fore/rtre/server/config/BimserverConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/config/SwaggerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fore/rtre/server/config/SwaggerConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
