@@ -5,23 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db424c9d-7281-4cf3-a371-c9e4329d2167" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../frontend/rtre-webbapplication/.env" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/rtre-webbapplication/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/rtre-webbapplication/src/components/ChatWIndow.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/rtre-webbapplication/src/components/ChatWIndow.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/rtre-webbapplication/src/components/CreateProject.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/rtre-webbapplication/src/components/CreateProject.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/rtre-webbapplication/src/components/LoginFields.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/rtre-webbapplication/src/components/LoginFields.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/rtre-webbapplication/src/components/SearchBox.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/rtre-webbapplication/src/components/SearchBox.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/rtre-webbapplication/src/components/TopBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/rtre-webbapplication/src/components/TopBar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/rtre-webbapplication/src/components/ViewUsers.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/rtre-webbapplication/src/components/ViewUsers.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/rtre-webbapplication/src/components/functionality/AddUser.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/rtre-webbapplication/src/components/functionality/AddUser.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/rtre-webbapplication/src/components/functionality/NotificationHub.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/rtre-webbapplication/src/components/functionality/NotificationHub.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/rtre-webbapplication/src/components/functionality/UploadButton.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/rtre-webbapplication/src/components/functionality/UploadButton.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/rtre-webbapplication/src/components/functionality/buttons/CheckOutIconButton.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/rtre-webbapplication/src/components/functionality/buttons/CheckOutIconButton.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/rtre-webbapplication/src/components/functionality/buttons/DeleteButton.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/rtre-webbapplication/src/components/functionality/buttons/DeleteButton.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/rtre-webbapplication/src/components/functionality/checkIn.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/rtre-webbapplication/src/components/functionality/checkIn.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/rtre-webbapplication/src/components/functionality/checkOut.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/rtre-webbapplication/src/components/functionality/checkOut.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/rtre-webbapplication/src/components/functionality/merge.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/rtre-webbapplication/src/components/functionality/merge.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/rtre-webbapplication/src/views/MainHub.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/rtre-webbapplication/src/views/MainHub.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/rtre-webbapplication/src/views/ManageView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/rtre-webbapplication/src/views/ManageView.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fore/rtre/server/Controller/IfcController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fore/rtre/server/DemoApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fore/rtre/server/Service/IfcGetService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fore/rtre/server/Service/IfcMergeService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fore/rtre/server/Service/IfcPostService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/fore/rtre/server/DemoApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/Helper_Classes/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fore/rtre/server/Helper_Classes/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/Object/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fore/rtre/server/Object/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/Object/Notification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fore/rtre/server/Object/Notification.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/Object/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fore/rtre/server/Object/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/Service/AdminManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fore/rtre/server/Service/AdminManagement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/Service/AuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fore/rtre/server/Service/AuthenticationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/Service/Firebase/FirebaseInitialize.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fore/rtre/server/Service/Firebase/FirebaseInitialize.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/Service/Firebase/FirebaseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fore/rtre/server/Service/Firebase/FirebaseService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/config/BimserverConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fore/rtre/server/config/BimserverConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/config/SwaggerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fore/rtre/server/config/SwaggerConfig.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,8 +81,8 @@
     <configuration name="DemoApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="com.example.demo.DemoApplication" />
-      <module name="demo" />
+      <option name="MAIN_CLASS_NAME" value="fore.rtre.server.DemoApplication" />
+      <module name="RTRE" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.example.demo.*" />
