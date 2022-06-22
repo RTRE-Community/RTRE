@@ -31,5 +31,5 @@ jobs:
       - name: Build Maven
         run: |
           pwd
-          cd server
+          cd Server
           mvn -B clean verify
