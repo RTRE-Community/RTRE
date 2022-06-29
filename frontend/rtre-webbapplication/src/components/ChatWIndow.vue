@@ -55,8 +55,6 @@
       @onType="handleOnType"
       @edit="editMessage" />
             </v-container>
-             <SnackBar :response="response"></SnackBar>
-
 </v-container>
 
 </template>
@@ -67,24 +65,20 @@ import OpenIcon from '../assets/logo-no-bg.svg'
 import FileIcon from '../assets/file.svg'
 import CloseIconSvg from '../assets/close.svg'
 const EventEmitter = require('../EventEmitter')
-import SnackBar from '../components/functionality/buttons/SnackBar.vue'
 import axios from 'axios'
 export default ({
     name: 'ChatWindow',
     props: ['overlay', 'allUsers', 'userMessages'],
     components: {
-      SnackBar
     },
     mounted(){
     
-      //this.UserMessages = JSON.parse(localStorage.getItem("Messages") || "[]")
       this.Users = JSON.parse(localStorage.getItem("Users") || "[]")
 
       axios.get(process.env.VUE_APP_RTRE_BACKEND_PORT + '/api/getUserMessages?' + new URLSearchParams({
                 token: sessionStorage.getItem("TokenId"),
                 username: sessionStorage.getItem('Username')
             })).then((resp) => {
-                //localStorage.setItem("Messages", JSON.stringify(resp.data));
                 this.UserMessages = resp.data
                 console.log(resp.data);
 
@@ -93,7 +87,6 @@ export default ({
       for(let i = 0; i < this.Users.length; i++){
         if(this.Users[i].oid == sessionStorage.getItem('oid')){
           this.Users.splice(i, 1);
-            //console.log(this.Users);
           }
       }
       for(let i = 0; i < this.Users.length; i++){
@@ -205,9 +198,9 @@ export default ({
                 console.log('updating');
                 console.log(resp.data);
                 console.log(this.UserMessages);
-                if(!(resp.data.length < 1)){
+                if(resp.data.length > 0){
                   this.UserMessages = resp.data;
-
+                  console.log('updating');
                   for(let i = 0; i < this.Users.length; i++){
 
                     for(let j = 0; j < this.UserMessages.length; j++){
@@ -227,11 +220,7 @@ export default ({
                   }
                   this.UserMessages = null;
                 }
-             
-
             });
-      
-      
     },
     getCount(id){
       
@@ -277,9 +266,19 @@ export default ({
         let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
         let dateTime = date+' '+time;
         let Message = {};
+        console.log(text);
+        console.log(JSON.stringify(text));
+        console.log(JSON.parse(text));
         Message.author = sessionStorage.getItem('Username');
-        Message.type = 'text';
-        Message.data = text;
+        if(typeof text === 'string' || text instanceof String){
+          Message.type = 'text';
+          Message.data = text;
+          console.log()
+        } else if (text === undefined){
+          Message.type = 'json';
+          Message.data = JSON.parse(text);
+        }
+       
         Message.date = dateTime;
         Message.to =  this.user.oid;
 
@@ -287,6 +286,7 @@ export default ({
       }
     },
     async onMessageWasSent (message) {
+      console.log(message);
       // called when the user sends a message
         let today = new Date();
         let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
@@ -295,11 +295,18 @@ export default ({
         let Message = {};
         Message.author = sessionStorage.getItem('TokenId');
         Message.from = sessionStorage.getItem('oid');
-        Message.type = 'text';
-        Message.data = message.data.text;
+        let textMessage = null;
+        if(typeof message.data.text === 'string' || message.data.text instanceof String){
+          Message.type = 'text';
+          Message.data = message.data.text;
+          textMessage = Message.data
+        } else {
+          Message.type = 'json';
+          Message.data = JSON.stringify(message.data.file);
+          textMessage = Message.data
+        }
         Message.date = dateTime;
         Message.to =  this.user.oid;
-        let textMessage = Message.data
         let text =  { type: 'text', author: 'me', data: { text: textMessage } }
         this.messageList = [ ...this.messageList, text ];
         console.log(Message);
@@ -312,7 +319,6 @@ export default ({
                 date: Message.date 
             })).then((resp) => {
                 console.log(resp.status);
-            
             });
 
     },
@@ -322,9 +328,6 @@ export default ({
       this.newMessagesCount = 0
       EventEmitter.eventEmitter.emit('disableProjectBox', this.u);
       this.showOverlay = true;
-  
-      //EventEmitter.eventEmitter.emit('closedChat', );
-
 
     },
     closeChat () {
@@ -334,9 +337,6 @@ export default ({
       this.showOverlay = false;
       this.messageList = [];
       this.participants = [];
-
-      //EventEmitter.eventEmitter.emit('closedChat', this.users);
-
     },
     handleScrollToTop () {
       // called when the user scrolls message list to top
