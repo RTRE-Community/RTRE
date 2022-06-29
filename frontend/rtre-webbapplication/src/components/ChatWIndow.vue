@@ -4,6 +4,9 @@
           <v-overlay
           :value="overlay"
         >
+        <v-btn color="warning"
+             :value="overlay"
+             @click="this.closeOverlay">Cancel</v-btn>  
         <h1>Select User to Chat with</h1><br>
     <v-list >
       <v-subheader>USERS</v-subheader>
@@ -52,7 +55,10 @@
       @onType="handleOnType"
       @edit="editMessage" />
             </v-container>
+             <SnackBar :response="response"></SnackBar>
+
 </v-container>
+
 </template>
 
 <script>
@@ -61,26 +67,64 @@ import OpenIcon from '../assets/logo-no-bg.svg'
 import FileIcon from '../assets/file.svg'
 import CloseIconSvg from '../assets/close.svg'
 const EventEmitter = require('../EventEmitter')
+import SnackBar from '../components/functionality/buttons/SnackBar.vue'
 import axios from 'axios'
 export default ({
     name: 'ChatWindow',
     props: ['overlay', 'allUsers', 'userMessages'],
     components: {
+      SnackBar
     },
     mounted(){
-      //console.log(this.showOverlay);
-      //console.log(this.Users);
-      //axios.get(process.env.VUE_APP_RTRE_BACKEND_PORT + '/api/getAllUsers?' + new URLSearchParams({
-        //        token: sessionStorage.getItem("TokenId")
-          //  })).then((resp) => {
-            //    this.users = resp.data
-            //});
-      this.UserMessages = this.userMessages;
-     
-      //console.log(this.userMessages);
+    
+      //this.UserMessages = JSON.parse(localStorage.getItem("Messages") || "[]")
+      this.Users = JSON.parse(localStorage.getItem("Users") || "[]")
+
+      axios.get(process.env.VUE_APP_RTRE_BACKEND_PORT + '/api/getUserMessages?' + new URLSearchParams({
+                token: sessionStorage.getItem("TokenId"),
+                username: sessionStorage.getItem('Username')
+            })).then((resp) => {
+                //localStorage.setItem("Messages", JSON.stringify(resp.data));
+                this.UserMessages = resp.data
+                console.log(resp.data);
+
+            });
+
+      for(let i = 0; i < this.Users.length; i++){
+        if(this.Users[i].oid == sessionStorage.getItem('oid')){
+          this.Users.splice(i, 1);
+            //console.log(this.Users);
+          }
+      }
+      for(let i = 0; i < this.Users.length; i++){
+              this.Users[i].messages = {};
+              this.Users[i].messages.messageCount = 0;
+              this.Users[i].messages['message'] = [];
+          }
+
+
+      for(let i = 0; i < this.Users.length; i++){
+
+          for(let j = 0; j < this.UserMessages.length; j++){
+           
+            if(parseInt(this.UserMessages[j].from) === this.Users[i].oid){
+
+                let m = {'message': this.UserMessages[j].message};
+                this.Users[i].messages.message.push(m);
+                this.Users[i].messages.messageCount++;
+
+                let message = { type: 'text', author: this.UserMessages[j].from, data: { text: this.UserMessages[j].message } }
+                this.messageList = [ ...this.messageList, message ];
+              }
+        }          
+      }
+
+      setInterval(this.updateMessages, 5000);
+    
     },
     data() {
     return {
+      response: '',
       openedChatOnce: false,
       UserMessages: [],
       user: {},
@@ -111,7 +155,7 @@ export default ({
       ], // the list of all the participant of the conversation. `name` is the user name, `id` is used to establish the author of a message, `imageUrl` is supposed to be the user avatar.
       titleImageUrl: 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png',
       messageList: [
-        { type: 'text', author: `user1`, data: { text: `No.` } }
+        
       ], // the list of the messages to show, can be paginated and adjusted dynamically
       newMessagesCount: 0,
       isChatOpen: false, // to determine whether the chat window should be open or closed
@@ -145,11 +189,55 @@ export default ({
     }
   },
   methods: {
+    closeOverlay(){
+      this.isChatOpen = !this.isChatOpen;
+      EventEmitter.eventEmitter.emit('enableProjectBox', '');
+      this.showOverlay = false;
+    },
+    async updateMessages(){
+      
+      axios.get(process.env.VUE_APP_RTRE_BACKEND_PORT + '/api/getUserMessages?' + new URLSearchParams({
+                token: sessionStorage.getItem("TokenId"),
+                username: sessionStorage.getItem('Username')
+            })).then((resp) => {
+                //this.UserMessages = resp.data
+                this.openedChatOnce = false;
+                console.log('updating');
+                console.log(resp.data);
+                console.log(this.UserMessages);
+                if(!(resp.data.length < 1)){
+                  this.UserMessages = resp.data;
+
+                  for(let i = 0; i < this.Users.length; i++){
+
+                    for(let j = 0; j < this.UserMessages.length; j++){
+                      console.log(parseInt(this.UserMessages[j].from));
+                      console.log(this.Users[i].oid);
+                      if(parseInt(this.UserMessages[j].from) === this.Users[i].oid){
+
+                        let m = {'message': this.UserMessages[j].message};
+                        this.Users[i].messages.message.push(m);
+                        this.Users[i].messages.messageCount++;
+
+                        let message = { type: 'text', author: this.UserMessages[j].from, data: { text: this.UserMessages[j].message } }
+                        this.messageList = [ ...this.messageList, message ];
+                        console.log('new message loaded');
+                      }
+                    }          
+                  }
+                  this.UserMessages = null;
+                }
+             
+
+            });
+      
+      
+    },
     getCount(id){
       
       const index = this.Users.map(e => e.oid).indexOf(id);
-  
-      return this.Users[index].messages.messageCount;
+      let count = this.Users[index].messages.messageCount;
+      return count;
       
     },
     loadUser(User){
@@ -173,15 +261,11 @@ export default ({
                 sender: this.user.oid
             })).then((resp) => {
               if(resp.status == 200){
-                console.log('Succesfully sent message');
+                console.log(200);
               }
             
 
             });
-
-
-
-
     },
     sendMessage (text) {
       if (text.length > 0) {
@@ -202,7 +286,7 @@ export default ({
         this.onMessageWasSent(Message)
       }
     },
-    onMessageWasSent (message) {
+    async onMessageWasSent (message) {
       // called when the user sends a message
         let today = new Date();
         let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
@@ -220,83 +304,20 @@ export default ({
         this.messageList = [ ...this.messageList, text ];
         console.log(Message);
        // [ ...this.messageList, text ]
-
-
-
-        axios.post(process.env.VUE_APP_RTRE_BACKEND_PORT + '/api/sendMessage?' + new URLSearchParams({
-                token: Message.author,
+        axios.get(process.env.VUE_APP_RTRE_BACKEND_PORT + '/api/sendMessage?' + new URLSearchParams({
+                token: sessionStorage.getItem('TokenId'),
                 message: Message.data,
-                from: Message.from,
+                from: sessionStorage.getItem('oid'),
                 to: Message.to,
                 date: Message.date 
             })).then((resp) => {
-              if(resp.status == 200){
-                console.log('Succesfully sent message');
-              }
+                console.log(resp.status);
             
-
             });
 
     },
     openChat () {
-      
-      if(!this.openedChatOnce){
-        this.Users = this.allUsers;
-        for(let i = 0; i < this.Users.length; i++){
-          if(this.Users[i].oid == sessionStorage.getItem('oid')){
-            this.Users.splice(i, 1);
-            console.log(this.Users);
-          }
-
-        }
-        
-        this.UserMessages = this.userMessages;
-        console.log(this.UserMessages);
-
-        if(!(this.UserMessages.length > 0)){
-          for(let i = 0; i < this.Users.length; i++){
-              this.Users[i].messages = {};
-              this.Users[i].messages.messageCount = 0;
-              this.Users[i].messages['message'] = [];
-          }
-        }
-        for(let i = 0; i < this.Users.length; i++){
-
-          for(let j = 0; j < this.UserMessages.length; j++){
-          
-            if(this.UserMessages[j].from == this.Users[i].oid){
-
-              if(this.Users[i].messages == undefined){
-
-                this.Users[i].messages = {};
-                this.Users[i].messages.messageCount = 0;
-                this.Users[i].messages.messageCount++;
-                this.Users[i].messages['message'] = [];
-                let m = {'message': this.UserMessages[j].message};
-                this.Users[i].messages.message.push(m);
-
-                let message = { type: 'text', author: this.UserMessages[j].from, data: { text: this.UserMessages[j].message } }
-                this.messageList = [ ...this.messageList, message ];
-
-              } else {
-                let m = {'message': this.UserMessages[j].message};
-                this.Users[i].messages.message.push(m);
-                this.Users[i].messages.messageCount++;
-
-                let message = { type: 'text', author: this.UserMessages[j].from, data: { text: this.UserMessages[j].message } }
-                this.messageList = [ ...this.messageList, message ];
-              }
-            }  
-        }          
-      }
-     
-      this.openedChatOnce = true;
-    }
-      // called when the user clicks on the fab button to open the chat
-      //this.UserMessages = this.userMessages;
-
     
-      this.Users = this.allUsers;
       this.isChatOpen = !this.isChatOpen;
       this.newMessagesCount = 0
       EventEmitter.eventEmitter.emit('disableProjectBox', this.u);
@@ -311,6 +332,8 @@ export default ({
       this.isChatOpen = !this.isChatOpen;
       EventEmitter.eventEmitter.emit('enableProjectBox', '');
       this.showOverlay = false;
+      this.messageList = [];
+      this.participants = [];
 
       //EventEmitter.eventEmitter.emit('closedChat', this.users);
 

@@ -43,6 +43,7 @@ public class AuthenticationService {
             result.addProperty("oid", id);
           
             result.addProperty("uuid", user.getUuid().toString());
+            System.out.println("User Succesfully logged in");
             return new ResponseEntity<String>(result.toString(),HttpStatus.valueOf(200));
         } catch (BimServerClientException e) {
             return new ResponseEntity<>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
@@ -65,6 +66,7 @@ public class AuthenticationService {
         // Take all the necessary data for register
         try {
             BimserverConfig.client.getServiceInterface().addUserWithPassword(emailUsername, password, name, SUserType.USER, false, String.valueOf(UUID.randomUUID()));
+            System.out.println("User Succesfully resgistered");
             return new ResponseEntity<String>("ok", HttpStatus.valueOf(200));
         } catch (ServerException e) {
             return new ResponseEntity<>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
