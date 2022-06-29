@@ -104,8 +104,7 @@ public class IfcController {
         return AuthenticationService.register(emailUsername, password,name);
     }
 
-    @PostMapping("/sendMessage")
-    @ResponseBody
+    @GetMapping("/sendMessage")
     public ResponseEntity<String> sendMessage (@RequestParam String token, String message, Long from, Long to, String date){
         return FirebaseService.sendMessage(token, message, from, to, date);
     }

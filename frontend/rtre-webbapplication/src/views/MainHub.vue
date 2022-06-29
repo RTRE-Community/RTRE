@@ -39,45 +39,36 @@ export default ({
     created(){
         EventEmitter.eventEmitter.on('disableProjectBox', this.disableProjectBox);
         EventEmitter.eventEmitter.on('enableProjectBox', this.enableProjectBox);
-
+        
+        /*
         axios.get(process.env.VUE_APP_RTRE_BACKEND_PORT + '/api/getUserMessages?' + new URLSearchParams({
                 token: sessionStorage.getItem("TokenId"),
                 username: sessionStorage.getItem('Username')
             })).then((resp) => {
+                localStorage.setItem("Messages", JSON.stringify(resp.data));
                 this.userMessages = resp.data
                 console.log(resp.data);
 
             });
-
+        */
         if(sessionStorage.getItem('UserType') === 'ADMIN'){
             console.log(sessionStorage.getItem("TokenId"));
             axios.get(process.env.VUE_APP_RTRE_BACKEND_PORT + '/api/getAllUsers?' + new URLSearchParams({
                 token: sessionStorage.getItem("TokenId")
             })).then((resp) => {
-                this.users = resp.data
-
-                if(this.users.length < 1){
-                    console.log('empty user list');
-                }
-                //console.log(this.users);
-
+                //localStorage.setItem("Users", resp.data);
+                localStorage.setItem("Users", JSON.stringify(resp.data));
             });
 
         } else {
             axios.get(process.env.VUE_APP_RTRE_BACKEND_PORT + '/api/getAllUsers!Admin?' + new URLSearchParams({
                 token: sessionStorage.getItem("TokenId")
             })).then((resp) => {
-                this.users = resp.data
-
-             
-                console.log(this.users);
-                console.log('after request')
-
+                //this.users = resp.data
+                localStorage.setItem("Users", JSON.stringify(resp.data));
+                console.log(resp.data);
             });
-
         }
-        
-
     },
     data() {
     return {

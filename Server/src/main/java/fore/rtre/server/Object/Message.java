@@ -14,10 +14,8 @@ public class Message {
         this.message = message;
         this.to = to;
         this.from = from;
-        this.readMessage = notRead;
         this.date = date;
-
-
+        this.readMessage = notRead;
     }
 
     public String getFrom() {
