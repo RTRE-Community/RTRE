@@ -74,42 +74,20 @@ public class FirebaseService {
     }
 
     public static ResponseEntity<String> sendMessage(String token, String message, Long from, Long to, String date) {
+
         try {
-            JsonBimServerClientFactory factory;
-                    BimServerClient client;
-                    factory = new JsonBimServerClientFactory(Main.BimPort);
-                    client = factory.create(new TokenAuthentication(token));
+            Message m = new Message(message, String.valueOf(to), String.valueOf(from), date, false);
+            Firestore dbFirestore = FirestoreClient.getFirestore();
 
-                    Message m = new Message(message, String.valueOf(to), String.valueOf(from), date, false);
-                    Firestore dbFirestore = FirestoreClient.getFirestore();
+            ApiFuture<WriteResult> collectionApiFuture = dbFirestore.collection("Message").document().set(m);
+            while(!(collectionApiFuture.isDone())){}
 
-
-                    ApiFuture<WriteResult> collectionApiFuture = dbFirestore.collection("Message").document().set(m);
-                    String result = collectionApiFuture.get().getUpdateTime().toString();
-
-
-                    System.out.println(m.toString() + " " + result);
-
-                    return new ResponseEntity<String>(result,HttpStatus.valueOf(200));
-                                   
-                    
-        }  catch (UserException e) {
-            return new ResponseEntity<String>("Bad Request", HttpStatus.BAD_REQUEST);
-        } catch (BimServerClientException e) {
-            e.printStackTrace();
-        }  catch (ChannelConnectionException e) {
-            e.printStackTrace();
-        } catch (org.bimserver.shared.exceptions.ServiceException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            return new ResponseEntity<String>(HttpStatus.valueOf(200));
+            
+        } catch (Exception e) {
+            return new ResponseEntity<>("error" ,HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>("error" ,HttpStatus.INTERNAL_SERVER_ERROR);
+       
     }
 
 
@@ -138,14 +116,14 @@ public class FirebaseService {
                                     documents.get(i).get("to").toString(), 
                                     documents.get(i).get("from").toString(),
                                     documents.get(i).get("date").toString(),
-                                    true
+                                    false
                                     ));
                         }
-
-                            
                         
                     }
                     String result = new Gson().toJson(messages);
+                    String resultString = result.toString();
+                    System.out.println(resultString);
 
                     return new ResponseEntity<String>(result,HttpStatus.valueOf(200));
                                    

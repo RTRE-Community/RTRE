@@ -141,6 +141,7 @@ public class AdminManagement {
                         users.add(new User(resultList.get(i).getName(), resultList.get(i).getUsername(), resultList.get(i).getOid())); 
                     }
                     String result = new Gson().toJson(users);
+                    System.out.println(result.toString());
 
                     if(result.length() > 0){
                         return new ResponseEntity<String>(result, HttpStatus.valueOf(200));
@@ -178,8 +179,9 @@ public class AdminManagement {
                     }
                     ArrayList<List<SUser>> userList = new ArrayList<List<SUser>>();
                     for(int k = 0; k < projectId.length; k++){
-                       userList.add(client.getServiceInterface().getAllAuthorizedUsersOfProject(projectId[k]));
-
+                        if((client.getServiceInterface().getAllAuthorizedUsersOfProject(projectId[k])) != null){
+                            userList.add(client.getServiceInterface().getAllAuthorizedUsersOfProject(projectId[k]));
+                        }
                     }
                     if( !(userList.size() > 0) ){
                         System.out.println("Empty User list");
@@ -197,7 +199,7 @@ public class AdminManagement {
                         }
                      
                         String result = new Gson().toJson(users);
-                        System.out.println(result);
+                        System.out.println(result.toString());
                         return new ResponseEntity<String>(result, HttpStatus.valueOf(200));
             
                     }
