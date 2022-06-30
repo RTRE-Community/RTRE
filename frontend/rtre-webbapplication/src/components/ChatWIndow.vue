@@ -32,7 +32,7 @@
          </v-overlay>
       </div>
             <v-container>
-               <beautiful-chat
+               <beautiful-chat v-model="jsonFile"
       :participants="participants"
       :titleImageUrl="titleImageUrl"
       :onMessageWasSent="onMessageWasSent"
@@ -66,13 +66,13 @@ import FileIcon from '../assets/file.svg'
 import CloseIconSvg from '../assets/close.svg'
 const EventEmitter = require('../EventEmitter')
 import axios from 'axios'
+
 export default ({
     name: 'ChatWindow',
     props: ['overlay', 'allUsers', 'userMessages'],
     components: {
     },
     mounted(){
-    
       this.Users = JSON.parse(localStorage.getItem("Users") || "[]")
 
       axios.get(process.env.VUE_APP_RTRE_BACKEND_PORT + '/api/getUserMessages?' + new URLSearchParams({
@@ -117,6 +117,9 @@ export default ({
     },
     data() {
     return {
+      jsonURL: 'http://localhost:8080/',
+      jsonFile: null,
+      parsedJsonFile: {},
       response: '',
       openedChatOnce: false,
       UserMessages: [],
@@ -195,17 +198,13 @@ export default ({
             })).then((resp) => {
                 //this.UserMessages = resp.data
                 this.openedChatOnce = false;
-                console.log('updating');
-                console.log(resp.data);
-                console.log(this.UserMessages);
+                
                 if(resp.data.length > 0){
                   this.UserMessages = resp.data;
-                  console.log('updating');
                   for(let i = 0; i < this.Users.length; i++){
 
                     for(let j = 0; j < this.UserMessages.length; j++){
-                      console.log(parseInt(this.UserMessages[j].from));
-                      console.log(this.Users[i].oid);
+                      
                       if(parseInt(this.UserMessages[j].from) === this.Users[i].oid){
 
                         let m = {'message': this.UserMessages[j].message};
@@ -214,6 +213,7 @@ export default ({
 
                         let message = { type: 'text', author: this.UserMessages[j].from, data: { text: this.UserMessages[j].message } }
                         this.messageList = [ ...this.messageList, message ];
+                        this.newMessagesCount++;
                         console.log('new message loaded');
                       }
                     }          
@@ -299,18 +299,30 @@ export default ({
         if(typeof message.data.text === 'string' || message.data.text instanceof String){
           Message.type = 'text';
           Message.data = message.data.text;
-          textMessage = Message.data
-        } else {
+          textMessage = Message.data;
+        } else if(message.data.file.name.includes('.json')) {
           Message.type = 'json';
-          Message.data = JSON.stringify(message.data.file);
-          textMessage = Message.data
+          this.jsonFile = message.data.file;
+          const fileToJSON = async function fileToJSON(file) {
+            return new Promise((resolve, reject) => {
+            const fileReader = new FileReader()
+            fileReader.onload = (event) => resolve(JSON.parse(event.target.result));
+            fileReader.onerror = error => reject(error)
+            fileReader.readAsText(file);
+            })
+          }
+        this.parsedJsonFile = await fileToJSON(this.jsonFile);
+    1
+        Message.data = this.parsedJsonFile;
+        console.log(Message);
+        } else {
+          console.log('error reading user input');
         }
         Message.date = dateTime;
         Message.to =  this.user.oid;
         let text =  { type: 'text', author: 'me', data: { text: textMessage } }
         this.messageList = [ ...this.messageList, text ];
-        console.log(Message);
-       // [ ...this.messageList, text ]
+        // [ ...this.messageList, text ]
         axios.get(process.env.VUE_APP_RTRE_BACKEND_PORT + '/api/sendMessage?' + new URLSearchParams({
                 token: sessionStorage.getItem('TokenId'),
                 message: Message.data,
@@ -325,7 +337,7 @@ export default ({
     openChat () {
     
       this.isChatOpen = !this.isChatOpen;
-      this.newMessagesCount = 0
+      this.newMessagesCount = 0;
       EventEmitter.eventEmitter.emit('disableProjectBox', this.u);
       this.showOverlay = true;
 

@@ -40,17 +40,6 @@ export default ({
         EventEmitter.eventEmitter.on('disableProjectBox', this.disableProjectBox);
         EventEmitter.eventEmitter.on('enableProjectBox', this.enableProjectBox);
         
-        /*
-        axios.get(process.env.VUE_APP_RTRE_BACKEND_PORT + '/api/getUserMessages?' + new URLSearchParams({
-                token: sessionStorage.getItem("TokenId"),
-                username: sessionStorage.getItem('Username')
-            })).then((resp) => {
-                localStorage.setItem("Messages", JSON.stringify(resp.data));
-                this.userMessages = resp.data
-                console.log(resp.data);
-
-            });
-        */
         if(sessionStorage.getItem('UserType') === 'ADMIN'){
             console.log(sessionStorage.getItem("TokenId"));
             axios.get(process.env.VUE_APP_RTRE_BACKEND_PORT + '/api/getAllUsers?' + new URLSearchParams({
