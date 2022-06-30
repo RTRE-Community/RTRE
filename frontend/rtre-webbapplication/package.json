@@ -5,10 +5,12 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "e2e": "cypress open"
   },
   "dependencies": {
     "axios": "^0.27.1",
+    "chance": "^1.1.8",
     "core-js": "^3.8.3",
     "js-file-download": "^0.4.12",
     "three": "^0.140.2",
@@ -26,6 +28,7 @@
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-eslint": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
+    "cypress": "^10.2.0",
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^8.0.3",
     "sass": "~1.32.0",
