@@ -7,6 +7,7 @@
           label="upload local file: "
           truncate-length="15"
           v-model="fileupload"
+          name="fileButtonCheckIn"
         ></v-file-input>
       </v-card-text>
       <v-text-field
@@ -23,6 +24,7 @@
         dense
         label="Ifc schema"
         outlined
+        name="CheckInSelector"
         class="mx-11"
       ></v-select>
       <v-btn

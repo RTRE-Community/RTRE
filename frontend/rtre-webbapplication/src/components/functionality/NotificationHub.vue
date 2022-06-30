@@ -14,7 +14,7 @@
                     <v-list-item-subtitle> with the id {{notification}}</v-list-item-subtitle>
                     <v-divider></v-divider>
                 </v-list-item-content>
-                <v-btn icon @click="deleteNotification(notification)">
+                <v-btn :name=index icon @click="deleteNotification(notification)">
                     <v-icon>mdi-close</v-icon>
                 </v-btn>
             </v-list-item>
@@ -42,7 +42,7 @@ export default ({
                 if(sessionStorage.getItem('TokenId') !== null){
                 this.fetchNotifications()
                  }
-            }, 3000)
+            }, 6000)
         },
         fetchNotifications() {
             axios.get(process.env.VUE_APP_RTRE_BACKEND_PORT + "/api/getAllNotification?", {

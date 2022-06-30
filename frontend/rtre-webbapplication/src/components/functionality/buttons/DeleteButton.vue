@@ -20,7 +20,7 @@ export default {
         deleteWithOid() {
             fetch(
                 process.env.VUE_APP_RTRE_BACKEND_PORT + "/api/deleteProject?oid=" + this.oid
-                ).then(window.location.reload());
+                )
             
         }
     }

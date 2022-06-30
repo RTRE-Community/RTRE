@@ -1,5 +1,5 @@
 
-
+import 'cypress-file-upload';
 describe('Admin Test', () => {
     
   it('Login to second user to check if user has access', () => {
@@ -18,7 +18,8 @@ describe('Admin Test', () => {
     cy.wait('@adminLogin').then((intercept) => {
       expect(intercept.response.statusCode).to.equal(200)
     })
-    cy.get('.rounded-0 > .v-toolbar__content > .v-toolbar__title').should('contain', 'User Profile')
-    cy.get('.v-expansion-panel-header').click()
-  })
+    cy.get('.container > :nth-child(1) > .v-input > .v-input__control > .v-input__slot').type('file')
+    cy.get('.v-expansion-panel-header').should('contain', 'file-')
+})
+
 })

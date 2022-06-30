@@ -66,11 +66,11 @@ describe('Admin Test', () => {
 
     })
 
-    it('Add User to project the latest project ', () =>{
+    it('Add User to project the latest project, also check if users exist in the project after ', () =>{
       cy.get(':nth-child(7) > .v-btn > .v-btn__content').click()
       cy.get('.v-slide-group__content > :nth-child(3)').click()
       cy.get('.v-expansion-panel-header').click()
-       cy.get('.v-expansion-panel-content__wrap > :nth-child(1)').then(($id) => {
+      cy.get('.v-expansion-panel-content__wrap > :nth-child(1)').then(($id) => {
 
           var fullText = $id.text();
           var pattern = /[0-9]+/g;
@@ -132,7 +132,7 @@ describe('Admin Test', () => {
       });
     })
 
-    it('Remove user from latest project ', () =>{
+    it('Remove user from latest project, also check if user has been removed from project', () =>{
       cy.get(':nth-child(7) > .v-btn > .v-btn__content').click()
       cy.get('.v-slide-group__content > :nth-child(4)').click()
       cy.get('.v-expansion-panel-header').click()
@@ -161,7 +161,7 @@ describe('Admin Test', () => {
       })
     })
     
-    it('Login to second user to check if user has access', () => {
+    it('Login to second user to check if user has lost access', () => {
       cy.window().then((win) => {
         win.sessionStorage.clear()
       });
