@@ -118,6 +118,7 @@ export default ({
     data() {
     return {
       jsonURL: 'http://localhost:8080/',
+      lastMessage: {},
       jsonFile: null,
       parsedJsonFile: {},
       response: '',
@@ -191,7 +192,6 @@ export default ({
       this.showOverlay = false;
     },
     async updateMessages(){
-      
       axios.get(process.env.VUE_APP_RTRE_BACKEND_PORT + '/api/getUserMessages?' + new URLSearchParams({
                 token: sessionStorage.getItem("TokenId"),
                 username: sessionStorage.getItem('Username')
@@ -201,20 +201,38 @@ export default ({
                 
                 if(resp.data.length > 0){
                   this.UserMessages = resp.data;
+                  console.log(this.UserMessages);
                   for(let i = 0; i < this.Users.length; i++){
 
                     for(let j = 0; j < this.UserMessages.length; j++){
                       
                       if(parseInt(this.UserMessages[j].from) === this.Users[i].oid){
-
+                        
                         let m = {'message': this.UserMessages[j].message};
                         this.Users[i].messages.message.push(m);
-                        this.Users[i].messages.messageCount++;
 
                         let message = { type: 'text', author: this.UserMessages[j].from, data: { text: this.UserMessages[j].message } }
-                        this.messageList = [ ...this.messageList, message ];
-                        this.newMessagesCount++;
-                        console.log('new message loaded');
+                  
+                        const isEqual = (...objects) => objects.every(obj => JSON.stringify(obj) === JSON.stringify(objects[0]));
+
+                        const containsObject = function(obj, list) {
+                          let i;
+                          for (i = 0; i < list.length; i++) {
+                            if (isEqual(list[i === obj])) {
+                              return true;
+                          } 
+                        }
+                        return false;
+                        }
+                        console.log(this.lastMessage);
+                        console.log(message);
+                        if(containsObject(message, this.messageList) === false){
+                          this.Users[i].messages.messageCount++;
+                          this.newMessagesCount++;
+                          this.messageList = [ ...this.messageList, message ];
+                          this.lastMessage = message;
+                          console.log('new message loaded');
+                        }
                       }
                     }          
                   }
