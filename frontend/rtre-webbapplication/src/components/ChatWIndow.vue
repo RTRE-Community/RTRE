@@ -196,12 +196,10 @@ export default ({
                 token: sessionStorage.getItem("TokenId"),
                 username: sessionStorage.getItem('Username')
             })).then((resp) => {
-                //this.UserMessages = resp.data
                 this.openedChatOnce = false;
                 
                 if(resp.data.length > 0){
                   this.UserMessages = resp.data;
-                  console.log(this.UserMessages);
                   for(let i = 0; i < this.Users.length; i++){
                     console.log(this.Users.length);
                     for(let j = 0; j < this.UserMessages.length; j++){
@@ -212,19 +210,13 @@ export default ({
                         this.Users[i].messages.message.push(m);
 
                         let message = { type: 'text', author: this.UserMessages[j].from, data: { text: this.UserMessages[j].message } }
-                  
-                        //const isEqual = (...objects) => objects.every(obj => JSON.stringify(obj) === JSON.stringify(objects[0]));
-
+                
                         const containsObject = function(obj, list) {
                           let i;
                           for (i = 0; i < list.length; i++) {
                             if(JSON.stringify(list[i]) === JSON.stringify(obj)) {
-                              console.log(list[i]);
-                              console.log(obj);
-                              return true;
-                          } else {
-                            console.log(list[i]);
-                            console.log(obj);
+                              
+                            return true;
                           }
                         }
                         return false;
@@ -307,7 +299,6 @@ export default ({
       }
     },
     async onMessageWasSent (message) {
-      console.log(message);
       // called when the user sends a message
         let today = new Date();
         let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
@@ -326,24 +317,23 @@ export default ({
           this.jsonFile = message.data.file;
           const fileToJSON = async function fileToJSON(file) {
             return new Promise((resolve, reject) => {
-            const fileReader = new FileReader()
+            const fileReader = new FileReader();
             fileReader.onload = (event) => resolve(JSON.parse(event.target.result));
-            fileReader.onerror = error => reject(error)
+            fileReader.onerror = error => reject(error);
             fileReader.readAsText(file);
             })
           }
         this.parsedJsonFile = await fileToJSON(this.jsonFile);
-    1
+    
         Message.data = this.parsedJsonFile;
         console.log(Message);
         } else {
           console.log('error reading user input');
         }
         Message.date = dateTime;
-        Message.to =  this.user.oid;
+        Message.to = this.user.oid;
         let text =  { type: 'text', author: 'me', data: { text: textMessage } }
         this.messageList = [ ...this.messageList, text ];
-        // [ ...this.messageList, text ]
         axios.get(process.env.VUE_APP_RTRE_BACKEND_PORT + '/api/sendMessage?' + new URLSearchParams({
                 token: sessionStorage.getItem('TokenId'),
                 message: Message.data,
