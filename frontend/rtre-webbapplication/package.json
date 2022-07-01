@@ -10,6 +10,7 @@
   "dependencies": {
     "axios": "^0.27.1",
     "core-js": "^3.8.3",
+    "fs": "^0.0.1-security",
     "js-file-download": "^0.4.12",
     "three": "^0.140.2",
     "vue": "^2.6.14",
