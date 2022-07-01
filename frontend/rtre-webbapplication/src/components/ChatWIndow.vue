@@ -203,7 +203,7 @@ export default ({
                   this.UserMessages = resp.data;
                   console.log(this.UserMessages);
                   for(let i = 0; i < this.Users.length; i++){
-
+                    console.log(this.Users.length);
                     for(let j = 0; j < this.UserMessages.length; j++){
                       
                       if(parseInt(this.UserMessages[j].from) === this.Users[i].oid){
@@ -213,19 +213,22 @@ export default ({
 
                         let message = { type: 'text', author: this.UserMessages[j].from, data: { text: this.UserMessages[j].message } }
                   
-                        const isEqual = (...objects) => objects.every(obj => JSON.stringify(obj) === JSON.stringify(objects[0]));
+                        //const isEqual = (...objects) => objects.every(obj => JSON.stringify(obj) === JSON.stringify(objects[0]));
 
                         const containsObject = function(obj, list) {
                           let i;
                           for (i = 0; i < list.length; i++) {
-                            if (isEqual(list[i === obj])) {
+                            if(JSON.stringify(list[i]) === JSON.stringify(obj)) {
+                              console.log(list[i]);
+                              console.log(obj);
                               return true;
-                          } 
+                          } else {
+                            console.log(list[i]);
+                            console.log(obj);
+                          }
                         }
                         return false;
                         }
-                        console.log(this.lastMessage);
-                        console.log(message);
                         if(containsObject(message, this.messageList) === false){
                           this.Users[i].messages.messageCount++;
                           this.newMessagesCount++;
