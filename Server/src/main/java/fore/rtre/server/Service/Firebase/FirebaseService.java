@@ -119,7 +119,6 @@ public class FirebaseService {
                                     false
                                     ));
                         }
-                        
                     }
                     String result = new Gson().toJson(messages);
                     String resultString = result.toString();

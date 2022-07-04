@@ -15,7 +15,7 @@
         </v-flex>
         <div v-if="this.users !== null">
             <v-container>
-               <ChatWIndow @click="this.showOverlay=true" :overlay="this.showOverlay" :allUsers="this.users" :userMessages="this.userMessages" />
+               <ChatWIndow @click="this.showOverlay=true" :overlay="this.showOverlay" :allUsers="this.users" :userMessages="this.userMessages" :key="this.componentKey"/>
             </v-container></div>
         <v-btn @click="forceRerender()">Refresh</v-btn>
     </v-layout>
@@ -47,6 +47,7 @@ export default ({
             })).then((resp) => {
                 //localStorage.setItem("Users", resp.data);
                 localStorage.setItem("Users", JSON.stringify(resp.data));
+                console.log(resp.data);
             });
 
         } else {
