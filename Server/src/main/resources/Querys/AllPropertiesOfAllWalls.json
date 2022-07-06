@@ -1,0 +1,36 @@
+{
+  "doublebuffer": true,
+  "type": {
+    "name": "IfcWall",
+    "includeAllSubTypes": true
+  },
+  "includes": [
+    {
+      "type": {
+        "name": "IfcWall",
+        "includeAllSubTypes": true
+      },
+      "fields": [
+        "IsDefinedBy"
+      ],
+      "includes": [
+        {
+          "type": "IfcRelDefinesByProperties",
+          "fields": [
+            "RelatingPropertyDefinition"
+          ],
+          "includes": [
+            {
+              "type": "IfcPropertySet",
+              "fields": [
+                "HasProperties"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "ifc2x3tc1-stdlib:ContainedInStructure",
+    "ifc2x3tc1-stdlib:OwnerHistory"
+  ]
+}

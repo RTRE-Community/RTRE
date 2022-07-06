@@ -1,0 +1,6 @@
+{
+  "type": {
+    "name": "IfcWall",
+    "includeAllSubTypes": true
+  }
+}

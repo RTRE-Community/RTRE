@@ -20,11 +20,13 @@ import org.bimserver.shared.exceptions.BimServerClientException;
 
 import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
+import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -121,8 +123,6 @@ public class FirebaseService {
                         }
                     }
                     String result = new Gson().toJson(messages);
-                    String resultString = result.toString();
-                    System.out.println(resultString);
 
                     return new ResponseEntity<String>(result,HttpStatus.valueOf(200));
                                    
@@ -252,4 +252,121 @@ public class FirebaseService {
                 return new ResponseEntity<String>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
             }
     }
+
+
+    public static String readFileAsString(String file) {
+
+        try {
+            return new String(Files.readAllBytes(Paths.get(file)));
+        } catch (Exception e) {
+            return "Error reading JSON";
+        }
+        
+    }
+
+    public static ResponseEntity<String> getQuerys(String token, String queryName){
+        try {
+            JsonBimServerClientFactory factory;
+                    BimServerClient client;
+                    factory = new JsonBimServerClientFactory(Main.BimPort);
+                    client = factory.create(new TokenAuthentication(token));
+
+                    String filePath = "./src/main/resources/Querys/"+queryName+".json";
+                    String json = readFileAsString(filePath);
+                    if(json.contains("Error")){
+                        return new ResponseEntity<String>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
+
+                    }else {
+                        String result = json;
+                        return new ResponseEntity<String>(result, HttpStatus.valueOf(200));
+
+                    }
+                                   
+                    
+        } catch (ServerException e) {
+            return new ResponseEntity<String>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
+        } catch (UserException e) {
+            return new ResponseEntity<String>("Bad Request", HttpStatus.BAD_REQUEST);
+        } catch (BimServerClientException e) {
+            e.printStackTrace();
+        } catch (ServiceException e) {
+            e.printStackTrace();
+        } catch (ChannelConnectionException e) {
+            e.printStackTrace();
+        }
+        return new ResponseEntity<>("error" ,HttpStatus.INTERNAL_SERVER_ERROR);
+        
+    }
+
+    public static ResponseEntity<String> sendQuery(String token, String recieveingUser, String queryTopic, String Query){
+        try {
+            JsonBimServerClientFactory factory;
+                    BimServerClient client;
+                    factory = new JsonBimServerClientFactory(Main.BimPort);
+                    client = factory.create(new TokenAuthentication(token));
+                    Long postId = (long) 0;
+                    Notification notification = new Notification(postId, false, recieveingUser, true, Query, queryTopic);
+                    Firestore dbFirestore = FirestoreClient.getFirestore();
+
+                    ApiFuture<WriteResult> collectionApiFuture = dbFirestore.collection("Notification").document().set(notification);
+                    while(!(collectionApiFuture.isDone())){}
+
+                    return new ResponseEntity<String>(HttpStatus.OK);
+
+                    
+        } catch (ServerException e) {
+            return new ResponseEntity<String>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
+        } catch (UserException e) {
+            return new ResponseEntity<String>("Bad Request", HttpStatus.BAD_REQUEST);
+        } catch (BimServerClientException e) {
+            e.printStackTrace();
+        } catch (ServiceException e) {
+            e.printStackTrace();
+        } catch (ChannelConnectionException e) {
+            e.printStackTrace();
+        }
+        return new ResponseEntity<>("error" ,HttpStatus.INTERNAL_SERVER_ERROR);
+        
+    }
+
+    public static ResponseEntity<String> getUserQuerys(String username) {
+        try{
+            Firestore dbFirestore = FirestoreClient.getFirestore();
+
+            String userOid = String.valueOf(BimserverConfig.client.getServiceInterface().getUserByUserName(username).getOid());
+
+            //String completeId = userOid+ uuid;
+            Query query = dbFirestore.collection(collectionName).whereEqualTo("userId", userOid).
+                                                                whereEqualTo("query", true);
+            ApiFuture<QuerySnapshot> querySnapshotApiFuture = query.get();
+            QuerySnapshot querySnapshot = querySnapshotApiFuture.get();
+            List<QueryDocumentSnapshot> documents = querySnapshot.getDocuments();
+            ArrayList<Notification> queryList = new ArrayList<>();
+            for (int i = 0; i < documents.size(); i++) {
+                queryList.add(new Notification(
+                                            (Long)documents.get(i).get("postId"),
+                                            false,
+                                            documents.get(i).get("userId").toString(),
+                                            true,
+                                            documents.get(i).get("Query").toString() ,
+                                            documents.get(i).get("queryTopic").toString()
+                                            ));
+            }
+            String result = new Gson().toJson(queryList);
+
+            return new ResponseEntity<String>(result,HttpStatus.valueOf(200));
+        } catch (ExecutionException e) {
+            return new ResponseEntity<String>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
+        } catch (InterruptedException e) {
+            return new ResponseEntity<String>("Internal server error, timed Out", HttpStatus.INTERNAL_SERVER_ERROR);
+        } catch (ServerException e) {
+            return new ResponseEntity<String>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
+        } catch (UserException e) {
+            return new ResponseEntity<String>("Bad Request", HttpStatus.BAD_REQUEST);
+        } catch (PublicInterfaceNotFoundException e) {
+            return new ResponseEntity<String>("Not Found", HttpStatus.valueOf(404));
+        }
+
+    }
+
 }

@@ -6,6 +6,7 @@ import fore.rtre.server.Service.AuthenticationService;
 import fore.rtre.server.Service.IfcPostService;
 import fore.rtre.server.Service.IfcGetService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.kafka.KafkaProperties.Admin;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -127,6 +128,21 @@ public class IfcController {
     @DeleteMapping("/deleteNotification")
     public ResponseEntity<String> deleteNotification(@RequestParam String uuid,String username, Long postId){
         return FirebaseService.deleteNotification(uuid, username,postId);
+    }
+    @GetMapping("/getQuerys")
+    public ResponseEntity<String> getQuerys(@RequestParam String token, String queryName){
+        return FirebaseService.getQuerys(token, queryName);
+    }
+
+    @PostMapping("/sendQuery")
+    @ResponseBody
+    public ResponseEntity<String> sendQuery (@RequestParam String token, String receievingUser, String queryTopic, String Query){
+        return FirebaseService.sendQuery(token, receievingUser, queryTopic,  Query);
+    }
+
+    @GetMapping("/getUserQuerys")
+    public ResponseEntity<String> getUserQuerys(@RequestParam String username){
+        return FirebaseService.getUserQuerys(username);
     }
 
 }
