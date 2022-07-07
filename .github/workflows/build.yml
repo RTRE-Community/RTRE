@@ -20,6 +20,7 @@ jobs:
           touch ./serviceAccountKey.json
           echo "$SERVICE_ACCOUNT_KEY" >> ./serviceAccountKey.json
           cat ./serviceAccountKey.json
+          ls
         shell: bash
         env:
           SERVICE_ACCOUNT_KEY: ${{ secrets.SERVICE_ACCOUNT_KEY }}
