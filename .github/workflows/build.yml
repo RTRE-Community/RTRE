@@ -18,8 +18,8 @@ jobs:
       - name: Write Secrets
         run: |
           touch ./Server/serviceAccountKey.json
-          echo "$SERVICE_ACCOUNT_KEY" >> /Server/serviceAccountKey.json
-          cat /Server/serviceAccountKey.json
+          echo "$SERVICE_ACCOUNT_KEY" >> ./Server/serviceAccountKey.json
+          cat ./Server/serviceAccountKey.json
           ls
         shell: bash
         env:
