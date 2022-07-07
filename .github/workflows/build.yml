@@ -47,6 +47,8 @@ jobs:
         run: |
           cd Server
           ls
+          cd src
+          ls
           docker build -t backend/app:latest .
       - name: Build Frontend image
         run: |
