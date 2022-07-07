@@ -6,8 +6,8 @@ const chance = new Chance()
 describe('Admin Test', () => {
 
     const adminEmail = 'admin@admin.com'
-    const userEmail = chance.email()
-    const projectName = chance.name()
+    const userEmail ='cypress@test.com'
+    const projectName = 'cypressTest'
     const password = 'password'
 
     it('Create a new user', () => {
@@ -52,9 +52,9 @@ describe('Admin Test', () => {
       
       cy.get(':nth-child(7) > .v-btn > .v-btn__content').click()
       cy.get('.v-slide-group__content').should('exist')
-      cy.get('#input-155').type(projectName)
+      cy.get('.v-card__text > .v-input > .v-input__control > .v-input__slot').type(projectName)
       cy.get('.v-select__selections').click()
-      cy.get('#list-item-170-0 > .v-list-item__content').click()
+      cy.get('.v-list-item__content').contains('Ifc4').click()
       cy.intercept("**/api/CreateProject?*").as('createProject')
       cy.get('.ml-11 > .v-btn__content').click()
       cy.wait('@createProject').then((intercept) => {
@@ -113,7 +113,7 @@ describe('Admin Test', () => {
         expect(intercept.response.statusCode).to.equal(200)
       })
       cy.get('.rounded-0 > .v-toolbar__content > .v-toolbar__title').should('contain', 'User Profile')
-      cy.wait(2000)
+      cy.wait(5000)
       cy.get('.v-expansion-panel-header').should('contain', projectName)
     })
 

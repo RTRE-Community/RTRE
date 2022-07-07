@@ -13,7 +13,7 @@
                 <li>Date: {{ project.createdDate }}</li>
                 <li>Schema: {{project.schema}}</li>
                 <v-expansion-panels v-for="subProjects in projectList" :key="subProjects.oid" popout class="rounded-0">
-                    <v-expansion-panel v-if="subProjects.parentId == project.oid" :key="subProjects.id">
+                    <v-expansion-panel v-if="subProjects.parentId == project.oid" :key="subProjects.id"  :name="index++">
                         <v-expansion-panel-header color="blue white--text" dark flat>
                             {{ subProjects.name }}
                             <template v-if="checkIfNewProject(subProjects.oid)">
@@ -26,7 +26,7 @@
                                 <DeleteButton :oid="subProjects.oid" />
 
                             </div>
-                            <li>id: {{ subProjects.oid }} </li>
+                            <li name=id>id: {{ subProjects.oid }} </li>
                             <li>Schema: {{subProjects.schema}}</li>
                             <li>parentId : {{ subProjects.parentId }}</li>
                             <li>Date of Creation : {{ subProjects.createdDate }}</li>
@@ -51,6 +51,7 @@ export default {
     },
     data() {
         return {
+            index: 1,
             projectList: [],
             messages: 0,
         };
