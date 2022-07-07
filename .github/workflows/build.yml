@@ -33,3 +33,30 @@ jobs:
           pwd
           cd Server
           mvn -B clean verify
+      - name: Package Maven
+        run: |
+          mvn -B package
+      - name: Build Springboot image
+        uses: docker/build-push-action@v3
+        with:
+          push: false
+          tags: backend/app:latest
+      - name: Build Frontend image
+        run: |
+          cd ../frontend/rtre-webbapplication/
+        uses: docker/build-push-action@v3
+        with:
+          push: false
+          tags: frontend/app:latest
+      - name: Get Bimserver from DockerHub and run
+        run: |
+          docker pull disitlab/bimserver:1.5.182
+          docker run -p 8082:8080 disitlab/bimserver:1.5.182
+      - name: Create Springboot container
+        run: docker run -p 3030:3030 backend/app:latest
+      - name: Create Frontend container
+        run: docker run -p 8080:80 frontend/app:latest
+      - name: Run cypress test
+        run: |
+          npm i
+          npm run cy:run

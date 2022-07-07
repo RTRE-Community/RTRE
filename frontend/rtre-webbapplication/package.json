@@ -6,7 +6,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "e2e": "cypress open"
+    "e2e": "cypress open",
+    "cy:run": "cypress run"
   },
   "dependencies": {
     "axios": "^0.27.1",

@@ -3,7 +3,7 @@ let url = 'http://localhost:8080'
 import Chance from 'chance'
 const chance = new Chance()
 
-describe('Admin Test', () => {
+describe('User and project management test', () => {
 
     const adminEmail = 'admin@admin.com'
     const userEmail ='cypress@test.com'

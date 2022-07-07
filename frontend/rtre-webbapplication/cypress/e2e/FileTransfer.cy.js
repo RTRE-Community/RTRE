@@ -7,7 +7,7 @@ const password = 'password'
 const userEmail ='cypress@test.com'
 const projectName = 'cypressTest'
 
-describe('Admin Test', () => {
+describe('File Transfer Test', () => {
 
     before(() => {
         
