@@ -72,22 +72,49 @@ export default ({
     props: ['overlay', 'allUsers', 'userMessages'],
     components: {
     },
+    created() {
+      //setInterval(this.updateMessages(true), 3000);
+    },
+    watch: {
+      Users(){
+
+        if(this.Users === 0 || this.Users.length < 1){
+
+          this.Users = JSON.parse(localStorage.getItem("Users") || "[]")
+
+          for(let i = 0; i < this.Users.length; i++){
+
+            if(this.Users[i].oid === parseInt(sessionStorage.getItem('oid'))){
+              this.Users.splice(i, 1);
+            }
+          }
+
+          for(let i = 0; i < this.Users.length; i++){
+              this.Users[i].messages = {};
+              this.Users[i].messages.messageCount = 0;
+              this.Users[i].messages['message'] = [];
+          }
+
+        }
+        
+      }
+    },
     mounted(){
       this.Users = JSON.parse(localStorage.getItem("Users") || "[]")
-
+      
       axios.get(process.env.VUE_APP_RTRE_BACKEND_PORT + '/api/getUserMessages?' + new URLSearchParams({
                 token: sessionStorage.getItem("TokenId"),
                 username: sessionStorage.getItem('Username')
             })).then((resp) => {
                 this.UserMessages = resp.data
+                this.updateMessages(false);
                 console.log(resp.data);
-
             });
 
       for(let i = 0; i < this.Users.length; i++){
-        if(this.Users[i].oid == sessionStorage.getItem('oid')){
+        if(this.Users[i].oid === parseInt(sessionStorage.getItem('oid'))){
           this.Users.splice(i, 1);
-          }
+        }
       }
       for(let i = 0; i < this.Users.length; i++){
               this.Users[i].messages = {};
@@ -95,29 +122,11 @@ export default ({
               this.Users[i].messages['message'] = [];
           }
 
-
-      for(let i = 0; i < this.Users.length; i++){
-
-          for(let j = 0; j < this.UserMessages.length; j++){
-           
-            if(parseInt(this.UserMessages[j].from) === this.Users[i].oid){
-
-                let m = {'message': this.UserMessages[j].message};
-                this.Users[i].messages.message.push(m);
-                this.Users[i].messages.messageCount++;
-
-                let message = { type: 'text', author: this.UserMessages[j].from, data: { text: this.UserMessages[j].message } }
-                this.messageList = [ ...this.messageList, message ];
-              }
-        }          
-      }
-
-      setInterval(this.updateMessages, 5000);
+        setInterval(this.updateMessages, 5000);
     
     },
     data() {
     return {
-      jsonURL: 'http://localhost:8080/',
       lastMessage: {},
       jsonFile: null,
       parsedJsonFile: {},
@@ -148,8 +157,7 @@ export default ({
           name: 'default',
         },
       },
-      participants: [
-      ], // the list of all the participant of the conversation. `name` is the user name, `id` is used to establish the author of a message, `imageUrl` is supposed to be the user avatar.
+      participants: [], // the list of all the participant of the conversation. `name` is the user name, `id` is used to establish the author of a message, `imageUrl` is supposed to be the user avatar.
       titleImageUrl: 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png',
       messageList: [
         
@@ -191,19 +199,13 @@ export default ({
       EventEmitter.eventEmitter.emit('enableProjectBox', '');
       this.showOverlay = false;
     },
-    async updateMessages(){
-      axios.get(process.env.VUE_APP_RTRE_BACKEND_PORT + '/api/getUserMessages?' + new URLSearchParams({
-                token: sessionStorage.getItem("TokenId"),
-                username: sessionStorage.getItem('Username')
-            })).then((resp) => {
-                this.openedChatOnce = false;
-                
-                if(resp.data.length > 0){
-                  this.UserMessages = resp.data;
-                  for(let i = 0; i < this.Users.length; i++){
-                    console.log(this.Users.length);
+    updateMessages(bool){
+      if(bool === false){
+
+           for(let i = 0; i < this.Users.length; i++){
+
                     for(let j = 0; j < this.UserMessages.length; j++){
-                      
+                     
                       if(parseInt(this.UserMessages[j].from) === this.Users[i].oid){
                         
                         let m = {'message': this.UserMessages[j].message};
@@ -215,7 +217,7 @@ export default ({
                           let i;
                           for (i = 0; i < list.length; i++) {
                             if(JSON.stringify(list[i]) === JSON.stringify(obj)) {
-                              
+                            
                             return true;
                           }
                         }
@@ -231,6 +233,56 @@ export default ({
                       }
                     }          
                   }
+                  this.UserMessages = null;
+                 // localStorage.setItem("Users", JSON.stringify(this.Users));
+                  return;
+
+      }
+      axios.get(process.env.VUE_APP_RTRE_BACKEND_PORT + '/api/getUserMessages?' + new URLSearchParams({
+                token: sessionStorage.getItem("TokenId"),
+                username: sessionStorage.getItem('Username')
+            })).then((resp) => {
+                this.openedChatOnce = false;
+                if(resp.data.length > 0){
+                  this.UserMessages = resp.data;
+                  for(let i = 0; i < this.Users.length; i++){
+
+                    for(let j = 0; j < this.UserMessages.length; j++){
+                      
+                      
+                      if(parseInt(this.UserMessages[j].from) === this.Users[i].oid){
+                        
+                        let m = {'message': this.UserMessages[j].message};
+                        this.Users[i].messages.message.push(m);
+
+                        let message = { type: 'text', author: this.UserMessages[j].from, data: { text: this.UserMessages[j].message } }
+                
+                        const containsObject = function(obj, list) {
+                          let i;
+                          for (i = 0; i < list.length; i++) {
+                            if(JSON.stringify(list[i]) === JSON.stringify(obj)){
+                            
+                              return true;
+                            }
+                          }
+                          return false;
+                        }
+                        if(containsObject(message, this.messageList) === false){
+                          this.Users[i].messages.messageCount++;
+                          this.newMessagesCount++;
+                          this.messageList = [ ...this.messageList, message ];
+                          this.lastMessage = message;
+                          console.log('new message loaded');
+                          
+                        }
+                      }else {
+                        //console.log(this.UserMessages);
+                        console.log(parseInt(this.UserMessages[j].from));
+                        console.log(this.Users[i].oid);
+                      }
+                    }          
+                  }
+                  //localStorage.setItem("Users", JSON.stringify(this.Users));
                   this.UserMessages = null;
                 }
             });
@@ -253,10 +305,9 @@ export default ({
       const index = this.Users.map(e => e.oid).indexOf(User.oid);
       this.Users[index].messages.messageCount = 0;
       this.participants = p;
-
       this.showOverlay = false;
       this.showChatBox = true;
-
+      localStorage.setItem("Users", JSON.stringify(this.Users))
       axios.get(process.env.VUE_APP_RTRE_BACKEND_PORT + '/api/readMessages?' + new URLSearchParams({
                 token: sessionStorage.getItem('TokenId'),
                 username: sessionStorage.getItem('Username'),
@@ -286,7 +337,6 @@ export default ({
         if(typeof text === 'string' || text instanceof String){
           Message.type = 'text';
           Message.data = text;
-          console.log()
         } else if (text === undefined){
           Message.type = 'json';
           Message.data = JSON.parse(text);
@@ -324,7 +374,7 @@ export default ({
             })
           }
         this.parsedJsonFile = await fileToJSON(this.jsonFile);
-    
+        
         Message.data = this.parsedJsonFile;
         console.log(Message);
         } else {
@@ -360,6 +410,23 @@ export default ({
       this.showOverlay = false;
       this.messageList = [];
       this.participants = [];
+
+      /*
+      for(let i = 0; i < this.Users.length; i++){
+        if(this.Users[i].oid === sessionStorage.getItem('oid')){
+          this.Users.splice(i, 1);
+        }
+      }
+      /*
+      for(let i = 0; i < this.Users.length; i++){
+              this.Users[i].messages = {};
+              this.Users[i].messages.messageCount = 0;
+              this.Users[i].messages['message'] = [];
+      }*/
+      //console.log(this.Users);
+      
+      setInterval(this.updateMessages, 5000);
+
     },
     handleScrollToTop () {
       // called when the user scrolls message list to top
