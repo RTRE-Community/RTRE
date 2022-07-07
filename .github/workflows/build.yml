@@ -45,10 +45,11 @@ jobs:
           install: true
       - name: Build Springboot image
         run: |
+          cd Server
           docker build -t backend/app:latest .
       - name: Build Frontend image
         run: |
-          cd ../frontend/rtre-webbapplication/
+          cd frontend/rtre-webbapplication/
           docker build -t frontend/app:latest .
       - name: Get Bimserver from DockerHub and run
         run: |
