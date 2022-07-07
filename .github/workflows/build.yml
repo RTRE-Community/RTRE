@@ -41,9 +41,10 @@ jobs:
         with:
           push: false
           tags: backend/app:latest
-      - name: Build Frontend image
+      - name: Change directory to frontend
         run: |
           cd ../frontend/rtre-webbapplication/
+      - name: Build Frontend image
         uses: docker/build-push-action@v3
         with:
           push: false
