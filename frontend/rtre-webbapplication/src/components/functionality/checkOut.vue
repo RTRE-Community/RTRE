@@ -42,6 +42,8 @@ import FileDownload from "js-file-download"
 import Axios from "axios"
 import SnackBar from "./buttons/SnackBar.vue";
 import Vue from 'vue'
+import axios from 'axios'
+//const EventEmitter = require('../../EventEmitter')
 export default {
     name: "checkOut",
     data() {
@@ -53,23 +55,33 @@ export default {
             response: "",
             loading: [false],
             presentQuery: false,
+            ruleSelector: [(value) => !!value || "Select a Query"],
             query: {},
             items: [],
-            selectedQuery: ''
+            selectedQuery: '',
+            Querys: []
         };
     },
-    mounted(){
-        if(JSON.parse(localStorage.getItem('query')) !== null){
-            this.query = JSON.parse(localStorage.getItem('query'));
-            this.presentQuery = true;
-            this.items.push(this.query.queryTopic);
-            console.log(this.items);
+    created(){
+        this.Querys = JSON.parse(localStorage.getItem("Querys") || "[]")
+        
+        console.log(this.Querys)
+        for(let i = 0; i< this.Querys.length; i++){
+            this.items.push(this.Querys[i].type.name);
+            //this.items[i] = this.Querys[i].name;
         }
+
+        if(this.items.length > 0){
+            this.presentQuery = false;
+        }else {
+            this.presentQuery = false;
+        }
+        
        
     },
     methods: {
         async checkOut() {
-            if (this.$refs.form.validate()) {
+            if (this.$refs.form.validate() && this.presentQuery) {
                 let that = this;
                 Vue.set(this.loading, 0, true)
                 await Axios({
@@ -85,6 +97,23 @@ export default {
                     .catch(function (error) {
                         that.response = error.response
                     });
+                    Vue.set(this.loading, 0, false)
+
+            } else {
+                let that = this;
+                Vue.set(this.loading, 0, true)
+                axios.get(process.env.VUE_APP_RTRE_BACKEND_PORT + '/api/getIfc?' + new URLSearchParams({
+                fileName: this.id,
+                query: this.selectedFormat
+            })).then((resp) => {
+                FileDownload(resp.data, "myIfcFile.ifc")
+                    this.response = resp
+                    console.log(this.response)
+            })
+            .catch(function (error) {
+                        that.response = error.response
+                    });
+
             }
             Vue.set(this.loading, 0, false)
 

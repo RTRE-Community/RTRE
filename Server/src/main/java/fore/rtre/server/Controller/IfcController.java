@@ -137,12 +137,12 @@ public class IfcController {
     @PostMapping("/sendQuery")
     @ResponseBody
     public ResponseEntity<String> sendQuery (@RequestParam String token, String receievingUser, String queryTopic, String Query){
-        return FirebaseService.sendQuery(token, receievingUser, queryTopic,  Query);
+        return FirebaseService.sendQuery(token, receievingUser, queryTopic, Query);
     }
 
     @GetMapping("/getUserQuerys")
-    public ResponseEntity<String> getUserQuerys(@RequestParam String username){
-        return FirebaseService.getUserQuerys(username);
+    public ResponseEntity<String> getUserQuerys(@RequestParam String username, String oid){
+        return FirebaseService.getUserQuerys(username, oid);
     }
 
 }

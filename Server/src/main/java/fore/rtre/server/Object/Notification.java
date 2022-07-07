@@ -3,6 +3,7 @@ package fore.rtre.server.Object;
 public class Notification {
 
     private Long postId;
+    private String post_ID;
     private boolean read;
     private String userId;
     private boolean query;
@@ -15,8 +16,8 @@ public class Notification {
         this.userId = userId;
     }
 
-    public Notification(Long postId, boolean read, String userId, boolean query, String queryName, String queryTopic) {
-        this.postId = postId;
+    public Notification(String post_ID, boolean read, String userId, boolean query, String queryName, String queryTopic) {
+        this.post_ID = post_ID;
         this.read = read;
         this.userId = userId;
         this.query = query;

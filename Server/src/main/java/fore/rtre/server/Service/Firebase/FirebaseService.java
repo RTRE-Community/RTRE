@@ -304,12 +304,13 @@ public class FirebaseService {
                     BimServerClient client;
                     factory = new JsonBimServerClientFactory(Main.BimPort);
                     client = factory.create(new TokenAuthentication(token));
-                    Long postId = (long) 0;
+                    String postId = "0";
                     Notification notification = new Notification(postId, false, recieveingUser, true, Query, queryTopic);
                     Firestore dbFirestore = FirestoreClient.getFirestore();
 
-                    ApiFuture<WriteResult> collectionApiFuture = dbFirestore.collection("Notification").document().set(notification);
+                    ApiFuture<WriteResult> collectionApiFuture = dbFirestore.collection("QueryNotification").document().set(notification);
                     while(!(collectionApiFuture.isDone())){}
+                    System.out.println(notification.toString());
 
                     return new ResponseEntity<String>(HttpStatus.OK);
 
@@ -329,40 +330,40 @@ public class FirebaseService {
         
     }
 
-    public static ResponseEntity<String> getUserQuerys(String username) {
+    public static ResponseEntity<String> getUserQuerys(String username, String oid) {
         try{
             Firestore dbFirestore = FirestoreClient.getFirestore();
 
-            String userOid = String.valueOf(BimserverConfig.client.getServiceInterface().getUserByUserName(username).getOid());
+            //String userOid = String.valueOf(BimserverConfig.client.getServiceInterface().getUserByUserName(username).getOid());
 
             //String completeId = userOid+ uuid;
-            Query query = dbFirestore.collection(collectionName).whereEqualTo("userId", userOid).
-                                                                whereEqualTo("query", true);
+            Query query = dbFirestore.collection("QueryNotification").whereEqualTo("userId", oid);
+                                                               
             ApiFuture<QuerySnapshot> querySnapshotApiFuture = query.get();
             QuerySnapshot querySnapshot = querySnapshotApiFuture.get();
             List<QueryDocumentSnapshot> documents = querySnapshot.getDocuments();
             ArrayList<Notification> queryList = new ArrayList<>();
+            ArrayList<String> querysList = new ArrayList<>();
             for (int i = 0; i < documents.size(); i++) {
+                /* 
                 queryList.add(new Notification(
-                                            (Long)documents.get(i).get("postId"),
+                                            documents.get(i).get("postId").toString(),
                                             false,
                                             documents.get(i).get("userId").toString(),
                                             true,
-                                            documents.get(i).get("Query").toString() ,
+                                            documents.get(i).get("queryName").toString(),
                                             documents.get(i).get("queryTopic").toString()
-                                            ));
+                                            ));*/
+                querysList.add(documents.get(i).get("queryTopic").toString());
             }
-            String result = new Gson().toJson(queryList);
+            System.out.println(queryList.toString());
+            String result = new Gson().toJson(querysList);
 
             return new ResponseEntity<String>(result,HttpStatus.valueOf(200));
         } catch (ExecutionException e) {
             return new ResponseEntity<String>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (InterruptedException e) {
             return new ResponseEntity<String>("Internal server error, timed Out", HttpStatus.INTERNAL_SERVER_ERROR);
-        } catch (ServerException e) {
-            return new ResponseEntity<String>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
-        } catch (UserException e) {
-            return new ResponseEntity<String>("Bad Request", HttpStatus.BAD_REQUEST);
         } catch (PublicInterfaceNotFoundException e) {
             return new ResponseEntity<String>("Not Found", HttpStatus.valueOf(404));
         }

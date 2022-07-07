@@ -103,8 +103,8 @@ export default {
                 });
                 Vue.set(this.loading, 0, false);
                 axios.get(process.env.VUE_APP_RTRE_BACKEND_PORT + '/api/getUserQuerys?' + new URLSearchParams({
-                username: sessionStorage.getItem("Username"),
-                oid: sessionStorage.getItem("oid")
+                    username: sessionStorage.getItem("Username"),
+                    oid: sessionStorage.getItem("oid")
                 })).then((resp) => {
                     if(resp.data.length > 0){
                         localStorage.setItem('Query', JSON.stringify(resp.data));
@@ -113,7 +113,6 @@ export default {
                     console.log(resp.data);
           
 
-                //axios.post(process.env.VUE_APP_RTRE_BACKEND_PORT + '/api/sendQuery?)
             });
                 if (sessionStorage.getItem("TokenId") !== null) {
                     this.$router.push({

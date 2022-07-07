@@ -198,14 +198,11 @@ public class AdminManagement {
                                 User newUser = new User(userList.get(i).get(s).getName(), 
                                 userList.get(i).get(s).getUsername(), 
                                 userList.get(i).get(s).getOid());
-                                if(!(users.contains(newUser))){
+                                if(!users.contains(newUser)){
                                     users.add(newUser);
                                 }
-                                
                             }
-
                         }
-                     
                         String result = new Gson().toJson(users);
                         System.out.println(result.toString());
                         return new ResponseEntity<String>(result, HttpStatus.valueOf(200));

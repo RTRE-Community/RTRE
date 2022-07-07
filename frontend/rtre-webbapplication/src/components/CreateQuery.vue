@@ -109,7 +109,6 @@ export default {
         selectUser(User){
             this.User = User;
             const id = User.oid;
-            console.log(id);
             this.overlay = false;
             axios.post(process.env.VUE_APP_RTRE_BACKEND_PORT + '/api/sendQuery?' + new URLSearchParams({
                 token: sessionStorage.getItem("TokenId"),

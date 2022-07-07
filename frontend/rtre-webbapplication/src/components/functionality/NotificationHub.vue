@@ -34,6 +34,7 @@
 
 <script>
 import axios from 'axios'
+import EventEmitter from '../../EventEmitter'
 export default ({
     name: "NotificationHub",
     data() {
@@ -41,7 +42,9 @@ export default ({
             notifications: [],
             polling: null,
             projectAlert: false,
-            Query: {}
+            Query: {},
+            gettedQuerys: [],
+            persistentQuerys: []
         }
     },
     created() {
@@ -54,7 +57,7 @@ export default ({
                 this.fetchNotifications()
                 this.getQuery();
                  }
-            }, 5000)
+            }, 10000)
         },
         fetchNotifications() {
             axios.get(process.env.VUE_APP_RTRE_BACKEND_PORT + "/api/getAllNotification?", {
@@ -79,15 +82,52 @@ export default ({
             axios.get(process.env.VUE_APP_RTRE_BACKEND_PORT + "/api/getUserQuerys?", {
                 params: {
                     username: sessionStorage.getItem('Username'),
+                    oid: sessionStorage.getItem('oid')
                 }
             }).then((resp) => {
 
                 // this.Query = resp,data.Query
-                 
-                this.notifications = resp.data.postId
+                console.log(resp.data);
+
+                if(resp.data.length > 0){
+                    for(let i = 0; i < resp.data.length; i++) {
+                        if(!(this.gettedQuerys.includes(resp.data[i]))){
+                             this.gettedQuerys.push(resp.data[i]);
+                        }
+
+                    }
+                }
+                this.loadQuerys();
+                //this.notifications = resp.data;
            
-                this.$store.dispatch('updateNotification', resp.data.postId)
+                //this.$store.dispatch('updateNotification', resp.data)
             })
+
+        },
+        loadQuerys(){
+            for(let i = 0; i < this.gettedQuerys.length; i++){
+                axios.get(process.env.VUE_APP_RTRE_BACKEND_PORT + "/api/getQuerys?", {
+                params: {
+                    token: sessionStorage.getItem('TokenId'),
+                    queryName: this.gettedQuerys[i]
+                }
+                }).then((resp) => {
+
+                if(!(this.persistentQuerys.includes(resp.data[i]))){
+                    this.persistentQuerys.push(resp.data);
+                }
+
+                // this.Query = resp,data.Query 
+                console.log(resp.data);
+
+                
+            })
+
+            }
+            console.log(this.persistentQuerys);
+            localStorage.setItem('Querys', JSON.stringify(this.persistentQuerys));
+            EventEmitter.eventEmitter.emit('QuerySetted', this.persistentQuerys);
+        
 
         },
         deleteNotification(notificationId) {
