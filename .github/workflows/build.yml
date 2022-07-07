@@ -39,19 +39,17 @@ jobs:
           pwd
           cd Server
           mvn -B package
-      - name: Build Springboot image
-        uses: docker/build-push-action@v3
+      - uses: docker/setup-buildx-action@v2
+        id: buildx
         with:
-          push: false
-          tags: backend/app:latest
-      - name: Change directory to frontend
+          install: true
+      - name: Build Springboot image
+        run: |
+          docker build -t backend/app:latest .
+      - name: Build Frontend image
         run: |
           cd ../frontend/rtre-webbapplication/
-      - name: Build Frontend image
-        uses: docker/build-push-action@v3
-        with:
-          push: false
-          tags: frontend/app:latest
+          docker build -t frontend/app:latest .
       - name: Get Bimserver from DockerHub and run
         run: |
           docker pull disitlab/bimserver:1.5.182
