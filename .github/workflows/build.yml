@@ -35,6 +35,9 @@ jobs:
           mvn -B clean verify
       - name: Package Maven
         run: |
+          ls
+          pwd
+          cd Server
           mvn -B package
       - name: Build Springboot image
         uses: docker/build-push-action@v3
