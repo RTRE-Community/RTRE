@@ -26,9 +26,9 @@ jobs:
           node-version: 16
       - name: Write Secrets
         run: |
-          touch ./Server/serviceAccountKey.json
-          echo "$SERVICE_ACCOUNT_KEY" >> ./Server/serviceAccountKey.json
-          cat ./Server/serviceAccountKey.json
+          touch ./serviceAccountKey.json
+          echo "$SERVICE_ACCOUNT_KEY" >> ./serviceAccountKey.json
+          cat ./serviceAccountKey.json
           cd Server
           ls
         shell: bash
@@ -38,7 +38,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: SERVICE_ACCOUNT_KEY
-          path: Server/serviceAccountKey.json
+          path: ./serviceAccountKey.json
       - name: Build Maven
         run: |
           pwd
