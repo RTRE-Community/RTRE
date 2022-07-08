@@ -82,7 +82,7 @@ jobs:
         env:
           DEBUG: '@cypress/github-action'
         with:
-          working-directory: ./frontend/rtre-webbapplicaation/
+          working-directory: ./frontend/rtre-webbapplication/
           browser: chrome
           start: npm run serve
           wait-on: 'http://localhost:8080'
