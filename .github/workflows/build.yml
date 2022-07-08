@@ -68,11 +68,13 @@ jobs:
       #   run: docker run -p 3030:3030 backend/app:latest
       # - name: Create Frontend container
       #   run: docker run -p 8080:80 frontend/app:latest
+      - name: cd to frontend
+        run: cd frontend/rtre-webbapplication/
       - name: Cypress Run
         uses: cypress-io/github-action@v4
         with:
           build: |
-            cd frontend/rtre-webbapplication/
+            echo cd frontend/rtre-webbapplication/
             npm i
             npm run serve
           start: |
