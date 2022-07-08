@@ -59,11 +59,11 @@ describe('User and project management test', () => {
       cy.get('.v-list-item__content').contains('Ifc4').click()
       cy.intercept("**/api/CreateProject?*").as('createProject')
       cy.get('.ml-11 > .v-btn__content').click()
-      cy.wait('@createProject').then((intercept) => {
+      cy.wait(10000).then((intercept) => {
         expect(intercept.response.statusCode).to.equal(200)
       })
       cy.get(':nth-child(4) > .v-btn').click()
-      cy.wait(2000)
+      cy.wait(10000)
       cy.get('.v-expansion-panel-header').should('contain', projectName)
     })
 
