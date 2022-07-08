@@ -39,14 +39,14 @@ jobs:
         with:
           name: SERVICE_ACCOUNT_KEY
           path: Server/serviceAccountKey.json
-      - name: Build Maven
-        run: |
-          cd Server
-          mvn -B clean verify
-      - name: Package Maven
-        run: |
-          cd Server
-          mvn -B package
+      # - name: Build Maven
+      #   run: |
+      #     cd Server
+      #     mvn -B clean verify
+      # - name: Package Maven
+      #   run: |
+      #     cd Server
+      #     mvn -B package
       #  name: run backend
       # - uses: docker/setup-buildx-action@v2
       #   id: buildx
@@ -77,20 +77,24 @@ jobs:
           cd Server &&
           mvn spring-boot:run &
           sleep 80 
-      - name: start frontend and run test
-        run: |
-          cd frontend/rtre-webbapplication 
-          npm install
-          npm run serve &
-          sleep 60 
-          npm run cy:run 
-      # - name: Run cypress test
-      #   run: |
-      #     cd ../frontend/rtre-webbapplication/
-      #     npm i
-      #     npm run cy:run
-      - name: Upload artifact
-        uses: actions/upload-artifact@v1
+      - name: cypress run
+        uses: cypress-io/github-action@v4
+        env:
+          DEBUG: '@cypress/github-action'
         with:
-          name: cypress-reports
-          path: /home/runner/work/RTRE/RTRE/frontend/rtre-webbapplication/cypress/videos/adminInterface.cy.js.mp4
+          working-directory: ./frontend/rtre-webbapplicaation/
+          browser: chrome
+          start: npm run serve
+          wait-on: 'http://localhost:8080'
+          wait-on-timeout: 120
+      - uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+      # Test run video was always captured, so this action uses "always()" condition
+      - uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: cypress-videos
+          path: cypress/videos
