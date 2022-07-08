@@ -80,6 +80,7 @@ jobs:
       - name: start frontend and run test
         run: |
           cd frontend/rtre-webbapplication 
+          npm install
           npm run serve &
           sleep 60 
           npm run cy:run 
