@@ -29,6 +29,7 @@ jobs:
           touch ./Server/serviceAccountKey.json
           echo "$SERVICE_ACCOUNT_KEY" >> ./Server/serviceAccountKey.json
           cat ./Server/serviceAccountKey.json
+          cd Server
           ls
         shell: bash
         env:
@@ -37,7 +38,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: SERVICE_ACCOUNT_KEY
-          path: ./Service/serviceAccountKey.json
+          path: Service/serviceAccountKey.json
       - name: Build Maven
         run: |
           pwd
@@ -79,8 +80,7 @@ jobs:
           sleep 10 &
       - name: start frontend and run test
         run: |
-          cd frontend/rtre-webbapplication &&
-          npm install &&
+          cd frontend/rtre-webbapplication npm install
           npm run serve &
           sleep 10 &&
           npm run cy:run 
