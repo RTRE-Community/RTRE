@@ -87,7 +87,7 @@ jobs:
           ls
           npm install
           npm run serve &
-          sleep 60 
+          sleep 10 
           npm run cy:run 
       # - name: Run cypress test
       #   run: |
