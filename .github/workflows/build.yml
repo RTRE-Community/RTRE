@@ -72,9 +72,7 @@ jobs:
         uses: cypress-io/github-action@v4
         with:
           working-directory: ./frontend/rtre-webbapplication/
-          build: |
-            npm i
-            npm run serve
+          build: npm run serve
           start: |
             cd ../Server/target
             java: -jar rtre-docker.jar
