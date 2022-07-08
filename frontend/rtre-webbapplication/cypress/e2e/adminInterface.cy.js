@@ -3,12 +3,14 @@ let url = 'http://localhost:8080'
 import Chance from 'chance'
 const chance = new Chance()
 
-describe('User and project management test', () => {
 
-    const adminEmail = 'admin@admin.com'
-    const userEmail ='cypress@test.com'
-    const projectName = 'cypressTest'
-    const password = 'password'
+const adminEmail = 'admin@admin.com'
+const userEmail ='cypress@test.com'
+const projectName = 'cypressTest'
+const password = 'password'
+
+
+describe('User and project management test', () => {
 
     it('Create a new user', () => {
       cy.window().then((win) => {
