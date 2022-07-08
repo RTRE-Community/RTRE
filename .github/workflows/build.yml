@@ -38,7 +38,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: SERVICE_ACCOUNT_KEY
-          path: Service/serviceAccountKey.json
+          path: Server/serviceAccountKey.json
       - name: Build Maven
         run: |
           pwd
@@ -75,14 +75,19 @@ jobs:
       #   run: docker run -p 8080:80 frontend/app:latest
       - name: start backend
         run: |
+          pwd
+          ls
           cd Server/target &&
           java -jar rtre-docker.jar &
           sleep 10 &
       - name: start frontend and run test
         run: |
-          cd frontend/rtre-webbapplication npm install
+          cd frontend/rtre-webbapplication 
+          pwd
+          ls
+          npm install
           npm run serve &
-          sleep 10 &&
+          sleep 10 
           npm run cy:run 
       # - name: Run cypress test
       #   run: |
