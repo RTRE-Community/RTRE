@@ -73,9 +73,7 @@ jobs:
         with:
           working-directory: ./frontend/rtre-webbapplication/
           start: |
-            npm run serve
-            cd ../Server/target
-            java: -jar rtre-docker.jar
+            npm run serve ,cd ../Server/target java -jar rtre-docker.jar
           wait-on: 'http://localhost:3030, http//localhost:8080'
       # - name: Run cypress test
       #   run: |
