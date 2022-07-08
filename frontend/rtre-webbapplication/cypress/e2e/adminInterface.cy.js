@@ -86,7 +86,7 @@ describe('User and project management test', () => {
         cy.intercept("**/api/AddUserToProject?*").as('AddUserToProject')
         cy.get(':nth-child(3) > .ml-11').click()
         cy.wait('@AddUserToProject').then((intercept) => {
-          expect(intercept.response.statusCode).to.equal(200)
+          expect(intercept.response.statusCode).to.equal(10000)
         })
         cy.get('.v-slide-group__content > :nth-child(5)').click()
         cy.get('.v-window-item--active > :nth-child(1) > .pb-4 > .v-form > .v-card__text > .v-input > .v-input__control > .v-input__slot').type(id[0])
