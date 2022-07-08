@@ -68,135 +68,135 @@ describe('User and project management test', () => {
 
     })
 
-    it('Add User to project the latest project, also check if users exist in the project after ', () =>{
-      cy.get(':nth-child(7) > .v-btn > .v-btn__content').click()
-      cy.get('.v-slide-group__content > :nth-child(3)').click()
-      cy.get('.v-expansion-panel-header').click()
-      cy.get('.v-expansion-panel-content__wrap > :nth-child(1)').then(($id) => {
+    // it('Add User to project the latest project, also check if users exist in the project after ', () =>{
+    //   cy.get(':nth-child(7) > .v-btn > .v-btn__content').click()
+    //   cy.get('.v-slide-group__content > :nth-child(3)').click()
+    //   cy.get('.v-expansion-panel-header').click()
+    //   cy.get('.v-expansion-panel-content__wrap > :nth-child(1)').then(($id) => {
 
-          var fullText = $id.text();
-          var pattern = /[0-9]+/g;
-          var number = fullText.match(pattern);
-        let id = number
-        cy.wrap(id).as('id')
-      })
+    //       var fullText = $id.text();
+    //       var pattern = /[0-9]+/g;
+    //       var number = fullText.match(pattern);
+    //     let id = number
+    //     cy.wrap(id).as('id')
+    //   })
 
-      cy.get('@id').then((id) => {
-        cy.get('.v-window-item--active > .pb-4 > .v-form > .v-card__text > .v-input > .v-input__control > .v-input__slot').type(id[0])
-        cy.get('.v-window-item--active > .pb-4 > .v-form > :nth-child(2) > .v-input__control > .v-input__slot').type(userEmail)
-        cy.intercept("**/api/AddUserToProject?*").as('AddUserToProject')
-        cy.get(':nth-child(3) > .ml-11').click()
-        cy.wait('@AddUserToProject').then((intercept) => {
-          expect(intercept.response.statusCode).to.equal(200)
-        })
-        cy.get('.v-slide-group__content > :nth-child(5)').click()
-        cy.get('.v-window-item--active > :nth-child(1) > .pb-4 > .v-form > .v-card__text > .v-input > .v-input__control > .v-input__slot').type(id[0])
-        cy.get('.v-window-item--active > :nth-child(1) > .pb-4 > .v-form > .ml-11').click()
-        cy.wait(2000)
-        cy.get('.v-window-item--active > :nth-child(1) > .pb-4').should('contain', userEmail)
+    //   cy.get('@id').then((id) => {
+    //     cy.get('.v-window-item--active > .pb-4 > .v-form > .v-card__text > .v-input > .v-input__control > .v-input__slot').type(id[0])
+    //     cy.get('.v-window-item--active > .pb-4 > .v-form > :nth-child(2) > .v-input__control > .v-input__slot').type(userEmail)
+    //     cy.intercept("**/api/AddUserToProject?*").as('AddUserToProject')
+    //     cy.get(':nth-child(3) > .ml-11').click()
+    //     cy.wait('@AddUserToProject').then((intercept) => {
+    //       expect(intercept.response.statusCode).to.equal(200)
+    //     })
+    //     cy.get('.v-slide-group__content > :nth-child(5)').click()
+    //     cy.get('.v-window-item--active > :nth-child(1) > .pb-4 > .v-form > .v-card__text > .v-input > .v-input__control > .v-input__slot').type(id[0])
+    //     cy.get('.v-window-item--active > :nth-child(1) > .pb-4 > .v-form > .ml-11').click()
+    //     cy.wait(2000)
+    //     cy.get('.v-window-item--active > :nth-child(1) > .pb-4').should('contain', userEmail)
       
-      })
-    })
+    //   })
+    // })
 
-    it('Login to second user to check if user has access', () => {
-      cy.window().then((win) => {
-        win.sessionStorage.clear()
-      });
+    // it('Login to second user to check if user has access', () => {
+    //   cy.window().then((win) => {
+    //     win.sessionStorage.clear()
+    //   });
   
-      cy.visit(url)
-      cy.url().should('include', 'Login')
+    //   cy.visit(url)
+    //   cy.url().should('include', 'Login')
   
-      cy.get('input#input-38').type(userEmail)
-      cy.get('input#input-41').type(password)
-      cy.intercept("**/api/login?*").as('userLogin')
-      cy.get('.col-sm-3 > .v-btn > .v-btn__content').click()
+    //   cy.get('input#input-38').type(userEmail)
+    //   cy.get('input#input-41').type(password)
+    //   cy.intercept("**/api/login?*").as('userLogin')
+    //   cy.get('.col-sm-3 > .v-btn > .v-btn__content').click()
   
-      cy.wait('@userLogin').then((intercept) => {
-        expect(intercept.response.statusCode).to.equal(200)
-      })
-      cy.get('.rounded-0 > .v-toolbar__content > .v-toolbar__title').should('contain', 'User Profile')
-      cy.wait(5000)
-      cy.get('.v-expansion-panel-header').should('contain', projectName)
-    })
+    //   cy.wait('@userLogin').then((intercept) => {
+    //     expect(intercept.response.statusCode).to.equal(200)
+    //   })
+    //   cy.get('.rounded-0 > .v-toolbar__content > .v-toolbar__title').should('contain', 'User Profile')
+    //   cy.wait(5000)
+    //   cy.get('.v-expansion-panel-header').should('contain', projectName)
+    // })
 
-    it('logout and gain access to admin interface for the next step', () => {
+    // it('logout and gain access to admin interface for the next step', () => {
 
-      cy.window().then((win) => {
-        win.sessionStorage.clear()
-      });
-      cy.visit(url)
-      cy.url().should('include', 'Login')
-      cy.get('input#input-38').type(adminEmail)
-      cy.get('input#input-41').type(password)
-      cy.get('.col-sm-3 > .v-btn > .v-btn__content').click()
-       cy.window().then((win) => {
-        win.sessionStorage.clear()
-      });
-    })
+    //   cy.window().then((win) => {
+    //     win.sessionStorage.clear()
+    //   });
+    //   cy.visit(url)
+    //   cy.url().should('include', 'Login')
+    //   cy.get('input#input-38').type(adminEmail)
+    //   cy.get('input#input-41').type(password)
+    //   cy.get('.col-sm-3 > .v-btn > .v-btn__content').click()
+    //    cy.window().then((win) => {
+    //     win.sessionStorage.clear()
+    //   });
+    // })
 
-    it('Remove user from latest project, also check if user has been removed from project', () =>{
-      cy.get(':nth-child(7) > .v-btn > .v-btn__content').click()
-      cy.get('.v-slide-group__content > :nth-child(4)').click()
-      cy.get('.v-expansion-panel-header').click()
-       cy.get('.v-expansion-panel-content__wrap > :nth-child(1)').then(($id) => {
+    // it('Remove user from latest project, also check if user has been removed from project', () =>{
+    //   cy.get(':nth-child(7) > .v-btn > .v-btn__content').click()
+    //   cy.get('.v-slide-group__content > :nth-child(4)').click()
+    //   cy.get('.v-expansion-panel-header').click()
+    //    cy.get('.v-expansion-panel-content__wrap > :nth-child(1)').then(($id) => {
 
-          var fullText = $id.text();
-          var pattern = /[0-9]+/g;
-          var number = fullText.match(pattern);
-        let id = number
-        cy.wrap(id).as('id')
-      })
+    //       var fullText = $id.text();
+    //       var pattern = /[0-9]+/g;
+    //       var number = fullText.match(pattern);
+    //     let id = number
+    //     cy.wrap(id).as('id')
+    //   })
 
-      cy.get('@id').then((id) => {
-        cy.get('.v-window-item--active > .pb-4 > .v-form > .v-card__text > .v-input > .v-input__control > .v-input__slot').type(id[0])
-        cy.get('.v-window-item--active > .pb-4 > .v-form > :nth-child(2) > .v-input__control > .v-input__slot').type(userEmail)
-        cy.intercept("**/api/RemoveUserFromProject?*").as('RemoveUserFromProject')
-        cy.get(':nth-child(4) > .ml-11').click()
-        cy.wait('@RemoveUserFromProject').then((intercept) => {
-          expect(intercept.response.statusCode).to.equal(200)
-        })
-        cy.get('.v-slide-group__content > :nth-child(5)').click()
-        cy.get('.v-window-item--active > :nth-child(1) > .pb-4 > .v-form > .v-card__text > .v-input > .v-input__control > .v-input__slot').type(id[0])
-        cy.get('.v-window-item--active > :nth-child(1) > .pb-4 > .v-form > .ml-11').click()
-        cy.wait(2000)
-        cy.get('.v-window-item--active > :nth-child(1) > .pb-4').should('not.contain', userEmail)
-      })
-    })
+    //   cy.get('@id').then((id) => {
+    //     cy.get('.v-window-item--active > .pb-4 > .v-form > .v-card__text > .v-input > .v-input__control > .v-input__slot').type(id[0])
+    //     cy.get('.v-window-item--active > .pb-4 > .v-form > :nth-child(2) > .v-input__control > .v-input__slot').type(userEmail)
+    //     cy.intercept("**/api/RemoveUserFromProject?*").as('RemoveUserFromProject')
+    //     cy.get(':nth-child(4) > .ml-11').click()
+    //     cy.wait('@RemoveUserFromProject').then((intercept) => {
+    //       expect(intercept.response.statusCode).to.equal(200)
+    //     })
+    //     cy.get('.v-slide-group__content > :nth-child(5)').click()
+    //     cy.get('.v-window-item--active > :nth-child(1) > .pb-4 > .v-form > .v-card__text > .v-input > .v-input__control > .v-input__slot').type(id[0])
+    //     cy.get('.v-window-item--active > :nth-child(1) > .pb-4 > .v-form > .ml-11').click()
+    //     cy.wait(2000)
+    //     cy.get('.v-window-item--active > :nth-child(1) > .pb-4').should('not.contain', userEmail)
+    //   })
+    // })
     
-    it('Login to second user to check if user has lost access', () => {
-      cy.window().then((win) => {
-        win.sessionStorage.clear()
-      });
+    // it('Login to second user to check if user has lost access', () => {
+    //   cy.window().then((win) => {
+    //     win.sessionStorage.clear()
+    //   });
   
-      cy.visit(url)
-      cy.url().should('include', 'Login')
+    //   cy.visit(url)
+    //   cy.url().should('include', 'Login')
   
-      cy.get('input#input-38').type(userEmail)
-      cy.get('input#input-41').type(password)
-      cy.intercept("**/api/login?*").as('userLogin')
-      cy.get('.col-sm-3 > .v-btn > .v-btn__content').click()
+    //   cy.get('input#input-38').type(userEmail)
+    //   cy.get('input#input-41').type(password)
+    //   cy.intercept("**/api/login?*").as('userLogin')
+    //   cy.get('.col-sm-3 > .v-btn > .v-btn__content').click()
   
-      cy.wait('@userLogin').then((intercept) => {
-        expect(intercept.response.statusCode).to.equal(200)
-      })
-      cy.get('.rounded-0 > .v-toolbar__content > .v-toolbar__title').should('contain', 'User Profile')
-      cy.wait(2000)
-      cy.get('.v-expansion-panel-header').should('not.exist')
-    })
+    //   cy.wait('@userLogin').then((intercept) => {
+    //     expect(intercept.response.statusCode).to.equal(200)
+    //   })
+    //   cy.get('.rounded-0 > .v-toolbar__content > .v-toolbar__title').should('contain', 'User Profile')
+    //   cy.wait(2000)
+    //   cy.get('.v-expansion-panel-header').should('not.exist')
+    // })
 
-    //TESTING GIVING A USER ACCESS TO PROJECT // LOGIN TO ALT AND SEE IF IT WENT TROUGH
+    // //TESTING GIVING A USER ACCESS TO PROJECT // LOGIN TO ALT AND SEE IF IT WENT TROUGH
 
-    // TESTING SEEING A LIST OF ALL USERS IN PROJECT
+    // // TESTING SEEING A LIST OF ALL USERS IN PROJECT
 
-    // POST A IFC AND CHECK IF IT SSHOWS UP IN PROJECTS USING REFRESH BUTTON// LOGIN TO ALT AND SEE IF THEY ALSO GOT IT
+    // // POST A IFC AND CHECK IF IT SSHOWS UP IN PROJECTS USING REFRESH BUTTON// LOGIN TO ALT AND SEE IF THEY ALSO GOT IT
 
-    // DOWNLOAD A IFC FILE
+    // // DOWNLOAD A IFC FILE
 
-    //MERGE IFC FILE
+    // //MERGE IFC FILE
 
-    //CHECK NOTIFICATIONS// FOR BOTH ACCOUNTS
+    // //CHECK NOTIFICATIONS// FOR BOTH ACCOUNTS
 
-    //DELETE NOTIFICATIONS // SEE IF THE NOTICE IS USER BASED
+    // //DELETE NOTIFICATIONS // SEE IF THE NOTICE IS USER BASED
 
-    // REMOVE USER FROM PROJECT 
+    // // REMOVE USER FROM PROJECT 
 })
