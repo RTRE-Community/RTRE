@@ -77,7 +77,7 @@ jobs:
         run: |
           pwd
           ls
-          cd Server/target 
+          cd Server
           mvn spring-boot:run &
           sleep 10 
       - name: start frontend and run test
