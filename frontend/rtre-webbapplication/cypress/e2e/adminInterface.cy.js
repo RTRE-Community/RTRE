@@ -39,7 +39,7 @@ describe('User and project management test', () => {
       cy.visit(url)
       cy.url().should('include', 'Login')
 
-      cy.get('input#input-38').type(adminEmail)
+      cy.get('input#input-38').type(userEmail)
       cy.get('input#input-41').type(password)
       cy.intercept("**/api/login?*").as('adminLogin')
       cy.get('.col-sm-3 > .v-btn > .v-btn__content').click()
@@ -50,22 +50,22 @@ describe('User and project management test', () => {
       cy.get('.rounded-0 > .v-toolbar__content > .v-toolbar__title').should('contain', 'User Profile')
     })
 
-    it('Create a Project', () => {
+    // it('Create a Project', () => {
       
-      cy.get(':nth-child(7) > .v-btn > .v-btn__content').click()
-      cy.get('.v-slide-group__content').should('exist')
-      cy.get('.v-card__text > .v-input > .v-input__control > .v-input__slot').type(projectName)
-      cy.get('.v-select__selections').click()
-      cy.get('.v-list-item__content').contains('Ifc4').click()
-      cy.intercept("**/api/CreateProject?*").as('createProject')
-      cy.get('.ml-11 > .v-btn__content').click()
-      cy.wait('@createProject').then((intercept) => {
-        expect(intercept.response.statusCode).to.equal(200)
-      })
-      cy.get(':nth-child(4) > .v-btn').click()
-      //cy.wait(2000)
-      //cy.get('.v-expansion-panel-header').should('contain', projectName)
-    })
+    //   cy.get(':nth-child(7) > .v-btn > .v-btn__content').click()
+    //   cy.get('.v-slide-group__content').should('exist')
+    //   cy.get('.v-card__text > .v-input > .v-input__control > .v-input__slot').type(projectName)
+    //   cy.get('.v-select__selections').click()
+    //   cy.get('.v-list-item__content').contains('Ifc4').click()
+    //   cy.intercept("**/api/CreateProject?*").as('createProject')
+    //   cy.get('.ml-11 > .v-btn__content').click()
+    //   cy.wait('@createProject').then((intercept) => {
+    //     expect(intercept.response.statusCode).to.equal(200)
+    //   })
+    //   cy.get(':nth-child(4) > .v-btn').click()
+    //   cy.wait(2000)
+    //   cy.get('.v-expansion-panel-header').should('contain', projectName)
+    // })
 
     // it('Add User to project the latest project, also check if users exist in the project after ', () =>{
     //   cy.get(':nth-child(7) > .v-btn > .v-btn__content').click()
