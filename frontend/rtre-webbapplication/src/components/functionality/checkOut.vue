@@ -1,6 +1,6 @@
 <template>
 <div>
-    <div v-if="presentQuery">
+    <div v-if="!presentQuery">
 <v-card flat>
     <v-card-text>
         <v-form ref="form">
@@ -11,7 +11,7 @@
     <SnackBar :response="response"></SnackBar>
 </v-card>
 </div>
-<div v-if="!presentQuery">
+<div v-if="presentQuery">
 <v-card flat>
     <v-card-text>
         <v-form ref="form">
@@ -63,27 +63,27 @@ export default {
         };
     },
     created(){
-        this.Querys = JSON.parse(localStorage.getItem("Querys") || "[]")
-        
-        console.log(this.Querys)
-        for(let i = 0; i< this.Querys.length; i++){
-            this.items.push(this.Querys[i].type.name);
-            //this.items[i] = this.Querys[i].name;
-        }
 
+        //this.Querys = JSON.parse(localStorage.getItem("Querys") || "[]")
+        this.Querys = JSON.parse(sessionStorage.getItem('Querys'));
+        for(let i = 0; i< this.Querys.length; i++) {
+            this.items.push(this.Querys[i].type.name);
+            //this.items[i] = this.Querys[i].type.name;
+        }
+        console.log(this.Querys);
         if(this.items.length > 0){
-            this.presentQuery = false;
+            this.presentQuery = true;
         }else {
             this.presentQuery = false;
         }
         
-       
     },
     methods: {
         async checkOut() {
-            if (this.$refs.form.validate() && this.presentQuery) {
+            if (this.$refs.form.validate() && !this.presentQuery) {
                 let that = this;
                 Vue.set(this.loading, 0, true)
+                console.log('no query')
                 await Axios({
                         url: process.env.VUE_APP_RTRE_BACKEND_PORT + "/api/getIfc?fileName=" + this.id,
                         methods: "GET",
@@ -100,11 +100,21 @@ export default {
                     Vue.set(this.loading, 0, false)
 
             } else {
+                let query = {};
+                console.log(this.selectedQuery);
+                for(let i = 0; i < this.Querys.length; i++){
+                    console.log(this.Querys[i].type.name);
+                    if(this.Querys[i].type.name === this.selectedQuery){
+                        query = this.Querys[i];
+                        console.log(this.Querys[i]);
+                    }
+                }
+                console.log(query);
                 let that = this;
                 Vue.set(this.loading, 0, true)
                 axios.get(process.env.VUE_APP_RTRE_BACKEND_PORT + '/api/getIfc?' + new URLSearchParams({
                 fileName: this.id,
-                query: this.selectedFormat
+                query: JSON.stringify(query)
             })).then((resp) => {
                 FileDownload(resp.data, "myIfcFile.ifc")
                     this.response = resp

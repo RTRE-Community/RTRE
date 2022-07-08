@@ -87,7 +87,6 @@ export default ({
             }).then((resp) => {
 
                 // this.Query = resp,data.Query
-                console.log(resp.data);
 
                 if(resp.data.length > 0){
                     for(let i = 0; i < resp.data.length; i++) {
@@ -98,6 +97,8 @@ export default ({
                     }
                 }
                 this.loadQuerys();
+                console.log(this.persistentQuerys);
+                sessionStorage.setItem('Querys', JSON.stringify(this.persistentQuerys));
                 //this.notifications = resp.data;
            
                 //this.$store.dispatch('updateNotification', resp.data)
@@ -113,22 +114,26 @@ export default ({
                 }
                 }).then((resp) => {
 
-                if(!(this.persistentQuerys.includes(resp.data[i]))){
+                if(!(this.containsObject(resp.data, this.persistentQuerys ))){
                     this.persistentQuerys.push(resp.data);
                 }
-
-                // this.Query = resp,data.Query 
-                console.log(resp.data);
-
-                
+                // this.Query = resp.data.Query 
             })
 
             }
-            console.log(this.persistentQuerys);
-            localStorage.setItem('Querys', JSON.stringify(this.persistentQuerys));
+            //localStorage.setItem('Querys', JSON.stringify(this.persistentQuerys));
             EventEmitter.eventEmitter.emit('QuerySetted', this.persistentQuerys);
         
-
+        },
+        containsObject(obj, list) {
+            let i;
+            for (i = 0; i < list.length; i++) {
+                if(JSON.stringify(list[i]) === JSON.stringify(obj)) {
+                        
+                    return true;
+                }
+            }
+            return false;
         },
         deleteNotification(notificationId) {
             axios.delete(process.env.VUE_APP_RTRE_BACKEND_PORT + "/api/deleteNotification?", {

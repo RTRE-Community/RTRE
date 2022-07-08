@@ -36,8 +36,8 @@ public class IfcController {
 
     @GetMapping("/getIfc")
     @ResponseBody
-    public ResponseEntity<String> getIfc(@RequestParam Long fileName, HttpServletResponse response){
-        return IfcGetService.downloadIfc(fileName,response);}
+    public ResponseEntity<String> getIfc(@RequestParam Long fileName, HttpServletResponse response, String query){
+        return IfcGetService.downloadIfc(fileName,response, query);}
 
     @GetMapping("/getProjectList")
     @ResponseBody

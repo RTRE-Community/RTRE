@@ -122,7 +122,7 @@ export default ({
               this.Users[i].messages['message'] = [];
           }
 
-        setInterval(this.updateMessages, 5000);
+        //setInterval(this.updateMessages, 5000);
     
     },
     data() {
