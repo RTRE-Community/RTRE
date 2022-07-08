@@ -28,7 +28,7 @@ jobs:
         run: |
           touch ./Server/serviceAccountKey.json
           echo "$SERVICE_ACCOUNT_KEY" >> ./Server/serviceAccountKey.json
-          cat ./Server/serviceAccountKey.json
+          cat Server/serviceAccountKey.json
           cd Server
           ls
         shell: bash
@@ -94,3 +94,8 @@ jobs:
       #     cd ../frontend/rtre-webbapplication/
       #     npm i
       #     npm run cy:run
+      - name: Upload artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: cypress-reports
+          path: /home/runner/work/RTRE/RTRE/frontend/rtre-webbapplication/cypress/videos/adminInterface.cy.js.mp4
