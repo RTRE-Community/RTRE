@@ -77,8 +77,8 @@ jobs:
         run: |
           pwd
           ls
-          cd Server/target &&
-          java -jar rtre-docker.jar &
+          cd Server &&
+          mvn spring-boot:run &
           sleep 30 
       - name: start frontend and run test
         run: |
