@@ -46,8 +46,7 @@ jobs:
           install: true
       - name: Build Springboot image
         run: |
-          cd Server/src
-          ls
+          cd Server
           docker build -t backend/app:latest .
       - name: Build Frontend image
         run: |
@@ -63,5 +62,6 @@ jobs:
         run: docker run -p 8080:80 frontend/app:latest
       - name: Run cypress test
         run: |
+          cd ../frontend/rtre-webbapplication/
           npm i
           npm run cy:run
