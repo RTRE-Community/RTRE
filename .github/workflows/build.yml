@@ -20,6 +20,10 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
+      - name: setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
       - name: Write Secrets
         run: |
           touch ./Server/serviceAccountKey.json
@@ -33,7 +37,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: SERVICE_ACCOUNT_KEY
-          path: ./serviceAccountKey.json
+          path: ./Service/serviceAccountKey.json
       - name: Build Maven
         run: |
           pwd
