@@ -72,11 +72,11 @@ jobs:
         uses: cypress-io/github-action@v4
         with:
           working-directory: ./frontend/rtre-webbapplication/
-          build: npm run serve
           start: |
+            npm run serve
             cd ../Server/target
             java: -jar rtre-docker.jar
-          wait-on: 'http://localhost:3030'
+          wait-on: 'http://localhost:3030, http//localhost:8080'
       # - name: Run cypress test
       #   run: |
       #     cd ../frontend/rtre-webbapplication/
