@@ -55,13 +55,29 @@ jobs:
           cd frontend/rtre-webbapplication/
           docker build -t frontend/app:latest .
       - name: Get Bimserver from DockerHub and run
-        run: |
-          docker pull disitlab/bimserver:1.5.182
-          docker run -p 8082:8080 disitlab/bimserver:1.5.182
-      - name: Create Springboot container
-        run: docker run -p 3030:3030 backend/app:latest
-      - name: Create Frontend container
-        run: docker run -p 8080:80 frontend/app:latest
+        #run: |
+        #  docker pull disitlab/bimserver:1.5.182
+         # docker run -p 8082:8080 disitlab/bimserver:1.5.182
+      #- name: Create Springboot container
+      #  run: docker run -p 3030:3030 backend/app:latest
+      #- name: Create Frontend container
+       # run: docker run -p 8080:80 frontend/app:latest
+    services:
+      bimserver:
+        image: disitlab/bimserver:1.5.182
+        ports: 
+          - 8082:8080
+      Springboot:
+        image: backend/app:latest
+        ports:
+          - 3030:3030
+      Frontend:
+        image: frontend/app:latest
+        ports:
+          - 8080:80
+  ddfeg:
+    runs-on: ubuntu-latest
+    steps:
       - name: Run cypress test
         run: |
           cd ../frontend/rtre-webbapplication/
