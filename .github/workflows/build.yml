@@ -68,19 +68,17 @@ jobs:
       #   run: docker run -p 3030:3030 backend/app:latest
       # - name: Create Frontend container
       #   run: docker run -p 8080:80 frontend/app:latest
-      - name: cd to frontend
-        run: cd frontend/rtre-webbapplication/
       - name: Cypress Run
         uses: cypress-io/github-action@v4
         with:
+          working-directory: ./frontend/rtre-webbapplication/
           build: |
-            echo cd frontend/rtre-webbapplication/
             npm i
             npm run serve
           start: |
-            cd Server/target
+            cd ../Server/target
             java: -jar rtre-docker.jar
-          wait-on: 'http://localhost:8080'
+          wait-on: 'http://localhost:3030'
       # - name: Run cypress test
       #   run: |
       #     cd ../frontend/rtre-webbapplication/
