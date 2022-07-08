@@ -26,9 +26,9 @@ jobs:
           node-version: 16
       - name: Write Secrets
         run: |
-          touch ./serviceAccountKey.json
-          echo "$SERVICE_ACCOUNT_KEY" >> ./serviceAccountKey.json
-          cat ./serviceAccountKey.json
+          touch .Server/serviceAccountKey.json
+          echo "$SERVICE_ACCOUNT_KEY" >> .Server/serviceAccountKey.json
+          cat .Server/serviceAccountKey.json
           cd Server
           ls
         shell: bash
@@ -38,7 +38,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: SERVICE_ACCOUNT_KEY
-          path: ./serviceAccountKey.json
+          path: .Server/serviceAccountKey.json
       - name: Build Maven
         run: |
           pwd
@@ -77,9 +77,9 @@ jobs:
         run: |
           pwd
           ls
-          cd Server/target &&
-          java -jar rtre-docker.jar &
-          sleep 10 &
+          cd Server/target 
+          mvn Spring-boot:run &
+          sleep 10 
       - name: start frontend and run test
         run: |
           cd frontend/rtre-webbapplication 
