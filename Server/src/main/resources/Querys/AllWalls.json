@@ -1,0 +1,10 @@
+{
+  "type": "IfcWall",
+  "includeAllSubtypes": true,
+  "includes": [
+    "validifc:ContainedInStructure",
+    "validifc:OwnerHistory",
+    "validifc:Representation",
+    "validifc:ObjectPlacement"
+  ]
+}

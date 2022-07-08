@@ -1,0 +1,23 @@
+{
+  "type": {
+    "name": "IfcWall",
+    "includeAllSubTypes": true
+  },
+  "include": {
+    "type": "IfcWall",
+    "field": "HasOpenings",
+    "include": {
+      "type": "IfcRelVoidsElement",
+      "field": "RelatedOpeningElement",
+      "include": {
+        "type": "IfcOpeningElement",
+        "field": "HasFillings",
+        "include": {
+          "type": "IfcRelFillsElement",
+          "field": "RelatedBuildingElement",
+          "outputType": "IfcWindow"
+        }
+      }
+    }
+  }
+}

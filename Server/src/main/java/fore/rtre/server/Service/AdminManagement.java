@@ -2,7 +2,12 @@ package fore.rtre.server.Service;
 
 import fore.rtre.server.Main;
 import fore.rtre.server.Helper_Classes.User;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.cloud.firestore.Firestore;
+import com.google.cloud.firestore.v1.FirestoreClient;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.json.JsonBimServerClientFactory;
@@ -193,11 +198,11 @@ public class AdminManagement {
                                 User newUser = new User(userList.get(i).get(s).getName(), 
                                 userList.get(i).get(s).getUsername(), 
                                 userList.get(i).get(s).getOid());
-                                users.add(newUser);
+                                if(!users.contains(newUser)){
+                                    users.add(newUser);
+                                }
                             }
-
                         }
-                     
                         String result = new Gson().toJson(users);
                         System.out.println(result.toString());
                         return new ResponseEntity<String>(result, HttpStatus.valueOf(200));
@@ -250,6 +255,11 @@ public class AdminManagement {
         return new ResponseEntity<>("error" ,HttpStatus.INTERNAL_SERVER_ERROR);
         
     }
+
+
+  
+
+
 
 
 

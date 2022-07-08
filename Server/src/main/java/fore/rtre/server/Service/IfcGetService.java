@@ -30,7 +30,7 @@ public class IfcGetService {
 
 
 
-    public static ResponseEntity<String> downloadIfc(Long fileName, HttpServletResponse response){
+    public static ResponseEntity<String> downloadIfc(Long fileName, HttpServletResponse response, String query){
         try{
             // initialize "BimServer" client and authentication
             String relativePath = "src\\main\\resources\\BimServerInstallTempFolder\\";
@@ -44,7 +44,14 @@ public class IfcGetService {
             // Start the download process and receive a topic id
 
             //Installation process
-            long topicId =  BimserverConfig.client.getServiceInterface().download(Collections.singleton(project.getLastRevisionId()),"{}",serializer.getOid(),false);
+            String downloadQuery = "";
+            if(query.length() < 1){
+                downloadQuery = "{}";
+            }else {
+                downloadQuery = query;
+            }
+            System.out.println(downloadQuery);
+            long topicId =  BimserverConfig.client.getServiceInterface().download(Collections.singleton(project.getLastRevisionId()),downloadQuery,serializer.getOid(),false);
             // Use the topic id from "BimServer" which contains the file data to download it
             InputStream is = BimserverConfig.client.getServiceInterface().getDownloadData(topicId).getFile().getInputStream();
             File targetFile = new File(relativePath + uniqueName +".ifc");

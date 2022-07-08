@@ -1,0 +1,9 @@
+{
+  "type": {
+    "name": "IfcProduct",
+    "includeAllSubTypes": true
+  },
+  "classifications": [
+    "57.2"
+  ]
+}

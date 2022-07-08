@@ -1,0 +1,12 @@
+{
+  "type": {
+    "name": "IfcWall",
+    "includeAllSubTypes": true
+  },
+  "properties": {
+    "ThermalTransmittance": {
+      "comparator": ">",
+      "value": 0.2
+    }
+  }
+}

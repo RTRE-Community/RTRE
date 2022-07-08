@@ -1,0 +1,17 @@
+{
+  "names": [
+    "AllWalls",
+    "AllWallsIncludingDecomposition",
+    "AllWallsIncludingWindows",
+    "AllWallsAndSlabs",
+    "SpecificWallsByGuid",
+    "SpecificBuildingStoreyIncContains",
+    "AllPropertiesOf2Spaces1Wall",
+    "AllPropertiesOfAllWalls",
+    "ExternalWalls",
+    "ClassificationDakenConstructief",
+    "ThermalTransmittance",
+    "IfcPresentationLayerAssignment",
+    "ObjectInBoundingBox"
+  ]
+}
