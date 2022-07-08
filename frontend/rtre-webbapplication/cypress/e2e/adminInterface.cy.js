@@ -68,6 +68,8 @@ describe('User and project management test', () => {
 
     })
 
+    process.exit(1)
+
     // it('Add User to project the latest project, also check if users exist in the project after ', () =>{
     //   cy.get(':nth-child(7) > .v-btn > .v-btn__content').click()
     //   cy.get('.v-slide-group__content > :nth-child(3)').click()
