@@ -65,10 +65,7 @@ describe('User and project management test', () => {
       cy.get(':nth-child(4) > .v-btn').click()
       cy.wait(2000)
       cy.get('.v-expansion-panel-header').should('contain', projectName)
-
     })
-
-    process.exit(1)
 
     // it('Add User to project the latest project, also check if users exist in the project after ', () =>{
     //   cy.get(':nth-child(7) > .v-btn > .v-btn__content').click()

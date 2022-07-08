@@ -41,13 +41,10 @@ jobs:
           path: Server/serviceAccountKey.json
       - name: Build Maven
         run: |
-          pwd
           cd Server
           mvn -B clean verify
       - name: Package Maven
         run: |
-          ls
-          pwd
           cd Server
           mvn -B package
       #  name: run backend
@@ -77,17 +74,12 @@ jobs:
         run: sleep 60
       - name: start backend
         run: |
-          pwd
-          ls
           cd Server &&
           mvn spring-boot:run &
-          sleep 120 
+          sleep 80 
       - name: start frontend and run test
         run: |
           cd frontend/rtre-webbapplication 
-          pwd
-          ls
-          npm install
           npm run serve &
           sleep 60 
           npm run cy:run 
