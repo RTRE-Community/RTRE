@@ -5,8 +5,8 @@ const chance = new Chance()
 
 
 const adminEmail = 'admin@admin.com'
-const userEmail ='cypress@test.com'
-const projectName = 'cypressTest'
+const userEmail ='cypressssssssssssssssss@test.com'
+const projectName = 'cypresssssssssssssssssssTest'
 const password = 'password'
 
 
@@ -76,20 +76,15 @@ describe('User and project management test', () => {
       cy.get(':nth-child(7) > .v-btn > .v-btn__content').click()
       cy.wait('@getProjectList').then((intercept) => {
         expect(intercept.response.body.length).to.be.greaterThan(0)
-      })
-      cy.get('.v-slide-group__content > :nth-child(3)').click()
-      cy.get('.v-expansion-panel-header').click()
-      cy.get('.v-expansion-panel-content__wrap > :nth-child(1)').then(($id) => {
-
-          var fullText = $id.text();
-          var pattern = /[0-9]+/g;
-          var number = fullText.match(pattern);
+        var number = intercept.response.body[0].oid
         let id = number
+        console.log(id)
         cy.wrap(id).as('id')
       })
-///api/getProjectList?
+      cy.get('.v-slide-group__content > :nth-child(3)').click()
+
       cy.get('@id').then((id) => {
-        cy.get('.v-window-item--active > .pb-4 > .v-form > .v-card__text > .v-input > .v-input__control > .v-input__slot').type(id[0])
+        cy.get('.v-window-item--active > .pb-4 > .v-form > .v-card__text > .v-input > .v-input__control > .v-input__slot').type(id)
         cy.get('.v-window-item--active > .pb-4 > .v-form > :nth-child(2) > .v-input__control > .v-input__slot').type(userEmail)
         cy.intercept("**/api/AddUserToProject?*").as('AddUserToProject')
         cy.get(':nth-child(3) > .ml-11').click()
@@ -97,7 +92,7 @@ describe('User and project management test', () => {
           expect(intercept.response.statusCode).to.equal(200)
         })
         cy.get('.v-slide-group__content > :nth-child(5)').click()
-        cy.get('.v-window-item--active > :nth-child(1) > .pb-4 > .v-form > .v-card__text > .v-input > .v-input__control > .v-input__slot').type(id[0])
+        cy.get('.v-window-item--active > :nth-child(1) > .pb-4 > .v-form > .v-card__text > .v-input > .v-input__control > .v-input__slot').type(id)
         cy.intercept("**/api/ViewUsers?*").as("viewUsers")
         cy.get('.v-window-item--active > :nth-child(1) > .pb-4 > .v-form > .ml-11').click()
         cy.wait('@viewUsers').then((intercept) => {
@@ -151,20 +146,15 @@ describe('User and project management test', () => {
       cy.get(':nth-child(7) > .v-btn > .v-btn__content').click()
       cy.wait('@getProjectList').then((intercept) => {
         expect(intercept.response.body.length).to.be.greaterThan(0)
-      })
-      cy.get('.v-slide-group__content > :nth-child(4)').click()
-      cy.get('.v-expansion-panel-header').click()
-       cy.get('.v-expansion-panel-content__wrap > :nth-child(1)').then(($id) => {
-
-          var fullText = $id.text();
-          var pattern = /[0-9]+/g;
-          var number = fullText.match(pattern);
+        var number = intercept.response.body[0].oid
         let id = number
+        console.log(id)
         cy.wrap(id).as('id')
       })
+      cy.get('.v-slide-group__content > :nth-child(4)').click()
 
       cy.get('@id').then((id) => {
-        cy.get('.v-window-item--active > .pb-4 > .v-form > .v-card__text > .v-input > .v-input__control > .v-input__slot').type(id[0])
+        cy.get('.v-window-item--active > .pb-4 > .v-form > .v-card__text > .v-input > .v-input__control > .v-input__slot').type(id)
         cy.get('.v-window-item--active > .pb-4 > .v-form > :nth-child(2) > .v-input__control > .v-input__slot').type(userEmail)
         cy.intercept("**/api/RemoveUserFromProject?*").as('remove')
         cy.get(':nth-child(4) > .ml-11').click()
@@ -172,7 +162,7 @@ describe('User and project management test', () => {
           expect(intercept.response.statusCode).to.equal(200)
         })
         cy.get('.v-slide-group__content > :nth-child(5)').click()
-        cy.get('.v-window-item--active > :nth-child(1) > .pb-4 > .v-form > .v-card__text > .v-input > .v-input__control > .v-input__slot').type(id[0])
+        cy.get('.v-window-item--active > :nth-child(1) > .pb-4 > .v-form > .v-card__text > .v-input > .v-input__control > .v-input__slot').type(id)
         cy.intercept("**/api/ViewUsers?*").as("viewUsers")
         cy.get('.v-window-item--active > :nth-child(1) > .pb-4 > .v-form > .ml-11').click()
         cy.wait('@viewUsers').then((intercept) => {
