@@ -38,8 +38,6 @@
 import Vue from 'vue'
 import SnackBar from './functionality/buttons/SnackBar.vue'
 import axios from 'axios'
-import json from '../assets/Querys.json'
-//const EventEmitter = require('../EventEmitter')
 
 export default {
     name: "ManageQueries",
@@ -80,7 +78,7 @@ export default {
             }
         }
         
-        for(let i = 0; i < json.names.length; i++){
+        for(let i = 0; i < this.Users.length; i++){
             this.items[i] = this.Users[i].name;
         }
 
@@ -105,6 +103,10 @@ export default {
     },
     methods: {
         RemoveQuery(){
+            if(this.selectedQuery.length < 1){
+                this.response = 404;
+                return;
+            }
             let index = this.getIndex(this.selectUser);
             axios.delete(process.env.VUE_APP_RTRE_BACKEND_PORT + '/api/deleteUserQuery?' + new URLSearchParams({
             oid: this.Users[index].oid,
@@ -131,7 +133,6 @@ export default {
                 this.overlay = true;
                 console.log(this.Queries);
                 this.response = resp;
-                console.log(resp.status);
                
             });
             Vue.set(this.loading, 0, false);
