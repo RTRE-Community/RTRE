@@ -234,24 +234,24 @@ describe('User and project management test', () => {
           cy.get('input#input-38').type(adminEmail)
           cy.get('input#input-41').type(password)
           cy.intercept("**/api/login?*").as('adminLogin')
+          cy.intercept("**/api/getProjectList?*").as('getProjectList')
           cy.get('.col-sm-3 > .v-btn > .v-btn__content').click()
     
              // admin has to give access
     
              cy.get(':nth-child(7) > .v-btn > .v-btn__content').click()
              cy.get('.v-slide-group__content > :nth-child(3)').click()
-             cy.get('.v-expansion-panel-header').click()
-             cy.get('.v-expansion-panel-content__wrap > :nth-child(1)').then(($id) => {
-       
-                 var fullText = $id.text();
-                 var pattern = /[0-9]+/g;
-                 var number = fullText.match(pattern);
-               let id = number
-               cy.wrap(id).as('id')
+
+             cy.wait('@getProjectList', {timeout:20000}).then((intercept) => {
+              expect(intercept.response.body.length).to.be.greaterThan(0)
+              var number = intercept.response.body[0].oid
+              let id = number
+              console.log(id)
+              cy.wrap(id).as('id')
              })
-       
+
              cy.get('@id').then((id) => {
-               cy.get('.v-window-item--active > .pb-4 > .v-form > .v-card__text > .v-input > .v-input__control > .v-input__slot').type(id[0])
+               cy.get('.v-window-item--active > .pb-4 > .v-form > .v-card__text > .v-input > .v-input__control > .v-input__slot').type(id)
                cy.get('.v-window-item--active > .pb-4 > .v-form > :nth-child(2) > .v-input__control > .v-input__slot').type(userEmail)
                cy.intercept("**/api/AddUserToProject?*").as('AddUserToProject')
                cy.get(':nth-child(3) > .ml-11').click()
@@ -259,7 +259,7 @@ describe('User and project management test', () => {
                  expect(intercept.response.statusCode).to.equal(200)
                })
                cy.get('.v-slide-group__content > :nth-child(5)').click()
-               cy.get('.v-window-item--active > :nth-child(1) > .pb-4 > .v-form > .v-card__text > .v-input > .v-input__control > .v-input__slot').type(id[0])
+               cy.get('.v-window-item--active > :nth-child(1) > .pb-4 > .v-form > .v-card__text > .v-input > .v-input__control > .v-input__slot').type(id)
                cy.get('.v-window-item--active > :nth-child(1) > .pb-4 > .v-form > .ml-11').click()
                cy.wait(2000)
                cy.get('.v-window-item--active > :nth-child(1) > .pb-4').should('contain', userEmail)
