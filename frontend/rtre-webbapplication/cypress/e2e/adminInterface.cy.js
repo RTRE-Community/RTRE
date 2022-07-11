@@ -74,7 +74,7 @@ describe('User and project management test', () => {
     it('Add User to project the latest project, also check if users exist in the project after ', () =>{
       cy.intercept("**/api/getProjectList?*").as('getProjectList')
       cy.get(':nth-child(7) > .v-btn > .v-btn__content').click()
-      cy.wait('@getProjectList').then((intercept) => {
+      cy.wait('@getProjectList', {timeout:20000}).then((intercept) => {
         expect(intercept.response.body.length).to.be.greaterThan(0)
         var number = intercept.response.body[0].oid
         let id = number
@@ -88,7 +88,7 @@ describe('User and project management test', () => {
         cy.get('.v-window-item--active > .pb-4 > .v-form > :nth-child(2) > .v-input__control > .v-input__slot').type(userEmail)
         cy.intercept("**/api/AddUserToProject?*").as('AddUserToProject')
         cy.get(':nth-child(3) > .ml-11').click()
-        cy.wait('@AddUserToProject', {timeout:20000}).then((intercept) => {
+        cy.wait('@AddUserToProject').then((intercept) => {
           expect(intercept.response.statusCode).to.equal(200)
         })
         cy.get('.v-slide-group__content > :nth-child(5)').click()
