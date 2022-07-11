@@ -62,15 +62,22 @@ describe('User and project management test', () => {
       cy.wait('@createProject').then((intercept) => {
         expect(intercept.response.statusCode).to.equal(200)
       })
+      cy.intercept("**/api/getProjectList?*").as('getProjectList')
       cy.get(':nth-child(4) > .v-btn').click()
-      cy.wait(14000)
-      cy.get('.v-expansion-panel-header').should('contain', projectName)
+      cy.wait('@getProjectList').then((intercept) => {
+        expect(intercept.response.body.length).to.be.greaterThan(0)
+      })
+      //cy.wait(2000)
+    //  cy.get('.v-expansion-panel-header').should('contain', projectName)
     })
 
     it('Add User to project the latest project, also check if users exist in the project after ', () =>{
+      cy.intercept("**/api/getProjectList?*").as('getProjectList')
       cy.get(':nth-child(7) > .v-btn > .v-btn__content').click()
+      cy.wait('@getProjectList').then((intercept) => {
+        expect(intercept.response.body.length).to.be.greaterThan(0)
+      })
       cy.get('.v-slide-group__content > :nth-child(3)').click()
-      cy.wait(14000)
       cy.get('.v-expansion-panel-header').click()
       cy.get('.v-expansion-panel-content__wrap > :nth-child(1)').then(($id) => {
 
@@ -80,7 +87,7 @@ describe('User and project management test', () => {
         let id = number
         cy.wrap(id).as('id')
       })
-
+///api/getProjectList?
       cy.get('@id').then((id) => {
         cy.get('.v-window-item--active > .pb-4 > .v-form > .v-card__text > .v-input > .v-input__control > .v-input__slot').type(id[0])
         cy.get('.v-window-item--active > .pb-4 > .v-form > :nth-child(2) > .v-input__control > .v-input__slot').type(userEmail)
@@ -91,8 +98,11 @@ describe('User and project management test', () => {
         })
         cy.get('.v-slide-group__content > :nth-child(5)').click()
         cy.get('.v-window-item--active > :nth-child(1) > .pb-4 > .v-form > .v-card__text > .v-input > .v-input__control > .v-input__slot').type(id[0])
+        cy.intercept("**/api/ViewUsers?*").as("viewUsers")
         cy.get('.v-window-item--active > :nth-child(1) > .pb-4 > .v-form > .ml-11').click()
-        cy.wait(14000)
+        cy.wait('@viewUsers').then((intercept) => {
+          expect(intercept.response.statusCode).to.equal(200)
+        })
         cy.get('.v-window-item--active > :nth-child(1) > .pb-4').should('contain', userEmail)
       
       })
@@ -108,14 +118,16 @@ describe('User and project management test', () => {
   
       cy.get('input#input-38').type(userEmail)
       cy.get('input#input-41').type(password)
+      cy.intercept("**/api/getProjectList?*").as('getProjectList')
       cy.intercept("**/api/login?*").as('userLogin')
       cy.get('.col-sm-3 > .v-btn > .v-btn__content').click()
-  
       cy.wait('@userLogin').then((intercept) => {
         expect(intercept.response.statusCode).to.equal(200)
       })
+      cy.wait('@getProjectList').then((intercept) => {
+        expect(intercept.response.body.length).to.be.greaterThan(0)
       cy.get('.rounded-0 > .v-toolbar__content > .v-toolbar__title').should('contain', 'User Profile')
-      cy.wait(5000)
+      })
       cy.get('.v-expansion-panel-header').should('contain', projectName)
     })
 
@@ -135,7 +147,11 @@ describe('User and project management test', () => {
     })
 
     it('Remove user from latest project, also check if user has been removed from project', () =>{
+      cy.intercept("**/api/getProjectList?*").as('getProjectList')
       cy.get(':nth-child(7) > .v-btn > .v-btn__content').click()
+      cy.wait('@getProjectList').then((intercept) => {
+        expect(intercept.response.body.length).to.be.greaterThan(0)
+      })
       cy.get('.v-slide-group__content > :nth-child(4)').click()
       cy.get('.v-expansion-panel-header').click()
        cy.get('.v-expansion-panel-content__wrap > :nth-child(1)').then(($id) => {
@@ -150,15 +166,18 @@ describe('User and project management test', () => {
       cy.get('@id').then((id) => {
         cy.get('.v-window-item--active > .pb-4 > .v-form > .v-card__text > .v-input > .v-input__control > .v-input__slot').type(id[0])
         cy.get('.v-window-item--active > .pb-4 > .v-form > :nth-child(2) > .v-input__control > .v-input__slot').type(userEmail)
-        cy.intercept("**/api/RemoveUserFromProject?*").as('RemoveUserFromProject')
+        cy.intercept("**/api/RemoveUserFromProject?*").as('remove')
         cy.get(':nth-child(4) > .ml-11').click()
-        cy.wait('@RemoveUserFromProject').then((intercept) => {
+        cy.wait('@remove').then((intercept) => {
           expect(intercept.response.statusCode).to.equal(200)
         })
         cy.get('.v-slide-group__content > :nth-child(5)').click()
         cy.get('.v-window-item--active > :nth-child(1) > .pb-4 > .v-form > .v-card__text > .v-input > .v-input__control > .v-input__slot').type(id[0])
+        cy.intercept("**/api/ViewUsers?*").as("viewUsers")
         cy.get('.v-window-item--active > :nth-child(1) > .pb-4 > .v-form > .ml-11').click()
-        cy.wait(2000)
+        cy.wait('@viewUsers').then((intercept) => {
+          expect(intercept.response.statusCode).to.equal(200)
+        })
         cy.get('.v-window-item--active > :nth-child(1) > .pb-4').should('not.contain', userEmail)
       })
     })
@@ -174,14 +193,18 @@ describe('User and project management test', () => {
       cy.get('input#input-38').type(userEmail)
       cy.get('input#input-41').type(password)
       cy.intercept("**/api/login?*").as('userLogin')
+      cy.intercept("**/api/getProjectList?*").as('getProjectList')
       cy.get('.col-sm-3 > .v-btn > .v-btn__content').click()
   
       cy.wait('@userLogin').then((intercept) => {
         expect(intercept.response.statusCode).to.equal(200)
       })
+      cy.wait('@getProjectList').then((intercept) => {
+        expect(intercept.response.body.length).to.equal(0)
+      })
       cy.get('.rounded-0 > .v-toolbar__content > .v-toolbar__title').should('contain', 'User Profile')
-      cy.wait(2000)
       cy.get('.v-expansion-panel-header').should('not.exist')
+      
     })
 
     //TESTING GIVING A USER ACCESS TO PROJECT // LOGIN TO ALT AND SEE IF IT WENT TROUGH
