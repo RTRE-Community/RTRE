@@ -31,6 +31,7 @@ public class BimserverConfig {
                 client = factory.create(new UsernamePasswordAuthenticationInfo("admin@admin.com", "password"));
 
             } catch (BimServerClientException | ServiceException | ChannelConnectionException e) {
+                System.out.println("Initializing Bimserver...");
                 try{
                     factory = new JsonBimServerClientFactory(Main.BimPort);
                     factory.create().getAdminInterface().setup("http://localhost:8082", "", "", "/img/bimserver.png", "Administrator", "admin@admin.com", "password");
@@ -68,7 +69,7 @@ public class BimserverConfig {
                     }
                     client.getPluginInterface().installPluginBundle("central (https://repo1.maven.org/maven2/, default, releases+snapshots)", "org.opensourcebim", "ifcplugins", "0.0.99", pluginInformation);
                     client.getPluginInterface().setDefaultRenderEngine(client.getPluginInterface().getAllRenderEngines(false).get(0).getOid());
-
+                    System.out.println("Setup done and connected to Bimserver!");
 
                 } catch (ServerException serverException) {
                     serverException.printStackTrace();
