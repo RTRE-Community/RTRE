@@ -20,6 +20,13 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
+      - name: setup python
+      - uses: actions/setup-python@v4
+        with:
+         python-version: '3.10.4' # Version range or exact version of a Python version to use, using SemVer's version range syntax
+      - run: |
+          pip install git+https://github.com/IfcOpenShell/IfcOpenShell/tree/v0.7.0/src/ifcopenshell-python.git#egg=ifcopenshell-python
+          pip install git+https://github.com/IfcOpenShell/IfcOpenShell/tree/v0.7.0/src/ifcpatch.git#egg=ifcpatch
       - name: setup node
         uses: actions/setup-node@v3
         with:
