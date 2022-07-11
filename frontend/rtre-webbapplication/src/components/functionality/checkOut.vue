@@ -109,7 +109,6 @@ export default {
                         console.log(this.Querys[i]);
                     }
                 }
-                console.log(query);
                 let that = this;
                 Vue.set(this.loading, 0, true)
                 axios.get(process.env.VUE_APP_RTRE_BACKEND_PORT + '/api/getIfc?' + new URLSearchParams({
