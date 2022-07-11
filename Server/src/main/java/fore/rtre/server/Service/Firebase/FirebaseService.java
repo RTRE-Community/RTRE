@@ -330,7 +330,7 @@ public class FirebaseService {
         
     }
 
-    public static ResponseEntity<String> getUserQuerys(String username, String oid) {
+    public static ResponseEntity<String> getUserQuerys(String oid) {
         try{
             Firestore dbFirestore = FirestoreClient.getFirestore();
 
@@ -370,4 +370,29 @@ public class FirebaseService {
 
     }
 
+
+    public static ResponseEntity<String> deleteUserQUery(String oid, String queryName) {
+        try{
+            Firestore dbFirestore = FirestoreClient.getFirestore();
+            CollectionReference QueryNotification = dbFirestore.collection("QueryNotification");
+
+            ApiFuture<QuerySnapshot> querySnapshot = QueryNotification.whereEqualTo("userId",oid)
+                                                                                        .whereEqualTo("queryTopic", queryName).get();
+            
+            DocumentSnapshot document = querySnapshot.get().getDocuments().get(0);
+
+            ApiFuture<WriteResult> collectionApiFuture = dbFirestore.collection("QueryNotification").document(document.getId()).delete();
+
+            while(!(collectionApiFuture.isDone())){}
+
+
+            return new ResponseEntity<String>(HttpStatus.valueOf(200));
+        } catch (ExecutionException e) {
+            return new ResponseEntity<String>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
+        } catch (InterruptedException e) {
+            return new ResponseEntity<String>("Internal server error, timed Out", HttpStatus.INTERNAL_SERVER_ERROR);
+        } catch (PublicInterfaceNotFoundException e) {
+            return new ResponseEntity<String>("Not Found", HttpStatus.valueOf(404));
+        }
+    }
 }

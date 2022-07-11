@@ -97,7 +97,6 @@ export default ({
                     }
                 }
                 this.loadQuerys();
-                console.log(this.persistentQuerys);
                 sessionStorage.setItem('Querys', JSON.stringify(this.persistentQuerys));
                 //this.notifications = resp.data;
            

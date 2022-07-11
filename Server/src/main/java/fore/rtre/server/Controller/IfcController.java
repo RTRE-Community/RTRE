@@ -141,8 +141,12 @@ public class IfcController {
     }
 
     @GetMapping("/getUserQuerys")
-    public ResponseEntity<String> getUserQuerys(@RequestParam String username, String oid){
-        return FirebaseService.getUserQuerys(username, oid);
+    public ResponseEntity<String> getUserQuerys(@RequestParam String oid){
+        return FirebaseService.getUserQuerys(oid);
+    }
+    @DeleteMapping("/deleteUserQuery")
+    public ResponseEntity<String> deleteUserQuery(@RequestParam String oid, String queryName){
+        return FirebaseService.deleteUserQUery(oid, queryName);
     }
 
 }
