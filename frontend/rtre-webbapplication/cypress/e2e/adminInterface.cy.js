@@ -70,6 +70,7 @@ describe('User and project management test', () => {
     it('Add User to project the latest project, also check if users exist in the project after ', () =>{
       cy.get(':nth-child(7) > .v-btn > .v-btn__content').click()
       cy.get('.v-slide-group__content > :nth-child(3)').click()
+      cy.wait(14000)
       cy.get('.v-expansion-panel-header').click()
       cy.get('.v-expansion-panel-content__wrap > :nth-child(1)').then(($id) => {
 
