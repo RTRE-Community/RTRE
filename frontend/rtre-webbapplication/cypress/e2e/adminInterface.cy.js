@@ -63,7 +63,7 @@ describe('User and project management test', () => {
         expect(intercept.response.statusCode).to.equal(200)
       })
       cy.get(':nth-child(4) > .v-btn').click()
-      cy.wait(200)
+      cy.wait(14000)
       cy.get('.v-expansion-panel-header').should('contain', projectName)
     })
 
@@ -91,7 +91,7 @@ describe('User and project management test', () => {
         cy.get('.v-slide-group__content > :nth-child(5)').click()
         cy.get('.v-window-item--active > :nth-child(1) > .pb-4 > .v-form > .v-card__text > .v-input > .v-input__control > .v-input__slot').type(id[0])
         cy.get('.v-window-item--active > :nth-child(1) > .pb-4 > .v-form > .ml-11').click()
-        cy.wait(2000)
+        cy.wait(14000)
         cy.get('.v-window-item--active > :nth-child(1) > .pb-4').should('contain', userEmail)
       
       })
