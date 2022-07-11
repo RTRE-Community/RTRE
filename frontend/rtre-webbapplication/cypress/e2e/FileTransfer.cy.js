@@ -65,27 +65,28 @@ describe('File Transfer Test', () => {
            cy.intercept("**/api/login?*").as('adminLogin')
            cy.get('.col-sm-3 > .v-btn > .v-btn__content').click()
 
-           
+           cy.intercept("**/api/getProjectList?*").as('getProjectList')
     })
 
     it('Check in a file to project', () => {
-        cy.get('.v-expansion-panel-header').click()
-        cy.get('.v-expansion-panel-content__wrap > :nth-child(1)').then(($id) => {
-            var fullText = $id.text();
-            var pattern = /[0-9]+/g;
-            var number = fullText.match(pattern);
-          let id = number
-          cy.wrap(id).as('id')
-            cy.get('@id').then((id) => {
-                cy.get('[name="fileButtonCheckIn"]').attachFile('stud.ifc')
-                cy.get('.shrink > .v-input__control > .v-input__slot').type(id[0])
-                cy.get('.v-input--dense > .v-input__control > .v-input__slot').click()
-                cy.get('.v-list-item__content').contains('Ifc4').click()
-                cy.intercept('**/api/postIfcAsSubProject?*').as('postAProject')
-                cy.get('.ml-11').click()
-                cy.wait('@postAProject').then((intercept) => {
-                    expect(intercept.response.statusCode).to.equal(200)
-                    cy.get('[name="refresh"]').click()
+      cy.wait('@getProjectList', {timeout:20000}).then((intercept) => {
+        expect(intercept.response.body.length).to.be.greaterThan(0)
+        var number = intercept.response.body[0].oid
+        let id = number
+        console.log(id)
+        cy.wrap(id).as('id')
+
+        cy.get('@id').then((id) => {
+          cy.get('[name="fileButtonCheckIn"]').attachFile('stud.ifc')
+          cy.get('.shrink > .v-input__control > .v-input__slot').type(id)
+          cy.get('.v-input--dense > .v-input__control > .v-input__slot').click()
+          cy.get('.v-list-item__content').contains('Ifc4').click()
+          cy.intercept('**/api/postIfcAsSubProject?*').as('postAProject')
+          cy.intercept("**/api/getAllNotification?*", {timeout:20000}).as('notification')
+          cy.get('.ml-11').click()
+          cy.wait('@postAProject').then((intercept) => {
+              expect(intercept.response.statusCode).to.equal(200)
+              cy.get('[name="refresh"]').click()
                 })
             })
 
@@ -95,7 +96,9 @@ describe('File Transfer Test', () => {
 
      
     it('Check Notification', () => {
-        cy.wait(4000)
+      cy.wait('@notification').then((intercept) => {
+        expect(intercept.response.body.length).to.greaterThan(0)
+      })
         cy.get('.text-center').click()
         cy.get('.v-list').should('contain','Newly added project!')
         cy.intercept('**/api/deleteNotification?*').as('deleteNotification')
@@ -167,7 +170,7 @@ describe('File Transfer Test', () => {
             expect(intercept.response.statusCode).to.equal(200)
         })
         cy.get('[name="refresh"]').click()
-        cy.wait(2000 )
+        cy.wait(20000 )
         cy.get('.v-expansion-panel-header').click()
         cy.get('[popout=""] > :nth-child(2) > :nth-child(1) > :nth-child(1)').siblings()
         .should('have.length',4)
@@ -193,7 +196,7 @@ describe('File Transfer Test', () => {
       cy.get('input#input-41').type(password)
       cy.intercept("**/api/login?*").as('adminLogin')
       cy.get('.col-sm-3 > .v-btn > .v-btn__content').click()
-      cy.wait(5000)
+      cy.wait(20000)
       cy.get('.text-center > .v-btn').click()
       cy.get('.v-list').should('contain', 'Newly added project!')
         // go to that user and check 2 notifications
