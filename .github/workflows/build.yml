@@ -26,8 +26,8 @@ jobs:
          python-version: '3.10.4' # Version range or exact version of a Python version to use, using SemVer's version range syntax
       - run: |
          git clone https://github.com/IfcOpenShell/IfcOpenShell ifcopenshell
-         sudo cp ./ifcopenshell/src/ifcopenshell-python ./opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages
-         sudo cp  ./ifcopenshell/src/ifcpatch ./opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages
+         sudo cp -r ./ifcopenshell/src/ifcopenshell-python ./opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages
+         sudo cp -r ./ifcopenshell/src/ifcpatch ./opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages
          cd /opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages
          ls
       - name: setup node
