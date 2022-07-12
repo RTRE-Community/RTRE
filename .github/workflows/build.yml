@@ -26,7 +26,10 @@ jobs:
          python-version: '3.10.4' # Version range or exact version of a Python version to use, using SemVer's version range syntax
       - run: |
          echo hello
-         cd /opt/hostedtoolcache/Python/3.10.4/
+         cd /opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages
+         ls
+         git clone https://github.com/IfcOpenShell/IfcOpenShell ifcopenshell
+         cd ifcopenshell/src
          ls
       - name: setup node
         uses: actions/setup-node@v3
