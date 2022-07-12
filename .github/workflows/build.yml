@@ -25,8 +25,6 @@ jobs:
          unzip ifc.zip
          sudo cp -r ./blenderbim/libs/site/packages/ifcopenshell /opt/hostedtoolcache/Python/3.9.13/x64/lib/python3.9/site-packages
          sudo cp -r ./blenderbim/libs/site/packages/ifcpatch /opt/hostedtoolcache/Python/3.9.13/x64/lib/python3.9/site-packages
-         cd ./Server/src/main/resources/script/
-         ls
          cd ./frontend/rtre-webbapplication/cypress/fixtures/
          ls
          python -m f.py ./frontend/rtre-webbapplication/cypress/fixtures/stud.ifc ./frontend/rtre-webbapplication/cypress/fixtures/stud.ifc ./frontend/rtre-webbapplication/cypress/fixtures/stud.ifc
