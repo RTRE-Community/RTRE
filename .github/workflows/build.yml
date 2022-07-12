@@ -23,14 +23,13 @@ jobs:
       - name: setup python
         uses: actions/setup-python@v4
         with:
-         python-version: '2.7.18' # Version range or exact version of a Python version to use, using SemVer's version range syntax
+         python-version: '3.9.13' # Version range or exact version of a Python version to use, using SemVer's version range syntax
       - run: |
          sudo apt-get install python-all-dev swig
-         git clone https://github.com/IfcOpenShell/IfcOpenShell ifcopenshell
-         sudo cp -r ./ifcopenshell/src/ifcopenshell-python/ifcopenshell /opt/hostedtoolcache/Python/2.7.18/x64/lib/python2.7/site-packages
-         sudo cp -r ./ifcopenshell/src/ifcpatch/ifcpatch /opt/hostedtoolcache/Python/2.7.18/x64/lib/python2.7/site-packages
-         cd /opt/hostedtoolcache/Python/2.7.18/x64/lib/python2.7/site-packages/ifcopenshell
-         ls
+         curl https://github.com/IfcOpenShell/IfcOpenShell/releases/download/blenderbim-220711/blenderbim-220711-py39-linux.zip --output ifc.zip
+         cd ifc.zip/blenderbim/libs/site/packages/ifcopenshell
+         sudo cp -r ./ifc.zip/blenderbim/libs/site/packages/ifcopenshell /opt/hostedtoolcache/Python/3.9.13/x64/lib/python3.9/site-packages
+         sudo cp -r ./ifc.zip/blenderbim/libs/site/packages/ifcpatch /opt/hostedtoolcache/Python/3.9.13/x64/lib/python3.9/site-packages
          python -m ifcpatch
       - name: setup node
         uses: actions/setup-node@v3
