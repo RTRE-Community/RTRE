@@ -390,6 +390,7 @@ describe('User and project management test', () => {
           expect(intercept.response.body).to.equal("Success")
           expect(intercept.response.statusCode).to.equal(200)
         })
+        cy.wait(20000)
         cy.get('[name="refresh"]').click()
         })
     
