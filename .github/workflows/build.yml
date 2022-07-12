@@ -26,7 +26,7 @@ jobs:
          python-version: '3.7.13' # Version range or exact version of a Python version to use, using SemVer's version range syntax
       - run: |
          git clone https://github.com/IfcOpenShell/IfcOpenShell ifcopenshell
-         sudo cp -r ./ifcopenshell/src/ifcopenshell-python/ifcopenshell /opt/hostedtoolcache/Python/3.7.133/x64/lib/python3.7/site-packages
+         sudo cp -r ./ifcopenshell/src/ifcopenshell-python/ifcopenshell /opt/hostedtoolcache/Python/3.7.13/x64/lib/python3.7/site-packages
          sudo cp -r ./ifcopenshell/src/ifcpatch/ifcpatch /opt/hostedtoolcache/Python/3.7.13/x64/lib/python3.7/site-packages
          cd /opt/hostedtoolcache/Python/3.7.13/x64/lib/python3.7/site-packages
          python -m ifcpatch
