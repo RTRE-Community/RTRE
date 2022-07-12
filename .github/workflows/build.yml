@@ -25,7 +25,6 @@ jobs:
         with:
          python-version: '3.9.13' # Version range or exact version of a Python version to use, using SemVer's version range syntax
       - run: |
-         sudo apt-get install python-all-dev swig
          curl -L https://github.com/IfcOpenShell/IfcOpenShell/releases/download/blenderbim-220711/blenderbim-220711-py39-linux.zip --output ifc.zip
          ls -l ifc.zip
          ls
