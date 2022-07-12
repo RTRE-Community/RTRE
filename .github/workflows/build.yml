@@ -29,7 +29,6 @@ jobs:
          unzip ifc.zip
          sudo cp -r ./blenderbim/libs/site/packages/ifcopenshell /opt/hostedtoolcache/Python/3.9.13/x64/lib/python3.9/site-packages
          sudo cp -r ./blenderbim/libs/site/packages/ifcpatch /opt/hostedtoolcache/Python/3.9.13/x64/lib/python3.9/site-packages
-         python -m ifcpatch
       - name: setup node
         uses: actions/setup-node@v3
         with:
