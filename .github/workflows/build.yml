@@ -27,7 +27,7 @@ jobs:
       - run: |
          sudo apt-get install python-all-dev swig
          curl https://github.com/IfcOpenShell/IfcOpenShell/releases/download/blenderbim-220711/blenderbim-220711-py39-linux.zip --output ifc.zip
-         cd ifc.zip/blenderbim/libs/site/packages/ifcopenshell
+         ls
          sudo cp -r ./ifc.zip/blenderbim/libs/site/packages/ifcopenshell /opt/hostedtoolcache/Python/3.9.13/x64/lib/python3.9/site-packages
          sudo cp -r ./ifc.zip/blenderbim/libs/site/packages/ifcpatch /opt/hostedtoolcache/Python/3.9.13/x64/lib/python3.9/site-packages
          python -m ifcpatch
