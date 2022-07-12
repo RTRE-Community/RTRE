@@ -8,11 +8,11 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-    services:
-      bimserver:
-        image: disitlab/bimserver:1.5.182
-        ports: 
-          - 8082:8080
+  #  services:
+   #   bimserver:
+    #    image: disitlab/bimserver:1.5.182
+     #   ports: 
+      #    - 8082:8080
     steps:
       - name: Clone Repo
         uses: actions/checkout@v2
@@ -25,7 +25,7 @@ jobs:
          unzip ifc.zip
          sudo cp -r ./blenderbim/libs/site/packages/ifcopenshell /opt/hostedtoolcache/Python/3.9.13/x64/lib/python3.9/site-packages
          sudo cp -r ./blenderbim/libs/site/packages/ifcpatch /opt/hostedtoolcache/Python/3.9.13/x64/lib/python3.9/site-packages
-         cd ./Server/src/resources/script/
+         cd ./Server/src/main/resources/script/
          python -m f.py 
       - name: Set up JDK 1.8
         uses: actions/setup-java@v1
