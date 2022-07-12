@@ -386,7 +386,7 @@ describe('User and project management test', () => {
         cy.get('[name="mergeFileInput"').attachFile('stud.ifc')
         cy.intercept('**/api/merge?*').as('merge')
         cy.get('[name="mergeButton"]').click()
-        cy.wait('@merge').then((intercept) => {
+        cy.wait('@merge', {timeout:20000}).then((intercept) => {
           expect(intercept.response.body).to.equal("Success")
           expect(intercept.response.statusCode).to.equal(200)
         })
