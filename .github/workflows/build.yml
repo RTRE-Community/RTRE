@@ -89,6 +89,7 @@ jobs:
       - name: start backend
         run: |
           cd Server &&
+          chmod a+x
           mvn spring-boot:run &
           sleep 80 
       - name: cypress run
