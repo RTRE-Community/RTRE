@@ -394,72 +394,72 @@ describe('User and project management test', () => {
         cy.get('[name="refresh"]').click()
         })
     
-        it('Button check out', () => {
+        // it('Button check out', () => {
                                      
-          cy.window().then((win) => {
-            win.sessionStorage.clear()
-          });
+        //   cy.window().then((win) => {
+        //     win.sessionStorage.clear()
+        //   });
           
-        cy.visit(url)
+        // cy.visit(url)
     
-        cy.get('input#input-38').type(adminEmail)
-        cy.get('input#input-41').type(password)
-        cy.intercept("**/api/login?*").as('adminLogin')
-        cy.intercept("**/api/getProjectList?*").as('getProjectList')
-        cy.get('.col-sm-3 > .v-btn > .v-btn__content').click()
+        // cy.get('input#input-38').type(adminEmail)
+        // cy.get('input#input-41').type(password)
+        // cy.intercept("**/api/login?*").as('adminLogin')
+        // cy.intercept("**/api/getProjectList?*").as('getProjectList')
+        // cy.get('.col-sm-3 > .v-btn > .v-btn__content').click()
     
     
-          cy.wait('@getProjectList', {timeout:20000}).then((intercept) => {
-            expect(intercept.response.body.length).to.be.greaterThan(0)
-            var number = intercept.response.body[0].oid
-            let id = number
-            console.log(id)
-            cy.wrap(id).as('id')
-          })
+        //   cy.wait('@getProjectList', {timeout:20000}).then((intercept) => {
+        //     expect(intercept.response.body.length).to.be.greaterThan(0)
+        //     var number = intercept.response.body[0].oid
+        //     let id = number
+        //     console.log(id)
+        //     cy.wrap(id).as('id')
+        //   })
           
-            cy.get('.v-expansion-panel-header').click()
-            cy.get('[name*="1"]').click()
-            cy.intercept('**/api/getIfc?*').as('getIfcFile')
-            cy.get('.green').click()
-            cy.wait('@getIfcFile').then((intercept) => {
-                expect(intercept.response.statusCode).to.equal(200)
-                cy.wrap(intercept.response.body.length).should('be.gt',20000)
-          })
-        })
+        //     cy.get('.v-expansion-panel-header').click()
+        //     cy.get('[name*="1"]').click()
+        //     cy.intercept('**/api/getIfc?*').as('getIfcFile')
+        //     cy.get('.green').click()
+        //     cy.wait('@getIfcFile').then((intercept) => {
+        //         expect(intercept.response.statusCode).to.equal(200)
+        //         cy.wrap(intercept.response.body.length).should('be.gt',20000)
+        //   })
+        // })
     
-        it('Button delete', () => {
+        // it('Button delete', () => {
                      
     
-            cy.intercept('**/api/deleteProject?*').as('deleteProject')
-            cy.get('.red > .v-btn__content').click()
-            cy.wait('@deleteProject').then((intercept) => {
-                expect(intercept.response.statusCode).to.equal(200)
-            })
+        //     cy.intercept('**/api/deleteProject?*').as('deleteProject')
+        //     cy.get('.red > .v-btn__content').click()
+        //     cy.wait('@deleteProject').then((intercept) => {
+        //         expect(intercept.response.statusCode).to.equal(200)
+        //     })
                                          
-          cy.window().then((win) => {
-            win.sessionStorage.clear()
-          });
+        //   cy.window().then((win) => {
+        //     win.sessionStorage.clear()
+        //   });
           
-        cy.visit(url)
+        // cy.visit(url)
     
-        cy.get('input#input-38').type(adminEmail)
-        cy.get('input#input-41').type(password)
-        cy.intercept("**/api/login?*").as('adminLogin')
-        cy.intercept("**/api/getProjectList?*").as('getProjectList')
-        cy.get('.col-sm-3 > .v-btn > .v-btn__content').click()
+        // cy.get('input#input-38').type(adminEmail)
+        // cy.get('input#input-41').type(password)
+        // cy.intercept("**/api/login?*").as('adminLogin')
+        // cy.intercept("**/api/getProjectList?*").as('getProjectList')
+        // cy.get('.col-sm-3 > .v-btn > .v-btn__content').click()
     
     
-          cy.wait('@getProjectList', {timeout:20000}).then((intercept) => {
-            expect(intercept.response.body.length).to.be.greaterThan(0)
-            var number = intercept.response.body[0].oid
-            let id = number
-            console.log(id)
-            cy.wrap(id).as('id')
-          })
-            cy.get('.v-expansion-panel-header').click()
-            cy.get('[popout=""] > :nth-child(2) > :nth-child(1) > :nth-child(1)').siblings()
-            .should('have.length',4)
-        })
+        //   cy.wait('@getProjectList', {timeout:20000}).then((intercept) => {
+        //     expect(intercept.response.body.length).to.be.greaterThan(0)
+        //     var number = intercept.response.body[0].oid
+        //     let id = number
+        //     console.log(id)
+        //     cy.wrap(id).as('id')
+        //   })
+        //     cy.get('.v-expansion-panel-header').click()
+        //     cy.get('[popout=""] > :nth-child(2) > :nth-child(1) > :nth-child(1)').siblings()
+        //     .should('have.length',4)
+        // })
     
         it('Search Function', () => {
             cy.get('.container > :nth-child(1) > .v-input > .v-input__control > .v-input__slot').type('file')
