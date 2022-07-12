@@ -25,6 +25,9 @@ jobs:
         with:
          python-version: '3.9.13' # Version range or exact version of a Python version to use, using SemVer's version range syntax
       - run: |
+         sudo apt-get install git cmake gcc g++ libboost-all-dev libcgal-dev
+         sudo apt-get install libocct-data-exchange-dev libocct-draw-dev libocct-foundation-dev libocct-modeling-algorithms-dev libocct-modeling-data-dev libocct-ocaf-dev libocct-visualization-dev
+         sudo apt-get install python-all-dev swig
          git clone https://github.com/IfcOpenShell/IfcOpenShell ifcopenshell
          sudo cp -r ./ifcopenshell/src/ifcopenshell-python/ifcopenshell /opt/hostedtoolcache/Python/3.9.13/x64/lib/python3.9/site-packages
          sudo cp -r ./ifcopenshell/src/ifcpatch/ifcpatch /opt/hostedtoolcache/Python/3.9.13/x64/lib/python3.9/site-packages
