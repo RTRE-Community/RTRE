@@ -387,6 +387,7 @@ describe('User and project management test', () => {
         cy.intercept('**/api/merge?*').as('merge')
         cy.get('[name="mergeButton"]').click()
         cy.wait('@merge').then((intercept) => {
+          expect(intercept.response.statusMessage).to.equal("Success")
           expect(intercept.response.statusCode).to.equal(200)
         })
         cy.get('[name="refresh"]').click()
