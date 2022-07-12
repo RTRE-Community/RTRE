@@ -8,11 +8,11 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-    services:
-      bimserver:
-        image: disitlab/bimserver:1.5.182
-        ports: 
-          - 8082:8080
+  #  services:
+   #   bimserver:
+    #    image: disitlab/bimserver:1.5.182
+     #   ports: 
+      #    - 8082:8080
     steps:
       - name: Clone Repo
         uses: actions/checkout@v2
