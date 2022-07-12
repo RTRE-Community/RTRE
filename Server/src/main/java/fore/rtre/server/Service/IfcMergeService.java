@@ -88,7 +88,9 @@ public class IfcMergeService {
         } catch (UserException e) {
             return new ResponseEntity<String>("Bad Request", HttpStatus.BAD_REQUEST);
         } catch (IOException e) {
-            return new ResponseEntity<String>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
+            StringWriter errors = new StringWriter();
+            e.printStackTrace(new PrintWriter(errors));
+            return new ResponseEntity<String>(errors.toString(), HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (InterruptedException e) {
             return new ResponseEntity<String>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
         }
