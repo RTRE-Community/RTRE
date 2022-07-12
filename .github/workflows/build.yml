@@ -58,10 +58,10 @@ jobs:
       #   run: |
       #     cd Server
       #     mvn -B clean verify
-      - name: Package Maven
-        run: |
-           cd Server
-           mvn -B package
+     # - name: Package Maven
+      #  run: |
+       #    cd Server
+        #   mvn -B package
       #  name: run backend
       # - uses: docker/setup-buildx-action@v2
       #   id: buildx
@@ -87,18 +87,10 @@ jobs:
       #   run: docker run -p 8080:80 frontend/app:latest
       - name: wait
         run: sleep 60
-    #  - name: start backend
-     #   run: |
-      #    cd Server &&
-       #   mvn spring-boot:run &
-        #  sleep 80 
-      - name: build backend image
+      - name: start backend
         run: |
-          cd Server
-          docker build -t backend:latest .
-      - name: run image
-        run: |
-          docker run -p 3030:3030 backend:latest &
+          cd Server &&
+          sudo mvn spring-boot:run & 
           sleep 80 
       - name: cypress run
         uses: cypress-io/github-action@v4
