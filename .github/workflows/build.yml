@@ -28,7 +28,7 @@ jobs:
          git clone https://github.com/IfcOpenShell/IfcOpenShell ifcopenshell
          sudo cp -r ./ifcopenshell/src/ifcopenshell-python/ifcopenshell /opt/hostedtoolcache/Python/3.10.5/x64/lib/python3.10/site-packages
          sudo cp -r ./ifcopenshell/src/ifcpatch/ifcpatch /opt/hostedtoolcache/Python/3.10.5/x64/lib/python3.10/site-packages
-         cd /opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages
+         cd /opt/hostedtoolcache/Python/3.10.5/x64/lib/python3.10/site-packages
          python -m ifcpatch
       - name: setup node
         uses: actions/setup-node@v3
