@@ -25,7 +25,8 @@ jobs:
         with:
          python-version: '3.10.4' # Version range or exact version of a Python version to use, using SemVer's version range syntax
       - run: |
-         cd /opt/hostedtoolcache/Python/3.10.4/x64/lib
+         echo hello
+         cd /opt/hostedtoolcache/Python/3.10.4/
          ls
       - name: setup node
         uses: actions/setup-node@v3
