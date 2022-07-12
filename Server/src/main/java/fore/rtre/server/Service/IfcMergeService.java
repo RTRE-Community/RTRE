@@ -21,8 +21,8 @@ import java.util.UUID;
 public class IfcMergeService {
 
     public static ResponseEntity<String> mergeIfc(MultipartFile file, long mergeFile2){
-        String scriptPath = "src\\main\\resources\\script\\";
-        String tempFolderPath = "src\\main\\resources\\MergeTemporaryFolder\\";
+        String scriptPath = "src/main/resources/script/";
+        String tempFolderPath = "src/main/resources/MergeTemporaryFolder/";
         Runtime rt = Runtime.getRuntime();
         File dir = new File(scriptPath);
 
