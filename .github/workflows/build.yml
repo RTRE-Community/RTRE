@@ -26,10 +26,7 @@ jobs:
          python-version: '3.9.13' # Version range or exact version of a Python version to use, using SemVer's version range syntax
       - run: |
          curl -L https://github.com/IfcOpenShell/IfcOpenShell/releases/download/blenderbim-220711/blenderbim-220711-py39-linux.zip --output ifc.zip
-         ls -l ifc.zip
-         ls
          unzip ifc.zip
-         ls
          sudo cp -r ./blenderbim/libs/site/packages/ifcopenshell /opt/hostedtoolcache/Python/3.9.13/x64/lib/python3.9/site-packages
          sudo cp -r ./blenderbim/libs/site/packages/ifcpatch /opt/hostedtoolcache/Python/3.9.13/x64/lib/python3.9/site-packages
          python -m ifcpatch
