@@ -27,7 +27,9 @@ jobs:
          sudo cp -r ./blenderbim/libs/site/packages/ifcpatch /opt/hostedtoolcache/Python/3.9.13/x64/lib/python3.9/site-packages
          cd ./Server/src/main/resources/script/
          ls
-         python -m f.py ../../../../../frontend/rtre-webbapplication/cypress/fixtures/stud.ifc ../../../../../frontend/rtre-webbapplication/cypress/fixtures/stud.ifc ../../../../../frontend/rtre-webbapplication/cypress/fixtures/stud.ifc
+         python -m f ../../../../../frontend/rtre-webbapplication/cypress/fixtures/stud.ifc ../../../../../frontend/rtre-webbapplication/cypress/fixtures/stud.ifc ../../../../../frontend/rtre-webbapplication/cypress/fixtures/stud.ifc
+         cd ../../../../../frontend/rtre-webbapplication/cypress/fixtures/
+         ls -l stud.ifc
       - name: Set up JDK 1.8
         uses: actions/setup-java@v1
         with:
