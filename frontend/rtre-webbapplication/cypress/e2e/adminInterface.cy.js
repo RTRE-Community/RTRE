@@ -260,8 +260,11 @@ describe('User and project management test', () => {
                })
                cy.get('.v-slide-group__content > :nth-child(5)').click()
                cy.get('.v-window-item--active > :nth-child(1) > .pb-4 > .v-form > .v-card__text > .v-input > .v-input__control > .v-input__slot').type(id)
+               cy.intercept("**/api/ViewUsers?*").as("viewUsers")
                cy.get('.v-window-item--active > :nth-child(1) > .pb-4 > .v-form > .ml-11').click()
-               cy.wait(2000)
+               cy.wait('@viewUsers').then((intercept) => {
+                expect(intercept.response.statusCode).to.equal(200)
+              })
                cy.get('.v-window-item--active > :nth-child(1) > .pb-4').should('contain', userEmail)
                })
        
@@ -392,6 +395,39 @@ describe('User and project management test', () => {
         })
         cy.wait(20000)
         cy.get('[name="refresh"]').click()
+        })
+
+        it('Check out merge file', () => {
+          cy.window().then((win) => {
+            win.sessionStorage.clear()
+          });
+          
+        cy.visit(url)
+    
+        cy.get('input#input-38').type(adminEmail)
+        cy.get('input#input-41').type(password)
+        cy.intercept("**/api/login?*").as('adminLogin')
+        cy.intercept("**/api/getProjectList?*").as('getProjectList')
+        cy.get('.col-sm-3 > .v-btn > .v-btn__content').click()
+    
+    
+          cy.wait('@getProjectList', {timeout:20000}).then((intercept) => {
+            expect(intercept.response.body.length).to.be.greaterThan(0)
+            var number = intercept.response.body[2].oid
+            let id = number
+            console.log(id)
+            cy.wrap(id).as('id')
+    
+    
+            cy.get('.v-slide-group__content > :nth-child(3)').click()
+            cy.get('.v-card__text > .v-form > .v-input > .v-input__control > .v-input__slot').type(id)
+            cy.intercept('**/api/getIfc?*').as('getIfcFile')
+            cy.get('.v-card__text > .v-form > .blue').click()
+            cy.wait('@getIfcFile').then((intercept) => {
+                expect(intercept.response.statusCode).to.equal(200)
+                cy.wrap(intercept.response.body.length).should('be.gt',20000)
+          })
+        })
         })
     
         // it('Button check out', () => {
