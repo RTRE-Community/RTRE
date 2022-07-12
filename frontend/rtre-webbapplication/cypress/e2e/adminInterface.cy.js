@@ -375,7 +375,7 @@ describe('User and project management test', () => {
         cy.get('.col-sm-3 > .v-btn > .v-btn__content').click()
     
     
-          cy.wait('@getProjectList', {timeout:40000}).then((intercept) => {
+          cy.wait('@getProjectList', {timeout:20000}).then((intercept) => {
             expect(intercept.response.body.length).to.be.greaterThan(0)
             var number = intercept.response.body[1].oid
             let id = number
@@ -387,7 +387,6 @@ describe('User and project management test', () => {
         cy.intercept('**/api/merge?*').as('merge')
         cy.get('[name="mergeButton"]').click()
         cy.wait('@merge').then((intercept) => {
-          expect(intercept.response.statusMessage).to.equal('error')
           expect(intercept.response.statusCode).to.equal(200)
         })
         cy.get('[name="refresh"]').click()

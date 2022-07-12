@@ -84,13 +84,13 @@ public class IfcMergeService {
             return new ResponseEntity<String>("Success", HttpStatus.valueOf(200));
 
         } catch (ServerException e) {
-            return new ResponseEntity<String>( e.toString(), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<String>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (UserException e) {
             return new ResponseEntity<String>("Bad Request", HttpStatus.BAD_REQUEST);
         } catch (IOException e) {
-            return new ResponseEntity<String>(e.toString(), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<String>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (InterruptedException e) {
-            return new ResponseEntity<String>(e.toString(), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<String>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
     }
