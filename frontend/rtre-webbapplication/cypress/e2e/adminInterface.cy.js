@@ -68,8 +68,6 @@ describe('User and project management test', () => {
       cy.wait('@getProjectList').then((intercept) => {
         expect(intercept.response.body.length).to.be.greaterThan(0)
       })
-      //cy.wait(2000)
-    //  cy.get('.v-expansion-panel-header').should('contain', projectName)
     })
 
     it('Add User to project the latest project, also check if users exist in the project after ', () =>{
@@ -197,30 +195,14 @@ describe('User and project management test', () => {
       cy.get('.v-expansion-panel-header').should('not.exist')
       
     })
-
-    //TESTING GIVING A USER ACCESS TO PROJECT // LOGIN TO ALT AND SEE IF IT WENT TROUGH
-
-    // TESTING SEEING A LIST OF ALL USERS IN PROJECT
-
-    // POST A IFC AND CHECK IF IT SSHOWS UP IN PROJECTS USING REFRESH BUTTON// LOGIN TO ALT AND SEE IF THEY ALSO GOT IT
-
-    // DOWNLOAD A IFC FILE
-
-    //MERGE IFC FILE
-
-    //CHECK NOTIFICATIONS// FOR BOTH ACCOUNTS
-
-    //DELETE NOTIFICATIONS // SEE IF THE NOTICE IS USER BASED
-
-    // REMOVE USER FROM PROJECT
-
+  
     let url = 'http://localhost:8080'
     const adminEmail = 'admin@admin.com'
     const password = 'password'
     
     const userEmail ='cypress@test.com'
-    const projectName = 'cypressTest'
-    //hell
+  const projectName = 'cypressTest'
+  
     describe('File Transfer Test', () => {
     
         before(() => {
@@ -267,10 +249,6 @@ describe('User and project management test', () => {
               })
                cy.get('.v-window-item--active > :nth-child(1) > .pb-4').should('contain', userEmail)
                })
-       
-       
-               // logout
-    
         })
     
         it('Check in a file to project', () => {
@@ -302,16 +280,11 @@ describe('User and project management test', () => {
               cy.get('.v-input--dense > .v-input__control > .v-input__slot').click()
               cy.get('.v-list-item__content').contains('Ifc4').click()
               cy.intercept('**/api/postIfcAsSubProject?*').as('postAProject')
-              // cy.intercept("**/api/getAllNotification?*", {timeout:20000}).as('notification')
               cy.get('.ml-11').click()
               cy.wait('@postAProject').then((intercept) => {
                   expect(intercept.response.statusCode).to.equal(200)
                   cy.get('[name="refresh"]').click()
                     })
-    
-              // cy.wait('@notification').then((intercept) => {
-              //   expect(intercept.response.body.length).to.equal(0)
-              // })
                 })
     
             })
