@@ -34,19 +34,28 @@ export default ({
     components: {
         SearchBox,
         FunctionHub,
-        ChatWIndow
+        ChatWIndow,
     },
     created(){
         EventEmitter.eventEmitter.on('disableProjectBox', this.disableProjectBox);
         EventEmitter.eventEmitter.on('enableProjectBox', this.enableProjectBox);
-        
+       
+
         if(sessionStorage.getItem('UserType') === 'ADMIN'){
             console.log(sessionStorage.getItem("TokenId"));
             axios.get(process.env.VUE_APP_RTRE_BACKEND_PORT + '/api/getAllUsers?' + new URLSearchParams({
                 token: sessionStorage.getItem("TokenId")
             })).then((resp) => {
                 //localStorage.setItem("Users", resp.data);
-                localStorage.setItem("Users", JSON.stringify(resp.data));
+                this.dupUsers = resp.data;
+                for(let i = 0; i< this.dupUsers.length; i++){
+                    for(let j = 0; j < this.dupUsers.length; j++){
+                        if(this.dupUsers[i].oid === this.dupUsers[j].oid){
+                            this.dupUsers.splice(i, 1);
+                        }
+                    }
+                }
+                localStorage.setItem("Users", JSON.stringify(this.dupUsers));
                 console.log(resp.data);
             });
 
@@ -55,8 +64,22 @@ export default ({
                 token: sessionStorage.getItem("TokenId")
             })).then((resp) => {
                 //this.users = resp.data
-                localStorage.setItem("Users", JSON.stringify(resp.data));
-                console.log(resp.data);
+                this.dupUsers = resp.data;
+                for(let i = 0; i< this.dupUsers.length; i++){
+                    for(let j = 0; j < this.dupUsers.length; j++){
+                        if(this.dupUsers[i].oid === this.dupUsers[j].oid){
+                            this.dupUsers.splice(i, 1);
+                        }
+                    }
+                }
+                //let uniq = [...new Set(users)];
+
+                //let uniqueChars = users.filter((element, index) => {
+                 //return users.indexOf(element) === index;
+                //});
+
+                localStorage.setItem("Users", JSON.stringify(this.dupUsers));
+                console.log(this.dupUsers);
             });
         }
     },
@@ -65,7 +88,10 @@ export default ({
         showOverlay: null,
         users: [],
         componentKey: 0,
-        userMessages: []
+        userMessages: [],
+        dupUsers: [],
+        Querys: []
+
       
       } // specifies the color scheme for the component
      

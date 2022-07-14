@@ -4,29 +4,22 @@ import java.util.ArrayList;
 
 public class User {
 
-    private ArrayList<Message> incoming;
-    private ArrayList<Message> outgoing;
     private Long Id;
+    private String queryName;
 
     public User(){}
 
-    public User(Long Id){
+    public User(Long Id, String queryName){
         this.Id = Id;
-    
+        this.queryName = queryName;
 
     }
 
-
-    public boolean addOutgoing(){
-
-        return true;
-
+    public Long getId() {
+        return Id;
     }
-
-    public boolean addIncoming(){
-
-        return true;
-
+    public String getQueryName() {
+        return queryName;
     }
 
 

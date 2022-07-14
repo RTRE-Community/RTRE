@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "type": {
+    "name": "IfcWall",
+    "includeAllSubTypes": true
+  },
+  "properties": {
+    "Pset_WallCommon": {
+      "IsExternal": true
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "types": [
+    {
+      "name": "IfcWall",
+      "includeAllSubTypes": true
+    },
+    {
+      "name": "IfcSlab"
+    }
+  ]
+}

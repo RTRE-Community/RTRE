@@ -72,7 +72,9 @@
 <script>
 import Vue from "vue";
 import SnackBar from "./functionality/buttons/SnackBar.vue";
-import Axios from "axios";
+import axios from "axios"
+//const EventEmitter = require('../EventEmitter')
+
 export default {
     computed: {
         passwordMatch() {
@@ -83,7 +85,7 @@ export default {
         async validateLogin() {
             if (this.$refs.loginForm.validate()) {
                 Vue.set(this.loading, 0, true);
-                this.response = await Axios(
+                this.response = await axios(
                     process.env.VUE_APP_RTRE_BACKEND_PORT + "/api/login?username=" +
                     this.loginEmail +
                     "&password=" +
@@ -100,11 +102,25 @@ export default {
                     return error.response
                 });
                 Vue.set(this.loading, 0, false);
+                axios.get(process.env.VUE_APP_RTRE_BACKEND_PORT + '/api/getUserQuerys?' + new URLSearchParams({
+                    username: sessionStorage.getItem("Username"),
+                    oid: sessionStorage.getItem("oid")
+                })).then((resp) => {
+                    if(resp.data.length > 0){
+                        localStorage.setItem('Query', JSON.stringify(resp.data));
+                    }
+                    console.log('query');
+                    console.log(resp.data);
+          
+
+            });
                 if (sessionStorage.getItem("TokenId") !== null) {
                     this.$router.push({
                         name: "Home"
                     });
                 }
+
+         
             }
         },
         async validateRegister() {

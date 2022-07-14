@@ -20,6 +20,14 @@
             <v-icon left> mdi-archive-arrow-up </v-icon>
             View Users of Project
         </v-tab>
+        <v-tab >
+            <v-icon left> mdi-archive-arrow-up </v-icon>
+            Create Query
+        </v-tab>
+            <v-tab >
+            <v-icon left> mdi-archive-arrow-up </v-icon>
+           Manage User queries
+        </v-tab>
         <v-tab-item>
             <CreateProject />
         </v-tab-item>
@@ -32,6 +40,12 @@
         <v-tab-item>
             <ViewUsers />
         </v-tab-item>
+         <v-tab-item>
+            <CreateQuery />
+        </v-tab-item>
+         <v-tab-item>
+            <ManageQueries />
+        </v-tab-item>
     </v-tabs>
 </v-card>
 </template>
@@ -40,12 +54,15 @@
 import AddUser from "./functionality/AddUser.vue"
 import ViewUsers from './ViewUsers.vue'
 import CreateProject from './CreateProject.vue'
-
+import CreateQuery from './CreateQuery.vue'
+import ManageQueries from './ManageQueries.vue'
 export default {
     components: {
         AddUser,
         ViewUsers,
-        CreateProject
+        CreateProject,
+        CreateQuery,
+        ManageQueries
     },
     name: "FunctionHub",
     data() {

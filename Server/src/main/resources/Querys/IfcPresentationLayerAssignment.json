@@ -1,0 +1,24 @@
+{
+  "type": "IfcPresentationLayerAssignment",
+  "name": "Räume",
+  "include": {
+    "type": "IfcPresentationLayerAssignment",
+    "field": "AssignedItems",
+    "includes": [
+      {
+        "type": "IfcShapeRepresentation",
+        "fields": [
+          "OfProductRepresentation"
+        ],
+        "includes": [
+          {
+            "type": "IfcProductDefinitionShape",
+            "fields": [
+              "ShapeOfProduct"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "IfcBuildingStorey",
+  "guid": "25SMdCQszBi9al8gnrh8LV",
+  "include": {
+    "type": "IfcBuildingStorey",
+    "field": "ContainsElements",
+    "include": {
+      "type": "IfcRelContainedInSpatialStructure",
+      "field": "RelatedElements"
+    }
+  }
+}
