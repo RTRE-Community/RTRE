@@ -17,7 +17,7 @@
             <v-container>
                <ChatWIndow @click="this.showOverlay=true" :overlay="this.showOverlay" :allUsers="this.users" :userMessages="this.userMessages" :key="this.componentKey"/>
             </v-container></div>
-        <v-btn @click="forceRerender()">Refresh</v-btn>
+        <v-btn name="refresh" @click="forceRerender()">Refresh</v-btn>
     </v-layout>
 </v-container>
 </template>

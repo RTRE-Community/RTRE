@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
@@ -36,8 +37,9 @@ public class IfcController {
 
     @GetMapping("/getIfc")
     @ResponseBody
-    public ResponseEntity<String> getIfc(@RequestParam Long fileName, HttpServletResponse response, String query){
-        return IfcGetService.downloadIfc(fileName,response, query);}
+    public ResponseEntity<String> getIfc(@RequestParam Long fileName, HttpServletResponse response,Optional<String> query){
+        String paramQuery = query.orElse("{}");
+        return IfcGetService.downloadIfc(fileName,response, paramQuery);}
 
     @GetMapping("/getProjectList")
     @ResponseBody

@@ -8,18 +8,44 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
+    services:
+      bimserver:
+        image: disitlab/bimserver:1.5.182
+        ports: 
+          - 8082:8080
     steps:
       - name: Clone Repo
         uses: actions/checkout@v2
+      - name: setup python
+        uses: actions/setup-python@v4
+        with:
+         python-version: '3.9.13' # Version range or exact version of a Python version to use, using SemVer's version range syntax
+      - run: |
+         chmod a+rwx .
+         curl -L https://github.com/IfcOpenShell/IfcOpenShell/releases/download/blenderbim-220711/blenderbim-220711-py39-linux.zip --output ifc.zip
+         unzip ifc.zip
+         sudo cp -r ./blenderbim/libs/site/packages/ifcopenshell /opt/hostedtoolcache/Python/3.9.13/x64/lib/python3.9/site-packages
+         sudo cp -r ./blenderbim/libs/site/packages/ifcpatch /opt/hostedtoolcache/Python/3.9.13/x64/lib/python3.9/site-packages
+         cd ./Server/src/main/resources/script/
+         ls
+         python -m f ../../../../../frontend/rtre-webbapplication/cypress/fixtures/stud.ifc ../../../../../frontend/rtre-webbapplication/cypress/fixtures/stud.ifc ../../../../../frontend/rtre-webbapplication/cypress/fixtures/stud.ifc
+         cd ../../../../../frontend/rtre-webbapplication/cypress/fixtures/
+         ls -l stud.ifc
       - name: Set up JDK 1.8
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
+      - name: setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
       - name: Write Secrets
         run: |
-          touch ./serviceAccountKey.json
-          echo "$SERVICE_ACCOUNT_KEY" >> ./serviceAccountKey.json
-          cat ./serviceAccountKey.json
+          touch ./Server/serviceAccountKey.json
+          echo "$SERVICE_ACCOUNT_KEY" >> ./Server/serviceAccountKey.json
+          cat Server/serviceAccountKey.json
+          cd Server
+          ls
         shell: bash
         env:
           SERVICE_ACCOUNT_KEY: ${{ secrets.SERVICE_ACCOUNT_KEY }}
@@ -27,9 +53,63 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: SERVICE_ACCOUNT_KEY
-          path: ./serviceAccountKey.json
-      - name: Build Maven
+          path: Server/serviceAccountKey.json
+      # - name: Build Maven
+      #   run: |
+      #     cd Server
+      #     mvn -B clean verify
+     # - name: Package Maven
+      #  run: |
+       #    cd Server
+        #   mvn -B package
+      #  name: run backend
+      # - uses: docker/setup-buildx-action@v2
+      #   id: buildx
+      #   with:
+      #     install: true
+      # - name: Build Springboot image
+      #   run: |
+      #     cd Server
+      #     docker build -t backend/app:latest .
+      # - name: Build Frontend image
+      #   run: |
+      #     pwd
+      #     ls
+      #     cd frontend/rtre-webbapplication/
+      #     docker build -t frontend/app:latest .
+      # - name: Get Bimserver from DockerHub and run
+      #   run: |
+      #     docker pull disitlab/bimserver:1.5.182
+      #     docker run -p 8082:8080 disitlab/bimserver:1.5.182
+      # - name: Create Springboot container
+      #   run: docker run -p 3030:3030 backend/app:latest
+      # - name: Create Frontend container
+      #   run: docker run -p 8080:80 frontend/app:latest
+      - name: wait
+        run: sleep 60
+      - name: start backend
         run: |
-          pwd
-          cd Server
-          mvn -B clean verify
+          cd Server &&
+          sudo mvn spring-boot:run & 
+          sleep 80 
+      - name: cypress run
+        uses: cypress-io/github-action@v4
+        env:
+          DEBUG: '@cypress/github-action'
+        with:
+          working-directory: ./frontend/rtre-webbapplication/
+          browser: chrome
+          start: npm run serve
+          wait-on: 'http://localhost:8080'
+          wait-on-timeout: 120
+      - uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: /home/runner/work/RTRE/RTRE/frontend/rtre-webbapplication/cypress/screenshots
+      # Test run video was always captured, so this action uses "always()" condition
+      - uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: cypress-videos
+          path: /home/runner/work/RTRE/RTRE/frontend/rtre-webbapplication/cypress/videos/adminInterface.cy.js.mp4
