@@ -14,6 +14,7 @@
                 <v-expansion-panel-content>
                     <div v-if=" project.parentId != -1" class="py-2">
                         <CheckOutIconButtonVue :oid="projects.oid" :schema="projects.schema" />
+                        <ModelViewButton :oid="projects.oid"/>
                         <DeleteButtonVue :oid="projects.oid" />
                     </div>
                     <li>id: {{ project.oid }}</li>
@@ -35,6 +36,7 @@ import axios from "axios";
 import ProjectList from "./ProjectList.vue";
 import CheckOutIconButtonVue from "./functionality/buttons/CheckOutIconButton.vue";
 import DeleteButtonVue from "./functionality/buttons/DeleteButton.vue";
+import ModelViewButton from "./functionality/buttons/ModelViewButton.vue";
 export default {
     name: "SearchBox",
     data() {
@@ -73,10 +75,11 @@ export default {
         }
     },
     components: {
-        ProjectList,
-        CheckOutIconButtonVue,
-        DeleteButtonVue
-    },
+    ProjectList,
+    CheckOutIconButtonVue,
+    DeleteButtonVue,
+    ModelViewButton
+},
 
 }
 </script>

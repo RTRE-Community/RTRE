@@ -23,8 +23,8 @@
                         <v-expansion-panel-content>
                             <div>
                                 <CheckOutIconButton :oid="subProjects.oid" />
+                                <ModelViewButton :oid="subProjects.oid"/>
                                 <DeleteButton :oid="subProjects.oid" />
-
                             </div>
                             <li name=id>id: {{ subProjects.oid }} </li>
                             <li>Schema: {{subProjects.schema}}</li>
@@ -42,13 +42,15 @@
 <script>
 import CheckOutIconButton from "./functionality/buttons/CheckOutIconButton.vue"
 import DeleteButton from "./functionality/buttons/DeleteButton.vue"
+import ModelViewButton from "./functionality/buttons/ModelViewButton.vue";
 export default {
     name: "ProjectList",
     props: ["projects"],
     components: {
-        CheckOutIconButton,
-        DeleteButton,
-    },
+    CheckOutIconButton,
+    DeleteButton,
+    ModelViewButton
+},
     data() {
         return {
             index: 1,

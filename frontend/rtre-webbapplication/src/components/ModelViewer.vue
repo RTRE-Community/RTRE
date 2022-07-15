@@ -31,7 +31,6 @@ export default {
         }
     },
     mounted() {
-
         let vCardWrapper = document.getElementById('wrapper');
         let vCardWrapperDimensions = vCardWrapper.getBoundingClientRect();
         //Creates the Three.js scene
@@ -116,6 +115,13 @@ export default {
             },
             false
         );
+        var paramsOid = this.$route.params.oid
+        if(paramsOid == ':oid'){
+            return
+        }else{
+            var sessionStorageIfcURL = URL.createObjectURL(new Blob([sessionStorage.getItem(paramsOid)], {type:"application/octet-stream"}))
+            this.renderModel(sessionStorageIfcURL, scene)
+        }
     },
     methods: {
         renderModel(ifcURL, scene) {
