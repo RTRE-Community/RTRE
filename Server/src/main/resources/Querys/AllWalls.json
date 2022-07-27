@@ -1,10 +1,41 @@
 {
-  "type": "IfcWall",
-  "includeAllSubtypes": true,
-  "includes": [
-    "validifc:ContainedInStructure",
-    "validifc:OwnerHistory",
-    "validifc:Representation",
-    "validifc:ObjectPlacement"
+  "doublebuffer":true,
+  "type":{
+     "name":"IfcWall",
+     "includeAllSubTypes":true
+  },
+  "includes":[
+     "ifc2x3tc1-stdlib:ContainedInStructure",
+     "ifc2x3tc1-stdlib:OwnerHistory",
+     "ifc2x3tc1-stdlib:Representation",
+     "ifc2x3tc1-stdlib:ObjectPlacement",
+     {
+        "type":"IfcWallStandardCase",
+        "field":"HasOpenings",
+        "include":{
+           "type":"IfcRelVoidsElement",
+           "field":"RelatedOpeningElement",
+           "includes":[
+              {
+                 "type":"IfcOpeningElement",
+                 "field":"HasFillings",
+                 "include":{
+                    "type":"IfcRelFillsElement",
+                    "field":"RelatedBuildingElement",
+                    "includes":[
+                       "ifc2x3tc1-stdlib:ContainedInStructure",
+                       "ifc2x3tc1-stdlib:OwnerHistory",
+                       "ifc2x3tc1-stdlib:Representation",
+                       "ifc2x3tc1-stdlib:ObjectPlacement"
+                    ]
+                 }
+              },
+              "ifc2x3tc1-stdlib:ContainedInStructure",
+              "ifc2x3tc1-stdlib:OwnerHistory",
+              "ifc2x3tc1-stdlib:Representation",
+              "ifc2x3tc1-stdlib:ObjectPlacement"
+           ]
+        }
+     }
   ]
 }

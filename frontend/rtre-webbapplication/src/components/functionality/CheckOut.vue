@@ -43,7 +43,6 @@ import Axios from "axios"
 import SnackBar from "./buttons/SnackBar.vue";
 import Vue from 'vue'
 import axios from 'axios'
-//const EventEmitter = require('../../EventEmitter')
 export default {
     name: "checkOut",
     data() {
@@ -67,7 +66,9 @@ export default {
         //this.Querys = JSON.parse(localStorage.getItem("Querys") || "[]")
         this.Querys = JSON.parse(sessionStorage.getItem('Querys'));
         for(let i = 0; i< this.Querys.length; i++) {
-            this.items.push(this.Querys[i].type.name);
+           
+            this.items.push(this.Querys[i].name);
+            
             //this.items[i] = this.Querys[i].type.name;
         }
         console.log(this.Querys);
@@ -111,6 +112,7 @@ export default {
                 }
                 let that = this;
                 Vue.set(this.loading, 0, true)
+                console.log(query)
                 axios.get(process.env.VUE_APP_RTRE_BACKEND_PORT + '/api/getIfc?' + new URLSearchParams({
                 fileName: this.id,
                 query: JSON.stringify(query)

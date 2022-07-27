@@ -109,8 +109,6 @@ export default {
                     if(resp.data.length > 0){
                         localStorage.setItem('Query', JSON.stringify(resp.data));
                     }
-                    console.log('query');
-                    console.log(resp.data);
           
 
             });
@@ -144,6 +142,7 @@ export default {
     },
     data() {
         return {
+            querys: [],
             dialog: true,
             loading: [false],
             tab: 0,

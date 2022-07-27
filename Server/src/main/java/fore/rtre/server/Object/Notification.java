@@ -21,9 +21,8 @@ public class Notification {
         this.read = read;
         this.userId = userId;
         this.query = query;
-        this.queryName = queryName;
         this.queryTopic = queryTopic;
-        
+        this.queryName = queryName;
     }
 
     public void setQueryTopic(String queryTopic) {

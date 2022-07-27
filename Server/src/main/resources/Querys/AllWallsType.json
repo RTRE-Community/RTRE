@@ -1,0 +1,16 @@
+{
+    "type": "IfcWallType",
+    "guid": "2BaG4MIkf5C9Ssie8lVX2z",
+    "include": {
+      "type": "IfcWallType",
+      "field": "ObjectTypeOf",
+      "include": {
+        "type": "IfcRelDefinesByType",
+        "field": "RelatedObjects",
+        "outputType": "IfcWall",
+        "include": {
+          "type":"IfcWall"
+        }
+      }
+    }
+  }

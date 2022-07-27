@@ -266,11 +266,7 @@ public class FirebaseService {
 
     public static ResponseEntity<String> getQuerys(String token, String queryName){
         try {
-            JsonBimServerClientFactory factory;
-                    BimServerClient client;
-                    factory = new JsonBimServerClientFactory(Main.BimPort);
-                    client = factory.create(new TokenAuthentication(token));
-
+                    
                     String filePath = "./src/main/resources/Querys/"+queryName+".json";
                     String json = readFileAsString(filePath);
                     if(json.contains("Error")){
@@ -283,15 +279,7 @@ public class FirebaseService {
                     }
                                    
                     
-        } catch (ServerException e) {
-            return new ResponseEntity<String>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
-        } catch (UserException e) {
-            return new ResponseEntity<String>("Bad Request", HttpStatus.BAD_REQUEST);
-        } catch (BimServerClientException e) {
-            e.printStackTrace();
-        } catch (ServiceException e) {
-            e.printStackTrace();
-        } catch (ChannelConnectionException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return new ResponseEntity<>("error" ,HttpStatus.INTERNAL_SERVER_ERROR);
@@ -305,12 +293,11 @@ public class FirebaseService {
                     factory = new JsonBimServerClientFactory(Main.BimPort);
                     client = factory.create(new TokenAuthentication(token));
                     String postId = "0";
-                    Notification notification = new Notification(postId, false, recieveingUser, true, Query, queryTopic);
+                    Notification notification = new Notification(postId, false, recieveingUser, true, queryTopic, Query);
                     Firestore dbFirestore = FirestoreClient.getFirestore();
 
                     ApiFuture<WriteResult> collectionApiFuture = dbFirestore.collection("QueryNotification").document().set(notification);
                     while(!(collectionApiFuture.isDone())){}
-                    System.out.println(notification.toString());
 
                     return new ResponseEntity<String>(HttpStatus.OK);
 
@@ -342,8 +329,7 @@ public class FirebaseService {
             ApiFuture<QuerySnapshot> querySnapshotApiFuture = query.get();
             QuerySnapshot querySnapshot = querySnapshotApiFuture.get();
             List<QueryDocumentSnapshot> documents = querySnapshot.getDocuments();
-            ArrayList<Notification> queryList = new ArrayList<>();
-            ArrayList<String> querysList = new ArrayList<>();
+            ArrayList<String []> querysList = new ArrayList<>();
             for (int i = 0; i < documents.size(); i++) {
                 /* 
                 queryList.add(new Notification(
@@ -354,9 +340,11 @@ public class FirebaseService {
                                             documents.get(i).get("queryName").toString(),
                                             documents.get(i).get("queryTopic").toString()
                                             ));*/
-                querysList.add(documents.get(i).get("queryTopic").toString());
+                String querys[] = new String[2];
+                querys[0] = documents.get(i).get("queryName").toString();
+                querys[1] = documents.get(i).get("queryTopic").toString();
+                querysList.add(querys);
             }
-            System.out.println(queryList.toString());
             String result = new Gson().toJson(querysList);
 
             return new ResponseEntity<String>(result,HttpStatus.valueOf(200));

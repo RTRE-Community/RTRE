@@ -411,19 +411,6 @@ export default ({
       this.messageList = [];
       this.participants = [];
 
-      /*
-      for(let i = 0; i < this.Users.length; i++){
-        if(this.Users[i].oid === sessionStorage.getItem('oid')){
-          this.Users.splice(i, 1);
-        }
-      }
-      /*
-      for(let i = 0; i < this.Users.length; i++){
-              this.Users[i].messages = {};
-              this.Users[i].messages.messageCount = 0;
-              this.Users[i].messages['message'] = [];
-      }*/
-      //console.log(this.Users);
       
       setInterval(this.updateMessages, 5000);
 
