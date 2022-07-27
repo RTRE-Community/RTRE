@@ -2,13 +2,17 @@
 <v-app class="pb10">
     <input type="file" name="load" id="file-input" />
     <v-btn class="ma-2" fab dark small color="red" @click="deleteWithOid()">
-                <v-icon dark>
-                mdi-delete-variant
-            </v-icon>
+        <v-icon dark>
+            mdi-delete-variant
+        </v-icon>
     </v-btn>
     <v-card id="wrapper" style="width: 100%;height: 55vh;" elevation="3" class="mt-5">
         <canvas id="three-canvas"></canvas>
     </v-card>
+    <v-subheader>Tick labels</v-subheader>
+    <v-card-text>
+        <v-slider v-model="project" :tick-labels="ticksLabels" :min="0" :max="ticksLabels.length - 1" step="1" ticks="always" tick-size="5"></v-slider>
+    </v-card-text>
 </v-app>
 </template>
 
@@ -33,11 +37,31 @@ export default {
     data() {
         return {
             LatestIfcModel: null,
-            scene: null
+            scene: null,
+            project: 3,
+            ticksLabels: [
+                'first project',
+                'second project',
+                'third project',
+                'fourth project',
+            ],
         }
     },
     mounted() {
         this.renderScene()
+        let temp = 'third project'
+        for(let i = 0; i < this.ticksLabels.length; i ++){
+            if(this.ticksLabels[i] == temp){
+                this.project = i
+            }
+        }
+    },
+    watch: {
+        project(newValue, oldValue) {
+            console.log(newValue + "" + oldValue)
+            console.log(this.ticksLabels.length)
+            console.log(this.ticksLabels[newValue])
+        }
     },
     methods: {
         renderModel(ifcURL) {
@@ -52,7 +76,7 @@ export default {
         },
         deleteWithOid() {
             console.log(this.scene.children.length)
-                this.scene.remove(this.scene.children[this.scene.children.length - 1]);
+            this.scene.remove(this.scene.children[this.scene.children.length - 1]);
         },
         renderScene() {
             let vCardWrapper = document.getElementById('wrapper');
