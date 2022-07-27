@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.ws.Response;
 import java.util.Optional;
 
 @RestController
@@ -146,10 +147,15 @@ public class IfcController {
     public ResponseEntity<String> getUserQuerys(@RequestParam String oid){
         return FirebaseService.getUserQuerys(oid);
     }
+
     @DeleteMapping("/deleteUserQuery")
     public ResponseEntity<String> deleteUserQuery(@RequestParam String oid, String queryName){
         return FirebaseService.deleteUserQUery(oid, queryName);
     }
 
+    @GetMapping("/getDateAndSubProject")
+    public ResponseEntity<String> getSingleProject(@RequestParam String token, Long id){
+        return IfcGetService.authGetDateAndSubProject(token,id);
+    }
 }
 

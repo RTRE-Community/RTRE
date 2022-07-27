@@ -1,6 +1,8 @@
 package fore.rtre.server.Service;
 
 import fore.rtre.server.Main;
+import fore.rtre.server.Object.Helper.sortByDate;
+import fore.rtre.server.Object.SubProjectMeta;
 import fore.rtre.server.config.BimserverConfig;
 import com.google.gson.Gson;
 import org.apache.commons.io.IOUtils;
@@ -21,9 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
-import java.util.Collections;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class IfcGetService {
@@ -115,5 +115,39 @@ public class IfcGetService {
         return new ResponseEntity<>("error" ,HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    public static ResponseEntity<String> authGetDateAndSubProject(String token, Long id){
+        try {
+            ArrayList<SubProjectMeta> subProjectMetaList = new ArrayList<>();
+            ArrayList<Long> sortedListOfIds = new ArrayList<>();
+            JsonBimServerClientFactory factory;
+            BimServerClient client;
+            factory = new JsonBimServerClientFactory(Main.BimPort);
+            client = factory.create(new TokenAuthentication(token));
+            Long parentId = client.getServiceInterface().getProjectByPoid(id).getParentId();
+            List<SProject> allProjects = client.getServiceInterface().getAllProjects(false,true);
+            for (int project = 0; project < allProjects.size(); project++) {
+                if(client.getServiceInterface().getProjectByPoid(allProjects.get(project).getOid()).getParentId() == parentId){
+                 subProjectMetaList.add(new SubProjectMeta(allProjects.get(project).getOid(), allProjects.get(project).getCreatedDate()));
+                }
+            }
+            Collections.sort(subProjectMetaList, new sortByDate());
+            for (int i = 0; i < subProjectMetaList.size(); i++) {
+                sortedListOfIds.add(subProjectMetaList.get(i).getId());
+            }
+            String result = new Gson().toJson(sortedListOfIds);
+            return new ResponseEntity<String>(result, HttpStatus.valueOf(200));
+        } catch (ServerException e) {
+            return new ResponseEntity<String>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
+        } catch (UserException e) {
+            return new ResponseEntity<String>("Bad Request", HttpStatus.BAD_REQUEST);
+        } catch (BimServerClientException e) {
+            e.printStackTrace();
+        } catch (ServiceException e) {
+            e.printStackTrace();
+        } catch (ChannelConnectionException e) {
+            e.printStackTrace();
+        }
+        return new ResponseEntity<>("error" ,HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 }
 

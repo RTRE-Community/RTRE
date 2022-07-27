@@ -11,7 +11,7 @@
     </v-card>
     <v-subheader>Tick labels</v-subheader>
     <v-card-text>
-        <v-slider v-model="project" :tick-labels="ticksLabels" :min="0" :max="ticksLabels.length - 1" step="1" ticks="always" tick-size="5"></v-slider>
+        <v-slider v-model="projectTickValue" :tick-labels="ticksLabels" :min="0" :max="ticksLabels.length - 1" step="1" ticks="always" tick-size="5"></v-slider>
     </v-card-text>
 </v-app>
 </template>
@@ -32,35 +32,59 @@ import {
 import {
     IFCLoader
 } from "web-ifc-three/IFCLoader";
+import axios from "axios";
 export default {
     name: "ModelViewer",
     data() {
         return {
             LatestIfcModel: null,
             scene: null,
-            project: 3,
-            ticksLabels: [
-                'first project',
-                'second project',
-                'third project',
-                'fourth project',
-            ],
+            project: null,
+            projectTickValue: null,
+            ticksLabels: [],
+            dateMapOfSubProjects: null
         }
     },
     mounted() {
+        // get oid
+        let temp = this.$route.params.oid
+        // get sibling projects
+        axios.get(process.env.VUE_APP_RTRE_BACKEND_PORT + "/api/getDateAndSubProject?token=" + sessionStorage.getItem('TokenId') +
+                "&id=" + temp)
+            .then((resp) => {
+                this.ticksLabels = resp.data
+            }).then(() => {
+                for (let i = 0; i < this.ticksLabels.length; i++) {
+                    if (this.ticksLabels[i] == temp) {
+                        this.projectTickValue = i
+                    }
+                }
+            })
+
+        // fill list vid oids
+        // set value == param oid
+
         this.renderScene()
-        let temp = 'third project'
-        for(let i = 0; i < this.ticksLabels.length; i ++){
-            if(this.ticksLabels[i] == temp){
-                this.project = i
-            }
-        }
     },
     watch: {
-        project(newValue, oldValue) {
-            console.log(newValue + "" + oldValue)
-            console.log(this.ticksLabels.length)
-            console.log(this.ticksLabels[newValue])
+        projectTickValue(newValue, oldValue) {
+            if (oldValue == null) {
+                return
+            } else {
+                axios({
+                    url: process.env.VUE_APP_RTRE_BACKEND_PORT + "/api/getIfc?fileName=" + this.ticksLabels[newValue],
+                    methods: "GET",
+                }).then((res) => {
+                    var render = URL.createObjectURL(new Blob([res.data], {
+                        type: "application/octet-stream"
+
+                    }))
+                    this.renderModel(render)
+                }).then(() => {
+                    setInterval(1000)
+                    this.deleteWithOid()
+                })
+            }
         }
     },
     methods: {
