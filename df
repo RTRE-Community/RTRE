@@ -1,0 +1,2469 @@
+[33mcommit 41abc15aba3679a69d1435adfcb8acd007e92fe7[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: mandemmike <mmm@Michaels-Air.ad.berge.io>
+Date:   Wed Jul 27 15:15:39 2022 +0200
+
+    Fisxed separation of IFC queries inside frontend
+
+[33mcommit 9561b6e759659ed14e483b80437bb7bed8937ab2[m[33m ([m[1;31morigin/BimserverContainerTest[m[33m)[m
+Merge: 8b4eecf a42f993
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jul 15 10:32:31 2022 +0200
+
+    Merge pull request #27 from foredev/RTRE20-91-view-funktion-for-att-se-modellen-genom-viewer
+    
+    added view function without downloading file to local pc
+
+[33mcommit a42f99333f68f00a431bff671cff4b6c55afab09[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jul 15 10:21:40 2022 +0200
+
+    added view function without downloading file to local pc
+
+[33mcommit 8b4eecf656b69208350c5bc48b4d12a5c9abc804[m
+Merge: 27d835b 9de12c8
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Thu Jul 14 13:17:06 2022 +0200
+
+    Merge pull request #26 from foredev/RTRE20-86-lagga-till-http-test-for-git-pipeline-ci-cd
+    
+    Rtre20 86 lagga till http test for git pipeline ci cd
+
+[33mcommit 9de12c8ea0972999c7be738ce23c88bce8b3e2e8[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Thu Jul 14 12:59:01 2022 +0200
+
+    fix for check out error
+    
+    make query optional
+
+[33mcommit 70ce4fb3649a510630b87bc4f5fa3da7798d2c78[m
+Merge: 66b5325 27d835b
+Author: dennishoang2010 <dennishoang2010@gmail.com>
+Date:   Thu Jul 14 11:40:05 2022 +0200
+
+    Merge branch 'main' into RTRE20-86-lagga-till-http-test-for-git-pipeline-ci-cd
+
+[33mcommit 66b5325c19d7820e448aa6b5097491767932cfe1[m
+Author: dennishoang2010 <dennishoang2010@gmail.com>
+Date:   Wed Jul 13 11:13:43 2022 +0200
+
+    testing ci pipeline
+
+[33mcommit ac2314924b6950b547f12a86c4c355010a1b86de[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 17:26:55 2022 +0200
+
+    removed cy.wait, test mergefile size
+
+[33mcommit 188f8b5d36b066b00d5b07d23704a2a21522cf72[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 17:16:56 2022 +0200
+
+    Update adminInterface.cy.js
+
+[33mcommit dc42209e688c363d0b2a79e1f4d3e447a6c9bb4d[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 17:08:26 2022 +0200
+
+    edit timeout default
+
+[33mcommit 1b5deb2b0615fd206f66e218c192dc12eb47895b[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 16:53:01 2022 +0200
+
+    fafa
+
+[33mcommit e80551251cead2f6577e1de88dbed57d5b38d248[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 16:30:57 2022 +0200
+
+    sadad
+
+[33mcommit 7221f2106468f6c3506d158739ac7e0a9bcb54a1[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 16:12:48 2022 +0200
+
+    fsdfas
+
+[33mcommit 0a3d9a46f7d51de3466d49544ef1c61b0f98f4e7[m
+Merge: 2e260b5 608a699
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 16:01:22 2022 +0200
+
+    Merge branch 'RTRE20-86-lagga-till-http-test-for-git-pipeline-ci-cd' of https://github.com/foredev/RTRE into RTRE20-86-lagga-till-http-test-for-git-pipeline-ci-cd
+
+[33mcommit 2e260b5a6a9716484a2064f92ec96d0e63d8caf9[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 16:01:16 2022 +0200
+
+    Update Main.java
+
+[33mcommit 608a6997ac9d5faf8d0136d546ea4f112fa7997b[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 15:54:10 2022 +0200
+
+    Update build.yml
+
+[33mcommit fe00e5771eb3c1eccb46aeb7779d6ae85381a015[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 15:45:19 2022 +0200
+
+    Update build.yml
+
+[33mcommit d70a61676ce1f11311748999a0f1e661dce53021[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 15:41:34 2022 +0200
+
+    afafa
+
+[33mcommit 304001c88d705aed30c19e79a4e511afa762cb1d[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 15:22:54 2022 +0200
+
+    Update build.yml
+
+[33mcommit 6cdbc195759db343b127638ac54d349019dd0548[m
+Merge: b44d56f 1a59416
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 15:12:20 2022 +0200
+
+    Merge branch 'RTRE20-86-lagga-till-http-test-for-git-pipeline-ci-cd' of https://github.com/foredev/RTRE into RTRE20-86-lagga-till-http-test-for-git-pipeline-ci-cd
+
+[33mcommit b44d56f22c4f17a114f6012fc3dfb66383451068[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 15:12:13 2022 +0200
+
+    fafaf
+
+[33mcommit 1a594162128f0c85cae298c1cf5e214473e1fad0[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 15:08:55 2022 +0200
+
+    dddd
+
+[33mcommit d9d6f7249cdeae76c1df8172b5b9bf1d85960e0e[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 15:08:33 2022 +0200
+
+    Update build.yml
+
+[33mcommit 0502feef3ad9b6b3567eb046a72c4f178c91f378[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 15:06:23 2022 +0200
+
+    Revert "error log"
+    
+    This reverts commit 5de9059098a6a1c02d272c82ed8ee52d83871273.
+
+[33mcommit e9e70589abce572d226dc0391f1b4b2c365d0ff9[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 15:06:18 2022 +0200
+
+    Revert "finding error"
+    
+    This reverts commit 19bf50241de3672a69187d42ae5ab2db4e62e941.
+
+[33mcommit 19bf50241de3672a69187d42ae5ab2db4e62e941[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 14:55:16 2022 +0200
+
+    finding error
+
+[33mcommit 5de9059098a6a1c02d272c82ed8ee52d83871273[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 14:40:33 2022 +0200
+
+    error log
+
+[33mcommit 25a8a464d0e851792e21fa86829d61d928380d31[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 14:37:19 2022 +0200
+
+    Revert "edit to print stacktrace"
+    
+    This reverts commit 41117b1ed44927b1d946a89fb588c5681ad63380.
+
+[33mcommit 28aeb527503a8fea9af7b701784c24ac435c0929[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 14:37:11 2022 +0200
+
+    Revert "Update build.yml"
+    
+    This reverts commit 570276a3e23ae0f8beecf50e0de0ff38a03c897d.
+
+[33mcommit 570276a3e23ae0f8beecf50e0de0ff38a03c897d[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 14:07:18 2022 +0200
+
+    Update build.yml
+
+[33mcommit 41117b1ed44927b1d946a89fb588c5681ad63380[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 14:04:03 2022 +0200
+
+    edit to print stacktrace
+
+[33mcommit d8bfe10baa35da38d7802d4a5dc98073e15a2ae8[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 13:37:25 2022 +0200
+
+    Update build.yml
+
+[33mcommit d8d8f8a0d9234814192b5db706ae5ea96a470895[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 13:34:45 2022 +0200
+
+    Update build.yml
+
+[33mcommit 7ad04661efb0c66155219f971185918bf240c3c1[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 13:32:16 2022 +0200
+
+    Update build.yml
+
+[33mcommit 08bb7ce2c29abc0b35d3c7d502ffdb7adc81ceb8[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 13:31:04 2022 +0200
+
+    Update build.yml
+
+[33mcommit 07f306f6d4996ed0052d8f2a7379f5e44f5b92d0[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 13:26:46 2022 +0200
+
+    Update build.yml
+
+[33mcommit b1c79c3274e952647a303108895be60ebf2f4c43[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 13:24:38 2022 +0200
+
+    Update build.yml
+
+[33mcommit 21be9e614900e66d2cdad2f3c98e206a5ab29e3b[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 13:22:46 2022 +0200
+
+    Update build.yml
+
+[33mcommit 022a9085c6781ce72533859080c953f0179d1011[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 13:05:02 2022 +0200
+
+    Update build.yml
+
+[33mcommit 2fde3791df8a5589b0d6403df6851193f9803a00[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 13:04:46 2022 +0200
+
+    Update build.yml
+
+[33mcommit ea20d811d4f0a2c871085a41ada9024344ce0b96[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 13:03:11 2022 +0200
+
+    Update build.yml
+
+[33mcommit 9a0d9835fc330dee703a3e1c6f88ee07b5445823[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 12:53:33 2022 +0200
+
+    Update build.yml
+
+[33mcommit c78692f797091a3709ff1ebedf8078baa6dcc4c7[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 12:51:35 2022 +0200
+
+    Update build.yml
+
+[33mcommit 2e4f24d41e7574e1e279fb17eb247e615a629014[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 11:50:57 2022 +0200
+
+    Update build.yml
+
+[33mcommit 86ddf4d8ce5208c9a4ef52899ea5603e953020a3[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 11:47:56 2022 +0200
+
+    Update build.yml
+
+[33mcommit 01b63278a93fe3b4c4f7cddde5e2dba9562d73f6[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 11:45:38 2022 +0200
+
+    Update build.yml
+
+[33mcommit 7c100cf2072bb2d78ed358aa923e5f8bb5f8c105[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 11:42:57 2022 +0200
+
+    Update build.yml
+
+[33mcommit 7383760c0894c30778e75e1eb5a1acb28b5832ba[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 11:40:13 2022 +0200
+
+    Update build.yml
+
+[33mcommit 7343511e994db7594a9cbccb944b076e469d3c8a[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 11:37:53 2022 +0200
+
+    Update build.yml
+
+[33mcommit 40683b8928c9ab736249a974123343e4db7cd5e4[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 11:33:52 2022 +0200
+
+    Update build.yml
+
+[33mcommit 60c8f587f060cf5300444738052043d91cc3de54[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 11:31:53 2022 +0200
+
+    Update build.yml
+
+[33mcommit 9023f392eff920600e37584ff66874b840a3764f[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 11:30:09 2022 +0200
+
+    Update build.yml
+
+[33mcommit 18b7949339dbeab460b98b538e1438c566eac5c7[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 11:27:48 2022 +0200
+
+    Update build.yml
+
+[33mcommit 4cdd71e56dbe471113daa3cef9c9c4b02665532a[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 11:25:20 2022 +0200
+
+    Update build.yml
+
+[33mcommit 528d0a5505ccf609c0c6c3ed6f62769dfae1b892[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 11:10:57 2022 +0200
+
+    Update build.yml
+
+[33mcommit b49b96d18f73bfe1f0dcc67200bfd1211a1bbfa8[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 10:51:35 2022 +0200
+
+    Update build.yml
+
+[33mcommit fb37c9b8176b78cc939b974e350bc26355031834[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 10:49:42 2022 +0200
+
+    Update build.yml
+
+[33mcommit ccb3ef28aa6be236cb2fb256848d2a5ca475269d[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 10:47:56 2022 +0200
+
+    Update build.yml
+
+[33mcommit 14f950b0797a69767a5abf27f1ab433975d5d16d[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 10:45:59 2022 +0200
+
+    Update build.yml
+
+[33mcommit 6c88aa0b1b2a9fcafe4628808b0bb4552ffa26ab[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 10:35:53 2022 +0200
+
+    Update build.yml
+
+[33mcommit ef0fa41e629a96da21e27b67769e238346bc7ebd[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 10:32:57 2022 +0200
+
+    Update build.yml
+
+[33mcommit 5a69bc88394d278c66ee14df377fc3cb2d6fcfb2[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 10:31:30 2022 +0200
+
+    Update build.yml
+
+[33mcommit 312a0b7cc8900f00f7d47935d729da7b9330de8f[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 10:27:39 2022 +0200
+
+    Update build.yml
+
+[33mcommit 6f82f9cf3d295d69cf7dac576f4a9ea980edbeb4[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 10:26:25 2022 +0200
+
+    Update build.yml
+
+[33mcommit 871a2bc09de7241f40006fc6016c61a8dfe3f81e[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 10:21:54 2022 +0200
+
+    Update build.yml
+
+[33mcommit e8067070292904ca7ea2e4faeeac2ea0eaa1b07f[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 10:20:23 2022 +0200
+
+    Update build.yml
+
+[33mcommit aca384e9f1b566560fcc3d136e703f6ba695df5e[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 10:18:55 2022 +0200
+
+    Update build.yml
+
+[33mcommit 60e1f9c1ec95c378a87e5e7f2fb6660feb3ef450[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 10:17:31 2022 +0200
+
+    Update build.yml
+
+[33mcommit 61da32c476b21bc0ae96360884ef3d465868c71c[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 10:16:10 2022 +0200
+
+    Update build.yml
+
+[33mcommit e993c0e48ccbb8752ab1a31baaf3ed829d1eb0c5[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 10:14:13 2022 +0200
+
+    Update build.yml
+
+[33mcommit ed2afa45df89c94bb942e1f42b66f111d80eee6b[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 09:53:50 2022 +0200
+
+    Update build.yml
+
+[33mcommit 654f7eac3975b7d6dac1e70b28a710556de4a34e[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 09:51:31 2022 +0200
+
+    Update build.yml
+
+[33mcommit edc6df5163b7c3c340be985538a3f221b54b5ebd[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 09:48:05 2022 +0200
+
+    Update build.yml
+
+[33mcommit 764bb6d3f8fce805f3278821ed45a83b052bcecd[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 09:39:24 2022 +0200
+
+    Update build.yml
+
+[33mcommit 997543378ad44c7482d0b9b0a743ed939ca254b5[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 09:28:25 2022 +0200
+
+    Update build.yml
+
+[33mcommit 60695ab0708ccfaacf0e6a9d12c86c9aaf06f950[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 09:26:27 2022 +0200
+
+    Update build.yml
+
+[33mcommit e92ff5e6a31d9c5e54c46643f10b8333bb36789b[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 09:25:01 2022 +0200
+
+    Update build.yml
+
+[33mcommit 77561712cf235126599c2882d897707cb17d76ce[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 09:20:32 2022 +0200
+
+    Update build.yml
+
+[33mcommit 1d5366fd69e2ecdeef4c561d27bec839b8934d3b[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 09:19:44 2022 +0200
+
+    Update build.yml
+
+[33mcommit 96b94d6ed9a81c5f67dc98d9532a5e7217b46a27[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 09:17:01 2022 +0200
+
+    Update build.yml
+
+[33mcommit 6a5bd22d23dc6b113b1843c7d675f2280f16a522[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 09:13:44 2022 +0200
+
+    Update build.yml
+
+[33mcommit ccfe3059f34085663112e06108d42966f1c45433[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 09:09:44 2022 +0200
+
+    Update build.yml
+
+[33mcommit 562fdc1505ed7e74a6b2679f941a58ac5135d823[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 09:07:57 2022 +0200
+
+    Update build.yml
+
+[33mcommit f8e38dfe2ace3b81aed95e4cd661ca1988412300[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 09:03:53 2022 +0200
+
+    Update build.yml
+
+[33mcommit 6d0cc3211856ac07ce696a6893bf4e85a329a4fd[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 09:02:20 2022 +0200
+
+    Update build.yml
+
+[33mcommit a35aca97dbfbdd4c0e3d5ae01f91fbcf0ef9de6d[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 08:57:22 2022 +0200
+
+    Update build.yml
+
+[33mcommit a04f03f3da74054cbe69563e28e588ca008d95e1[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 08:54:35 2022 +0200
+
+    Update build.yml
+
+[33mcommit 35a8bd27a7170c8fdde4f7beab4f2564f250c08d[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 08:52:15 2022 +0200
+
+    Update build.yml
+
+[33mcommit bf34024015f2018b259d6e6e14fc1ca46d728a29[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jul 12 08:49:43 2022 +0200
+
+    Update build.yml
+
+[33mcommit 48807d213f288595ff48cd7976a14e43456e390b[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Mon Jul 11 16:19:19 2022 +0200
+
+    Update build.yml
+
+[33mcommit d86ff20449c5a3f8a48cc826cc95d22c9c829281[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Mon Jul 11 16:09:56 2022 +0200
+
+    update python setup
+
+[33mcommit 62137393faff38f67afc7e9ef857eb9f6775b2be[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Mon Jul 11 16:07:37 2022 +0200
+
+    python init with ifcopenshell packages
+
+[33mcommit b446bc077b3186f181a46dda71e58c5c3b73b9ba[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Mon Jul 11 16:03:39 2022 +0200
+
+    Update build.yml
+
+[33mcommit bd102c502847cb2e9295d7bf209d1fcd86948092[m
+Merge: c78500d 7af2e30
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Mon Jul 11 15:30:48 2022 +0200
+
+    Merge branch 'RTRE20-86-lagga-till-http-test-for-git-pipeline-ci-cd' of https://github.com/foredev/RTRE into RTRE20-86-lagga-till-http-test-for-git-pipeline-ci-cd
+
+[33mcommit c78500d22c77863025fd8aa6c5b80de652cb4a64[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Mon Jul 11 15:30:45 2022 +0200
+
+    test again
+
+[33mcommit 7af2e30c86f4d0661e4bbbe69f79f508f41716b4[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Mon Jul 11 15:19:10 2022 +0200
+
+    Rename Stud.ifc to stud.ifc
+
+[33mcommit df274ac0dea012c0ab487ea38e3328313c149a08[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Mon Jul 11 15:10:56 2022 +0200
+
+    Create Stud.ifc
+
+[33mcommit afd624411e55282656a6613c06f74e566dd93991[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Mon Jul 11 14:40:32 2022 +0200
+
+    please i beg you
+
+[33mcommit b719caffeb6cd8e38f0bc50b52e3f66bbfa21b87[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Mon Jul 11 14:30:46 2022 +0200
+
+    please work
+
+[33mcommit 27d835b540aa8c977b2ad9ff3d432e82ec1e7f8c[m
+Merge: 9363c02 17ebf4a
+Author: Michael Araya <81154352+mandemmike@users.noreply.github.com>
+Date:   Mon Jul 11 14:02:34 2022 +0200
+
+    Merge pull request #25 from foredev/RTRE20-90-tillat-anvandare-filtrera-ifc-objekt-som-sa-smaningom-ska-anvandas-i-ifc-querys-avgransningen
+    
+    Rtre20 90 tillat anvandare filtrera ifc objekt som sa smaningom ska anvandas i ifc querys avgransningen
+
+[33mcommit 17ebf4abe32429d8145e10402dce7f1331830764[m[33m ([m[1;31morigin/RTRE20-90-tillat-anvandare-filtrera-ifc-objekt-som-sa-smaningom-ska-anvandas-i-ifc-querys-avgransningen[m[33m)[m
+Author: mandemmike <mmm@Michaels-Air.ad.berge.io>
+Date:   Mon Jul 11 14:00:09 2022 +0200
+
+    small fix
+
+[33mcommit 405c3b41efc75eb3a05ebde9c8a3e71c492695f0[m
+Author: mandemmike <mmm@Michaels-Air.ad.berge.io>
+Date:   Mon Jul 11 13:56:05 2022 +0200
+
+    More query functionality from the perspective of the admin
+
+[33mcommit c9eefffa427832e69ed406bb9276ca020c8d5046[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Mon Jul 11 13:35:19 2022 +0200
+
+    Update adminInterface.cy.js
+
+[33mcommit 9228cc85df1a9dc3398729085a3c18611c0d9f69[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Mon Jul 11 13:29:24 2022 +0200
+
+    now for second test
+
+[33mcommit ff261b3d90f72bd3110d04892a038fe6ded9e9ec[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Mon Jul 11 12:58:54 2022 +0200
+
+    Update adminInterface.cy.js
+
+[33mcommit b6db6982ed4367d88a756b1a417465e3c43b18cb[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Mon Jul 11 12:52:40 2022 +0200
+
+    Update adminInterface.cy.js
+
+[33mcommit 3d95375191c70991c5a2bff81a9b24d4ba893b8b[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Mon Jul 11 11:27:42 2022 +0200
+
+    Update adminInterface.cy.js
+
+[33mcommit b47dbfdcd4621e1e33b8eea214c711379a3fad48[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Mon Jul 11 10:40:58 2022 +0200
+
+    replace wait
+
+[33mcommit 00b54c0de6a22869afc8f2d96a19de727173a676[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Mon Jul 11 09:36:49 2022 +0200
+
+    Update adminInterface.cy.js
+
+[33mcommit c912027a29d73b8ca99469bf22e1afcc0856807f[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Mon Jul 11 09:31:12 2022 +0200
+
+    test
+
+[33mcommit 7c8fb4de3963ce908628f03c845a72f471a1ecb5[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Mon Jul 11 09:23:35 2022 +0200
+
+    cypress github action test
+
+[33mcommit 0bba853954d72062e6011d6dfc6fac2f742983e9[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Mon Jul 11 09:20:17 2022 +0200
+
+    cypress test
+
+[33mcommit f4e6ffe57eb7fe4cf973c0b2fa5a8e25d2865a19[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Mon Jul 11 09:13:48 2022 +0200
+
+    cypress test git action
+
+[33mcommit 52839e8a7736f2e4e4af8d054fd2758179610228[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Mon Jul 11 09:02:58 2022 +0200
+
+    cypress test git action
+
+[33mcommit bbf5a429649e1cf6b6f4d14fa518051dc0cd1204[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jul 8 17:02:16 2022 +0200
+
+    Update adminInterface.cy.js
+
+[33mcommit 1a9e778d008c77e12e7d80eb3353468a84ac9cf0[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jul 8 16:51:54 2022 +0200
+
+    Update adminInterface.cy.js
+
+[33mcommit e89b5b2b8e1149876475a56ca3dd348a2db83d14[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jul 8 16:38:13 2022 +0200
+
+    Update adminInterface.cy.js
+
+[33mcommit 97a5ed4bdf467cdd1bbb48998fbcfbfd19f56288[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jul 8 16:21:11 2022 +0200
+
+    Update build.yml
+
+[33mcommit be5ac205c2df4ea44d333e1992b583aa75d36b4c[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jul 8 16:12:10 2022 +0200
+
+    Update build.yml
+
+[33mcommit d5ee2ebbbb8a13bf59bfafa34bdf79545399c729[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jul 8 16:06:41 2022 +0200
+
+    change to a github action
+
+[33mcommit 59f6455149bf56ebeedd98b3432dd9c1af1f8075[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jul 8 15:49:57 2022 +0200
+
+    Update adminInterface.cy.js
+
+[33mcommit 72f85ae710f730483363f92514805914293e4807[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jul 8 15:41:15 2022 +0200
+
+    Update adminInterface.cy.js
+
+[33mcommit f332f2204907e407bb2df1ce853c503187ccb648[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jul 8 15:31:22 2022 +0200
+
+    Update package.json
+
+[33mcommit ddec8177ea78cf8c492d80690b0dd3798ade052c[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jul 8 15:18:21 2022 +0200
+
+    final
+
+[33mcommit a9c700c27e0efe3455391415da79ebee9d1650b3[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jul 8 15:08:42 2022 +0200
+
+    Update build.yml
+
+[33mcommit a541fa226727756ed89624ad269fae5918889dbe[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jul 8 15:03:29 2022 +0200
+
+    update
+
+[33mcommit 8fe484b35cf4e1b2a4c85977860931b774b10969[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jul 8 14:46:56 2022 +0200
+
+    Update adminInterface.cy.js
+
+[33mcommit 2c57e23820ddfa3c13787b066bb2095034bea3b3[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jul 8 14:35:48 2022 +0200
+
+    Update adminInterface.cy.js
+
+[33mcommit 9363c0242e58a46327b3735a9329143d52cdd5f1[m
+Merge: 20627ac 2859bf6
+Author: Michael Araya <81154352+mandemmike@users.noreply.github.com>
+Date:   Fri Jul 8 14:32:53 2022 +0200
+
+    Merge pull request #24 from foredev/RTRE20-90-tillat-anvandare-filtrera-ifc-objekt-som-sa-smaningom-ska-anvandas-i-ifc-querys-avgransningen
+    
+    Rtre20 90 tillat anvandare filtrera ifc objekt som sa smaningom ska anvandas i ifc querys avgransningen
+
+[33mcommit 802afc61cc1594770617824404971e0c7aa4673e[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jul 8 14:16:14 2022 +0200
+
+    Update adminInterface.cy.js
+
+[33mcommit eada84dd46111a09c6bd210094c2cfbf6505a9f5[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jul 8 13:57:13 2022 +0200
+
+    Update build.yml
+
+[33mcommit 2859bf6ec3e4a497fcca4f699854ea66cfe5d246[m
+Author: mandemmike <mmm@Michaels-Air.ad.berge.io>
+Date:   Fri Jul 8 13:52:12 2022 +0200
+
+    Done with querying and filtering for various IFC objects, admin can now assign users with specific queries etc and users can checkout according to their assigned query
+
+[33mcommit 6b187e8ad6d0c038a6407a032db0f0d797a4d87e[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jul 8 13:46:58 2022 +0200
+
+    Update build.yml
+
+[33mcommit de253e9fd48d469dd572b7441e2d10bb35f4a7c8[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jul 8 13:37:05 2022 +0200
+
+    Update build.yml
+
+[33mcommit 7192776ee215eee858c7ebbcdf304b29b92b8f1d[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jul 8 13:10:51 2022 +0200
+
+    Update build.yml
+
+[33mcommit 36a73abd4b829baa913f5c3c43b3c12930f877ad[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jul 8 13:05:24 2022 +0200
+
+    final 1.1
+
+[33mcommit 8a12db2715083574027356bbbdbacf2f4d3cf5e7[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jul 8 13:02:35 2022 +0200
+
+    Final test lol
+
+[33mcommit ba30c4cbd1d8e6a94bbab26fc48d3cc36831b623[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jul 8 12:00:26 2022 +0200
+
+    Update build.yml
+
+[33mcommit 956c2a1d3df9dfc13337989460b8940c4a2eb066[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jul 8 11:58:05 2022 +0200
+
+    Update build.yml
+
+[33mcommit af9a6e8abb17c06a99963e091eeb112de0e46822[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jul 8 11:54:50 2022 +0200
+
+    Update build.yml
+
+[33mcommit 2963b4c38b1c51d7633eaac6babf2cf69c83edd1[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jul 8 11:53:04 2022 +0200
+
+    test
+
+[33mcommit 9351ff93aee50b1dcfbc17ce2e8fcaceb9605237[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jul 8 11:46:34 2022 +0200
+
+    changes
+
+[33mcommit 7426b31f975d6ee29dfdc57764a06933d7717a85[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jul 8 11:38:42 2022 +0200
+
+    Update build.yml
+
+[33mcommit aa5c21ae58a84e814a8868de84911064fe0c46a0[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jul 8 11:33:49 2022 +0200
+
+    Update build.yml
+
+[33mcommit cce9b15ce76df282b840dd145121a14a6fde09bd[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jul 8 11:30:50 2022 +0200
+
+    Update build.yml
+
+[33mcommit 7484f0bcb0ebd972530b4d9a1e56bd56e8d14dfe[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jul 8 11:22:58 2022 +0200
+
+    Update build.yml
+
+[33mcommit fa8ef32305edd18e6b8e9f9fc70f7d7647d9cfc5[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jul 8 11:15:38 2022 +0200
+
+    Update build.yml
+
+[33mcommit 706b2e3f32b21ca0e2d2186d4e7cd9d757fc1ab9[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jul 8 11:06:56 2022 +0200
+
+    Update build.yml
+
+[33mcommit 72936fb81ddcf7e7677d847ac3105e827d08ee38[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jul 8 11:03:28 2022 +0200
+
+    Update build.yml
+
+[33mcommit 433b69183a2807023624cd9df69c0a421e302446[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jul 8 10:55:17 2022 +0200
+
+    Update build.yml
+
+[33mcommit 30336dbf3e16239fe3ecc6d415bf0689e8844675[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jul 8 10:52:29 2022 +0200
+
+    Update build.yml
+
+[33mcommit cae0d01fb18e139b5c34cfd0974fe4a76e02887f[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jul 8 10:49:03 2022 +0200
+
+    Update build.yml
+
+[33mcommit 6de9f380fcbe0ff956d926d50eb47fe15811d3da[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jul 8 10:36:53 2022 +0200
+
+    Update build.yml
+
+[33mcommit 7ca995a4aca3d3e667663e4afa3a22f0149d2114[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jul 8 10:09:19 2022 +0200
+
+    minmal fix
+
+[33mcommit aabec75cfa55ac371ac973cc542c17c81b51a393[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jul 8 10:08:15 2022 +0200
+
+    Trying services in workflow
+
+[33mcommit 2455b4acbe20d5ba6eb0f7e4b8912d4cd0862e2b[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jul 8 09:27:49 2022 +0200
+
+    Rename merge.vue to Merge.vue
+
+[33mcommit 80c08598d10951105804fed64bb7a0f82ede95ff[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jul 8 09:27:02 2022 +0200
+
+    Rename checkOut.vue to CheckOut.vue
+
+[33mcommit 9baa19ad0ee6f487c7b2df98d164ce28fb567b2a[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jul 8 09:26:47 2022 +0200
+
+    Rename checkIn.vue to CheckIn.vue
+
+[33mcommit 0d5accec41fc08de62e2f17d284ff9e6ac31ceb4[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jul 8 09:21:23 2022 +0200
+
+    trial yml file
+
+[33mcommit 9c5e695f8b664a53ea1b1cef3b3c84bae7c3d163[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jul 8 09:03:15 2022 +0200
+
+    Update build.yml
+
+[33mcommit 0b96aa1fa9a0851622bca1ddcc7601d645088470[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jul 8 08:59:22 2022 +0200
+
+    Update build.yml
+
+[33mcommit 511f647b4cd40c47788f8828aefbcc78fde2dab5[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jul 8 08:55:58 2022 +0200
+
+    Update build.yml
+
+[33mcommit 5d725cf6c03080f6386454d0f48cb34e95805dac[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Thu Jul 7 16:50:06 2022 +0200
+
+    Update build.yml
+
+[33mcommit 57fbb8e4095659cdbe2c62bbdac4cfe0bc9998d7[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Thu Jul 7 16:49:11 2022 +0200
+
+    Update build.yml
+
+[33mcommit d297fd8bdbc6e3bed0af278835e302e5666b3ac8[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Thu Jul 7 16:47:46 2022 +0200
+
+    Update build.yml
+
+[33mcommit e11a60cac59a57a3637c8e0c9dabf510fcea22af[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Thu Jul 7 16:44:55 2022 +0200
+
+    Update build.yml
+
+[33mcommit 7ed422d532dce1187d7dcbeccda69903810a1f96[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Thu Jul 7 16:42:36 2022 +0200
+
+    Update build.yml
+
+[33mcommit 84cfcb576ef1da695c2c9c482b5b1609ccaaa949[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Thu Jul 7 16:40:00 2022 +0200
+
+    Update build.yml
+
+[33mcommit f9fe82b1b9443dc6fd224b843dc3641e82dcf8e4[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Thu Jul 7 16:38:02 2022 +0200
+
+    Update build.yml
+
+[33mcommit 357cf9ee5548db1a6ce5460727f38305c66ea4ac[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Thu Jul 7 16:27:20 2022 +0200
+
+    Update build.yml
+
+[33mcommit 684ae8951cbe12f673619ab410dcb92426bf20b8[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Thu Jul 7 16:25:10 2022 +0200
+
+    Update build.yml
+
+[33mcommit fbefa335bb749cfdbd2eabcc49485ba5e6626116[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Thu Jul 7 16:13:24 2022 +0200
+
+    Update build.yml
+
+[33mcommit 3d87401fc88a3c2a1482709b18cb61e99c6ff486[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Thu Jul 7 16:11:38 2022 +0200
+
+    Update FileTransfer.cy.js
+
+[33mcommit 7a891594f8233106bf8a8ecd1b78588c77402260[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Thu Jul 7 16:10:44 2022 +0200
+
+    Update build.yml
+
+[33mcommit da200198f07f4908da862981791447fb137fc99a[m
+Merge: 5b66294 5646cea
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Thu Jul 7 16:08:28 2022 +0200
+
+    Merge branch 'RTRE20-86-lagga-till-http-test-for-git-pipeline-ci-cd' of https://github.com/foredev/RTRE into RTRE20-86-lagga-till-http-test-for-git-pipeline-ci-cd
+
+[33mcommit 5b662940f4184d9cee7c276261d2f83c985010a2[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Thu Jul 7 16:07:44 2022 +0200
+
+    Github Action v1
+
+[33mcommit 5646cea1279a8974c02411ce5f45db7b3ae9932b[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Thu Jul 7 16:07:23 2022 +0200
+
+    Update build.yml
+
+[33mcommit 7de6232b3700d061ff3df7aa48c81f6b47ee5ab7[m
+Author: mandemmike <mmm@Michaels-Air.ad.berge.io>
+Date:   Thu Jul 7 15:58:01 2022 +0200
+
+    Finished with frontend structure for letting admin assign users with querys and users to view them as well as choose them when downloading ifc model
+
+[33mcommit 9639aa18750212096ec23a73c3fe08d1b40f12e1[m
+Merge: cde4f93 20627ac
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Thu Jul 7 10:35:19 2022 +0200
+
+    Merge branch 'main' into RTRE20-86-lagga-till-http-test-for-git-pipeline-ci-cd
+
+[33mcommit cde4f932bfdb99fef5c9256f15431680b469240d[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Thu Jul 7 10:35:11 2022 +0200
+
+    test done for filetransfers
+
+[33mcommit c2ba2843af306ae3488bbd20be05a31895dcf065[m
+Author: mandemmike <mmm@Michaels-Air.ad.berge.io>
+Date:   Wed Jul 6 16:13:59 2022 +0200
+
+    Base query infrastructure added, initial commit for this branch
+
+[33mcommit 20627acd8df5d0388fce0e71b16ef5cb21b77671[m
+Merge: 6f99eaf f373b6f
+Author: Michael Araya <81154352+mandemmike@users.noreply.github.com>
+Date:   Mon Jul 4 13:15:53 2022 +0200
+
+    Merge pull request #23 from foredev/User-communication-containing-ifc-queries
+    
+    User communication containing ifc queries
+
+[33mcommit f373b6fabfc4e1ac03a566c358bb49fe659039a0[m[33m ([m[1;31morigin/User-communication-containing-ifc-queries[m[33m)[m
+Author: mandemmike <mmm@MacBook-Air.ad.berge.io>
+Date:   Mon Jul 4 13:15:21 2022 +0200
+
+    Chatt complete with both json objects and proper user to user communication
+
+[33mcommit a809b059600d1732baff48b3806978bb9cbe63bd[m
+Author: mandemmike <mmm@MacBook-Air.ad.berge.io>
+Date:   Fri Jul 1 15:34:45 2022 +0200
+
+    better message updating
+
+[33mcommit 7445b526f5b862bf0e4f66efcc561ab492acc946[m
+Merge: 0016c5e 6f99eaf
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jul 1 10:33:30 2022 +0200
+
+    Merge branch 'main' into RTRE20-86-lagga-till-http-test-for-git-pipeline-ci-cd
+
+[33mcommit 6f99eaf16daf1f5f60c3fb9724418ae32bca4ea7[m
+Merge: dcbd6e4 0daed1e
+Author: Michael Araya <81154352+mandemmike@users.noreply.github.com>
+Date:   Fri Jul 1 10:32:45 2022 +0200
+
+    Merge pull request #22 from foredev/User-communication-containing-ifc-queries
+    
+    User communication containing ifc queries
+
+[33mcommit 0daed1e1b02f7443cd999e7102639ad600615862[m
+Author: mandemmike <mmm@Michaels-Air.ad.berge.io>
+Date:   Fri Jul 1 10:29:28 2022 +0200
+
+    Final touches
+
+[33mcommit 0016c5e6996d6cc23b0593c479ea7b2b55777200[m
+Merge: 396f9a0 dcbd6e4
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jul 1 10:29:07 2022 +0200
+
+    Merge branch 'main' into RTRE20-86-lagga-till-http-test-for-git-pipeline-ci-cd
+
+[33mcommit 9387202af811fd951a131fa63db3951c5400d780[m
+Author: mandemmike <mmm@Michaels-Air.ad.berge.io>
+Date:   Fri Jul 1 09:56:20 2022 +0200
+
+    Done with chat..
+
+[33mcommit 396f9a0783b6010133540ea43fd13bfb9aeff241[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Thu Jun 30 16:44:44 2022 +0200
+
+    FileManagement test working
+    
+    gave name to some components,
+    some refining might be needed
+    Todo; chat system
+
+[33mcommit 5ba6d66be1a8cc07b03b992dbc0483e9219f4f20[m
+Author: mandemmike <mmm@MacBook-Air.ad.berge.io>
+Date:   Thu Jun 30 16:43:30 2022 +0200
+
+    Updating fix
+
+[33mcommit ed54e2f47728c165649f9d33f3d1d4e199b3a554[m
+Author: mandemmike <mmm@MacBook-Air.ad.berge.io>
+Date:   Thu Jun 30 14:56:43 2022 +0200
+
+    Users can now send json files to eachother will contain ifc queries in the future
+
+[33mcommit 70d931b962c3d254905cc43c00d627bee88b06e7[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Thu Jun 30 11:20:33 2022 +0200
+
+    admin interface test with cypress
+
+[33mcommit dcbd6e4313cbabd561e753796be7450424688fb6[m
+Author: mandemmike <mmm@MacBook-Air.ad.berge.io>
+Date:   Wed Jun 29 14:20:16 2022 +0200
+
+    Small updating fix
+
+[33mcommit 37caa7e43db3409a001e574029e662eaa5bdef32[m
+Merge: 2149bfa bf31ea6
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Wed Jun 29 11:36:02 2022 +0200
+
+    Merge branch 'main' into RTRE20-86-lagga-till-http-test-for-git-pipeline-ci-cd
+
+[33mcommit bf31ea6d46595d806513d0dd79f9681b2e391e41[m
+Merge: a14ef01 2b3f1ea
+Author: Michael Araya <81154352+mandemmike@users.noreply.github.com>
+Date:   Wed Jun 29 11:34:21 2022 +0200
+
+    Merge pull request #21 from foredev/Better-chat-system
+    
+    Chat system more reactive
+
+[33mcommit 2b3f1eab1e9fcf9ffaa1c282986a1ce6a20c3763[m
+Author: mmm@Michaels-MacBook-Air.local <mmm@MacBook-Air.ad.berge.io>
+Date:   Wed Jun 29 11:29:06 2022 +0200
+
+    Chat system more reactive
+
+[33mcommit 2149bfa7677098af87c9a839e91e805a2a1b226d[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Mon Jun 27 16:39:54 2022 +0200
+
+    bimserverConfig for setup of container
+
+[33mcommit a14ef01a8d6fc4e13a30f37a3cdca3a78ace289a[m
+Merge: 6d330d5 67454f8
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Wed Jun 22 11:56:08 2022 +0200
+
+    Merge branch 'main' of https://github.com/foredev/RTRE
+
+[33mcommit 6d330d50771431b178f99861f5c11bee6f566c38[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Wed Jun 22 11:55:53 2022 +0200
+
+    remove Test
+
+[33mcommit 67454f86374512333dcb6776fefa9bbbeccea0e9[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Wed Jun 22 11:53:27 2022 +0200
+
+    Update build.yml
+
+[33mcommit 1e7b0d25300d9a0062b969e6bc9ea11a148e163c[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Wed Jun 22 11:51:29 2022 +0200
+
+    Update .gitignore
+
+[33mcommit 77b56ccc39f01a6dd043c470d9d83a1db304bb22[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Wed Jun 22 11:40:29 2022 +0200
+
+    Rename demo to Main
+
+[33mcommit a18f86583d63176f4e2b5a9e54db12de51c1b608[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Wed Jun 22 11:35:08 2022 +0200
+
+    Replace Server in git with local
+
+[33mcommit b1323c9fa8af08db13f44cc4eba2f9c4382c739c[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Wed Jun 22 11:28:43 2022 +0200
+
+    Added files from server into SERVER
+
+[33mcommit 36d742b3a477516ddbb0dc3428017baca1ee22a1[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Wed Jun 22 11:28:30 2022 +0200
+
+    merge server into Server
+
+[33mcommit 04e1896ab57b7875b636839f6815f71a08292966[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Wed Jun 22 11:24:00 2022 +0200
+
+    merge both server Folders
+
+[33mcommit d8ee8260a57f4d343443c00ce9ca42d89a5fa389[m
+Merge: 49dcb0f 2fa2066
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Wed Jun 22 10:58:53 2022 +0200
+
+    Merge pull request #20 from foredev/RTRE20-87-refraktor
+    
+    Rtre20 87 refraktor
+
+[33mcommit 2fa2066bd82be246fc9e08085025be68f9062740[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Wed Jun 22 10:56:28 2022 +0200
+
+    added a start index for main in pom
+
+[33mcommit dedbab70929ca0b0fe3882493d6df46ef7170ba7[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Wed Jun 22 10:49:32 2022 +0200
+
+    Created Folder for plugin
+
+[33mcommit 9fb4a332a2ff47a436402be0c92b1856160dabc9[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Wed Jun 22 10:48:50 2022 +0200
+
+    remove demo folder
+
+[33mcommit bcb3b1191112807724efe7561fe4391dc76adc43[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Wed Jun 22 10:39:57 2022 +0200
+
+    changed in pom file
+
+[33mcommit 5ae8701518e1b5d0d8cb366aaac514879549c253[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Wed Jun 22 10:35:10 2022 +0200
+
+    Rename Project from demo
+
+[33mcommit 73b78b8e59de5e9b91a24c0c93c7992108d86fa0[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Wed Jun 22 10:31:25 2022 +0200
+
+    Change name
+
+[33mcommit 74533c79a87cfa7b0f8f0ab1558f2a3546f63353[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Wed Jun 22 10:20:33 2022 +0200
+
+    changed api fetch to .env instead of string
+    
+    also fixed a login bug
+
+[33mcommit 23c772b2fc3c65d19a5f56253d111ba1395954b9[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Wed Jun 22 09:57:53 2022 +0200
+
+    Create a config for bim init connection
+
+[33mcommit 49dcb0fd9c15a703ec62f19f62c9eb5ad58432c7[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jun 21 16:25:38 2022 +0200
+
+    Update Dockerfile
+
+[33mcommit 92c9fd077c7b61f862e04eb5fda3553f40ed3848[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jun 21 16:15:35 2022 +0200
+
+    fix port
+
+[33mcommit cd7deb19cb786626a2e585018fc483c87256d6be[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jun 21 15:52:05 2022 +0200
+
+    Refractor change notification fetch
+
+[33mcommit 6ed434565d295265130b6ec18c11adc0b5542cd0[m
+Merge: 9ce2394 42a3b4e
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jun 21 15:16:55 2022 +0200
+
+    Merge branch 'RTRE20-63-Notifikation'
+
+[33mcommit 42a3b4e6d5f8968bd6f5f76adafc91229ba38bdf[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jun 21 15:16:36 2022 +0200
+
+    change
+
+[33mcommit 9ce23946eb47afb23cd0a767019dc4ed96e98afb[m
+Merge: 917bc21 ed6f7a6
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jun 21 15:14:25 2022 +0200
+
+    Merge pull request #14 from foredev/RTRE20-88-docker
+    
+    Rtre20 88 docker implementation
+
+[33mcommit ed6f7a623bc2d2b891a778424c6df074142a99e1[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jun 21 15:13:18 2022 +0200
+
+    Refractor
+
+[33mcommit d8b9f60bc0b89e558a2800b900d11c664bd732f8[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jun 21 15:09:15 2022 +0200
+
+    change this
+
+[33mcommit d752e69445037dbd596e7bbd96ce4d9429b5f4ed[m
+Merge: 2ba88cd 917bc21
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jun 21 15:08:23 2022 +0200
+
+    Merge branch 'main' into RTRE20-88-docker
+
+[33mcommit 2ba88cda58ecfe31bf606ec615ef4628f8b6c11b[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jun 21 15:08:16 2022 +0200
+
+    Docker implementation
+
+[33mcommit 917bc2104c81e895a2827f5075f16db4740f0c55[m
+Merge: b21765c 271eaf9
+Author: Michael Araya <81154352+mandemmike@users.noreply.github.com>
+Date:   Tue Jun 21 13:33:11 2022 +0200
+
+    Merge pull request #13 from foredev/RTRE20-75-skapa-en-fungerande-chatt-system2
+    
+    Rtre20 75 skapa en fungerande chatt system2
+
+[33mcommit 271eaf963b87ec76489a2d0a655965b62795a298[m
+Author: Michael Araya <81154352+mandemmike@users.noreply.github.com>
+Date:   Tue Jun 21 13:27:48 2022 +0200
+
+    Update build.yml
+
+[33mcommit a6c29d3d8bfe9346ae6b7ec1af835b89d02a1a59[m
+Author: Michael Araya <81154352+mandemmike@users.noreply.github.com>
+Date:   Tue Jun 21 13:25:46 2022 +0200
+
+    Update build.yml
+
+[33mcommit fafa68dbed0e2644c866227031f0b141c6f8d4f0[m
+Author: Michael Araya <81154352+mandemmike@users.noreply.github.com>
+Date:   Tue Jun 21 13:11:51 2022 +0200
+
+    Update FirebaseInitialize.java
+
+[33mcommit 693a1766bdc7a4d21405d4c9a540b9cbb2e7b2ce[m
+Author: Michael Araya <81154352+mandemmike@users.noreply.github.com>
+Date:   Tue Jun 21 13:07:13 2022 +0200
+
+    Update build.yml
+
+[33mcommit 477e0da5f8f23eed3d5dd4f9ceafe3ce91c68577[m
+Author: Michael Araya <81154352+mandemmike@users.noreply.github.com>
+Date:   Tue Jun 21 13:07:04 2022 +0200
+
+    Update FirebaseInitialize.java
+
+[33mcommit 2b810a288b30d3dca16016751b06f4132d0347f8[m
+Author: Michael Araya <81154352+mandemmike@users.noreply.github.com>
+Date:   Tue Jun 21 12:58:36 2022 +0200
+
+    Update build.yml
+
+[33mcommit 801870b39f873803e8e36131eeda61819e7a4521[m
+Author: Michael Araya <81154352+mandemmike@users.noreply.github.com>
+Date:   Tue Jun 21 12:53:55 2022 +0200
+
+    Update build.yml
+
+[33mcommit 4f4a73936ca11f7d56fedcd859d3a9e96318fbf8[m
+Author: Michael Araya <81154352+mandemmike@users.noreply.github.com>
+Date:   Tue Jun 21 12:51:05 2022 +0200
+
+    Update build.yml
+
+[33mcommit a75f15c9999b33a6cc3f351f2f11ac9099dcb63e[m
+Author: Michael Araya <81154352+mandemmike@users.noreply.github.com>
+Date:   Tue Jun 21 12:47:31 2022 +0200
+
+    Update build.yml
+
+[33mcommit bfe42e84dd3f84a7b340e531806aed935c58d0a7[m
+Author: Michael Araya <81154352+mandemmike@users.noreply.github.com>
+Date:   Tue Jun 21 11:55:51 2022 +0200
+
+    Update build.yml
+
+[33mcommit c45557c23333f5267024979644bbbb44ea089410[m
+Author: Michael Araya <81154352+mandemmike@users.noreply.github.com>
+Date:   Tue Jun 21 11:50:07 2022 +0200
+
+    Update build.yml
+
+[33mcommit 8781a9c954c99606c96acfd6b83eb96f82ab1334[m
+Author: Michael Araya <81154352+mandemmike@users.noreply.github.com>
+Date:   Tue Jun 21 11:47:25 2022 +0200
+
+    Update build.yml
+
+[33mcommit 00407822b08255982978a30bf0b5328439300236[m
+Author: Michael Araya <81154352+mandemmike@users.noreply.github.com>
+Date:   Tue Jun 21 11:41:49 2022 +0200
+
+    Update build.yml
+
+[33mcommit 2cdad966ab2be3ad5c153fd1dcbdd907772ad663[m
+Author: Michael Araya <81154352+mandemmike@users.noreply.github.com>
+Date:   Tue Jun 21 11:29:15 2022 +0200
+
+    Update build.yml
+
+[33mcommit 31a2f98586d8b8b768a73df767722c2888b4a640[m
+Author: Michael Araya <81154352+mandemmike@users.noreply.github.com>
+Date:   Tue Jun 21 10:40:00 2022 +0200
+
+    Fix
+
+[33mcommit 42d7aa57f6990316c31b55afe07f5ffeb5061d63[m
+Author: Michael Araya <81154352+mandemmike@users.noreply.github.com>
+Date:   Tue Jun 21 10:38:52 2022 +0200
+
+    fix
+
+[33mcommit 26bad21f34dd9196d40e0debb40c2db8fec3c755[m
+Author: mmm@Michaels-MacBook-Air.local <mmm@Michaels-Air.ad.berge.io>
+Date:   Tue Jun 21 10:27:17 2022 +0200
+
+    fix server name typo
+
+[33mcommit 13bf5f5307472214cd4258eb9b394d18025083fa[m
+Author: mmm@Michaels-MacBook-Air.local <mmm@Michaels-Air.ad.berge.io>
+Date:   Tue Jun 21 10:23:44 2022 +0200
+
+    typo fix
+
+[33mcommit c7117d11bda9f0a55948368dbf24ce263683a26a[m
+Author: mmm@Michaels-MacBook-Air.local <mmm@Michaels-Air.ad.berge.io>
+Date:   Tue Jun 21 10:22:02 2022 +0200
+
+    yml error fix
+
+[33mcommit 4a3acdea0a0ab39b7112cb0adf358013fc69dc77[m
+Author: mmm@Michaels-MacBook-Air.local <mmm@Michaels-Air.ad.berge.io>
+Date:   Tue Jun 21 10:13:11 2022 +0200
+
+    cd error fix
+
+[33mcommit eea9f24630dccd472d2994169d5313d13f0a7d2e[m
+Author: mmm@Michaels-MacBook-Air.local <mmm@Michaels-Air.ad.berge.io>
+Date:   Tue Jun 21 10:08:16 2022 +0200
+
+    Fixed mvn intall to pom file
+
+[33mcommit 17d9080317578f02d73aeacadb1fdf218f317dab[m
+Author: mmm@Michaels-MacBook-Air.local <mmm@Michaels-Air.ad.berge.io>
+Date:   Tue Jun 21 10:04:23 2022 +0200
+
+    Fix workflow
+
+[33mcommit f548e0d296d92b1307f517d0e6d4f042ec01d985[m
+Author: mmm@Michaels-MacBook-Air.local <mmm@Michaels-Air.ad.berge.io>
+Date:   Tue Jun 21 10:02:58 2022 +0200
+
+    Fix again
+
+[33mcommit ab95ee9155ee661d232beab0a62dd5efedb2fa7c[m
+Author: mmm@Michaels-MacBook-Air.local <mmm@Michaels-Air.ad.berge.io>
+Date:   Tue Jun 21 10:01:45 2022 +0200
+
+    Fix workflow typo
+
+[33mcommit f8fbaccaf305353b68e40beb7a3032b3e699dff3[m
+Author: mmm@Michaels-MacBook-Air.local <mmm@Michaels-Air.ad.berge.io>
+Date:   Tue Jun 21 10:00:02 2022 +0200
+
+    Testing git workflow
+
+[33mcommit 17086b0c1c4016dcadc05b37b8fa90a79a23db16[m
+Author: mmm@Michaels-MacBook-Air.local <mmm@Michaels-Air.ad.berge.io>
+Date:   Tue Jun 21 09:19:09 2022 +0200
+
+    Chat working to a good extent, users can send messages back and forth as well
+
+[33mcommit f6b8721967a7f2a07c8f9ce1545856d1d03f9d4c[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Mon Jun 20 15:18:42 2022 +0200
+
+    Added swagger-ui
+
+[33mcommit 49aeaea22e87e32cb7e7f8a2c364abfa0bfca35b[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Mon Jun 20 14:59:44 2022 +0200
+
+    Docker for frontend works
+    
+    backend WIP
+    errors : serviceaccountkey & bimserver refused connection
+
+[33mcommit 26fcf6e4fb1c0f81d2f97a5a692c3d860cd1cf82[m
+Author: mmm@Michaels-MacBook-Air.local <mmm@MacBook-Air.ad.berge.io>
+Date:   Fri Jun 17 16:27:14 2022 +0200
+
+    Chatt half done
+
+[33mcommit b21765c132bb382c02947d1c7cf288a5c0bd3c20[m
+Merge: 5eccf89 0c26a08
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jun 17 16:24:13 2022 +0200
+
+    Merge pull request #12 from foredev/main
+    
+    Update branch
+
+[33mcommit 0c26a08957c6adeaf6450531641e184d05b5c121[m
+Merge: b2b9964 5eccf89
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jun 17 16:23:33 2022 +0200
+
+    Merge pull request #11 from foredev/RTRE20-63-Notifikation
+    
+    Fixed auth issue
+
+[33mcommit 5eccf8963f65895ed46da6a463f823e0b3208258[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jun 17 16:21:16 2022 +0200
+
+    Fixed auth issue
+
+[33mcommit b2b9964a7cdb42bbb0d528bb43578edaf603ed49[m
+Merge: 0fa51fd 5f714bf
+Author: mandemmike <81154352+mandemmike@users.noreply.github.com>
+Date:   Fri Jun 17 13:39:20 2022 +0200
+
+    Merge pull request #10 from foredev/RTRE20-75-skapa-en-fungerande-chatt-system
+    
+    Rtre20 75 skapa en fungerande chatt system
+
+[33mcommit 5f714bf451814fbc0e84a2d6e71af3ec0bfdd525[m
+Merge: 5a91c81 0fa51fd
+Author: mmm@Michaels-MacBook-Air.local <mmm@MacBook-Air.ad.berge.io>
+Date:   Fri Jun 17 12:57:36 2022 +0200
+
+    Added dennis changes
+
+[33mcommit 5a91c81f3981b464476f0320759c84fca556d818[m
+Author: mmm@Michaels-MacBook-Air.local <mmm@MacBook-Air.ad.berge.io>
+Date:   Fri Jun 17 12:44:09 2022 +0200
+
+    Inital chat setup done as well as database saving of messages from chat
+
+[33mcommit 0fa51fd03354c18ff298e54c8dc6bbe491156418[m
+Merge: 8714a72 45b647d
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jun 17 12:35:24 2022 +0200
+
+    Merge pull request #9 from foredev/RTRE20-63
+    
+    Rtre20 63 simple notification integration with firebase
+
+[33mcommit 45b647d5333d493a6db5629ae71ba3f32e9b7452[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jun 17 12:10:12 2022 +0200
+
+    Change color
+
+[33mcommit 7568b0486a8f87de4186d7b8e837d4d37eea7c7e[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jun 17 11:35:08 2022 +0200
+
+    Notifications now show on projects
+
+[33mcommit dc03cbb7c67f28288f508f51792e46ef20b49054[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jun 17 10:06:24 2022 +0200
+
+    Notifications get and delete in topbar
+
+[33mcommit af486a2eac2af740318b2aa7e6c29a36070feaf5[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Thu Jun 16 14:30:26 2022 +0200
+
+    Two part authentication on notification fetch
+
+[33mcommit 8f494c7d799cbbc9b7d20a5f8ddcba1b71b98e17[m
+Author: mmm@Michaels-MacBook-Air.local <mmm@Michaels-Air.ad.berge.io>
+Date:   Thu Jun 16 13:00:18 2022 +0200
+
+    stash commit
+
+[33mcommit 8714a72c202663b4b374b19b491eeb86a3598261[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Thu Jun 16 12:58:24 2022 +0200
+
+    check if firebase is in repo
+
+[33mcommit 3f7ce0130a4aba2187648dd449facf06c9ffa039[m
+Merge: 45d118f bffc674
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Thu Jun 16 12:57:58 2022 +0200
+
+    Merge branch 'main' into RTRE20-63
+
+[33mcommit 45d118faebe12f7cd908722e7f10ada4bbe0f62f[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Thu Jun 16 12:51:29 2022 +0200
+
+    Data id is now autogenerated
+
+[33mcommit ef10a4eb515d2bcfb5bf2133716c59941da3f882[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Thu Jun 16 12:43:00 2022 +0200
+
+    Removed console.log
+
+[33mcommit 73e5ec23592e499b9030973b4b62da8edf718892[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Thu Jun 16 12:38:22 2022 +0200
+
+    Solved render issue projectlist
+
+[33mcommit b3ecaa9805d8433561aafe3bbb31047d9aff4403[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Thu Jun 16 10:44:49 2022 +0200
+
+    Fixed naming issue on createProject
+
+[33mcommit 082c8d93967816652de12633674b577b9fac7736[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Thu Jun 16 10:36:39 2022 +0200
+
+    Fixed a issue
+    
+    Item in project View would not show on initial load, and also removed interval fetch to a refresh button
+
+[33mcommit 747fd869a4f08cbdab7b285452a41524eb4e0050[m
+Merge: ddd55a3 9e02866
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Thu Jun 16 10:11:03 2022 +0200
+
+    Merge branch 'main' into RTRE20-63
+
+[33mcommit bffc6743638223802ce1904b641a9e8e97f1abe6[m
+Author: mmm@Michaels-MacBook-Air.local <mmm@Michaels-Air.ad.berge.io>
+Date:   Thu Jun 16 09:59:03 2022 +0200
+
+    Fix create project bug
+
+[33mcommit 9e02866bce2ca9bb7144c058524afa8d25d5ccfa[m
+Author: mmm@Michaels-MacBook-Air.local <mmm@Michaels-Air.ad.berge.io>
+Date:   Thu Jun 16 09:30:00 2022 +0200
+
+    Skapa projekt från admin tillagt
+
+[33mcommit ddd55a38a70276423f8b219cdf8af1cf66556585[m
+Merge: a34ac14 3236a06
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Thu Jun 16 09:11:01 2022 +0200
+
+    Merge branch 'main' into RTRE20-63
+
+[33mcommit 3236a06d6ed07e6fee0e4671573ec94d04aa961d[m
+Merge: 52e8e52 bef921b
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Thu Jun 16 09:08:09 2022 +0200
+
+    Merge pull request #8 from foredev/RTRE20-62-extra-funktionalitet-genom-knappar
+    
+    Rtre20 62 extra funktionalitet genom knappar
+
+[33mcommit bef921b6a721ae5259df12f3a9921824e3a222e4[m
+Merge: ac8b084 ec4e8c3
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Thu Jun 16 09:07:48 2022 +0200
+
+    Merge branch 'RTRE20-62-extra-funktionalitet-genom-knappar' of https://github.com/foredev/RTRE into RTRE20-62-extra-funktionalitet-genom-knappar
+
+[33mcommit ac8b084b8782254b914389cbbbe7f418df0efa7e[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Thu Jun 16 09:07:46 2022 +0200
+
+    Update .gitignore
+
+[33mcommit 2270c3c8b49562116a80d94e07ea9cf804358372[m
+Merge: ab3eb29 52e8e52
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Thu Jun 16 09:07:36 2022 +0200
+
+    Merge branch 'main' into RTRE20-62-extra-funktionalitet-genom-knappar
+
+[33mcommit ec4e8c3033663a8c6788807904cca1d72ce659bd[m
+Author: mmm@Michaels-MacBook-Air.local <mmm@Michaels-Air.ad.berge.io>
+Date:   Thu Jun 16 08:59:42 2022 +0200
+
+    Final push for this branch
+
+[33mcommit a34ac143b58c01561aa2a426e1771a80a0537679[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Wed Jun 15 18:16:31 2022 +0200
+
+    Change port back
+
+[33mcommit 2fcfb41b91211171ad8d5ee6adbc654711867be4[m
+Author: dennishoang2010 <dennishoang2010@gmail.com>
+Date:   Wed Jun 15 18:09:38 2022 +0200
+
+    Fixing org.osg issue
+
+[33mcommit aefa2ace8798606c01934a958ca525363d77fc1c[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Wed Jun 15 16:42:13 2022 +0200
+
+    Revert "ignore Workspace file"
+    
+    This reverts commit de95b413cc65e17a83c9b389fb136a932103c2e4.
+
+[33mcommit de95b413cc65e17a83c9b389fb136a932103c2e4[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Wed Jun 15 16:16:17 2022 +0200
+
+    ignore Workspace file
+
+[33mcommit d327af9e834ea455b4766bc2f29e3e4ea0ba9d02[m
+Author: mmm@Michaels-MacBook-Air.local <mmm@Michaels-Air.ad.berge.io>
+Date:   Wed Jun 15 15:41:14 2022 +0200
+
+    Extra funktionaliteter
+
+[33mcommit 0e741a6507f4b4c9125ee0ef2eedac49808e4f42[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Wed Jun 15 15:37:31 2022 +0200
+
+    Notification system for creating and recieving
+
+[33mcommit ab3eb298f57fb5ce07c83039278abded00fba0f1[m
+Author: mmm@Michaels-MacBook-Air.local <mmm@Michaels-Air.ad.berge.io>
+Date:   Wed Jun 15 11:30:01 2022 +0200
+
+    Klar med admin funktionaliteter såsom lägga till användare och ta bort samt visa anslutna användare till projekt
+
+[33mcommit 573ceff9613a20a8d6551fdc34550ba4f277e10b[m
+Author: mmm@Michaels-MacBook-Air.local <mmm@Michaels-Air.ad.berge.io>
+Date:   Wed Jun 15 11:10:29 2022 +0200
+
+    Funkionalitet såsom admin funktioner klara --> add user to project & remove user from project & view user from projects
+
+[33mcommit d8086b6e3f730efc9b63a6c840f03bdd3e5dbfda[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jun 14 16:53:06 2022 +0200
+
+    Firebase connection with basic crud
+
+[33mcommit 52e8e52e92f18f97c9ded45977fe74517e3471a3[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jun 14 09:11:38 2022 +0200
+
+    Interval for projectlistfetch
+
+[33mcommit ab33bb3e99c2b73f38670d8130033c170ae28b61[m
+Merge: 1b04ab5 5cade27
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Jun 14 08:40:08 2022 +0200
+
+    Merge pull request #6 from foredev/RTRE20-38
+    
+    Rtre20 38
+
+[33mcommit 5cade272eb285f05fda433e2c698b54182a63584[m
+Author: dennishoang2010 <dennishoang2010@gmail.com>
+Date:   Mon Jun 13 16:31:07 2022 +0200
+
+    Router 404 page and redirects from login
+
+[33mcommit 4e762a62bd4d972c83b53df41da4644a808bf9d8[m
+Author: dennishoang2010 <dennishoang2010@gmail.com>
+Date:   Mon Jun 13 14:17:04 2022 +0200
+
+    Working fix for resource directories
+
+[33mcommit 5f959c69dd79cb4bd2dc6b503448c1a455940cf0[m
+Author: dennishoang2010 <dennishoang2010@gmail.com>
+Date:   Mon Jun 13 11:27:48 2022 +0200
+
+    Navigation Guards - working redirects depending on context
+
+[33mcommit dc1b3f8e63ab3346ed63047695d65223913e1a9a[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Mon Jun 13 09:21:28 2022 +0200
+
+    Session authentication handler
+
+[33mcommit 7798e660d219c63d4c408b4e24900fb1e4d877bf[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Thu Jun 9 17:11:21 2022 +0200
+
+    saves tokenid in sessionId
+    
+    Temporary for demo purpose
+
+[33mcommit 3b36bc1b769f8b9a85c2ad11e19b4580d41845eb[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Thu Jun 9 15:57:35 2022 +0200
+
+    Added login page
+    
+    users can now get specific token for their session and register
+    
+    ToDo
+    Store the tokens
+    Change in backend so that token is required
+
+[33mcommit 3db449f023c73d2a9a45c34e602321a5d75a65ef[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Wed Jun 8 15:41:38 2022 +0200
+
+    Added button loading when request sent
+
+[33mcommit 79f23d4b97f1c413cec6728e33d66697a844399a[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Wed Jun 8 14:45:43 2022 +0200
+
+    form validating
+
+[33mcommit 1250f2dca92b39f8c55294ad30a5898ea77eb00c[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Wed Jun 8 13:59:58 2022 +0200
+
+    Added routes to rtre
+
+[33mcommit 1b04ab5987703510725e02cd178195f2bb8f3e8f[m
+Merge: f9bdd94 bbff085
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jun 3 16:05:35 2022 +0200
+
+    Merge branch 'main' into RTRE20-57
+
+[33mcommit f9bdd9407dd349bf43e61a4ef15a3817d80d005c[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jun 3 16:03:31 2022 +0200
+
+    Added feedback to user when using function hub
+
+[33mcommit 14963df7a8fd3197ec92e15a7b84c11336523543[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Jun 3 13:44:03 2022 +0200
+
+    Fixed status response
+
+[33mcommit a08a7712c98760c330831bf9380ee22e05b45022[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Wed Jun 1 11:28:03 2022 +0200
+
+    Removed console.logs
+
+[33mcommit a527e934a97e0651123b352c259c73a5d30be39c[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Wed Jun 1 10:40:46 2022 +0200
+
+    deleted unused code
+
+[33mcommit ecf8f0040917b10d065e07c067ac7effdae92dfe[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue May 31 16:40:24 2022 +0200
+
+    Complete overhaul of downloading and uploading
+
+[33mcommit 62e54c61430e286ad3ac1e07c640f01a5942ffdb[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue May 31 11:51:27 2022 +0200
+
+    Working download
+    
+    Its quite slow with larger files needs a fix
+
+[33mcommit ce9f4d5f1df55f35acbb2204fa4d74974de7a612[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Mon May 30 14:56:45 2022 +0200
+
+    Revert "Exception handling"
+    
+    This reverts commit 1b7aaa5cdb543260afd80c62c947be240297ab67.
+
+[33mcommit 1b7aaa5cdb543260afd80c62c947be240297ab67[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Mon May 30 11:25:06 2022 +0200
+
+    Exception handling
+
+[33mcommit c74b1ff5cea3ee16b0fa2dda6976f41976336194[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri May 27 14:21:03 2022 +0200
+
+    Deletes temporary files from merge
+
+[33mcommit 8135fc9328943bf6a65f8133039d31f421c81f78[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue May 24 15:57:03 2022 +0200
+
+    Removed unnecessary input fields
+
+[33mcommit 0cf06daa522477b373b345156735e9c935b34666[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue May 24 15:36:48 2022 +0200
+
+    Refractor
+
+[33mcommit eac92ccc00cea485477adda6e8e377d7b340a0d5[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue May 24 14:36:44 2022 +0200
+
+    chechin merge product automatically
+
+[33mcommit da19cedacb42cf858678dd34d0993be0ed4b9b20[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri May 20 14:44:42 2022 +0200
+
+    Merge server side
+    
+    WIP delete temp files and send file to client
+
+[33mcommit cbf5c5969974e334b1cc1a41323f960679e50c0d[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri May 20 10:48:39 2022 +0200
+
+    Extend multipart max file size
+
+[33mcommit f40f57f2100993c5c78b91d9a3216e2da5280c82[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri May 20 10:25:23 2022 +0200
+
+    indent refractor
+
+[33mcommit c5ab72a2022be4843645c7c53dd4495936483fc9[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri May 20 09:44:02 2022 +0200
+
+    Simple file uploader to server
+
+[33mcommit 0711016b9f94269c55d372feeb434ad518ec54f5[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Thu May 19 14:58:04 2022 +0200
+
+    Serverside Merge
+    
+    All files are from bimServer and output file is still stuck on server but frontend is temporarily changed for the new changes
+
+[33mcommit bbff085728b9959126998958d5c3ef5b25e38adc[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Wed May 18 14:33:42 2022 +0200
+
+    bim viewer scaling issue resolved
+
+[33mcommit 2fc4c2c87a570fe8825d1789c44378f96c3ab225[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Wed May 18 14:06:42 2022 +0200
+
+    Window resizing of model viewer works
+
+[33mcommit 41d3e5b9d5911b891016ffbd51501120aa420d6b[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Wed May 18 09:55:58 2022 +0200
+
+    refractor from install to download
+
+[33mcommit 5eb6ef75476fa136fad4cc6f186e458d1134abfa[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue May 17 17:12:34 2022 +0200
+
+    Added temp topbar and search clear button
+
+[33mcommit 923e3f25231909ecccd1e542f32c607b4259f348[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue May 17 16:58:16 2022 +0200
+
+    fixed padding issues of drawers
+
+[33mcommit cf2eb18da5b23a2a039717d524f3c2d1cd6b8326[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue May 17 14:45:32 2022 +0200
+
+    Changed language
+
+[33mcommit 3e0d70f1e1a76f12eac68761df0d2d49cc39ca9f[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue May 17 14:41:42 2022 +0200
+
+    styled forms with hard edges
+
+[33mcommit aeef0541e552c0d7e6cca783dd771e9056acad64[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue May 17 14:32:45 2022 +0200
+
+    Can open more then one drawer
+
+[33mcommit 5fc387906574348124a2c9d8a8eb348406bd5e16[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue May 17 14:12:17 2022 +0200
+
+    Fixed searchbox now shows subprojects
+
+[33mcommit 9f895d5170b9b59c3fdff395ef10caf2dde8b135[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue May 17 12:49:19 2022 +0200
+
+    Searching now works with both ids and name
+    
+    Theres still issues with showing subprojects that are correc, this is a styling error
+
+[33mcommit 4b8f52e2f3791ff0e7572d7d85577390f74d8a97[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Thu May 12 15:52:26 2022 +0200
+
+    styling changes
+
+[33mcommit 8df5a9a5d2b9036e9c722c0f356b85ce0781c53f[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Thu May 12 15:13:43 2022 +0200
+
+    Added 3d model viewer
+
+[33mcommit 35cc07b35491539b9ffea4c8e62f1a1affeb746e[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue May 10 16:35:20 2022 +0200
+
+    Install with custom name
+
+[33mcommit 862786eb3f2a913d0551b2ce9981dfc63b31e414[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue May 10 16:23:26 2022 +0200
+
+    Naming for imported files
+
+[33mcommit 6e533840a9f8111594adaa15eddd6793bf0a08c9[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue May 10 16:03:58 2022 +0200
+
+    Delete button with functionality
+
+[33mcommit 61270187b1e497aa31c933cc141abfbe77fcd471[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue May 10 13:30:07 2022 +0200
+
+    Install button on subprojects functional
+
+[33mcommit c7f050759351b889082866f6b2cf9ffde07d774e[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue May 10 11:36:44 2022 +0200
+
+    CheckIn is only under a preexisting main project
+
+[33mcommit e6c0bbe933dff4bfc48231367112e653a7bd399b[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue May 10 09:36:15 2022 +0200
+
+    fixed CheckIn And CheckOut with schema selector
+
+[33mcommit 2a8cd60b99db86a79bdd120d1d404858604afb8d[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Mon May 9 15:26:20 2022 +0200
+
+    working install buttons on sub projects
+
+[33mcommit 1be36f5f20c30533344fb4ab96935f01028c7352[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Mon May 9 14:59:00 2022 +0200
+
+    Frontend design of install button
+
+[33mcommit e8d9254067ec3a3533e86dd0257191b66a9b2433[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Mon May 9 13:21:23 2022 +0200
+
+    Gridsystem implementation
+
+[33mcommit 1d2bf51c5523376462c249614745d58a08f64249[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Mon May 9 09:07:40 2022 +0200
+
+    Small UI Tweak
+
+[33mcommit dc16ff6985702a2da5913112718cd41ec28f68b6[m
+Author: dennishoang2010 <dennishoang2010@gmail.com>
+Date:   Fri May 6 12:30:01 2022 +0200
+
+    Subprojects now shows under parent project
+
+[33mcommit 76395980fa707b533f9557d778e996b4836110f8[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Wed May 4 13:43:52 2022 +0200
+
+    Seperate components and functions//frontend
+
+[33mcommit 73d7361b13ee32cce638defb6890669dfb9ed63e[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Wed May 4 11:48:40 2022 +0200
+
+    removed absolute path in code
+
+[33mcommit 104e5ad24f2dbcc432293a4c93e1ab9427012379[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Wed May 4 11:45:12 2022 +0200
+
+    Reformat to better support other enviroments
+
+[33mcommit 968acac5349e37b377a05085ae52fc0f21a87687[m
+Author: dennishoang2010 <dennishoang2010@gmail.com>
+Date:   Fri Apr 29 13:18:19 2022 +0200
+
+    accessibility of all the major functions trough frontend
+
+[33mcommit bf87f2b18981955541b9b9c26f370e88327626d9[m
+Author: dennishoang2010 <dennishoang2010@gmail.com>
+Date:   Wed Apr 27 03:13:20 2022 +0200
+
+    Function tabs in frontend
+    
+    add drag and drop feature and connect to api
+
+[33mcommit 91193d1d18d028d81dbb67352a5abdeea4545cdf[m
+Author: dennishoang2010 <dennishoang2010@gmail.com>
+Date:   Wed Apr 27 02:25:48 2022 +0200
+
+    ProjectList in frontend
+
+[33mcommit 9455344403bdc7113ab756ea0591237a245716c6[m
+Author: dennishoang2010 <dennishoang2010@gmail.com>
+Date:   Wed Apr 27 00:34:35 2022 +0200
+
+    Directory changes
+
+[33mcommit f2a633cb4ff1079b9c7d23af23cbb2906f769374[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Wed Apr 20 12:20:04 2022 +0200
+
+    Added getProjectlist endpoint
+
+[33mcommit ddfe8ad7be955dcfdcc8566d9f3a6fc9c4e74afa[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Apr 12 15:51:26 2022 +0200
+
+    Fix some merge conflicts
+
+[33mcommit 299ec1ed185a67d91c45e6da0e4dfe188dafa892[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Apr 12 15:48:53 2022 +0200
+
+    API with merge feature
+    
+    Temporary, by using cli to start the py script
+
+[33mcommit ad1168b0351ee5ec78fe1a68d1a5400cb1f47f75[m
+Author: dennishoang2010 <dennishoang2010@gmail.com>
+Date:   Fri Mar 25 13:32:00 2022 +0100
+
+    Functionality List of active projectIds
+
+[33mcommit 9152809ce0a043ac18da5aba688fd5a10827597e[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Wed Mar 23 14:33:25 2022 +0100
+
+    Cleanup Code and Comment
+
+[33mcommit 8be2c109d11843a6b472f7ed90447995e218ca97[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Wed Mar 23 14:20:37 2022 +0100
+
+    Dynamic api and name change
+    
+    for installing files from bimserver
+
+[33mcommit 23dadd85d83bc3850be6fca56c46710de9da950f[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Wed Mar 23 13:37:19 2022 +0100
+
+    Renaming and added ifcGet Button
+
+[33mcommit 2685fe5f7f9fdafb7d358965dc95e80b2e345ec9[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Mar 22 15:52:30 2022 +0100
+
+    Update README.md
+
+[33mcommit d28321bfb71ac0e0b22e5cd71cfd5cdf76dc95d2[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Mar 22 15:45:27 2022 +0100
+
+    Restructure and documentation
+
+[33mcommit 705e1779b44c873236391308bf18cc5522353771[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Mar 22 14:56:57 2022 +0100
+
+    Working checkout file and checkin file
+
+[33mcommit 86c22a088c9e6d1f473ec2342f95e929356533fe[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Mon Mar 21 13:07:03 2022 +0100
+
+    Restructure of classes for readibility
+
+[33mcommit b53f09b681169008b39a8b0eae78aee0a94f4ee1[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Mon Mar 21 12:38:16 2022 +0100
+
+    GetRequest for list of projects from bimserver
+    
+    Also rename Classes and methods
+
+[33mcommit ce8dbc205393a1b5a07814db203c9b98b0a3223f[m
+Author: dennishoang2010 <dennishoang2010@gmail.com>
+Date:   Wed Mar 16 11:44:51 2022 +0100
+
+    Input Field now works with API
+
+[33mcommit 72e1bb610cc862e0674195106d72da94d70fcd36[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Mon Mar 14 15:43:40 2022 +0100
+
+    Input Field
+
+[33mcommit 9a1d80b338bbfc89a06889d882b80df71a71d2a6[m
+Author: dennishoang2010 <dennishoang2010@gmail.com>
+Date:   Wed Mar 9 23:05:00 2022 +0100
+
+    Request Params to make file exhange flexible
+
+[33mcommit c9115147605f01afffd9de46c109d07a2f485b1e[m
+Author: dennishoang2010 <dennishoang2010@gmail.com>
+Date:   Fri Mar 4 13:08:45 2022 +0100
+
+    Revit connection with bimserver through rtre api
+
+[33mcommit ced7c1a2c0cded98090e6cf0f28d52e98db9aa7e[m
+Author: dennishoang2010 <dennishoang2010@gmail.com>
+Date:   Fri Mar 4 11:06:29 2022 +0100
+
+    Revit save functionality fix
+
+[33mcommit ef0a224574c3daf2deb77148c36e0c6c99102c8a[m
+Merge: 79b8629 f3394db
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Mar 4 10:40:40 2022 +0100
+
+    Merge pull request #5 from foredev/revert-4-RTRE20-10
+    
+    Revert "Revit plugin save to ifc file functionality"
+
+[33mcommit f3394db500911fcd2c7025aa8d00dc35a3506db6[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Mar 4 10:40:27 2022 +0100
+
+    Revert "Revit plugin save to ifc file functionality"
+
+[33mcommit 79b86296a3b6674853ac0090efd0320a52d3ea07[m
+Merge: 450ca57 4a71a5c
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Mar 4 10:35:52 2022 +0100
+
+    Merge pull request #3 from foredev/RTRE20-11
+    
+    RTRE server Communication with BimServer
+
+[33mcommit 450ca572cbf11204ae1d3f1049c47f2b49dfa1c7[m
+Merge: 53a8aa0 1f55d6b
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Fri Mar 4 10:35:44 2022 +0100
+
+    Merge pull request #4 from foredev/RTRE20-10
+    
+    Revit plugin save to ifc file functionality
+
+[33mcommit 1f55d6b7e2c9c3572e5ca1df1f013b61ed55321f[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Wed Mar 2 10:59:08 2022 +0100
+
+    Revit save to ifc file plugin
+
+[33mcommit c1c3dedf40786bf8529fcb02410d5fd1c3cf8350[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Wed Mar 2 10:57:10 2022 +0100
+
+    Update with saving functionality
+
+[33mcommit 4a71a5c0309e9aa753deaa1bce402d5271b2c90f[m
+Author: dennishoang2010 <dennishoang2010@gmail.com>
+Date:   Tue Mar 1 14:11:30 2022 +0100
+
+    RTRE server communication with Bim server
+    
+    + changed from jdk 11 to 1.8
+    - swagger
+    - docker
+
+[33mcommit 53a8aa0e8ed3c31005dc40ebab9ee7fb5f672b6d[m
+Author: TranDennis <dennishoang2010@gmail.com>
+Date:   Tue Feb 22 11:31:10 2022 +0100
+
+    Init RTRE revit plugin
+
+[33mcommit 1018245012410ad7f9187a7111bc209607f3d7ab[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Feb 22 11:24:49 2022 +0100
+
+    Delete StartCommand directory
+    
+    Fix
+
+[33mcommit 03fb5d1bc8ebf6046a787941c3b4376ec50492a6[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Wed Feb 16 12:53:01 2022 +0100
+
+    post and get implementation for revit plugin
+    
+    Cleanup and deleted unnecessary code
+
+[33mcommit 31a4f7a402679c42684d1547f420265b6b5d241d[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Wed Feb 16 12:50:54 2022 +0100
+
+    replace and cleanup plugin
+
+[33mcommit 51c5b937aa4ab65caba89d8f01755d0917f37499[m
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Wed Feb 16 10:32:50 2022 +0100
+
+    Revit async plugin
+    
+    Packages include AutoDeskt.Revit.SDk, Newtonsoft.Json and RevitTask*(optional);
+
+[33mcommit 21442f6269747143002ca8dfae728eca3ea37f97[m
+Merge: bbb6efa 8ad679f
+Author: Dennis Tran <61258188+TranDennis@users.noreply.github.com>
+Date:   Tue Feb 1 01:24:19 2022 +0100
+
+    Merge pull request #2 from foredev/RTRE20-1
+    
+    RTRE20-1 API-endpoint with swagger-ui
+
+[33mcommit 8ad679f29a104a74240c3c3063d5a6a5144b3c5a[m
+Author: dennishoang2010 <dennishoang2010@gmail.com>
+Date:   Thu Jan 27 10:22:05 2022 +0100
+
+    Added Swagger
+    
+    Access via /swagger-ui.html for ui and /v2/api-docs for documentation
+
+[33mcommit 080b47fe4c2cbe2ba7aefcd002cba76bda19b8d4[m
+Author: dennishoang2010 <dennishoang2010@gmail.com>
+Date:   Wed Jan 26 22:38:18 2022 +0100
+
+    Backend api endpoint foundation
+
+[33mcommit bbb6efa84ae2441c0a5d25be82d6badbe9784a54[m
+Author: dennishoang2010 <dennishoang2010@gmail.com>
+Date:   Mon Jan 24 15:12:40 2022 +0100
+
+    Revert "RTRE20-3 Git/Jira integration test"
+    
+    This reverts commit c20145f459381f1ccc2fa4c1a83aa8748a2cebfb.
+
+[33mcommit c20145f459381f1ccc2fa4c1a83aa8748a2cebfb[m
+Author: dennishoang2010 <dennishoang2010@gmail.com>
+Date:   Mon Jan 24 15:12:13 2022 +0100
+
+    RTRE20-3 Git/Jira integration test
+
+[33mcommit 5865a3d4f5ba1f0f5282cf40ca4074e4b72a6daf[m
+Author: Martin Hellgren <66413247+martinohlsson@users.noreply.github.com>
+Date:   Mon Jan 24 12:53:37 2022 +0100
+
+    RTRE20-3 First commit
+
+[33mcommit fca9e68484872b7dbe782cd8eb119b94377523de[m
+Author: Martin Ohlsson <66413247+martinohlsson@users.noreply.github.com>
+Date:   Tue Nov 2 09:38:25 2021 +0100
+
+    Initial commit

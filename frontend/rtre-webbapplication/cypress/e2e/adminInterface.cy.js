@@ -291,11 +291,11 @@ describe('User and project management test', () => {
       
         })
     
-         
+         //hello
         // it('Check Notification', () => {
         //     cy.get('.text-center').click()
         //     cy.get('.v-list').should('contain','Newly added project!')
-        //     cy.intercept('**/api/deleteNotification?*').as('deleteNotification')
+        //     cy.indtercept('**/api/deleteNotification?*').as('deleteNotification')
         //     cy.get('[name="0"]').click()
         //     cy.wait('@deleteNotification').then((intercept) => {
         //         expect(intercept.response.statusCode).to.equal(200)
