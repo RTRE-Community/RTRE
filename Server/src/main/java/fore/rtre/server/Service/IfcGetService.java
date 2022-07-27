@@ -50,7 +50,6 @@ public class IfcGetService {
             }else {
                 downloadQuery = query;
             }
-            System.out.println(downloadQuery);
             long topicId =  BimserverConfig.client.getServiceInterface().download(Collections.singleton(project.getLastRevisionId()),downloadQuery,serializer.getOid(),false);
             // Use the topic id from "BimServer" which contains the file data to download it
             InputStream is = BimserverConfig.client.getServiceInterface().getDownloadData(topicId).getFile().getInputStream();

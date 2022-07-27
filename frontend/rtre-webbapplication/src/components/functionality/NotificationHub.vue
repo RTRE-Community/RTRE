@@ -81,23 +81,29 @@ export default ({
 
             axios.get(process.env.VUE_APP_RTRE_BACKEND_PORT + "/api/getUserQuerys?", {
                 params: {
-                    username: sessionStorage.getItem('Username'),
                     oid: sessionStorage.getItem('oid')
                 }
             }).then((resp) => {
 
                 // this.Query = resp,data.Query
-
+                //console.log(JSON.parse(resp.data[1]));
                 if(resp.data.length > 0){
                     for(let i = 0; i < resp.data.length; i++) {
-                        if(!(this.gettedQuerys.includes(resp.data[i]))){
-                             this.gettedQuerys.push(resp.data[i]);
+                         if(!(this.containsObject(JSON.parse(resp.data[i][1]), this.gettedQuerys))){
+                            //let query = {}
+                            let query = JSON.parse(resp.data[i][1]);
+                            query.name = resp.data[i][0];
+                            query.type.name = resp.data[i][0];
+                            
+                            this.gettedQuerys.push(query);
+                            
+                             
                         }
 
                     }
+                    //this.loadQuerys();
+                    sessionStorage.setItem('Querys', JSON.stringify(this.gettedQuerys));
                 }
-                this.loadQuerys();
-                sessionStorage.setItem('Querys', JSON.stringify(this.persistentQuerys));
                 //this.notifications = resp.data;
            
                 //this.$store.dispatch('updateNotification', resp.data)
@@ -106,19 +112,24 @@ export default ({
         },
         loadQuerys(){
             for(let i = 0; i < this.gettedQuerys.length; i++){
-                axios.get(process.env.VUE_APP_RTRE_BACKEND_PORT + "/api/getQuerys?", {
-                params: {
-                    token: sessionStorage.getItem('TokenId'),
-                    queryName: this.gettedQuerys[i]
+                if(!(this.containsObject(this.gettedQuerys[i], this.persistentQuerys ))){
+                    console.log(this.gettedQuerys[i])
+                    this.persistentQuerys.push(this.gettedQuerys[i]);
                 }
-                }).then((resp) => {
 
+                /*
+                axios.get(process.env.VUE_APP_RTRE_BACKEND_PORT + "/api/getQuerys?" + new URLSearchParams({
+                token: sessionStorage.getItem('TokenId'),
+                queryName: JSON.stringify(this.gettedQuerys[0][i])
+                }
+                )).then((resp) => {
+                console.log('query getted')
                 if(!(this.containsObject(resp.data, this.persistentQuerys ))){
                     this.persistentQuerys.push(resp.data);
                 }
                 // this.Query = resp.data.Query 
             })
-
+            */
             }
             //localStorage.setItem('Querys', JSON.stringify(this.persistentQuerys));
             EventEmitter.eventEmitter.emit('QuerySetted', this.persistentQuerys);

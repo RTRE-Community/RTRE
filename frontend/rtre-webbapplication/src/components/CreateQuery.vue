@@ -52,7 +52,6 @@ import Vue from 'vue'
 import SnackBar from './functionality/buttons/SnackBar.vue'
 import axios from 'axios'
 import json from '../assets/Querys.json'
-//const EventEmitter = require('../EventEmitter')
 
 export default {
     name: "CreateQuery",
@@ -81,9 +80,6 @@ export default {
             this.items[i] = json.names[i];
         }
         this.Users = JSON.parse(localStorage.getItem("Users") || "[]")
-        console.log(this.Users);
-
-        
 
         for(let i = 0; i < this.Users.length; i++){
 
@@ -106,15 +102,22 @@ export default {
     },
     methods: {
 
-        selectUser(User){
+        async selectUser(User){
             this.User = User;
             const id = User.oid;
             this.overlay = false;
+            this.Query = await axios.get(process.env.VUE_APP_RTRE_BACKEND_PORT + '/api/getQuerys?' + new URLSearchParams({
+                token: sessionStorage.getItem("TokenId"),
+                queryName: this.selectedFormat
+            })).then((resp) => {
+                return resp.data;
+               
+            });
             axios.post(process.env.VUE_APP_RTRE_BACKEND_PORT + '/api/sendQuery?' + new URLSearchParams({
                 token: sessionStorage.getItem("TokenId"),
                 receievingUser: this.User.oid,
                 queryTopic: this.selectedFormat,
-                QUery: this.Query
+                Query: JSON.stringify(this.Query)
             })).then((resp) => {
                 if(resp.status===200){
                     console.log(200);
@@ -147,7 +150,6 @@ export default {
                 queryName: this.selectedFormat
             })).then((resp) => {
                 this.Query = resp.data;
-                console.log(this.Query);
                 this.response = resp;
                 console.log(resp.status);
                
