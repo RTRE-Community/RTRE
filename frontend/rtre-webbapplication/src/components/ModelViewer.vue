@@ -48,7 +48,7 @@ export default {
             projectTickValue: null,
             ticksLabels: [],
             dateMapOfSubProjects: null,
-            overlay: [false],
+            overlay: [true],
         }
     },
     mounted() {
@@ -79,6 +79,7 @@ export default {
     },
     watch: {
         projectTickValue(newValue, oldValue) {
+            Vue.set(this.overlay, 0, true);
             if (oldValue == null) {
                 return
             } else {
@@ -86,7 +87,6 @@ export default {
                     url: process.env.VUE_APP_RTRE_BACKEND_PORT + "/api/getIfc?fileName=" + this.ticksLabels[newValue],
                     methods: "GET",
                 }).then((res) => {
-                    Vue.set(this.overlay, 0, true);
 
                     var render = URL.createObjectURL(new Blob([res.data], {
                         type: "application/octet-stream"
@@ -95,11 +95,10 @@ export default {
                     this.renderModel(render)
                 }).then(() => {
                     this.deleteWithOid()
+                    console.log("deleting...")
                     setTimeout(() => {
                         Vue.set(this.overlay, 0, false);
                     }, 1000);
-                }).then(() => {
-
                 })
 
             }
@@ -160,7 +159,7 @@ export default {
             renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
             //Creates grids and axes in the this.scene
-            const grid = new GridHelper(50, 30);
+            const grid = new GridHelper(75, 75);
             this.scene.add(grid);
 
             const axes = new AxesHelper();
@@ -204,15 +203,21 @@ export default {
                 },
                 false
             );
-            var paramsOid = this.$route.params.oid
-            if (paramsOid == ':oid') {
-                return
-            } else {
-                var sessionStorageIfcURL = URL.createObjectURL(new Blob([sessionStorage.getItem(paramsOid)], {
-                    type: "application/octet-stream"
-                }))
-                this.renderModel(sessionStorageIfcURL)
-            }
+            // var paramsOid = this.$route.params.oid
+            // if (paramsOid != ':oid') {
+            //     axios({
+            //         url: process.env.VUE_APP_RTRE_BACKEND_PORT + "/api/getIfc?fileName=" + paramsOid,
+            //         methods: "GET",
+            //     }).then((res) => {
+            //         Vue.set(this.overlay, 0, false);
+            //         var render = URL.createObjectURL(new Blob([res.data], {
+            //             type: "application/octet-stream"
+            //         }))
+            //         this.renderModel(render)
+            //     })
+            // } else {
+                Vue.set(this.overlay, 0, false)
+            // }
         }
     }
 }
