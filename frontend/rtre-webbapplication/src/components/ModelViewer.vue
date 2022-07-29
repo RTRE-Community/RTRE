@@ -13,6 +13,10 @@
     <v-card-text>
         <v-slider v-model="projectTickValue" :tick-labels="ticksLabels" :min="0" :max="ticksLabels.length - 1" step="1" ticks="always" tick-size="5"></v-slider>
     </v-card-text>
+
+    <v-overlay :value="overlay[0]">
+        <v-progress-circular indeterminate size="64"></v-progress-circular>
+    </v-overlay>
 </v-app>
 </template>
 
@@ -33,6 +37,7 @@ import {
     IFCLoader
 } from "web-ifc-three/IFCLoader";
 import axios from "axios";
+import Vue from "vue";
 export default {
     name: "ModelViewer",
     data() {
@@ -42,13 +47,15 @@ export default {
             project: null,
             projectTickValue: null,
             ticksLabels: [],
-            dateMapOfSubProjects: null
+            dateMapOfSubProjects: null,
+            overlay: [false],
         }
     },
     mounted() {
         // get oid
         let temp = this.$route.params.oid
         // get sibling projects
+        Vue.set(this.overlay, 0, true);
         axios.get(process.env.VUE_APP_RTRE_BACKEND_PORT + "/api/getDateAndSubProject?token=" + sessionStorage.getItem('TokenId') +
                 "&id=" + temp)
             .then((resp) => {
@@ -59,6 +66,10 @@ export default {
                         this.projectTickValue = i
                     }
                 }
+
+                setTimeout(() => {
+                    Vue.set(this.overlay, 0, false);
+                }, 1000);
             })
 
         // fill list vid oids
@@ -75,17 +86,24 @@ export default {
                     url: process.env.VUE_APP_RTRE_BACKEND_PORT + "/api/getIfc?fileName=" + this.ticksLabels[newValue],
                     methods: "GET",
                 }).then((res) => {
+                    Vue.set(this.overlay, 0, true);
+
                     var render = URL.createObjectURL(new Blob([res.data], {
                         type: "application/octet-stream"
 
                     }))
                     this.renderModel(render)
                 }).then(() => {
-                    setInterval(1000)
                     this.deleteWithOid()
+                    setTimeout(() => {
+                        Vue.set(this.overlay, 0, false);
+                    }, 1000);
+                }).then(() => {
+
                 })
+
             }
-        }
+        },
     },
     methods: {
         renderModel(ifcURL) {
@@ -99,7 +117,6 @@ export default {
             //Creates the Three.js this.scene
         },
         deleteWithOid() {
-            console.log(this.scene.children.length)
             this.scene.remove(this.scene.children[this.scene.children.length - 1]);
         },
         renderScene() {
