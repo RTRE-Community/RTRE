@@ -205,11 +205,15 @@ export default {
             input.addEventListener(
                 "change",
                 (changed) => {
+                    Vue.set(this.overlay, 0, true);
                     this.deleteWithOid()
                     console.log("deleting......")
                     const file = changed.target.files[0];
                     var ifcURL = URL.createObjectURL(file);
                     this.renderModel(ifcURL, this.scene)
+                    setTimeout(() => {
+                        Vue.set(this.overlay, 0, false);
+                    }, 1000);
                 },
                 false
             );
