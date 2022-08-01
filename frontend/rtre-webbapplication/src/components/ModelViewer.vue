@@ -1,15 +1,9 @@
 <template>
 <v-app class="pb10">
     <input type="file" name="load" id="file-input" />
-    <v-btn class="ma-2" fab dark small color="red" @click="deleteWithOid()">
-        <v-icon dark>
-            mdi-delete-variant
-        </v-icon>
-    </v-btn>
     <v-card id="wrapper" style="width: 100%;height: 55vh;" elevation="3" class="mt-5">
         <canvas id="three-canvas"></canvas>
     </v-card>
-    <v-subheader>Tick labels</v-subheader>
     <v-card-text>
         <v-slider v-model="projectTickValue" :tick-labels="ticksLabels" :min="0" :max="ticksLabels.length - 1" step="1" ticks="always" tick-size="5"></v-slider>
     </v-card-text>
@@ -49,33 +43,42 @@ export default {
             ticksLabels: [],
             dateMapOfSubProjects: null,
             overlay: [true],
+            initSceneChildElements: []
         }
     },
     mounted() {
         // get oid
-        let temp = this.$route.params.oid
-        // get sibling projects
-        Vue.set(this.overlay, 0, true);
-        axios.get(process.env.VUE_APP_RTRE_BACKEND_PORT + "/api/getDateAndSubProject?token=" + sessionStorage.getItem('TokenId') +
-                "&id=" + temp)
-            .then((resp) => {
-                this.ticksLabels = resp.data
-            }).then(() => {
-                for (let i = 0; i < this.ticksLabels.length; i++) {
-                    if (this.ticksLabels[i] == temp) {
-                        this.projectTickValue = i
+        let param = this.$route.params.oid
+
+        // first render and populate timeline if requested
+        if (param != ':oid') {
+            axios.get(process.env.VUE_APP_RTRE_BACKEND_PORT + "/api/getDateAndSubProject?token=" + sessionStorage.getItem('TokenId') +
+                    "&id=" + param)
+                .then((resp) => {
+                    this.ticksLabels = resp.data
+                }).then(() => {
+                    for (let i = 0; i < this.ticksLabels.length; i++) {
+                        if (this.ticksLabels[i] == param) {
+                            this.projectTickValue = i
+                        }
                     }
-                }
 
-                setTimeout(() => {
-                    Vue.set(this.overlay, 0, false);
-                }, 1000);
-            })
+                    setTimeout(() => {
+                        Vue.set(this.overlay, 0, false);
+                    }, 1000);
+                })
 
-        // fill list vid oids
-        // set value == param oid
+        } else {
+            setTimeout(() => {
+                Vue.set(this.overlay, 0, false);
+            }, 1000);
+        }
 
+        //render scene such as shades, colour and grid
         this.renderScene()
+
+        //keep count of child elements used for deletWithOid()
+        Vue.set(this.initSceneChildElements, 0, this.scene.children.length)
     },
     watch: {
         projectTickValue(newValue, oldValue) {
@@ -114,9 +117,13 @@ export default {
                 ifcURL,
                 (ifcModel) => this.scene.add(ifcModel));
             //Creates the Three.js this.scene
+
         },
         deleteWithOid() {
-            this.scene.remove(this.scene.children[this.scene.children.length - 1]);
+            // initial render will create 5 child elements if its 4 and delete is being called dont remove anything (because user generated model has already been removed)
+            if ((this.initSceneChildElements[0] - 1) !== this.scene.children.length) {
+                this.scene.remove(this.scene.children[this.scene.children.length - 1]);
+            }
         },
         renderScene() {
             let vCardWrapper = document.getElementById('wrapper');
@@ -193,16 +200,20 @@ export default {
             });
             const ifcLoader = new IFCLoader();
             ifcLoader.ifcManager.setWasmPath("../");
+
             const input = document.getElementById("file-input");
             input.addEventListener(
                 "change",
                 (changed) => {
+                    this.deleteWithOid()
+                    console.log("deleting......")
                     const file = changed.target.files[0];
                     var ifcURL = URL.createObjectURL(file);
                     this.renderModel(ifcURL, this.scene)
                 },
                 false
             );
+
             // var paramsOid = this.$route.params.oid
             // if (paramsOid != ':oid') {
             //     axios({
@@ -216,7 +227,7 @@ export default {
             //         this.renderModel(render)
             //     })
             // } else {
-                Vue.set(this.overlay, 0, false)
+            Vue.set(this.overlay, 0, false)
             // }
         }
     }
