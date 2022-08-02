@@ -1,16 +1,22 @@
 package fore.rtre.server.Object;
 
+import javax.naming.Name;
 import java.util.Date;
 
 public class SubProjectMeta {
-
-    public SubProjectMeta(Long id, Date date) {
-        this.id = id;
-        this.date = date;
-    }
-
     private Long id;
     public Date date;
+
+    public String name;
+
+    public String description;
+
+    public SubProjectMeta(Long id, Date date, String name, String description) {
+        this.id = id;
+        this.date = date;
+        this.name = name;
+        this.description = description;
+    }
 
     public Long getId() {
         return id;
@@ -28,5 +34,19 @@ public class SubProjectMeta {
         this.date = date;
     }
 
+    public String getName() {
+        return name;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }

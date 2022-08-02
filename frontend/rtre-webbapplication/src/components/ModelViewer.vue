@@ -5,7 +5,17 @@
         <canvas id="three-canvas"></canvas>
     </v-card>
     <v-card-text>
-        <v-slider v-model="projectTickValue" :tick-labels="ticksLabels" :min="0" :max="ticksLabels.length - 1" step="1" ticks="always" tick-size="5"></v-slider>
+        <v-slider v-model="projectTickValue" :tick-labels="dateArray" :min="0" :max="ticksLabels.length - 1" step="1" ticks="always" tick-size="5" thumb-size="400" thumb-color="blue-grey darken-4">
+            <template v-slot:thumb-label="props">
+                <h2 class="text-center px-4 pt-4 "> Name</h2>
+                <h3 class="text-center font-weight-light">{{ metaData[props.value].name }}</h3>
+                <h2 class="text-center px-4 pt-4 " v-if="metaData[props.value].description"> Description </h2>
+                <h3 class="text-center font-weight-light">{{ metaData[props.value].description }}</h3>
+                <h2 class="text-center px-4 pt-4 "> Identification </h2>
+                <h3 class="text-center font-weight-light">{{ metaData[props.value].id }}</h3>
+
+            </template>
+        </v-slider>
     </v-card-text>
 
     <v-overlay :value="overlay[0]">
@@ -41,6 +51,8 @@ export default {
             project: null,
             projectTickValue: null,
             ticksLabels: [],
+            dateArray: [],
+            metaData: [],
             dateMapOfSubProjects: null,
             overlay: [true],
             initSceneChildElements: []
@@ -55,7 +67,15 @@ export default {
             axios.get(process.env.VUE_APP_RTRE_BACKEND_PORT + "/api/getDateAndSubProject?token=" + sessionStorage.getItem('TokenId') +
                     "&id=" + param)
                 .then((resp) => {
-                    this.ticksLabels = resp.data
+                    resp.data.forEach(element => {
+                        this.ticksLabels.push(element.id)
+                        this.dateArray.push(element.date)
+                        this.metaData.push({
+                            name: element.name,
+                            id: element.id,
+                            description: element.description
+                        })
+                    });
                 }).then(() => {
                     for (let i = 0; i < this.ticksLabels.length; i++) {
                         if (this.ticksLabels[i] == param) {
