@@ -1,6 +1,10 @@
 name: Server CI/CD
 
-on: [push]
+on:  
+  push:
+  pull_request:
+    branches:
+      - master
 
 env:
   SERVICE_ACCOUNT_KEY: ${{ secrets.SERVICE_ACCOUNT_KEY }}
