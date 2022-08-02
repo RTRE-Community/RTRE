@@ -113,7 +113,6 @@ describe('File Transfer Test', () => {
     // })
 
     //logout and see if the other user has a notification
-
     it('Check out file', () => {
       cy.window().then((win) => {
         win.sessionStorage.clear()

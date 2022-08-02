@@ -8,42 +8,28 @@
             </v-icon>
         </v-btn>
     </template>
-    <span>Check out</span>
+    <span>View Model</span>
+
 </v-tooltip>
 </template>
 
 <script>
-import Axios from "axios"
 export default {
     name: "ModelViewButton",
     props: ['oid'],
     methods: {
         installWithOid() {
-            Axios({
-                    url: process.env.VUE_APP_RTRE_BACKEND_PORT + "/api/getIfc?fileName=" + this.oid,
-                    methods: "GET",
-                })
-                .then((res) => {
-                    if (sessionStorage.getItem(this.oid) != null) {
-                        console.log('here')
-                        this.$router.push({
-                            name: "Viewer",
-                            params: {
-                                oid: this.oid
-                            }
-                        })
-                    } else {
-                        console.log('there')
-                        sessionStorage.setItem(this.oid, res.data)
-                        this.$router.push({
-                            name: "Viewer",
-                            params: {
-                                oid: this.oid
-                            }
-                        })
-                    }
-                });
+            this.$router.push({
+                name: "Viewer",
+                params: {
+                    oid: this.oid
+                }
+            })
         }
     },
 }
 </script>
+
+// going into viewer crashes cuz oid is undefined
+// currently it renders then deletes again then renders
+// overlay to true is to slow making it feel unresponsive
