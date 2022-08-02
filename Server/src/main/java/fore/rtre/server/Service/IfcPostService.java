@@ -26,6 +26,9 @@ import java.util.concurrent.ExecutionException;
 public class IfcPostService {
     public static ResponseEntity<String> postIfc(MultipartFile file, String schema, Long parentPoid){
         try {
+            if(!(schema.toLowerCase().equals(BimserverConfig.client.getServiceInterface().getProjectByPoid(parentPoid).getSchema()))){
+                throw new IllegalArgumentException();
+            }
             String relativeFolder = "src\\main\\resources\\BimServerInstallTempFolder\\";
             UUID uniqueId = UUID.randomUUID();
             String uniqueName = file.getName()+ "-"+ uniqueId;
@@ -64,7 +67,7 @@ public class IfcPostService {
             if(!state.getErrors().isEmpty()){
                 return new ResponseEntity<String>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
             }
-        } catch (ServiceException | PublicInterfaceNotFoundException | IOException e) {
+        } catch (ServiceException | PublicInterfaceNotFoundException | IOException | IllegalArgumentException e) {
             return new ResponseEntity<String>("Bad Request", HttpStatus.BAD_REQUEST);
 
         } catch (ExecutionException e) {
