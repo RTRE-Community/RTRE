@@ -60,6 +60,11 @@ export default {
     },
     mounted() {
         this.projectList = this.projects;
+           this.projectList.sort(function (a, b) {
+            var dateA = new Date(a.createdDate)
+            var dateB = new Date(b.createdDate)
+            return dateB - dateA
+        })
         //const START_DATE = new Date('2019-01-01');
 
     },

@@ -14,7 +14,7 @@
                 <v-expansion-panel-content>
                     <div v-if=" project.parentId != -1" class="py-2">
                         <CheckOutIconButtonVue :oid="projects.oid" :schema="projects.schema" />
-                        <ModelViewButton :oid="projects.oid"/>
+                        <ModelViewButton :oid="projects.oid" />
                         <DeleteButtonVue :oid="projects.oid" />
                     </div>
                     <li>id: {{ project.oid }}</li>
@@ -47,6 +47,11 @@ export default {
     },
     mounted() {
         this.fetchProjectList()
+        this.projectList.sort(function (a, b) {
+            var dateA = new Date(a.createdDate)
+            var dateB = new Date(b.createdDate)
+            return dateB - dateA
+        })
         this.search = ""
     },
     methods: {
@@ -75,11 +80,11 @@ export default {
         }
     },
     components: {
-    ProjectList,
-    CheckOutIconButtonVue,
-    DeleteButtonVue,
-    ModelViewButton
-},
+        ProjectList,
+        CheckOutIconButtonVue,
+        DeleteButtonVue,
+        ModelViewButton
+    },
 
 }
 </script>
