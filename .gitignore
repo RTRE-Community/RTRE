@@ -34,5 +34,7 @@ serviceAccountKey.json
 Server/src/main/resources/serviceAccountKey.json
 >>>>>>> origin/main
 frontend/rtre-webbapplication/cypress/videos/
+src/main/resources/script/__pycache__/
 Server/.idea/workspace.xml
+
 frontend/rtre-webbapplication/cypress/screenshots/
