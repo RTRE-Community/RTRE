@@ -56,7 +56,7 @@ public class IfcMergeService {
             File outputFile = new File(pathForProductFile);
             outputFile.getAbsoluteFile().createNewFile();
             /* EXECUTE MERGE */
-            Process pr = rt.exec(" python -m f"
+            Process pr = rt.exec(" python -m f "
                     +postedFile.getAbsoluteFile()+
                     " "+createSecondFile.getAbsoluteFile()+
                     " "+ outputFile.getAbsoluteFile(), null, dir);
