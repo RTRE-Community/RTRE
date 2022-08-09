@@ -9,6 +9,7 @@ const adminEmail = 'admin@admin.com'
 const userEmail ='cypress@test.com'
 const projectName = 'cypressTest'
 const password = 'password'
+const name = "hello"
 
 
 describe('User and project management test', () => {
@@ -275,10 +276,10 @@ describe('User and project management test', () => {
             cy.wrap(id).as('id')
     
             cy.get('@id').then((id) => {
-              cy.get('[name="fileButtonCheckIn"]').attachFile('stud.ifc')
-              cy.get('.shrink > .v-input__control > .v-input__slot').type(id)
-              cy.get('.v-input--dense > .v-input__control > .v-input__slot').click()
-              cy.get('.v-list-item__content').contains('Ifc4').click()
+              cy.get('[data-cy="fileCheckin"]').attachFile('stud.ifc')
+             cy.get('[data-cy="HeadId"]').type(id)
+             cy.get('[data-cy="name"]').type(name)
+             cy.get('[data-cy="desc"]').type(name)
               cy.intercept('**/api/postIfcAsSubProject?*').as('postAProject')
               cy.get('.ml-11').click()
               cy.wait('@postAProject').then((intercept) => {
@@ -290,19 +291,6 @@ describe('User and project management test', () => {
             })
       
         })
-    
-         //hello
-        // it('Check Notification', () => {
-        //     cy.get('.text-center').click()
-        //     cy.get('.v-list').should('contain','Newly added project!')
-        //     cy.indtercept('**/api/deleteNotification?*').as('deleteNotification')
-        //     cy.get('[name="0"]').click()
-        //     cy.wait('@deleteNotification').then((intercept) => {
-        //         expect(intercept.response.statusCode).to.equal(200)
-        //     })
-        // })
-    
-        //logout and see if the other user has a notification
     
         it('Check out file', () => {
           cy.window().then((win) => {
@@ -343,23 +331,25 @@ describe('User and project management test', () => {
           });
           
         cy.visit(url)
-    
+      
         cy.get('input#input-38').type(adminEmail)
         cy.get('input#input-41').type(password)
         cy.intercept("**/api/login?*").as('adminLogin')
         cy.intercept("**/api/getProjectList?*").as('getProjectList')
         cy.get('.col-sm-3 > .v-btn > .v-btn__content').click()
-    
-    
+      
+      
           cy.wait('@getProjectList', {timeout:20000}).then((intercept) => {
             expect(intercept.response.body.length).to.be.greaterThan(0)
             var number = intercept.response.body[1].oid
             let id = number
         
         cy.get('.v-slide-group__content > :nth-child(4)').click()
-        cy.get('.v-card__text > .v-form > .v-input--dense > .v-input__control > .v-input__slot').type(id)
+        cy.get('[data-cy="file2"]').type(id)
       })
-        cy.get('[name="mergeFileInput"').attachFile('stud.ifc')
+      cy.get('[data-cy="name22"]').type(name+"merge")
+      cy.get('[data-cy="desc22"]').type(name+"merge")
+      cy.get('[data-cy="file1"]').attachFile('stud.ifc')
         cy.intercept('**/api/merge?*').as('merge')
         cy.get('[name="mergeButton"]').click()
         cy.wait('@merge', {timeout:20000}).then((intercept) => {
@@ -403,76 +393,9 @@ describe('User and project management test', () => {
         })
         })
     
-        // it('Button check out', () => {
-                                     
-        //   cy.window().then((win) => {
-        //     win.sessionStorage.clear()
-        //   });
-          
-        // cy.visit(url)
-    
-        // cy.get('input#input-38').type(adminEmail)
-        // cy.get('input#input-41').type(password)
-        // cy.intercept("**/api/login?*").as('adminLogin')
-        // cy.intercept("**/api/getProjectList?*").as('getProjectList')
-        // cy.get('.col-sm-3 > .v-btn > .v-btn__content').click()
-    
-    
-        //   cy.wait('@getProjectList', {timeout:20000}).then((intercept) => {
-        //     expect(intercept.response.body.length).to.be.greaterThan(0)
-        //     var number = intercept.response.body[0].oid
-        //     let id = number
-        //     console.log(id)
-        //     cy.wrap(id).as('id')
-        //   })
-          
-        //     cy.get('.v-expansion-panel-header').click()
-        //     cy.get('[name*="1"]').click()
-        //     cy.intercept('**/api/getIfc?*').as('getIfcFile')
-        //     cy.get('.green').click()
-        //     cy.wait('@getIfcFile').then((intercept) => {
-        //         expect(intercept.response.statusCode).to.equal(200)
-        //         cy.wrap(intercept.response.body.length).should('be.gt',20000)
-        //   })
-        // })
-    
-        // it('Button delete', () => {
-                     
-    
-        //     cy.intercept('**/api/deleteProject?*').as('deleteProject')
-        //     cy.get('.red > .v-btn__content').click()
-        //     cy.wait('@deleteProject').then((intercept) => {
-        //         expect(intercept.response.statusCode).to.equal(200)
-        //     })
-                                         
-        //   cy.window().then((win) => {
-        //     win.sessionStorage.clear()
-        //   });
-          
-        // cy.visit(url)
-    
-        // cy.get('input#input-38').type(adminEmail)
-        // cy.get('input#input-41').type(password)
-        // cy.intercept("**/api/login?*").as('adminLogin')
-        // cy.intercept("**/api/getProjectList?*").as('getProjectList')
-        // cy.get('.col-sm-3 > .v-btn > .v-btn__content').click()
-    
-    
-        //   cy.wait('@getProjectList', {timeout:20000}).then((intercept) => {
-        //     expect(intercept.response.body.length).to.be.greaterThan(0)
-        //     var number = intercept.response.body[0].oid
-        //     let id = number
-        //     console.log(id)
-        //     cy.wrap(id).as('id')
-        //   })
-        //     cy.get('.v-expansion-panel-header').click()
-        //     cy.get('[popout=""] > :nth-child(2) > :nth-child(1) > :nth-child(1)').siblings()
-        //     .should('have.length',4)
-        // })
-    
         it('Search Function', () => {
-            cy.get('.container > :nth-child(1) > .v-input > .v-input__control > .v-input__slot').type('file')
-            cy.get('.v-expansion-panel-header').should('contain', 'file-')
+            cy.get('.container > :nth-child(1) > .v-input > .v-input__control > .v-input__slot').type(name)
+            cy.get('.v-expansion-panel-header').should('contain', name)
         })
     
     })
