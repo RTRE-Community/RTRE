@@ -10,6 +10,9 @@
                     <template v-if="checkIfNewProject(project.oid)">
                         <v-badge inline color="red lighten-4"></v-badge>
                     </template>
+                    <div v-if=true class="py-2">
+                        <MoreOptionsButton></MoreOptionsButton>
+                    </div>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
                     <div v-if=" project.parentId != -1" class="py-2">
@@ -37,6 +40,7 @@ import ProjectList from "./ProjectList.vue";
 import CheckOutIconButtonVue from "./functionality/buttons/CheckOutIconButton.vue";
 import DeleteButtonVue from "./functionality/buttons/DeleteButton.vue";
 import ModelViewButton from "./functionality/buttons/ModelViewButton.vue";
+import MoreOptionsButton from "./functionality/buttons/MoreOptionsButton.vue";
 export default {
     name: "SearchBox",
     data() {
@@ -83,7 +87,8 @@ export default {
         ProjectList,
         CheckOutIconButtonVue,
         DeleteButtonVue,
-        ModelViewButton
+        ModelViewButton,
+        MoreOptionsButton
     },
 
 }

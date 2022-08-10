@@ -1,7 +1,7 @@
 <template>
 <v-tooltip bottom>
     <template v-slot:activator="{on , attrs}">
-        <v-btn class="mx-2" fab dark small v-bind="attrs" v-on="on" color="grey" @click="installWithOid()">
+        <v-btn class="mx-2" fab dark small v-bind="attrs" v-on="on" color="grey">
 
             <v-icon dark>
                 mdi-eye-outline
@@ -17,15 +17,6 @@
 export default {
     name: "ModelViewButton",
     props: ['oid'],
-    methods: {
-        installWithOid() {
-            this.$router.push({
-                name: "Viewer",
-                params: {
-                    oid: this.oid
-                }
-            })
-        }
-    },
+
 }
 </script>
