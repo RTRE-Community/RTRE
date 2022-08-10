@@ -18,24 +18,44 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 
 
 @Service
 public class IfcPostService {
-    public static ResponseEntity<String> postIfc(MultipartFile file, String schema, Long parentPoid){
+    public static ResponseEntity<String> postIfc(MultipartFile file, String schema, Long parentPoid, String queryName, String queryDescription){
+
+        String name;
+        String ifcSchema;
+
         try {
-            if(!(schema.toLowerCase().equals(BimserverConfig.client.getServiceInterface().getProjectByPoid(parentPoid).getSchema()))){
+
+            if(schema.equals("empty")){
+                String temp = BimserverConfig.client.getServiceInterface().getProjectByPoid(parentPoid).getSchema();
+                ifcSchema = temp.substring(0,1).toUpperCase() + temp.substring(1);
+            } else {
+                ifcSchema = schema;
+            }
+
+            if (queryName.equals("empty")){
+                UUID uniqueId = UUID.randomUUID();
+                name = file.getName()+ "-"+ uniqueId;
+            } else {
+                UUID uniqueId = UUID.randomUUID();
+                name = queryName + "-" + uniqueId;
+            }
+
+            if(!(ifcSchema.toLowerCase().equals(BimserverConfig.client.getServiceInterface().getProjectByPoid(parentPoid).getSchema()))){
                 throw new IllegalArgumentException();
             }
-            String relativeFolder = "src\\main\\resources\\BimServerInstallTempFolder\\";
-            UUID uniqueId = UUID.randomUUID();
-            String uniqueName = file.getName()+ "-"+ uniqueId;
 
-            SProject newProject = BimserverConfig.client.getServiceInterface().addProjectAsSubProject(uniqueName, parentPoid,schema);
+            String relativeFolder = "src\\main\\resources\\BimServerInstallTempFolder\\";
+
+            SProject newProject = BimserverConfig.client.getServiceInterface().addProjectAsSubProject(name, parentPoid, ifcSchema);
             long poid = newProject.getOid();
-            File fileOfSubject = new File(relativeFolder + uniqueName + ".ifc");
+            File fileOfSubject = new File(relativeFolder + name + ".ifc");
             try {
                 file.transferTo(fileOfSubject.getAbsoluteFile());
             } catch (IOException e) {
@@ -45,12 +65,14 @@ public class IfcPostService {
             SDeserializerPluginConfiguration deserializer = BimserverConfig.client.getServiceInterface().getSuggestedDeserializerForExtension("ifc", poid);
 
             // Make sure you change this to a path to a local IFC file
-            Path demoIfcFile = Paths.get(relativeFolder+uniqueName +".ifc");
+            Path demoIfcFile = Paths.get(relativeFolder+name +".ifc");
 
             // Here we actually checkin the IFC file. Flow.SYNC indicates that we only want to continue the code-flow after the checkin has been completed
             SLongActionState state = BimserverConfig.client.checkinSync(poid,"",deserializer.getOid(),false,demoIfcFile);
             Files.delete(fileOfSubject.toPath());
-            
+            newProject.setDescription(queryDescription);
+            BimserverConfig.client.getServiceInterface().updateProject(newProject);
+
             List<SUser> allUsers = BimserverConfig.client.getServiceInterface().getAllAuthorizedUsersOfProject(parentPoid);
 
             for(SUser sUser: allUsers){

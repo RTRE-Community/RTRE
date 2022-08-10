@@ -52,12 +52,10 @@ export default ({
     },
     methods: {
         polldata() {
-            this.polling = setInterval(() => {
                 if(sessionStorage.getItem('TokenId') !== null){
                 this.fetchNotifications()
                 this.getQuery();
                  }
-            }, 10000)
         },
         fetchNotifications() {
             axios.get(process.env.VUE_APP_RTRE_BACKEND_PORT + "/api/getAllNotification?", {

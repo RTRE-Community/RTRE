@@ -8,8 +8,8 @@
                 <template v-if="checkIfNewProject(project.oid)">
                     <v-badge inline color="red lighten-4"></v-badge>
                 </template>
-                <div   class="d-flex flex-row-reverse">
-                    <MoreOptionsButton></MoreOptionsButton>
+                <div class="d-flex flex-row-reverse">
+                    <MoreOptionsButton :oid="project.oid"></MoreOptionsButton>
                 </div>
             </v-expansion-panel-header>
             <v-expansion-panel-content>
@@ -34,6 +34,7 @@
                             <li>Schema: {{subProjects.schema}}</li>
                             <li>parentId : {{ subProjects.parentId }}</li>
                             <li>Date of Creation : {{ subProjects.createdDate }}</li>
+                            <li v-if="subProjects.description"> Description : <p> {{subProjects.description}}</p></li>
                         </v-expansion-panel-content>
                     </v-expansion-panel>
                 </v-expansion-panels>

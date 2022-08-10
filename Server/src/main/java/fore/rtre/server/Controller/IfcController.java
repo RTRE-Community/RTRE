@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.ws.Response;
 import java.util.Optional;
+import java.util.OptionalInt;
 
 @RestController
 @RequestMapping("/api")
@@ -32,8 +33,11 @@ public class IfcController {
 
     @PostMapping("/postIfcAsSubProject")
     @ResponseBody
-    public ResponseEntity<String> postIfc(@RequestParam("file") MultipartFile file, String schema, Long parentPoid){
-        return IfcPostService.postIfc(file, schema, parentPoid);
+    public ResponseEntity<String> postIfc(@RequestParam("file") MultipartFile file, Optional<String> schema, Long parentPoid, Optional<String> name, Optional<String> description){
+        String paramSchema = schema.orElse("empty");
+        String queryName = name.orElse("empty");
+        String queryDescription = description.orElse("");
+        return IfcPostService.postIfc(file, paramSchema, parentPoid,queryName,queryDescription);
     }
 
     @GetMapping("/getIfc")

@@ -7,10 +7,11 @@
             <v-expansion-panel>
                 <v-expansion-panel-header color="blue white--text" dark flat>
                     {{project.name}}
+                    <v-spacer></v-spacer>
                     <template v-if="checkIfNewProject(project.oid)">
                         <v-badge inline color="red lighten-4"></v-badge>
                     </template>
-                    <div v-if=true class="py-2">
+                    <div class="d-flex flex-row-reverse" v-if="project.parentId == -1">
                         <MoreOptionsButton></MoreOptionsButton>
                     </div>
                 </v-expansion-panel-header>
@@ -23,6 +24,8 @@
                     <li>id: {{ project.oid }}</li>
                     <li>Date: {{project.createdDate}}</li>
                     <li>Schema: {{project.schema}}</li>
+                    <li v-if="project.description"> Description : <p> {{project.description}}</p>
+                    </li>
                 </v-expansion-panel-content>
             </v-expansion-panel>
         </v-expansion-panels>
@@ -51,7 +54,7 @@ export default {
     },
     mounted() {
         this.fetchProjectList()
-        this.projectList.sort(function (a, b) {
+        this.projects.sort(function (a, b) {
             var dateA = new Date(a.createdDate)
             var dateB = new Date(b.createdDate)
             return dateB - dateA
