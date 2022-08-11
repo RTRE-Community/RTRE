@@ -106,7 +106,6 @@ public class IfcGetService {
     public static ResponseEntity<String> authGetDateAndSubProject(String token, Long id){
         try {
             ArrayList<SubProjectMeta> subProjectMetaList = new ArrayList<>();
-            ArrayList<Long> sortedListOfIds = new ArrayList<>();
             JsonBimServerClientFactory factory;
             BimServerClient client;
 
@@ -128,9 +127,6 @@ public class IfcGetService {
                 }
             }
             subProjectMetaList.sort(new sortByDate());
-            for (int i = 0; i < subProjectMetaList.size(); i++) {
-                sortedListOfIds.add(subProjectMetaList.get(i).getId());
-            }
             String result = new Gson().toJson(subProjectMetaList);
             return new ResponseEntity<String>(result, HttpStatus.valueOf(200));
 

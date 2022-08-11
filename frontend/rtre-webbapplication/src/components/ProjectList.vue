@@ -3,14 +3,22 @@
     <v-expansion-panels v-for="project in projectList" :key="project.oid" popout class="rounded-0">
         <v-expansion-panel v-if="project.parentId == -1" :key="project.id" popout>
             <v-expansion-panel-header color="blue white--text" dark flat>
-                {{ project.name }}
-                <v-spacer></v-spacer>
-                <template v-if="checkIfNewProject(project.oid)">
-                    <v-badge inline color="red lighten-4"></v-badge>
-                </template>
-                <div class="d-flex flex-row-reverse">
-                    <MoreOptionsButton :oid="project.oid"></MoreOptionsButton>
-                </div>
+                <v-row>
+                    <v-col xs="12" md="6">
+                        <p   style="word-break: break-word"  class="text-wrap">
+                            {{ project.name }}
+                        </p>
+                        <v-spacer></v-spacer>
+                    </v-col>
+                    <v-col xs="12" md="6">
+                        <template v-if="checkIfNewProject(project.oid)">
+                            <v-badge inline color="red lighten-4"></v-badge>
+                        </template>
+                        <div class="d-flex flex-row-reverse">
+                            <MoreOptionsButton :oid="project.oid"></MoreOptionsButton>
+                        </div>
+                    </v-col>
+                </v-row>
             </v-expansion-panel-header>
             <v-expansion-panel-content>
                 <li>id:{{ project.oid }}</li>
@@ -19,7 +27,8 @@
                 <v-expansion-panels v-for="subProjects in projectList" :key="subProjects.oid" popout class="rounded-0">
                     <v-expansion-panel v-if="subProjects.parentId == project.oid" :key="subProjects.id" :name="index++">
                         <v-expansion-panel-header color="blue white--text" dark flat>
-                            {{ subProjects.name }}
+                            {{ subProjects.name.split('-')[0] }}
+                            <p class="font-weight-thin">{{ subProjects.name.split('-')[1]}}</p>
                             <template v-if="checkIfNewProject(subProjects.oid)">
                                 <v-badge inline color="red lighten-4"></v-badge>
                             </template>
@@ -34,7 +43,8 @@
                             <li>Schema: {{subProjects.schema}}</li>
                             <li>parentId : {{ subProjects.parentId }}</li>
                             <li>Date of Creation : {{ subProjects.createdDate }}</li>
-                            <li v-if="subProjects.description"> Description : <p> {{subProjects.description}}</p></li>
+                            <li v-if="subProjects.description"> Description : <p> {{subProjects.description}}</p>
+                            </li>
                         </v-expansion-panel-content>
                     </v-expansion-panel>
                 </v-expansion-panels>

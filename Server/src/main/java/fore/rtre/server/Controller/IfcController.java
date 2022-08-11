@@ -5,6 +5,9 @@ import fore.rtre.server.Service.AdminManagement;
 import fore.rtre.server.Service.AuthenticationService;
 import fore.rtre.server.Service.IfcPostService;
 import fore.rtre.server.Service.IfcGetService;
+import fore.rtre.server.config.BimserverConfig;
+import org.bimserver.shared.exceptions.ServerException;
+import org.bimserver.shared.exceptions.UserException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties.Admin;
 import org.springframework.http.ResponseEntity;
@@ -60,8 +63,10 @@ public class IfcController {
 
     @PostMapping("/merge")
     @ResponseBody
-    public ResponseEntity<String> merge(@RequestParam("file") MultipartFile file, long mergeFile2) {
-        return fore.rtre.server.Service.IfcMergeService.mergeIfc(file, mergeFile2);}
+    public ResponseEntity<String> merge(@RequestParam("file") MultipartFile file, long mergeFile2, Optional<String> name, Optional<String> description){
+        String queryName = name.orElse("empty");
+        String queryDescription = description.orElse("");
+        return fore.rtre.server.Service.IfcMergeService.mergeIfc(file, mergeFile2,queryName,queryDescription);}
 
     @GetMapping("/login")
     @ResponseBody

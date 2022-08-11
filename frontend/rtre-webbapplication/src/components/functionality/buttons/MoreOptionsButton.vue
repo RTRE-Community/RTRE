@@ -26,14 +26,8 @@
                     <v-icon left> mdi-archive-arrow-up </v-icon>
                     Check in
                 </v-tab>
-                <v-tab>
-                    <v-icon left> mdi-call-merge </v-icon>
-                    Merge
-                </v-tab>
                 <v-tab-item>
                     <CheckInDialog :parentOid="this.oid"/>
-                </v-tab-item>
-                <v-tab-item>
                 </v-tab-item>
             </v-tabs>
         </v-card>

@@ -6,14 +6,23 @@
         <v-expansion-panels v-for="project in filteredProjects" :key="project.id" popout class="rounded-0">
             <v-expansion-panel>
                 <v-expansion-panel-header color="blue white--text" dark flat>
-                    {{project.name}}
-                    <v-spacer></v-spacer>
-                    <template v-if="checkIfNewProject(project.oid)">
-                        <v-badge inline color="red lighten-4"></v-badge>
-                    </template>
-                    <div class="d-flex flex-row-reverse" v-if="project.parentId == -1">
-                        <MoreOptionsButton></MoreOptionsButton>
-                    </div>
+                     <v-row>
+                    <v-col xs="12" md="6">
+                        <p   style="word-break: break-word"  class="text-wrap">
+                            {{ project.name.split('-')[0] }}
+                        </p>
+                          <p class="font-weight-thin">{{ project.name.split('-')[1]}}</p>
+                        <v-spacer></v-spacer>
+                    </v-col>
+                    <v-col xs="12" md="6">
+                        <template v-if="checkIfNewProject(project.oid)">
+                            <v-badge inline color="red lighten-4"></v-badge>
+                        </template>
+                        <div v-if="project.parentId == -1" class="d-flex flex-row-reverse">
+                            <MoreOptionsButton :oid="project.oid"></MoreOptionsButton>
+                        </div>
+                    </v-col>
+                </v-row>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
                     <div v-if=" project.parentId != -1" class="py-2">
