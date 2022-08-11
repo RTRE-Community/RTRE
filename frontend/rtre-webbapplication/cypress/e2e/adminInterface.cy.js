@@ -472,7 +472,7 @@ describe('User and project management test', () => {
     
         it('Search Function', () => {
             cy.get('.container > :nth-child(1) > .v-input > .v-input__control > .v-input__slot').type('file')
-            cy.get('.v-expansion-panel-header').should('contain', 'file-')
+            cy.get('.v-expansion-panel-header').should('contain', 'file')
         })
     
     })
