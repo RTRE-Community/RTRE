@@ -386,7 +386,7 @@ describe('User and project management test', () => {
     
           cy.wait('@getProjectList', {timeout:20000}).then((intercept) => {
             expect(intercept.response.body.length).to.be.greaterThan(0)
-            var number = intercept.response.body[2].oid
+            var number = intercept.response.body[1].oid
             let id = number
             console.log(id)
             cy.wrap(id).as('id')
@@ -471,8 +471,8 @@ describe('User and project management test', () => {
         // })
     
         it('Search Function', () => {
-            cy.get('.container > :nth-child(1) > .v-input > .v-input__control > .v-input__slot').type('file')
-            cy.get('.v-expansion-panel-header').should('contain', 'file')
+            cy.get('.container > :nth-child(1) > .v-input > .v-input__control > .v-input__slot').type('cypressTest')
+            cy.get('.v-expansion-panel-header').should('contain', 'cypressTest')
         })
     
     })
