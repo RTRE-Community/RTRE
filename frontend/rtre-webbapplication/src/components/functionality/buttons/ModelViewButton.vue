@@ -29,7 +29,3 @@ export default {
     },
 }
 </script>
-
-// going into viewer crashes cuz oid is undefined
-// currently it renders then deletes again then renders
-// overlay to true is to slow making it feel unresponsive

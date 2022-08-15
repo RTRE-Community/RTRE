@@ -6,10 +6,23 @@
         <v-expansion-panels v-for="project in filteredProjects" :key="project.id" popout class="rounded-0">
             <v-expansion-panel>
                 <v-expansion-panel-header color="blue white--text" dark flat>
-                    {{project.name}}
-                    <template v-if="checkIfNewProject(project.oid)">
-                        <v-badge inline color="red lighten-4"></v-badge>
-                    </template>
+                     <v-row>
+                    <v-col xs="12" md="6">
+                        <p   style="word-break: break-word"  class="text-wrap">
+                            {{ project.name.split('-')[0] }}
+                        </p>
+                          <p class="font-weight-thin">{{ project.name.split('-')[1]}}</p>
+                        <v-spacer></v-spacer>
+                    </v-col>
+                    <v-col xs="12" md="6">
+                        <template v-if="checkIfNewProject(project.oid)">
+                            <v-badge inline color="red lighten-4"></v-badge>
+                        </template>
+                        <div v-if="project.parentId == -1" class="d-flex flex-row-reverse">
+                            <MoreOptionsButton :oid="project.oid"></MoreOptionsButton>
+                        </div>
+                    </v-col>
+                </v-row>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
                     <div v-if=" project.parentId != -1" class="py-2">
@@ -20,6 +33,8 @@
                     <li>id: {{ project.oid }}</li>
                     <li>Date: {{project.createdDate}}</li>
                     <li>Schema: {{project.schema}}</li>
+                    <li v-if="project.description"> Description : <p> {{project.description}}</p>
+                    </li>
                 </v-expansion-panel-content>
             </v-expansion-panel>
         </v-expansion-panels>
@@ -37,6 +52,7 @@ import ProjectList from "./ProjectList.vue";
 import CheckOutIconButtonVue from "./functionality/buttons/CheckOutIconButton.vue";
 import DeleteButtonVue from "./functionality/buttons/DeleteButton.vue";
 import ModelViewButton from "./functionality/buttons/ModelViewButton.vue";
+import MoreOptionsButton from "./functionality/buttons/MoreOptionsButton.vue";
 export default {
     name: "SearchBox",
     data() {
@@ -47,7 +63,7 @@ export default {
     },
     mounted() {
         this.fetchProjectList()
-        this.projectList.sort(function (a, b) {
+        this.projects.sort(function (a, b) {
             var dateA = new Date(a.createdDate)
             var dateB = new Date(b.createdDate)
             return dateB - dateA
@@ -83,7 +99,8 @@ export default {
         ProjectList,
         CheckOutIconButtonVue,
         DeleteButtonVue,
-        ModelViewButton
+        ModelViewButton,
+        MoreOptionsButton
     },
 
 }

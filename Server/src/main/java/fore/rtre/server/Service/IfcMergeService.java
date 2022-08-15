@@ -1,4 +1,6 @@
 package fore.rtre.server.Service;
+import fore.rtre.server.Helper_Classes.LatestProjectGetter;
+import fore.rtre.server.Object.SubProjectMeta;
 import fore.rtre.server.config.BimserverConfig;
 import org.apache.commons.io.IOUtils;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
@@ -14,13 +16,15 @@ import java.io.*;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.UUID;
 
 @Service
 public class IfcMergeService {
 
-    public static ResponseEntity<String> mergeIfc(MultipartFile file, long mergeFile2){
+    public static ResponseEntity<String> mergeIfc(MultipartFile file, long mergeFile2, String queryName, String queryDescription){
         String scriptPath = "src/main/resources/script/";
         String tempFolderPath = "src/main/resources/MergeTemporaryFolder/";
         Runtime rt = Runtime.getRuntime();
@@ -28,18 +32,29 @@ public class IfcMergeService {
 
         UUID uuidFirst = UUID.randomUUID();
         UUID uuidSecond = UUID.randomUUID();
-        UUID uuidProduct = UUID.randomUUID();
+        String uuidProduct;
+        if (queryName.equals("empty")){
+            uuidProduct = file.getName()+ "-"+ UUID.randomUUID();
+        } else {
+            uuidProduct = queryName + "-" + UUID.randomUUID();
+        }
 
         String pathForFirstFile = tempFolderPath+uuidFirst +".ifc";
         String pathForSecondFile = tempFolderPath+uuidSecond+".ifc";
         String pathForProductFile = tempFolderPath+uuidProduct + ".ifc";
-
+        long mergeFileId;
         try {
+            if(BimserverConfig.client.getServiceInterface().getProjectByPoid(mergeFile2).getParentId() == -1){
+                mergeFileId = LatestProjectGetter.getLatestProjectWithParentId(mergeFile2);
+            } else{
+                mergeFileId = mergeFile2;
+            }
+
             /*INSTALL FILE THAT GOT UPLOADED*/
                 File postedFile = new File(pathForFirstFile);
                 file.transferTo(postedFile.getAbsoluteFile());
             /* GET THE SECOND FILE FROM BIMSERVER*/
-            SProject secondMergeFile = BimserverConfig.client.getServiceInterface().getProjectByPoid(mergeFile2);
+            SProject secondMergeFile = BimserverConfig.client.getServiceInterface().getProjectByPoid(mergeFileId);
             String schema = secondMergeFile.getSchema().substring(0, 1).toUpperCase() + secondMergeFile.getSchema().substring(1);
             SSerializerPluginConfiguration serializer = BimserverConfig.client.getServiceInterface().getSerializerByName(schema);
             long secondTopicId = BimserverConfig.client.getServiceInterface().download(Collections.singleton(secondMergeFile.getLastRevisionId()), "{}", serializer.getOid(), false);
@@ -69,6 +84,8 @@ public class IfcMergeService {
             SDeserializerPluginConfiguration deserializer = BimserverConfig.client.getServiceInterface().getSuggestedDeserializerForExtension("ifc", mergeParentOid);
             String nameOfDeserializer = deserializer.getName().replace(" (Streaming)","");
             SProject newProject = BimserverConfig.client.getServiceInterface().addProjectAsSubProject(uuidProduct.toString(), mergeParentOid,nameOfDeserializer );
+            newProject.setDescription(queryDescription);
+            BimserverConfig.client.getServiceInterface().updateProject(newProject);
             System.out.println(newProject.getOid() + newProject.getName()+ newProject.getSchema());
             BimserverConfig.client.checkinSync(newProject.getOid(), "", deserializer.getOid(), false, outputFile.toPath());
             System.out.println("done Checking in");
@@ -83,7 +100,7 @@ public class IfcMergeService {
             Files.delete(output.toPath());
             return new ResponseEntity<String>("Success", HttpStatus.valueOf(200));
 
-        } catch (ServerException e) {
+        } catch (ServerException | InterruptedException e) {
             return new ResponseEntity<String>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (UserException e) {
             return new ResponseEntity<String>("Bad Request", HttpStatus.BAD_REQUEST);
@@ -91,8 +108,6 @@ public class IfcMergeService {
             StringWriter errors = new StringWriter();
             e.printStackTrace(new PrintWriter(errors));
             return new ResponseEntity<String>(errors.toString(), HttpStatus.INTERNAL_SERVER_ERROR);
-        } catch (InterruptedException e) {
-            return new ResponseEntity<String>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
     }
