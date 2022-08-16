@@ -1,0 +1,24 @@
+version: '3' 
+
+services:
+  bim-server:
+    image: disitlab/bimserver:1.5.182
+    ports:
+      - 8082:8080
+
+  frontend-vue:
+    build: ./frontend/rtre-webbapplication
+    ports: 
+      - 8080:8080
+
+  springboot:
+    build: ./Server
+    ports:
+      - 3030:3030
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      bim-server:
+        condition: service_started
+      frontend-vue:
+        condition: service_started
