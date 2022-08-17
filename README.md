@@ -1,6 +1,6 @@
 
 <p align="center">
-<img src="https://lh4.googleusercontent.com/RAiIVZfw1tFqfX9ptajYAJEjdBl7IGiIAdmRup_AgJZN0iHpkyGj61dg34J319EaAnlOCPYupfty4oDPqPsMnxg=w16383">
+<img src="./resources/logo.png">
 <h2 align="center"> Real Time Real Estate</h2>
 </p>
 
@@ -29,6 +29,7 @@ Multiple communication channels to spread knowledge and progress in the field*
 * [License](#⚠️-license)
 * [Acknowledgments](#⭐-acknowledgments)
 
+![Alt Text](./resources/main.gif)
 ---
 
 ## 🔑 Key Features 
