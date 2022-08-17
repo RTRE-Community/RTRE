@@ -79,6 +79,19 @@ navigate to ./RTRE and type the following;
 
 >🔔  Make sure in server/fore/rtre/server/Main.java BimPort is set to docker.internal.host:port
 
+```java
+
+public class Main {
+	 public static String BimPort = "http://host.docker.internal:8082";
+	// public static String BimPort = "http://localhost:8082";
+
+	public static void main(String[] args) {
+		SpringApplication.run(Main.class, args);
+	}
+}
+
+```
+
 ```bash
 ## build server, frontend and Bimserver images
 > docker-compose up
@@ -139,6 +152,19 @@ npm run serve
 Next, navigate to ./RTRE/Server/ and run 
 
 >🔔  Make sure in server/fore/rtre/server/Main.java BimPort is set to localhost:port 
+
+```java
+
+public class Main {
+	// public static String BimPort = "http://host.docker.internal:8082";
+	public static String BimPort = "http://localhost:8082";
+
+	public static void main(String[] args) {
+		SpringApplication.run(Main.class, args);
+	}
+}
+
+```
 ```bash 
 mvn clean install
 mvn spring-boot:run
