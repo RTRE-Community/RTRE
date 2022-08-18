@@ -22,12 +22,14 @@ Multiple communication channels to spread knowledge and progress in the field*
 
 ## 📖 Content
 
-* [Key Features](#🔑-key-features)
-* [Quick-Setup](#⚡-quick-setup)
-    * [Firestore-Configuration](#🔥-firestore-configuration)
-* [Dev-setup](#🤖-dev-setup)
-* [License](#⚠️-license)
-* [Acknowledgments](#⭐-acknowledgments)
+- [🔑 Key Features](#---key-features)
+- [⚡ Quick-Setup](#--quick-setup)
+  * [🐋 with Docker](#---with-docker)
+  * [🔥 Firestore Configuration](#---firestore-configuration)
+- [🤖 Dev-Setup](#---dev-setup)
+  * [🔒 Requirements](#---requirements)
+- [⚠️ License](#---license)
+- [⭐ Acknowledgments](#--acknowledgments)
 
 ![Alt Text](./resources/main.gif)
 ---
@@ -128,7 +130,7 @@ folders to python3.9 site-packages/dist-packages You can locate the site using t
 ```bash 
 python -m site
 ```
-You will also need to connect to a firebase Database, follow instructions in the section [firestore Configuration](#🔥-firestore-configuration)
+You will also need to connect to a firebase Database, follow instructions in the section [firestore Configuration](#---firestore-configuration)
 
 Next, either install [Bimserver](https://github.com/opensourceBIM/BIMserver/releases) from its repository version 1.5.182 Or the easier way through docker with an image from [dockerhub](https://hub.docker.com/r/disitlab/bimserver/tags) 
 
