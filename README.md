@@ -34,10 +34,10 @@ Multiple communication channels to spread knowledge and progress in the field*
 
 ## 🔑 Key Features 
 
-RTRE application offers multiple features to enhance the development experience using IFC file format
+RTRE application offers multiple features to enhance the development experience using the IFC file format
 
 + File Management
-    - Check in a file
+    - Check-in a file
     - Check out a file
 + Merge functionality
 + Model Viewer
@@ -55,9 +55,9 @@ RTRE application offers multiple features to enhance the development experience 
 ### 🐋 with Docker
 
 
-First install Docker and Docker-compose and set it up.
+First, install Docker and Docker-compose and set it up.
 
-Clone the repository navigate to
+Clone the repository and navigate to
  ```bash
 ./RTRE/Server
 ```
@@ -66,13 +66,13 @@ Clone the repository navigate to
 Create a [Firestore](https://firebase.google.com/?gclid=CjwKCAjwo_KXBhAaEiwA2RZ8hLe4oIrXEhwgYLuZdC5CjJ_NGgIsY9Ajb9lGdqry4v5eg_YZCc9JXBoC7tMQAvD_BwE&gclsrc=aw.ds) Database and acquire the service account key by generating it
 
  ```bash
- - Go to console
+ - Go to the console
  - Add project
  - Build
  - Firestore Database (follow instructions)
  - Press the gear ⚙️ icon next To Project Overview
  - Project Settings -> Service accounts
- - Generate new private key and save that in ./Server 
+ - Generate a new private key and save that in ./Server 
 ```
 
 navigate to ./RTRE and type the following;
@@ -96,13 +96,13 @@ public class Main {
 ## build server, frontend and Bimserver images
 > docker-compose up
 ```
-After the process is done, should be when the springboot backend has started these are the following adresses at default:
+After the process is done, should be when the spring-boot backend has started these are the following addresses at default:
 
 + Springboot - http://localhost:3030
 + Bimserver - http://localhost:8082
 + Client - http://localhost:8080
     - Default Admin username = admin@admin.com
-    - Defauilt Admin password = password
+    - Default Admin password = password
 
 
 ## 🤖 Dev-Setup
@@ -114,10 +114,11 @@ After the process is done, should be when the springboot backend has started the
 - IfcOpenshell
 - Bimserver
 - Maven
-- Node.js , npm
+- Node.js
+- npm
 - Firestore
 
-First installing the merge functionality, navigate to [IfcOpenshell](https://github.com/IfcOpenShell/IfcOpenShell/releases/tag/blenderbim-220817) repository and install the blendebim-py3.9 version
+First installing the merge functionality, navigate to [IfcOpenshell](https://github.com/IfcOpenShell/IfcOpenShell/releases/tag/blenderbim-220817) repository and install the blenderbim-py3.9 version
 
 Copy the files from ./blenderbim/libs/site/packages/ and copy the 
 ```bash 
@@ -129,7 +130,7 @@ python -m site
 ```
 You will also need to connect to a firebase Database, follow instructions in the section [firestore Configuration](#🔥-firestore-configuration)
 
-Next, either install [Bimserver](https://github.com/opensourceBIM/BIMserver/releases) from its repository version 1.5.182 Or the easier way trough a docker with image from [dockerhub](https://hub.docker.com/r/disitlab/bimserver/tags) 
+Next, either install [Bimserver](https://github.com/opensourceBIM/BIMserver/releases) from its repository version 1.5.182 Or the easier way through docker with an image from [dockerhub](https://hub.docker.com/r/disitlab/bimserver/tags) 
 
 
 ```bash 
