@@ -63,7 +63,7 @@ Clone the repository navigate to
 ```
 
 ### 🔥 Firestore Configuration
-Create a [Firestore](https://firebase.google.com/?gclid=CjwKCAjwo_KXBhAaEiwA2RZ8hLe4oIrXEhwgYLuZdC5CjJ_NGgIsY9Ajb9lGdqry4v5eg_YZCc9JXBoC7tMQAvD_BwE&gclsrc=aw.ds) Database and acquire the service acount key by generating it
+Create a [Firestore](https://firebase.google.com/?gclid=CjwKCAjwo_KXBhAaEiwA2RZ8hLe4oIrXEhwgYLuZdC5CjJ_NGgIsY9Ajb9lGdqry4v5eg_YZCc9JXBoC7tMQAvD_BwE&gclsrc=aw.ds) Database and acquire the service account key by generating it
 
  ```bash
  - Go to console
