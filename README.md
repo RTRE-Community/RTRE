@@ -47,7 +47,7 @@ RTRE application offers multiple features to enhance the development experience 
 + Project Management
 + Notification
 + User Management
-+ Chat System
++ Chat System (experimental)
 + Supports 
     - IFC 2x3 
     - IFC 4
@@ -59,10 +59,12 @@ RTRE application offers multiple features to enhance the development experience 
 
 First, install Docker and Docker-compose and set it up.
 
-Clone the repository and navigate to
- ```bash
-./RTRE/Server
-```
+Download the zip file of repository
+>🔔 If you're cloning it make sure git config core.autocrlf is set to false
+>  ```bash
+> git config --list
+> git config --global/--system/--local/--worktree core.autocrlf false
+> ```
 
 ### 🔥 Firestore Configuration
 >🔔 you can also follow the instructions in the [wiki](https://github.com/therealtimerealestate/RTRE/wiki/Firestore-setup)
@@ -79,7 +81,7 @@ Create a [Firestore](https://firebase.google.com/?gclid=CjwKCAjwo_KXBhAaEiwA2RZ8
  - Press the gear ⚙️ icon next To Project Overview
  - Project Settings -> Service accounts
  - Generate a new private key 
- - save as "serviceAccountKey" in ./Server
+ - save as "serviceAccountKey" in ./RTRE/Server
 ```
 >🔔  Make sure before the following step this should be as standard if fresh clone
 , in server/fore/rtre/server/Main.java BimPort is set to docker.internal.host:port
