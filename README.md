@@ -66,6 +66,9 @@ Clone the repository and navigate to
 
 ### 🔥 Firestore Configuration
 >🔔 you can also follow the instructions in the [wiki](https://github.com/therealtimerealestate/RTRE/wiki/Firestore-setup)
+
+<br>
+
 Create a [Firestore](https://firebase.google.com/?gclid=CjwKCAjwo_KXBhAaEiwA2RZ8hLe4oIrXEhwgYLuZdC5CjJ_NGgIsY9Ajb9lGdqry4v5eg_YZCc9JXBoC7tMQAvD_BwE&gclsrc=aw.ds) Database and acquire the service account key by generating it
 
  ```bash
@@ -134,6 +137,8 @@ python -m site
 
 You will also need to connect to a firebase Database, follow instructions in the section [firestore Configuration](#---firestore-configuration)
 >🔔 you can also follow the instructions in the [wiki](https://github.com/therealtimerealestate/RTRE/wiki/Firestore-setup)
+
+<br>
 
 Next, either install [Bimserver](https://github.com/opensourceBIM/BIMserver/releases) from its repository version 1.5.182 Or the easier way through docker with an image from [dockerhub](https://hub.docker.com/r/disitlab/bimserver/tags) 
 
