@@ -72,12 +72,11 @@ Create a [Firestore](https://firebase.google.com/?gclid=CjwKCAjwo_KXBhAaEiwA2RZ8
  - Firestore Database (follow instructions)
  - Press the gear ⚙️ icon next To Project Overview
  - Project Settings -> Service accounts
- - Generate a new private key and save that in ./Server 
+ - Generate a new private key 
+ - save as "serviceAccountKey" in ./Server
 ```
-
-navigate to ./RTRE and type the following;
-
->🔔  Make sure in server/fore/rtre/server/Main.java BimPort is set to docker.internal.host:port
+>🔔  Make sure before the following step this should be as standard if fresh clone
+, in server/fore/rtre/server/Main.java BimPort is set to docker.internal.host:port
 
 ```java
 
@@ -90,7 +89,8 @@ public class Main {
 	}
 }
 
-```
+``` 
+navigate to ./RTRE and type the following;
 
 ```bash
 ## build server, frontend and Bimserver images
@@ -148,11 +148,7 @@ npm install
 ## run frontend Client
 npm run serve
 ```
-
-
-Next, navigate to ./RTRE/Server/ and run 
-
->🔔  Make sure in server/fore/rtre/server/Main.java BimPort is set to localhost:port 
+>🔔 Make sure before the following step, in server/fore/rtre/server/Main.java BimPort is set to localhost:port 
 
 ```java
 
@@ -166,6 +162,9 @@ public class Main {
 }
 
 ```
+
+Next, navigate to ./RTRE/Server/ and run 
+
 ```bash 
 mvn clean install
 mvn spring-boot:run
