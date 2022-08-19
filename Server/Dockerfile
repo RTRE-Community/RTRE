@@ -17,14 +17,14 @@ RUN cp -r ./blenderbim/libs/site/packages/ifcopenshell /usr/local/lib/python3.9/
 RUN cp -r ./blenderbim/libs/site/packages/ifcpatch /usr/local/lib/python3.9/dist-packages
 RUN python -c 'import ifcopenshell;'
 RUN python -c 'import ifcpatch;'
-         
+RUN apt-get install dos2unix
          
          
 WORKDIR /app
 COPY ./serviceAccountKey.json ./serviceAccountKey.json
 COPY .mvn/ .mvn
 COPY mvnw pom.xml ./
-RUN ./mvnw dependency:go-offline
+RUN dos2unix ./mvnw dependency:go-offline
  
 COPY src ./src
 EXPOSE 3030
