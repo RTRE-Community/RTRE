@@ -1,4 +1,4 @@
-version: '3' 
+version: '3'
 
 services:
   bim-server:
@@ -8,15 +8,12 @@ services:
 
   frontend-vue:
     build: ./frontend/rtre-webbapplication
-    ports: 
+    ports:
       - 8080:8080
 
   springboot:
     build: ./Server
-    ports:
-      - 3030:3030
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+    network_mode: "host"
     depends_on:
       bim-server:
         condition: service_started
