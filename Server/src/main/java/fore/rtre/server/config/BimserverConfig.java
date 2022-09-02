@@ -1,5 +1,6 @@
 package fore.rtre.server.config;
 
+import com.google.common.collect.EnumBiMap;
 import fore.rtre.server.Main;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.json.JsonBimServerClientFactory;
@@ -13,6 +14,9 @@ import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
+import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.net.Socket;
 import java.util.List;
 
 
@@ -24,16 +28,31 @@ public class BimserverConfig {
 
 
     @PostConstruct
-    public void BimserverInit(){
+    public void BimserverInit() throws InterruptedException {
 
             try {
                 factory = new JsonBimServerClientFactory(Main.BimPort);
                 client = factory.create(new UsernamePasswordAuthenticationInfo("admin@admin.com", "password"));
 
             } catch (BimServerClientException | ServiceException | ChannelConnectionException e) {
-                System.out.println("Initializing Bimserver...");
+
                 try{
+                        boolean connection = false;
+                        int number = 0;
+                    while (!connection){
+                        connection = pingHost("localhost", 8082, 1000);
+                        Thread.sleep(1000);
+                        if(number % 2 == 0)
+                        System.out.print("waiting for connection ... [|] " + "\r");
+                        else{
+                            System.out.print("waiting for connection ... [-] "+ "\r");
+                        }
+                        number++;
+                    }
+                    System.out.println("Initializing Bimserver...");
+                    Thread.sleep(4000);
                     factory = new JsonBimServerClientFactory(Main.BimPort);
+                    System.out.println("Connection acquired");
                     factory.create().getAdminInterface().setup("http://localhost:8082", "", "", "/img/bimserver.png", "Administrator", "admin@admin.com", "password");
                     client = factory.create(new UsernamePasswordAuthenticationInfo("admin@admin.com", "password"));
                     client.getServiceInterface().checkInternetConnection();
@@ -85,4 +104,16 @@ public class BimserverConfig {
             }
 
     }
+    public boolean pingHost(String host, int port, int timeout) {
+        try (Socket socket = new Socket()) {
+            InetSocketAddress inetSocketAddress = new InetSocketAddress(host, port);
+            System.out.println(inetSocketAddress.toString());
+            socket.connect(inetSocketAddress, timeout);
+            return true;
+        } catch (IOException e) {
+            return false; // Either timeout or unreachable or failed DNS lookup.
+        }
+    }
 }
+
+
