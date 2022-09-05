@@ -83,6 +83,21 @@ Create a [Firestore](https://firebase.google.com/?gclid=CjwKCAjwo_KXBhAaEiwA2RZ8
  - Generate a new private key 
  - save as "serviceAccountKey" in ./RTRE/Server
 ```
+>🔔  Make sure before the following step this should be as standard if fresh clone
+, in server/fore/rtre/server/Main.java BimPort is set to docker.internal.host:port
+
+```java
+
+public class Main {
+	 public static String BimPort = "http://host.docker.internal:8082";
+	// public static String BimPort = "http://localhost:8082";
+
+	public static void main(String[] args) {
+		SpringApplication.run(Main.class, args);
+	}
+}
+
+``` 
 navigate to ./RTRE and type the following;
 
 ```bash
@@ -145,6 +160,21 @@ npm install
 ## run frontend Client
 npm run serve
 ```
+>🔔 Make sure before the following step, in server/fore/rtre/server/Main.java BimPort is set to localhost:port 
+
+```java
+
+public class Main {
+	// public static String BimPort = "http://host.docker.internal:8082";
+	public static String BimPort = "http://localhost:8082";
+
+	public static void main(String[] args) {
+		SpringApplication.run(Main.class, args);
+	}
+}
+
+```
+
 Next, navigate to ./RTRE/Server/ and run 
 
 ```bash 
