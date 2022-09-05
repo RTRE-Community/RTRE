@@ -8,7 +8,8 @@ services:
 
   frontend-vue:
     build: ./frontend/rtre-webbapplication
-    network_mode: "host"
+    ports:
+      - 8080:8080
 
   springboot:
     build: ./Server
