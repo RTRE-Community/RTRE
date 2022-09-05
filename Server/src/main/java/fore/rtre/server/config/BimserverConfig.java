@@ -52,7 +52,7 @@ public class BimserverConfig {
                     System.out.println("Initializing Bimserver...");
                     Thread.sleep(4000);
                     factory = new JsonBimServerClientFactory(Main.BimPort);
-                    System.out.println("Connection acquired");
+                    System.out.println("Connection acquired, setting up...");
                     factory.create().getAdminInterface().setup("http://localhost:8082", "", "", "/img/bimserver.png", "Administrator", "admin@admin.com", "password");
                     client = factory.create(new UsernamePasswordAuthenticationInfo("admin@admin.com", "password"));
                     client.getServiceInterface().checkInternetConnection();
