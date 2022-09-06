@@ -102,7 +102,7 @@ navigate to ./RTRE and type the following;
 
 ```bash
 ## build server, frontend and Bimserver images
-> docker-compose up
+> docker compose up
 ```
 After the process is done, should be when the spring-boot backend has started these are the following addresses at default:
 
@@ -120,7 +120,7 @@ After the process is done, should be when the spring-boot backend has started th
 In case the above method is not working try the following;
 - Restart the build with
 ```bash
-> docker-compose up
+> docker compose up
 ```
 if this does not work proceed with following steps
 >🔔  (confirm by checking if springboot_1 | "Setup done and connected to Bimserver!" does not exist in terminal 
@@ -160,7 +160,7 @@ services:
 ```bash
 ### Doing this will delete all containers,volumes and images
 > docker system prune -a -f --volume
-> docker-compose up
+> docker compose up
 ```
 
 
