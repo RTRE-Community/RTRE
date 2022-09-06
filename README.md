@@ -54,7 +54,9 @@ RTRE application offers multiple features to enhance the development experience 
 
 ## ⚡ Quick-Setup
 ---
-### 🐋 with Docker
+### 🐋 with Docker 
+
+🚫 There's a known issue with docker that makes it unable to run, using this method is not possible at the moment 🚫
 
 
 First, install Docker and Docker-compose and set it up.
