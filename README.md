@@ -54,8 +54,14 @@ RTRE application offers multiple features to enhance the development experience 
 
 ## ⚡ Quick-Setup
 ---
-### 🐋 with Docker
+The quick setup is Docker-based.
 
+>🔔🔔🔔
+> **THE DOCKER-BASED QUICK SETUP IS NOT PROPERLY WORKING ATM**.
+> <br>
+> Please use the developer setup instead while we work on the detected issues.
+> <br>
+> Sincere apologies from the team.
 
 First, install Docker and Docker-compose and set it up.
 
