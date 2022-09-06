@@ -53,10 +53,6 @@ RTRE application offers multiple features to enhance the development experience 
     - IFC 4
 
 ## ⚡ Quick-Setup
-
-
-##### 🚫 There's a known issue with RTRE that makes it unable to run trough Docker, using this method is not possible at the moment 🚫
-
 ---
 ### 🐋 with Docker 
 
@@ -114,6 +110,57 @@ After the process is done, should be when the spring-boot backend has started th
 + Client - http://localhost:8080
     - Default Admin username = admin@admin.com
     - Default Admin password = password
+    
+### If springboot doesn't reply with "Setup done and connected to Bimserver!" head to the section below!
+
+## 🧰 Additional solutions
+---
+
+In case the above method is not working try the following;
+- Restart the build with
+```bash
+> docker-compose up
+```
+if this does not work proceed with following steps
+>🔔  (confirm by checking if springboot_1 | "Setup done and connected to Bimserver!" does not exist in terminal 
+- Delete following lines pointed by "<---" in docker-compose.yml file and save:
+```yml
+version: '3' 
+
+services:
+  bim-server:---------------------------------------<---
+    image: disitlab/bimserver:1.5.182               <---
+    ports:                                          <---
+      - 8082:8080-----------------------------------<---
+
+  frontend-vue:
+    build: ./frontend/rtre-webbapplication
+    ports: 
+      - 8080:8080
+
+  springboot:
+    build: ./Server
+    ports:
+      - 3030:3030
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:--------------------------------------<---
+      bim-server:                                    <---
+        condition: service_started                   <---
+      frontend-vue:                                  <---
+        condition: service_started-------------------<---
+```
+- Install Bimserver .jar file from [Bimserver](https://github.com/opensourceBIM/BIMserver/releases/tag/v1.5.182) version 1.5.182
+- Running jar file requires [Java](https://www.java.com/en/)
+- Press start on the program
+>🔔  Make sure Bimserver returns "[main]: Server started successfully" before procceding
+- Run following command in a terminal in the ./RTRE directory.
+>🔔  example if the folder exist in downloads "cd Downloads/RTRE/"
+```bash
+### Doing this will delete all containers,volumes and images
+> docker system prune -a -f --volume
+> docker-compose up
+```
 
 
 ## 🤖 Dev-Setup
