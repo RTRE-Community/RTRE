@@ -98,6 +98,7 @@ public class Main {
 
 ``` 
 navigate to ./RTRE and type the following;
+>🔔  example if the folder exist in downloads "cd Downloads/RTRE/"
 
 ```bash
 ## build server, frontend and Bimserver images
