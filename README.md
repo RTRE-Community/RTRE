@@ -56,7 +56,7 @@ RTRE application offers multiple features to enhance the development experience 
 ---
 ### 🐋 with Docker 
 
-First, install Docker and Docker-compose and set it up.
+First, install [Docker](https://www.docker.com/) set it up.
 
 Download the zip file of repository
 >🔔 If you're cloning it make sure git config core.autocrlf is set to false
