@@ -155,6 +155,8 @@ services:
 - Running jar file requires [Java](https://www.java.com/en/)
 - Press start on the program
 >🔔  Make sure Bimserver returns "[main]: Server started successfully" before procceding
+ > - Press Launch Webbbrowser follow the on screen instructions on the setup, and use everything as default
+ > - proceed with following step after setup.
 - Run following command in a terminal in the ./RTRE directory.
 >🔔  example if the folder exist in downloads "cd Downloads/RTRE/"
 ```bash
