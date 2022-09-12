@@ -153,10 +153,14 @@ services:
 ```
 - Install Bimserver .jar file from [Bimserver](https://github.com/opensourceBIM/BIMserver/releases/tag/v1.5.182) version 1.5.182
 - Running jar file requires [Java](https://www.java.com/en/)
-- Press start on the program
+- Press start on the program - don't change default settings
 >🔔  Make sure Bimserver returns "[main]: Server started successfully" before procceding
- > - Press Launch Webbbrowser follow the on screen instructions on the setup, and use everything as default
+ > - Press Launch Webbbrowser follow the on screen instructions on the setup 
+> - Bimserver has to be accessable trough the adress http://localhost:8082 
+## Note!
+ > 🔔 Admin username has to be "admin@admin.com" and password had to be "password", and set everything else as default
  > - proceed with following step after setup.
+---
 - Run following command in a terminal in the ./RTRE directory.
 >🔔  example if the folder exist in downloads "cd Downloads/RTRE/"
 ```bash
