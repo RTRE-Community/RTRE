@@ -106,9 +106,9 @@ navigate to ./RTRE and type the following;
 ```
 After the process is done, should be when the spring-boot backend has started these are the following addresses at default:
 
-+ Springboot - http://localhost:3030
++ Backend - http://localhost:3030
 + Bimserver - http://localhost:8082
-+ Client - http://localhost:8080
++ Frontend - http://localhost:8080
     - Default Admin username = admin@admin.com
     - Default Admin password = password
     
@@ -153,10 +153,20 @@ services:
 ```
 - Install Bimserver .jar file from [Bimserver](https://github.com/opensourceBIM/BIMserver/releases/tag/v1.5.182) version 1.5.182
 - Running jar file requires [Java](https://www.java.com/en/)
-- Press start on the program
+- Press start on the program - don't change default settings
 >🔔  Make sure Bimserver returns "[main]: Server started successfully" before procceding
- > - Press Launch Webbbrowser follow the on screen instructions on the setup, and use everything as default
- > - proceed with following step after setup.
+
+If you wanna do a manual setup continue, if not then skip over to the Docker section below
+
+## Manual Setup
+ > - Press Launch Webbbrowser follow the on screen instructions on the setup, but there are three things to note 
+ > 		- Bimserver has to be accessable trough the adress http://localhost:8082 
+ > 		- 🔔 Admin username has to be "admin@admin.com" and password had to be "password"
+ > 		- Select all plugins
+ > - The rest of the setup should be default
+ > - Continue to the section below
+---
+## Docker
 - Run following command in a terminal in the ./RTRE directory.
 >🔔  example if the folder exist in downloads "cd Downloads/RTRE/"
 ```bash
@@ -165,6 +175,7 @@ services:
 > docker compose up
 ```
 
+After a while the application should be accessible trough http://localhost:8080!
 
 ## 🤖 Dev-Setup
 ---
